@@ -1,3 +1,15 @@
+#include "glew/include/GL/glew.h"
+//#include "glew/include/GL/eglew.h"
+//#include "glew/include/GL/glxew.h"
+//#include "glew/include/GL/wglew.h"
+//#include <gl/GL.h>
+//#include <gl/GLU.h>
+
+
+//#pragma comment (lib, "glut/glut32.lib")
+#pragma comment (lib, "glew/lib/Release/Win32/glew32.lib")
+#pragma comment (lib, "glew/lib/Release/Win32/glew32s.lib")
+
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
@@ -146,6 +158,15 @@ bool ModuleRenderer3D::Init()
 	//ImGui::Begin("Window B");
 	//ImGui::Button("Button on window B");
 	//ImGui::End();
+
+
+
+	GLenum error = glewInit();
+	if (GLEW_OK != error)
+	{
+		LOG("Glew failed, Error: %s\n", glewGetErrorString(error));
+	}
+	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
 	return ret;
 }

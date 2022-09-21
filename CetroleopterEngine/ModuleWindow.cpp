@@ -75,12 +75,14 @@ bool ModuleWindow::Init()
 		}
 	}
 
+
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	ImGui::StyleColorsDark();
 	//ImGui_ImplGlfw_InitForOpenGL(window, true); // GLEW ?????
 	ImGui_ImplOpenGL3_Init("#version 330");
+
 
 	return ret;
 }
@@ -98,6 +100,8 @@ bool ModuleWindow::CleanUp()
 		//glfwTerminate(); // GLEW ?????
 
 	}
+
+	
 
 	// Quit ImGui for OpenGL3
 	ImGui_ImplOpenGL3_Shutdown();
