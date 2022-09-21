@@ -94,10 +94,15 @@ bool ModuleWindow::CleanUp()
 	if(window != NULL)
 	{
 		SDL_DestroyWindow(window);
+		//glfwDestroyWindow(window); // GLEW ?????
+		//glfwTerminate(); // GLEW ?????
+
 	}
 
 	// Quit ImGui for OpenGL3
-	//ImGui_ImplOpenGL3_Shutdown();
+	ImGui_ImplOpenGL3_Shutdown();
+	//ImGui_ImplGlfw_Shutdown(); // GLEW ?????
+	ImGui::DestroyContext();
 
 	//Quit SDL subsystems
 	SDL_Quit();
