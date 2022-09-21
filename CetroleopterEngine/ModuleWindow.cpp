@@ -2,8 +2,7 @@
 #include "Application.h"
 #include "ModuleWindow.h"
 
-#include "imgui.h"
-#include "imgui_impl_opengl3.h"
+
 
 
 
@@ -74,21 +73,6 @@ bool ModuleWindow::Init()
 		}
 	}
 
-	// ImGui Stuff
-	//IMGUI_CHECKVERSION();
-	//ImGui::CreateContext();
-	//ImGui::StyleColorsDark();
-	//ImGui_ImplOpenGL3_Init("#version 300 es");
-	//
-	//ImGui::GetIO();
-
-	//ImGui_ImplOpenGL3_CreateDeviceObjects();
-	//ImGui_ImplOpenGL3_CreateFontsTexture();
-
-	//ImGui::BeginMenuBar();
-	//ImGui_ImplOpenGL3_NewFrame();
-	//ImGui_ImplOpenGL3_RenderDrawData();
-	//ImGui_ImplOpenGL3_Shutdown();
 	
 
 	return ret;

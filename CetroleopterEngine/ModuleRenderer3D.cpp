@@ -5,6 +5,9 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
+#include "imgui.h"
+#include "imgui_impl_opengl3.h"
+
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
@@ -99,12 +102,61 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+	// ImGui Stuff
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGui::StyleColorsDark();
+	ImGui_ImplOpenGL3_Init("#version 300 es");
+	//
+	//ImGui::GetIO();
+
+	//ImGui_ImplOpenGL3_CreateDeviceObjects();
+	//ImGui_ImplOpenGL3_CreateFontsTexture();
+
+	//ImGui::BeginMenuBar();
+	//ImGui_ImplOpenGL3_NewFrame();
+	//ImGui_ImplOpenGL3_RenderDrawData();
+	//ImGui_ImplOpenGL3_Shutdown();
+	
+
+	
+	ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_None);
+	ImGui::SetNextWindowSize(ImVec2(100.0f, 100.0f), ImGuiCond_None);
+	//ImGui::BeginPopupContextWindow();
+	//float height = ImGui::GetWindowHeight();
+
+	
+
+	//ImGui::ShowDemoWindow(false);
+
+	//ImGui::Begin("Window A", false, ImGuiWindowFlags_MenuBar);
+	//ImGui::Text("This is window A");
+	//ImGui::End();
+	//
+	//ImGui::NewFrame();
+
+	//ImGui::Begin("Window B");
+	//ImGui::Text("This is window B");
+	//ImGui::End();
+	//
+	//ImGui::Begin("Window A");
+	//ImGui::Button("Button on window A");
+	//ImGui::End();
+	//
+	//ImGui::Begin("Window B");
+	//ImGui::Button("Button on window B");
+	//ImGui::End();
+
 	return ret;
 }
 
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
+	//ImGui::NewFrame();
+
+	//ImGui::ShowDemoWindow(false);
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
 
@@ -117,6 +169,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
 
+	
+
 	return UPDATE_CONTINUE;
 }
 
@@ -124,6 +178,12 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
 	SDL_GL_SwapWindow(App->window->window);
+
+	// Called ImGui::Render() or ImGui::EndFrame() and haven't called ImGui::NewFrame() again yet
+	//ImGui::Render();
+
+	//ImGui::EndFrame();
+
 	return UPDATE_CONTINUE;
 }
 
