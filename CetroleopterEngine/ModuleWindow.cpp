@@ -2,7 +2,9 @@
 #include "Application.h"
 #include "ModuleWindow.h"
 
-
+#include "imgui/imgui.h"
+//#include "imgui/imgui_impl_glfw.h"  // CON EL GLEW? <- ????
+#include "imgui/imgui_impl_opengl3.h"
 
 
 
@@ -73,7 +75,12 @@ bool ModuleWindow::Init()
 		}
 	}
 
-	
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	//ImGui_ImplGlfw_InitForOpenGL(window, true); // GLEW ?????
+	ImGui_ImplOpenGL3_Init("#version 330");
 
 	return ret;
 }
