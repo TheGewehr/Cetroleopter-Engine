@@ -4,9 +4,8 @@
 
 #include "imgui.h"
 #include "imgui_impl_opengl3.h"
-#include "imgui_impl_sdl.h"
-#include "imgui_impl_opengl3_loader.h"
-#include "imgui_impl_sdlrenderer.h"
+
+
 
 ModuleWindow::ModuleWindow(bool start_enabled) : Module(start_enabled)
 {
@@ -75,10 +74,22 @@ bool ModuleWindow::Init()
 		}
 	}
 
+	// ImGui Stuff
 	//IMGUI_CHECKVERSION();
 	//ImGui::CreateContext();
 	//ImGui::StyleColorsDark();
-	//ImGui_ImplOpenGL3_Init();
+	//ImGui_ImplOpenGL3_Init("#version 300 es");
+	//
+	//ImGui::GetIO();
+
+	//ImGui_ImplOpenGL3_CreateDeviceObjects();
+	//ImGui_ImplOpenGL3_CreateFontsTexture();
+
+	//ImGui::BeginMenuBar();
+	//ImGui_ImplOpenGL3_NewFrame();
+	//ImGui_ImplOpenGL3_RenderDrawData();
+	//ImGui_ImplOpenGL3_Shutdown();
+	
 
 	return ret;
 }
@@ -93,6 +104,9 @@ bool ModuleWindow::CleanUp()
 	{
 		SDL_DestroyWindow(window);
 	}
+
+	// Quit ImGui for OpenGL3
+	//ImGui_ImplOpenGL3_Shutdown();
 
 	//Quit SDL subsystems
 	SDL_Quit();

@@ -8,6 +8,7 @@ Application::Application() : debug(false)
 	scene_intro = new ModuleSceneIntro();
 	renderer3D = new ModuleRenderer3D();
 	camera = new ModuleCamera3D();
+	
 	//physics = new ModulePhysics3D();
 
 	// The order of calls is very important!
@@ -19,6 +20,7 @@ Application::Application() : debug(false)
 	AddModule(camera);
 	AddModule(input);
 	AddModule(audio);
+	
 	//AddModule(physics);
 	
 	// Scenes
