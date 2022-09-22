@@ -44,7 +44,7 @@ Application::~Application()
 	while (item != list_modules.rend())
 	{
 		delete* item;
-		++item;
+		item++;
 	}
 }
 
@@ -66,7 +66,7 @@ bool Application::Init()
 	while (item != list_modules.end() && ret == true)
 	{
 		ret = (*item)->Init();
-		++item;
+		item++;
 	}
 
 	// After all Init calls we call Start() in all modules
@@ -82,7 +82,7 @@ bool Application::Init()
 	while (item != list_modules.end() && ret == true)
 	{
 		ret = (*item)->Start();
-		++item;
+		item++;
 	}
 	
 	ms_timer.Start();
@@ -118,7 +118,7 @@ update_status Application::Update()
 	while (item != list_modules.end() && ret == UPDATE_CONTINUE)
 	{
 		ret = (*item)->PreUpdate(dt);
-		++item;
+		item++;
 	}
 
 	//item = list_modules.getFirst();
@@ -132,7 +132,7 @@ update_status Application::Update()
 	while (item != list_modules.end() && ret == UPDATE_CONTINUE)
 	{
 		ret = (*item)->Update(dt);
-		++item;
+		item++;
 	}
 
 	//item = list_modules.getFirst();
@@ -146,7 +146,7 @@ update_status Application::Update()
 	while (item != list_modules.end() && ret == UPDATE_CONTINUE)
 	{
 		ret = (*item)->PostUpdate(dt);
-		++item;
+		item++;
 	}
 
 	FinishUpdate();
@@ -167,7 +167,7 @@ bool Application::CleanUp()
 	while (item != list_modules.rend() && ret == true)
 	{
 		ret = (*item)->CleanUp();
-		++item;
+		item++;
 	}
 	return ret;
 }
