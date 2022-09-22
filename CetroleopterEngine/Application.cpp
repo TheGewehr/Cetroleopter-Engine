@@ -44,7 +44,7 @@ Application::~Application()
 	while (item != list_modules.rend())
 	{
 		delete* item;
-		item++;
+		item++;  // Can also be ++item; in all the other loop parts
 	}
 }
 
