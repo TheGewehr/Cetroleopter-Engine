@@ -115,10 +115,10 @@ bool ModuleRenderer3D::Init()
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	// ImGui Stuff
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGui::StyleColorsDark();
-	ImGui_ImplOpenGL3_Init("#version 300 es");
+	//IMGUI_CHECKVERSION();
+	//ImGui::CreateContext();
+	//ImGui::StyleColorsDark();
+	//ImGui_ImplOpenGL3_Init("#version 300 es");
 	//
 	//ImGui::GetIO();
 
@@ -132,8 +132,8 @@ bool ModuleRenderer3D::Init()
 	
 
 	
-	ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_None);
-	ImGui::SetNextWindowSize(ImVec2(100.0f, 100.0f), ImGuiCond_None);
+	//ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_None);
+	//ImGui::SetNextWindowSize(ImVec2(100.0f, 100.0f), ImGuiCond_None);
 	//ImGui::BeginPopupContextWindow();
 	//float height = ImGui::GetWindowHeight();
 
