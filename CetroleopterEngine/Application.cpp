@@ -9,7 +9,7 @@ Application::Application() : debug(false)
 	scene_intro = new ModuleSceneIntro();
 	renderer3D = new ModuleRenderer3D();
 	camera = new ModuleCamera3D();
-	ui = new ModuleUi();
+	moduleUi = new ModuleUi();
 	
 	//physics = new ModulePhysics3D();
 
@@ -22,13 +22,13 @@ Application::Application() : debug(false)
 	AddModule(camera);
 	AddModule(input);
 	AddModule(audio);
-	AddModule(ui);
 	//AddModule(physics);
 	
 	// Scenes
 	AddModule(scene_intro);
 
 	// Renderer last!
+	AddModule(moduleUi);
 	AddModule(renderer3D);
 }
 

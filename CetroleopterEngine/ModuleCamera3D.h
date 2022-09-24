@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _MODULE_CAMERA_H_
+#define _MODULE_CAMERA_H_
+
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
@@ -10,7 +12,7 @@ public:
 	~ModuleCamera3D();
 
 	bool Start();
-	update_status Update(float dt) override;
+	update_status Update(float dt);
 	bool CleanUp();
 
 	void Look(const vec3 &Position, const vec3 &Reference, bool RotateAroundReference = false);
@@ -30,3 +32,5 @@ private:
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };
+
+#endif // !_MODULE_CAMERA_H_

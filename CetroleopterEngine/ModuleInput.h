@@ -1,4 +1,6 @@
-#pragma once
+#ifndef _MODULE_INPUT_H_
+#define _MODULE_INPUT_H_
+
 #include "Module.h"
 #include "Globals.h"
 
@@ -20,8 +22,8 @@ public:
 	~ModuleInput();
 
 	bool Init();
-	update_status PreUpdate(float dt) override;
-	update_status Update(float dt) override;
+	update_status PreUpdate(float dt);
+	update_status Update(float dt);
 	bool CleanUp();
 
 	KEY_STATE GetKey(int id) const
@@ -69,3 +71,5 @@ private:
 	int mouse_y_motion;
 	//int mouse_z_motion;
 };
+
+#endif // !_MODULE_INPUT_H_

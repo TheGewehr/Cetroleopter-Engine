@@ -16,7 +16,7 @@
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_sdl.h"
 
-ModuleUi::ModuleUi(bool start_enabled)
+ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled)
 {
 }
 
@@ -28,7 +28,7 @@ bool ModuleUi::Init()
 {
     InitializeImGui();
 
-	return false;
+	return true;
 }
 
 update_status ModuleUi::PreUpdate(float dt)
@@ -36,11 +36,16 @@ update_status ModuleUi::PreUpdate(float dt)
 	return UPDATE_CONTINUE;
 }
 
+update_status ModuleUi::Update(float dt)
+{
+    return UPDATE_CONTINUE;
+}
+
 update_status ModuleUi::PostUpdate(float dt)
 {
-    ImGui_ImplOpenGL3_NewFrame();
-    ImGui_ImplSDL2_NewFrame();
-    ImGui::NewFrame();
+    /*ImGui_ImplOpenGL3_NewFrame();                 <---
+    ImGui_ImplSDL2_NewFrame();                      <---
+    ImGui::NewFrame();*///                          <---
 
 
     // Content
@@ -54,11 +59,11 @@ update_status ModuleUi::PostUpdate(float dt)
 
 bool ModuleUi::CleanUp()
 {
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImGui::DestroyContext();
+    /*ImGui_ImplOpenGL3_Shutdown();                  <---
+    ImGui_ImplSDL2_Shutdown();                       <---
+    ImGui::DestroyContext();*///                     <---
 
-	return false;
+	return true;
 }
 
 bool ModuleUi::InitializeImGui() const
@@ -85,8 +90,8 @@ bool ModuleUi::InitializeImGui() const
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
 
-    ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);
-    ImGui_ImplOpenGL3_Init(0);
+    /*ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);           <---
+    ImGui_ImplOpenGL3_Init(0);*///                                                           <---
 
     
     return ret;

@@ -1,6 +1,9 @@
-#pragma once
+#ifndef _MODULE_H_
+#define _MODULE_H_
 
-//class  PhysBody3D;
+#include "Globals.h"
+#include <string>
+
 
 class Module
 {
@@ -46,3 +49,5 @@ public:
 
 	
 };
+
+#endif // !_MODULE_H_

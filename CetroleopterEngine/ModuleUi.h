@@ -1,5 +1,5 @@
-#ifndef _MODULE_UI_H_
-#define _MODULE_UI_H_
+#ifndef _MODULEUI_H_
+#define _MODULEUI_H_
 
 #include "Module.h"
 #include "Globals.h"
@@ -14,8 +14,9 @@ public:
 	~ModuleUi();
 
 	bool Init();
-	update_status PreUpdate(float dt) override;
-	update_status PostUpdate(float dt) override;
+	update_status PreUpdate(float dt);
+	update_status Update(float dt);
+	update_status PostUpdate(float dt);
 	bool CleanUp();
 
 	
@@ -25,4 +26,4 @@ private:
 	
 };
 
-#endif
+#endif // !_MODULEUI_H_

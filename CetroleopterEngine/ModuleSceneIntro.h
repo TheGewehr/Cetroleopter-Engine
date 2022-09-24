@@ -13,8 +13,8 @@ public:
 	~ModuleSceneIntro();
 
 	bool Start();
-	update_status Update(float dt) override;
-	update_status PostUpdate(float dt) override;
+	update_status Update(float dt);
+	update_status PostUpdate(float dt);
 	bool CleanUp();
 
 

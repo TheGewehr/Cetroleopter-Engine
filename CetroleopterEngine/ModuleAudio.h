@@ -1,5 +1,5 @@
-#ifndef __ModuleAudio_H__
-#define __ModuleAudio_H__
+#ifndef _ModuleAudio_H_
+#define _ModuleAudio_H_
 
 #include "Module.h"
 
@@ -30,4 +30,4 @@ public:
 //	p2List<Mix_Chunk*>	fx;
 };
 
-#endif // __ModuleAudio_H__
+#endif // _ModuleAudio_H_

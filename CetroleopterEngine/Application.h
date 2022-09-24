@@ -25,7 +25,7 @@ public:
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
-	ModuleUi* ui;
+	ModuleUi* moduleUi;
 	
 	//ModulePhysics3D* physics;
 
