@@ -5,16 +5,16 @@
 #include "Application.h"
 //#include "OpenGL.h"
 
-#include "SDL\include\SDL_opengl.h"
+#include "SDL/include/SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
 #include "Globals.h"
 
-#include "imgui.h"
-#include "imgui_internal.h"
-#include "imgui_impl_opengl3.h"
-#include "imgui_impl_sdl.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_internal.h"
+#include "imgui/imgui_impl_opengl3.h"
+#include "imgui/imgui_impl_sdl.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled)
 {
@@ -59,7 +59,7 @@ update_status ModuleUi::PostUpdate(float dt)
 
 bool ModuleUi::CleanUp()
 {
-    //ImGui_ImplOpenGL3_Shutdown();                    <--- (asertion error)
+    //ImGui_ImplOpenGL3_Shutdown();//                  <--- (asertion error)
     //ImGui_ImplSDL2_Shutdown();//                     <--- (linker error)
     ImGui::DestroyContext();
 
