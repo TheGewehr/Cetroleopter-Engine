@@ -43,9 +43,9 @@ update_status ModuleUi::Update(float dt)
 
 update_status ModuleUi::PostUpdate(float dt)
 {
-    //ImGui_ImplOpenGL3_NewFrame();//               <--- (asertion error)
-    //ImGui_ImplSDL2_NewFrame();//                  <--- (linker error)
-    //ImGui::NewFrame();//                          <--- (asertion error)
+    ImGui_ImplOpenGL3_NewFrame();//               <--- (asertion error)
+    ImGui_ImplSDL2_NewFrame();//                  <--- (linker error)
+    ImGui::NewFrame();//                          <--- (asertion error)
 
     // Content
     
@@ -58,8 +58,8 @@ update_status ModuleUi::PostUpdate(float dt)
 
 bool ModuleUi::CleanUp()
 {
-    //ImGui_ImplOpenGL3_Shutdown();//                  <--- (asertion error)
-    //ImGui_ImplSDL2_Shutdown();//                     <--- (linker error)
+    ImGui_ImplOpenGL3_Shutdown();//                  <--- (asertion error)
+    ImGui_ImplSDL2_Shutdown();//                     <--- (linker error)
     ImGui::DestroyContext();
 
 	return true;
@@ -89,7 +89,7 @@ bool ModuleUi::InitializeImGui() const
         style.Colors[ImGuiCol_WindowBg].w = 1.0f;
     }
 
-    //ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);//           <--- (linker error)
+    ImGui_ImplSDL2_InitForOpenGL(App->window->window, App->renderer3D->context);//           <--- (linker error)
     ImGui_ImplOpenGL3_Init(0);
 
     
