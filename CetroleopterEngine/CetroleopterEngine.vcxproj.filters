@@ -288,6 +288,9 @@
     <ClInclude Include="ModuleAudio.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleUi.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -463,5 +466,8 @@
     <None Include="mathGeoLib\Math\Matrix.inl">
       <Filter>ExternalTools\MathGeoLib\Math</Filter>
     </None>
+    <ClCompile Include="ModuleUi.cpp">
+      <Filter>Sources\Modules</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
