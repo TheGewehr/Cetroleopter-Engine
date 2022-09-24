@@ -24,7 +24,7 @@ ModuleUi::~ModuleUi()
 {
 }
 
-bool ModuleUi::Init()
+bool ModuleUi::Start()
 {
     InitializeImGui();
 
@@ -46,7 +46,6 @@ update_status ModuleUi::PostUpdate(float dt)
     //ImGui_ImplOpenGL3_NewFrame();//               <--- (asertion error)
     //ImGui_ImplSDL2_NewFrame();//                  <--- (linker error)
     //ImGui::NewFrame();//                          <--- (asertion error)
-
 
     // Content
     

@@ -13,7 +13,7 @@ public:
 	ModuleUi(bool start_enabled = true);
 	~ModuleUi();
 
-	bool Init();
+	bool Start();
 	update_status PreUpdate(float dt);
 	update_status Update(float dt);
 	update_status PostUpdate(float dt);
