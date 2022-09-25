@@ -1,9 +1,4 @@
-#include "ModuleUi.h"
-#include "Application.h"
-#include "ModuleWindow.h"
-#include "ModuleRenderer3D.h"
-#include "Application.h"
-//#include "OpenGL.h"
+#include "glew/include/GL/glew.h"
 
 #include "SDL/include/SDL_opengl.h"
 #include <gl/GL.h>
@@ -15,6 +10,15 @@
 #include "imgui/imgui_internal.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "imgui/imgui_impl_sdl.h"
+
+
+#include "ModuleUi.h"
+#include "Application.h"
+#include "ModuleWindow.h"
+#include "ModuleRenderer3D.h"
+#include "Application.h"
+//#include "OpenGL.h"
+
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled)
 {
