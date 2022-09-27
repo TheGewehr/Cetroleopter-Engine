@@ -43,6 +43,9 @@
     <Filter Include="ExternalTools\imgui">
       <UniqueIdentifier>{bd2a406c-2c0a-4008-a795-8005e0dc7b8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Modules\ImGuiWindows">
+      <UniqueIdentifier>{e4ef3756-1091-4075-8281-3aae421ac47e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -120,6 +123,12 @@
     <ClInclude Include="imgui\imgui_impl_opengl3.h">
       <Filter>ExternalTools\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="ImGuiWindowManager.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigurationWindow.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -187,6 +196,9 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_impl_sdl.cpp">
       <Filter>ExternalTools\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfigurationWindow.cpp">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -117,3 +117,28 @@ void ModuleWindow::SetTitle(const char* title)
 {
 	SDL_SetWindowTitle(window, title);
 }
+
+float ModuleWindow::GetBrightness() const
+{
+	return SDL_GetWindowBrightness(window);
+}
+
+void ModuleWindow::SetBrightness(float value)
+{
+	int result = SDL_SetWindowBrightness(window, value);                                                
+
+	if (result != 0)
+	{
+		LOG("[ERROR] SDL_SetWindowBrightness() failed! SDL_Error: %s", SDL_GetError());
+	}
+}
+
+void ModuleWindow::GetWindowsSize(SDL_Window* window, int& width, int& height)
+{
+	SDL_GetWindowSize(window, &width, &height);
+}
+
+void ModuleWindow::SetWindowSize(uint width, uint height)
+{
+	SDL_SetWindowSize(window, width, height);
+}
