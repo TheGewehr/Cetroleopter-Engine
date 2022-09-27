@@ -7,6 +7,8 @@
 #include <vector>
 #include "SDL/include/SDL.h"
 
+#include "ImGuiWindowManager.h"
+
 class ImGuiWindow;
 class ConfigurationWindow;
 

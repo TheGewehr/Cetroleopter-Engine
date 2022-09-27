@@ -123,7 +123,7 @@
     <ClInclude Include="imgui\imgui_impl_opengl3.h">
       <Filter>ExternalTools\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="ImGuiWindow.h">
+    <ClInclude Include="ImGuiWindowManager.h">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClInclude>
     <ClInclude Include="ConfigurationWindow.h">

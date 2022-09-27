@@ -18,7 +18,7 @@
 #include "ModuleRenderer3D.h"
 //#include "OpenGL.h"
 
-#include "ImGuiWindow.h"
+#include "ImGuiWindowManager.h"
 #include "ConfigurationWindow.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),

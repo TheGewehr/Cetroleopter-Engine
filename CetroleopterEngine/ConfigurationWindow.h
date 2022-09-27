@@ -1,20 +1,20 @@
 #ifndef _CONFIGURATIONWINDOW_H_
 #define _CONFIGURATIONWINDOW_H_
 
-#include "ImGuiWindow.h"
+#include "ImGuiWindowManager.h"
 
 #define MAX_HISTOGRAM_SIZE 100
 
-class ImGuiWindow;
+class ImGuiWindowManager;
 
-class ConfigurationWindow : public ImGuiWindow
+class ConfigurationWindow : public ImGuiWindowManager
 {
 public:
 	ConfigurationWindow(const char* name, bool isActive = true);
 	~ConfigurationWindow();
 
-	bool Draw(ImGuiIO& io)override;
-	bool CleanUp()override;
+	bool Draw(ImGuiIO& io);
+	bool CleanUp();
 
 	//void UpdateFrameData(int frames, int ms);
 

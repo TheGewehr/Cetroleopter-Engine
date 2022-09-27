@@ -1,5 +1,5 @@
-#ifndef _IMGUIWINDOW_H_
-#define _IMGUIWINDOW_H_
+#ifndef _IMGUIWINDOW_MANAGER_H_
+#define _IMGUIWINDOW_MANAGER_H_
 
 #include "imgui.h"
 #include "imconfig.h"
@@ -8,15 +8,15 @@
 #include "imgui_impl_opengl3.h"
 
 
-class ImGuiWindow
+class ImGuiWindowManager
 {
 public:
 
 
-	ImGuiWindow(const char* name, bool isActive = true) : name(name), isActive(isActive)
+	ImGuiWindowManager(const char* name, bool isActive = true) : name(name), isActive(isActive)
 	{}
 
-	virtual ~ImGuiWindow()
+	virtual ~ImGuiWindowManager()
 	{}
 
 	virtual bool Draw(ImGuiIO& io)
@@ -70,4 +70,4 @@ private:
 	bool isClicked;
 };
 
-#endif // !_IMGUIWINDOW_H_
+#endif // !_IMGUIWINDOW_MANAGER_H_
