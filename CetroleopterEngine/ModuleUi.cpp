@@ -53,9 +53,10 @@ update_status ModuleUi::PostUpdate(float dt)
 
     // Content
     
-
-   // ImGui::Render();
-
+    
+    ImGui::Render();
+    ImGui::EndFrame();
+    ImGui::UpdatePlatformWindows();
 
 	return UPDATE_CONTINUE;
 }
