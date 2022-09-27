@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "ModuleWindow.h"
 #include "imgui.h"
+#include "ModuleSceneIntro.h"
 #include "ConfigurationWindow.h"
 
 

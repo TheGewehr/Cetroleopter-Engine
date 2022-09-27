@@ -9,7 +9,7 @@
 
 #include "ImGuiWindowManager.h"
 
-class ImGuiWindow;
+class ImGuiWindowManager;
 class ConfigurationWindow;
 
 class ModuleUi : public Module
@@ -27,7 +27,7 @@ public:
 
 
 	// list of ImGui Windows
-	std::vector<ImGuiWindow*> list_ImGuiWindows;
+	std::vector<ImGuiWindowManager*> list_ImGuiWindows;
 
 	// list of windows ptrs
 	ConfigurationWindow* configurationWindow = nullptr;
@@ -38,7 +38,7 @@ private:
 
 	bool InitializeImGui()const;
 
-	void AddImGuiWindow(ImGuiWindow* window);
+	void AddImGuiWindow(ImGuiWindowManager* window);
 
 	bool RenderImGuiWindows()const;
 

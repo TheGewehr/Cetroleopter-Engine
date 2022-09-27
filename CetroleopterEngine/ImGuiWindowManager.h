@@ -24,11 +24,6 @@ public:
 		return true;
 	}
 
-	virtual bool CleanUp()
-	{
-		return true;
-	}
-
 	void Enable()
 	{
 		if (!isActive)
@@ -39,6 +34,11 @@ public:
 	{
 		if (isActive)
 			isActive = false;
+	}
+
+	virtual bool CleanUp()
+	{
+		return true;
 	}
 
 	const char* GetName()const

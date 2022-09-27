@@ -43,7 +43,7 @@
     <Filter Include="ExternalTools\imgui">
       <UniqueIdentifier>{bd2a406c-2c0a-4008-a795-8005e0dc7b8c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Sources\Modules\ImGuiWindows">
+    <Filter Include="Sources\Modules\ImGuiWindowManager">
       <UniqueIdentifier>{e4ef3756-1091-4075-8281-3aae421ac47e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -124,10 +124,10 @@
       <Filter>ExternalTools\imgui</Filter>
     </ClInclude>
     <ClInclude Include="ImGuiWindowManager.h">
-      <Filter>Sources\Modules\ImGuiWindows</Filter>
+      <Filter>Sources\Modules\ImGuiWindowManager</Filter>
     </ClInclude>
     <ClInclude Include="ConfigurationWindow.h">
-      <Filter>Sources\Modules\ImGuiWindows</Filter>
+      <Filter>Sources\Modules\ImGuiWindowManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -198,7 +198,7 @@
       <Filter>ExternalTools\imgui</Filter>
     </ClCompile>
     <ClCompile Include="ConfigurationWindow.cpp">
-      <Filter>Sources\Modules\ImGuiWindows</Filter>
+      <Filter>Sources\Modules\ImGuiWindowManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

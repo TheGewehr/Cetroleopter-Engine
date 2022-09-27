@@ -24,18 +24,18 @@
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),
 configurationWindow(new ConfigurationWindow("ConfigurationWindow"))
 {
-   // AddImGuiWindow(configurationWindow);
+   AddImGuiWindow(configurationWindow);
 }
 
 ModuleUi::~ModuleUi()
 {
-   //std::vector<ImGuiWindow*>::reverse_iterator item = list_ImGuiWindows.rbegin();
-   //while (item != list_ImGuiWindows.rend())
-   //{
-   //    (*item)->CleanUp();
-   //    delete *item;
-   //    ++item;
-   //}
+   std::vector<ImGuiWindowManager*>::reverse_iterator item = list_ImGuiWindows.rbegin();
+   while (item != list_ImGuiWindows.rend())
+   {
+       (*item)->CleanUp();
+       delete *item;
+       ++item;
+   }
 }
 
 bool ModuleUi::Start()
@@ -63,46 +63,43 @@ update_status ModuleUi::PostUpdate(float dt)
     update_status ret = update_status::UPDATE_CONTINUE;
 
     
-    ////iterate all different editor panels stored in vector of editorPanels to be able to draw them.
-    //ImGuiIO& IO = ImGui::GetIO();
-    //(void)IO;
-    //
-    ////Start Dear ImGui's frame
-    //ImGui_ImplOpenGL3_NewFrame();
-    //ImGui_ImplSDL2_NewFrame();
-    //ImGui::NewFrame();
-    //
-    //if (BeginRootWindow(IO, "RootWindow", true, ImGuiWindowFlags_MenuBar))
-    //{
-    //    bool draw = true;
-    //
-    //    for (uint i = 0; i < list_ImGuiWindows.size(); ++i)
-    //    {
-    //        if (list_ImGuiWindows[i]->GetIsActive())
-    //        {
-    //            draw = list_ImGuiWindows[i]->Draw(IO);
-    //        
-    //            if (!draw)
-    //            {
-    //                ret = update_status::UPDATE_STOP;
-    //                break;
-    //            }
-    //        }
-    //    }
-    //    ImGui::End();
-    //}
-    //
-    //RenderImGuiWindows();
-
+    //iterate all different editor panels stored in vector of editorPanels to be able to draw them.
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
+    
+    //Start Dear ImGui's frame
     ImGui_ImplOpenGL3_NewFrame();
     ImGui_ImplSDL2_NewFrame();
     ImGui::NewFrame();
-
+    
+    if (BeginRootWindow(io, "RootWindow", true, ImGuiWindowFlags_MenuBar))
+    {
+        bool draw = true;
+    
+        for (uint i = 0; i < list_ImGuiWindows.size(); ++i)
+        {
+            if (list_ImGuiWindows[i]->GetIsActive())
+            {
+                draw = list_ImGuiWindows[i]->Draw(io);
+            
+                if (!draw)
+                {
+                    LOG("[UI] Error in %s Window", list_ImGuiWindows[i]->GetName());
+                    ret = update_status::UPDATE_STOP;
+                    break;
+                }
+            }
+        }
+        
+        ImGui::End();
+    }
+    
+    RenderImGuiWindows();
    
 
-    ImGui::Render();
-    ImGui::EndFrame();
-    ImGui::UpdatePlatformWindows();
+    //ImGui::Render();  <-- Not needed - está dentro de RenderImGuiWindows();
+    //ImGui::EndFrame();  <-- Not needed - está dentro de RenderImGuiWindows();
+    //ImGui::UpdatePlatformWindows();  <-- Not needed - está dentro de RenderImGuiWindows();
 
     return ret;
 }
@@ -147,29 +144,29 @@ bool ModuleUi::InitializeImGui() const
     return ret;
 }
 
-//void ModuleUi::AddImGuiWindow(ImGuiWindow* window)
-//{
-//    list_ImGuiWindows.push_back(window);
-//}
+void ModuleUi::AddImGuiWindow(ImGuiWindowManager* window)
+{
+    list_ImGuiWindows.push_back(window);
+}
 
 bool ModuleUi::RenderImGuiWindows() const
 {
-    ImGuiIO& IO = ImGui::GetIO();
-    (void)IO;
+    ImGuiIO& io = ImGui::GetIO();
+    (void)io;
 
     ImGui::Render();
 
     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-    if (IO.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+    if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
     {
-        SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
-        SDL_GLContext backup_current_context = SDL_GL_GetCurrentContext();
+        SDL_Window* get_current_window = SDL_GL_GetCurrentWindow();
+        SDL_GLContext get_current_context = SDL_GL_GetCurrentContext();
 
         ImGui::UpdatePlatformWindows();
         ImGui::RenderPlatformWindowsDefault();
 
-        SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
+        SDL_GL_MakeCurrent(get_current_window, get_current_context);
     }
 
     return true;
@@ -199,7 +196,7 @@ bool ModuleUi::BeginRootWindow(ImGuiIO& io, const char* window_id, bool docking,
 
     ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0.0f, 0.0f));
     ret = ImGui::Begin(window_id, &ret, window_flags);
-    ImGui::PopStyleVar(1); // 1 as default value, for testing purposes
+    ImGui::PopStyleVar(3); // 1 da error. Mejor poner un 3
 
     if (docking)
     {
