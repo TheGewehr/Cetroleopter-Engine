@@ -7,9 +7,9 @@
 #include <vector>
 #include "SDL/include/SDL.h"
 
-#include "ImGuiWindowManager.h"
+#include "ImGuiWindowBase.h"
 
-class ImGuiWindowManager;
+class ImGuiWindowBase;
 class ConfigurationWindow;
 
 class ModuleUi : public Module
@@ -27,7 +27,7 @@ public:
 
 
 	// list of ImGui Windows
-	std::vector<ImGuiWindowManager*> list_ImGuiWindows;
+	std::vector<ImGuiWindowBase*> list_ImGuiWindows;
 
 	// list of windows ptrs
 	ConfigurationWindow* configurationWindow = nullptr;
@@ -38,7 +38,7 @@ private:
 
 	bool InitializeImGui()const;
 
-	void AddImGuiWindow(ImGuiWindowManager* window);
+	void AddImGuiWindow(ImGuiWindowBase* window);
 
 	bool RenderImGuiWindows()const;
 

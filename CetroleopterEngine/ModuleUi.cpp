@@ -18,7 +18,7 @@
 #include "ModuleRenderer3D.h"
 //#include "OpenGL.h"
 
-#include "ImGuiWindowManager.h"
+#include "ImGuiWindowBase.h"
 #include "ConfigurationWindow.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),
@@ -29,7 +29,7 @@ configurationWindow(new ConfigurationWindow("ConfigurationWindow"))
 
 ModuleUi::~ModuleUi()
 {
-   std::vector<ImGuiWindowManager*>::reverse_iterator item = list_ImGuiWindows.rbegin();
+   std::vector<ImGuiWindowBase*>::reverse_iterator item = list_ImGuiWindows.rbegin();
    while (item != list_ImGuiWindows.rend())
    {
        (*item)->CleanUp();
@@ -144,7 +144,7 @@ bool ModuleUi::InitializeImGui() const
     return ret;
 }
 
-void ModuleUi::AddImGuiWindow(ImGuiWindowManager* window)
+void ModuleUi::AddImGuiWindow(ImGuiWindowBase* window)
 {
     list_ImGuiWindows.push_back(window);
 }

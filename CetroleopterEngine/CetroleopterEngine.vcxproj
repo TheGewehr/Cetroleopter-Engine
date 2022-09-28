@@ -41,7 +41,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Users\alvaromc1\Documents\GitHub\Cetroleopter-Engine\CetroleopterEngine\SDL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>C:\Users\alvaromc1\Documents\GitHub\Cetroleopter-Engine\CetroleopterEngine\SDL\include;$(IncludePath)</IncludePath>
@@ -92,7 +92,7 @@
     <ClInclude Include="ConfigurationWindow.h" />
     <ClInclude Include="glmath.h" />
     <ClInclude Include="Globals.h" />
-    <ClInclude Include="ImGuiWindowManager.h" />
+    <ClInclude Include="ImGuiWindowBase.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_opengl3.h" />
