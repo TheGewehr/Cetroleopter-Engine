@@ -46,6 +46,9 @@
     <Filter Include="Sources\Modules\ImGuiWindows">
       <UniqueIdentifier>{e4ef3756-1091-4075-8281-3aae421ac47e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ExternalTools\json">
+      <UniqueIdentifier>{46772ba3-a816-4183-810e-144412b2c519}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -363,6 +366,12 @@
     <ClInclude Include="mathGeoLib\Time\Clock.h">
       <Filter>ExternalTools\mathGeoLib\Time</Filter>
     </ClInclude>
+    <ClInclude Include="json\parson.h">
+      <Filter>ExternalTools\json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\JsonParsing.h">
+      <Filter>ExternalTools\json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -559,6 +568,12 @@
     </ClCompile>
     <ClCompile Include="mathGeoLib\Time\Clock.cpp">
       <Filter>ExternalTools\mathGeoLib\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="json\parson.c">
+      <Filter>ExternalTools\json</Filter>
+    </ClCompile>
+    <ClCompile Include="json\JsonParsing.cpp">
+      <Filter>ExternalTools\json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
