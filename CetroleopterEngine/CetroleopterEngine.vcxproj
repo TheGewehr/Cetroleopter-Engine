@@ -42,9 +42,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\Users\alvaromc1\Documents\GitHub\Cetroleopter-Engine\CetroleopterEngine;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\Users\alvaromc1\Documents\GitHub\Cetroleopter-Engine\CetroleopterEngine;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
