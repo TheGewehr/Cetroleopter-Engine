@@ -24,7 +24,7 @@ bool ModuleCamera3D::Start()
 	LOG("Setting up the camera");
 	bool ret = true;
 
-	//Clock::Day();
+	Clock::Day();
 
 	return ret;
 }

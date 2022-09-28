@@ -129,6 +129,9 @@
     <ClInclude Include="ConfigurationWindow.h">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClInclude>
+    <ClInclude Include="MainMenuBar.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">

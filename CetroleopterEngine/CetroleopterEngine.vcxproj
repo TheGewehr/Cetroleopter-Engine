@@ -104,6 +104,7 @@
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="MainMenuBar.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
