@@ -11,6 +11,7 @@
 
 class ImGuiWindowBase;
 class ConfigurationWindow;
+class MainMenuBar;
 
 class ModuleUi : public Module
 {
@@ -31,6 +32,7 @@ public:
 
 	// list of windows ptrs
 	ConfigurationWindow* configurationWindow = nullptr;
+	MainMenuBar* mainMenuBar = nullptr;
 
 	bool hoveringWindow;
 

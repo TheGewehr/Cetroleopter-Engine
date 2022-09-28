@@ -575,6 +575,9 @@
     <ClCompile Include="json\JsonParsing.cpp">
       <Filter>ExternalTools\json</Filter>
     </ClCompile>
+    <ClCompile Include="MainMenuBar.cpp">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleUi.cpp">

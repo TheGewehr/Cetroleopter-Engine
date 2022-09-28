@@ -20,11 +20,14 @@
 
 #include "ImGuiWindowBase.h"
 #include "ConfigurationWindow.h"
+#include "MainMenuBar.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),
-configurationWindow(new ConfigurationWindow("ConfigurationWindow"))
+configurationWindow(new ConfigurationWindow("ConfigurationWindow")),
+mainMenuBar(new MainMenuBar("MainMenuBar"))
 {
    AddImGuiWindow(configurationWindow);
+   AddImGuiWindow(mainMenuBar);
 }
 
 ModuleUi::~ModuleUi()
