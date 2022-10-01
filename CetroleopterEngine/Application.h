@@ -46,6 +46,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	void OpenBrowserWebPage(const char* url)const;
+
 private:
 
 	void AddModule(Module* mod);
