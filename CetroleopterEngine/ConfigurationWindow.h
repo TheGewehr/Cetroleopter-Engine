@@ -5,7 +5,7 @@
 
 #define MAX_HISTOGRAM_SIZE 100
 
-class ImGuiWindowBase;
+//class ImGuiWindowBase;
 
 class ConfigurationWindow : public ImGuiWindowBase
 {

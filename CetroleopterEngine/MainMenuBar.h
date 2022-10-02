@@ -3,7 +3,7 @@
 
 #include "ImGuiWindowBase.h"
 
-class ImGuiWindowBase;
+//class ImGuiWindowBase;
 
 class MainMenuBar: public ImGuiWindowBase
 {
@@ -17,6 +17,8 @@ public:
 private:
 
 	bool CreateMainMenuBar();
+
+	//bool aboutON = false;
 };
 
 #endif 

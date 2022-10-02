@@ -62,6 +62,16 @@ bool MainMenuBar::CreateMainMenuBar()
 				○ Libraries(with versions queried in real time)
 				used with links to their web
 				○ Full text of the license*/
+			//if (aboutON == false)
+			//{
+			//	//App->moduleUi->aboutWindow->Disable();
+			//}
+			//else if (aboutON == true)
+			//{
+			//	//App->moduleUi->aboutWindow->Enable();
+
+			//}
+			//aboutON = !aboutON;
 		}
 
 		ImGui::EndMenu();
