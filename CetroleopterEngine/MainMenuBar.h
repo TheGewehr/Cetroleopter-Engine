@@ -16,8 +16,17 @@ public:
 
 private:
 
-	bool CreateMainMenuBar();
+	bool FileMenuBar();
+	bool EditMenuBar();
+	bool ViewMenuBar();
+	bool HelpMenuBar();
 
+private:
+	bool wireframeMode = false;
+	bool faceCullingMode = false;
+	bool disableLights = false;
+	bool showConsole = false;
+	bool showConfig = true;
 	//bool aboutON = false;
 };
 
