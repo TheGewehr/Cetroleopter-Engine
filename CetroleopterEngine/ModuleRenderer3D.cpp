@@ -25,6 +25,7 @@
 
 ModuleRenderer3D::ModuleRenderer3D(bool start_enabled) : Module(start_enabled)
 {
+	context = nullptr;
 }
 
 // Destructor
@@ -252,3 +253,85 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }
+
+//void ModuleRenderer3D::DDCube_VecIndices()
+//{
+//	glBegin(GL_TRIANGLES);
+//	int col = -1;
+//	for (int i = 0; i < sizeof(indices) / sizeof(int); ++i) {
+//		if (i % 6 == 0) {
+//			++col;
+//			glColor3f(colors[col].x, colors[col].y, colors[col].z);
+//		}
+//		GLVertexDD(&indices[i]);
+//	}
+//	glEnd();
+//}
+//
+//void ModuleRenderer3D::DDCube_BadIndices()
+//{
+//	glBegin(GL_TRIANGLES);
+//	int* idx = indices;
+//
+//	// Front Face
+//	glColor3f(1., 1., 0.);
+//	GLVertexDD(idx); idx++; // 5
+//	GLVertexDD(idx); idx++; // 6
+//	GLVertexDD(idx); idx++; // 8
+//
+//	GLVertexDD(idx); idx++; // 5
+//	GLVertexDD(idx); idx++; // 8
+//	GLVertexDD(idx); idx++; // 7
+//
+//	// Back Fave
+//	glColor3f(1., 0., 1.);
+//	GLVertexDD(idx); idx++; // 4
+//	GLVertexDD(idx); idx++; // 2
+//	GLVertexDD(idx); idx++; // 1
+//
+//	GLVertexDD(idx); idx++; // 1
+//	GLVertexDD(idx); idx++; // 3
+//	GLVertexDD(idx); idx++; // 4
+//
+//	// Top Face
+//	glColor3f(0., 1., 1.);
+//	GLVertexDD(idx); idx++; // 4
+//	GLVertexDD(idx); idx++; // 3
+//	GLVertexDD(idx); idx++; // 8
+//
+//	GLVertexDD(idx); idx++; // 3
+//	GLVertexDD(idx); idx++; // 7
+//	GLVertexDD(idx); idx++; // 8
+//
+//	// Bottom Face
+//	glColor3f(1., 0., 0.);
+//	GLVertexDD(idx); idx++; // 2
+//	GLVertexDD(idx); idx++; // 6
+//	GLVertexDD(idx); idx++; // 1
+//
+//	GLVertexDD(idx); idx++; // 1
+//	GLVertexDD(idx); idx++; // 6
+//	GLVertexDD(idx); idx++; // 5
+//
+//	// SideL / TriT
+//	glColor3f(0., 1., 0.);
+//	GLVertexDD(idx); idx++; // 1
+//	GLVertexDD(idx); idx++; // 7
+//	GLVertexDD(idx); idx++; // 3
+//
+//	GLVertexDD(idx); idx++; // 1
+//	GLVertexDD(idx); idx++; // 5
+//	GLVertexDD(idx); idx++; // 7
+//
+//	// SideR / TriT
+//	glColor3f(0., 0., 1.);
+//	GLVertexDD(idx); idx++; // 2
+//	GLVertexDD(idx); idx++; // 4
+//	GLVertexDD(idx); idx++; // 8
+//
+//	GLVertexDD(idx); idx++; // 2
+//	GLVertexDD(idx); idx++; // 8
+//	GLVertexDD(idx); idx++; // 6
+//
+//	glEnd();
+//}
