@@ -84,7 +84,7 @@ int main(int argc, char ** argv)
 						SDL_MESSAGEBOX_WARNING, /* .flags */
 						NULL, /* .window */
 						" Secure App closing - so you don't loose your work :)", /* .title ¯\_(ツ)_/¯ */
-						"You are about to exit Cetreleopter Engine?\nAll unsaved progress will be lost!!", /* .message ಠ_ಠ */
+						"You are about to exit Cetreleopter Engine.\nAll unsaved progress will be lost!!", /* .message ಠ_ಠ */
 						SDL_arraysize(buttons), /* .numbuttons */
 						buttons, /* .buttons */
 						&colorScheme /* .colorScheme */
