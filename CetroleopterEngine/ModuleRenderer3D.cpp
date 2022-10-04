@@ -198,12 +198,33 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
+	glBegin(GL_TRIANGLES);
+	glColor3f(1.f, 0.f, 0.f);
+	glVertex3f(0.f, 0.f, 0.f);
+	glVertex3f(1.f, 0.f, 0.f);
+	glVertex3f(0.f, 1.f, 0.f);
+	// glVertex3f(0.f, 0.f, 10.f);
+	//glNormal3f(0.f,0.f,1.f);
+	//glTexCoord3();
+	//glTexCoord3f(0.f, 0.f, 1.f);
+	glEnd();
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.f, 1.f, 0.f);
+	glVertex3f(1.f, 1.f, 0.f);
+	glVertex3f(0.f, 1.f, 0.f);
+	glVertex3f(1.f, 0.f, 0.f);
+	glEnd();
+
+	glBegin(GL_TRIANGLES);
+	glColor3f(0.f, 0.f, 1.f);
+	glVertex3f(1.f, 1.f, -1.f);
+	glVertex3f(1.f, 1.f, 0.f);
+	glVertex3f(1.f, 0.f, 0.f);
+	glEnd();
+
+	// This must be the last line
 	SDL_GL_SwapWindow(App->window->window);
-
-	// Called ImGui::Render() or ImGui::EndFrame() and haven't called ImGui::NewFrame() again yet
-	//ImGui::Render();
-
-	//ImGui::EndFrame();
 
 	return UPDATE_CONTINUE;
 }
