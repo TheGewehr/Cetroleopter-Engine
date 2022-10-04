@@ -4,11 +4,12 @@
 #include "imgui.h"
 #include "ModuleSceneIntro.h"
 #include "MainMenuBar.h"
+#include "AboutWindow.h"
 
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar")
 {
-
+	
 }
 
 MainMenuBar::~MainMenuBar()
@@ -18,7 +19,7 @@ MainMenuBar::~MainMenuBar()
 bool MainMenuBar::Draw(ImGuiIO& io)
 {
 	bool ret = true;
-
+	
 
 	//ImGui::Begin(GetName(), nullptr, ImGuiWindowFlags_None);
 
@@ -54,25 +55,20 @@ bool MainMenuBar::CreateMainMenuBar()
 
 		if (ImGui::MenuItem("About"))
 		{
-			/*Add an “About ..” modal window inside
-				the “Help” menu that shows :
-			○ Name of your Engine
-				○ One(or few) line description
-				○ Name of the Author with link to github page
-				○ Libraries(with versions queried in real time)
-				used with links to their web
-				○ Full text of the license*/
-			//if (aboutON == false)
-			//{
-			//	//App->moduleUi->aboutWindow->Disable();
-			//}
-			//else if (aboutON == true)
-			//{
-			//	//App->moduleUi->aboutWindow->Enable();
-
-			//}
 			//aboutON = !aboutON;
+			App->moduleUi->aboutWindow->ChangeActive();
+
 		}
+
+		/*if (aboutON == false)
+		{
+			App->moduleUi->aboutWindow->Disable();
+		}
+		else if (aboutON == true)
+		{
+			App->moduleUi->aboutWindow->Enable();
+
+		}*/
 
 		ImGui::EndMenu();
 	}

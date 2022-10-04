@@ -51,6 +51,11 @@ public:
 		return isActive;
 	}
 
+	void ChangeActive()
+	{
+		isActive = !isActive;
+	}
+
 	bool GetIsHover()const
 	{
 		return isHover;
@@ -62,7 +67,7 @@ public:
 	}
 
 
-private:
+public:
 
 	const char* name;
 	bool isActive;

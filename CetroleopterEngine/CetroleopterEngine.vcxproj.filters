@@ -372,6 +372,9 @@
     <ClInclude Include="json\JsonParsing.h">
       <Filter>ExternalTools\json</Filter>
     </ClInclude>
+    <ClInclude Include="AboutWindow.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -576,6 +579,9 @@
       <Filter>ExternalTools\json</Filter>
     </ClCompile>
     <ClCompile Include="MainMenuBar.cpp">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="AboutWindow.cpp">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
   </ItemGroup>
