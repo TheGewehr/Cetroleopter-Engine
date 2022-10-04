@@ -22,6 +22,7 @@ private:
 	
 	bool PlotFrameHistogram();
 	bool WindowHeader();
+	bool AnotherHeader();
 
 private:
 

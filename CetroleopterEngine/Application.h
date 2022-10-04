@@ -30,6 +30,9 @@ public:
 	//ModulePhysics3D* physics;
 
 	bool debug;
+	bool appExit = false;
+	bool enginePaused = false;
+
 private:
 
 	Timer	ms_timer;

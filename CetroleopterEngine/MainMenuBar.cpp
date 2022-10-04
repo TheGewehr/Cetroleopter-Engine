@@ -5,6 +5,7 @@
 #include "ModuleSceneIntro.h"
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
+#include "ConfigurationWindow.h"
 
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
@@ -22,13 +23,18 @@ bool MainMenuBar::Draw(ImGuiIO& io)
 	
 
 	//ImGui::Begin(GetName(), nullptr, ImGuiWindowFlags_None);
+	ImGui::BeginMainMenuBar();
 
 	if (App->moduleUi->hoveringWindow == false)
 		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered(); // To know if the window is being moved
 
-	CreateMainMenuBar();
+	FileMenuBar();
+	EditMenuBar();
+	ViewMenuBar();
+	HelpMenuBar();
 
 	//ImGui::End();
+	ImGui::EndMainMenuBar();
 
 	return ret;
 }
@@ -40,11 +46,95 @@ bool MainMenuBar::CleanUp()
 	return ret;
 }
 
-bool MainMenuBar::CreateMainMenuBar()
+bool MainMenuBar::FileMenuBar()
 {
 	bool ret = true;
 
-	ImGui::BeginMainMenuBar();
+	if (ImGui::BeginMenu("File"))
+	{
+
+		if (ImGui::MenuItem("Save Project"))
+		{
+			
+		}
+		if (ImGui::MenuItem("Load Project"))
+		{
+			
+		}
+		if (ImGui::MenuItem("Exit"))
+		{
+			App->appExit = true;
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::EditMenuBar()
+{
+	bool ret = true;
+
+	if (ImGui::BeginMenu("Edit"))
+	{
+		if (ImGui::MenuItem("Cut"))
+		{
+
+		}
+		if (ImGui::MenuItem("Copy"))
+		{
+
+		}
+		if (ImGui::MenuItem("Paste"))
+		{
+
+		}
+		ImGui::Separator();
+		if (ImGui::MenuItem("Settings"))
+		{
+			App->moduleUi->configurationWindow->ChangeActive();
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::ViewMenuBar()
+{
+	bool ret = true;
+
+	if (ImGui::BeginMenu("View"))
+	{
+		
+		if (ImGui::Checkbox("Wireframe Mode", &wireframeMode))
+		{
+
+		}
+		if (ImGui::Checkbox("Cull Faces", &faceCullingMode))
+		{
+
+		}
+		if (ImGui::Checkbox("Disable Lights", &disableLights))
+		{
+
+		}
+		if (ImGui::Checkbox("Show Windows Console", &showConsole))
+		{
+
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::HelpMenuBar()
+{
+	bool ret = true;
 	
 	if (ImGui::BeginMenu("Help",true))
 	{
@@ -72,9 +162,6 @@ bool MainMenuBar::CreateMainMenuBar()
 
 		ImGui::EndMenu();
 	}
-	
-	
-	ImGui::EndMainMenuBar();
 
 	return ret;
 }

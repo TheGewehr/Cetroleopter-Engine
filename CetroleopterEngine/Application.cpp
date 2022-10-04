@@ -54,6 +54,8 @@ bool Application::Init()
 	bool ret = true;
 
 	App = this;
+	appExit = false;
+	enginePaused = false;
 
 	// Call Init() in all modules
 	//p2List_item<Module*>* item = list_modules.getFirst();

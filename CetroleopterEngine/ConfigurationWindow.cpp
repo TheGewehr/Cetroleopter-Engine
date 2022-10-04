@@ -6,7 +6,7 @@
 #include "ConfigurationWindow.h"
 
 
-ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Configuration", isActive = true)
+ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Settings", isActive = true)
 {
 	//fps = 0;
 	width = SCREEN_WIDTH;
@@ -31,6 +31,7 @@ bool ConfigurationWindow::Draw(ImGuiIO& io)
 		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered(); // To know if the window is being moved
 	
 	WindowHeader();
+	AnotherHeader();
 	PlotFrameHistogram();
 	
 	ImGui::End();
@@ -56,7 +57,7 @@ bool ConfigurationWindow::WindowHeader()
 {
 	bool ret = true;
 
-	if (ImGui::CollapsingHeader("Window"))
+	if (ImGui::CollapsingHeader("Window Settings"))
 	{
 		brightness = App->window->GetBrightness();
 		if (ImGui::SliderFloat("Brightness", &brightness, 0.000f, 1.000f))
@@ -87,6 +88,23 @@ bool ConfigurationWindow::WindowHeader()
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Full Desktop", &checkFullDesktop))
 			checkFullDesktop = !checkFullDesktop;
+	}
+
+
+	return ret;
+}
+
+bool ConfigurationWindow::AnotherHeader()
+{
+	bool ret = true;
+
+	if (ImGui::CollapsingHeader("Extra Settings"))
+	{
+		ImGui::Text("More settings. Why not?");
+		ImGui::Text("Nothing to see here... yet.");
+		ImGui::Spacing();
+		ImGui::Spacing();
+		ImGui::Text("Put here wathever setting not about the window");
 	}
 
 
