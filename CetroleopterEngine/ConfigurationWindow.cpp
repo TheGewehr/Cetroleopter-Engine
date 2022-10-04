@@ -6,7 +6,7 @@
 #include "ConfigurationWindow.h"
 
 
-ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Configuration")
+ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Configuration", isActive = true)
 {
 	//fps = 0;
 	width = SCREEN_WIDTH;

@@ -10,7 +10,7 @@
 class AboutWindow : public ImGuiWindowBase
 {
 public:
-	AboutWindow(const char* name, bool isActive = true);
+	AboutWindow(const char* name, bool isActive = false);
 	~AboutWindow();
 
 	bool Draw(ImGuiIO& io);

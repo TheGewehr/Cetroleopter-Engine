@@ -7,7 +7,7 @@
 #include "AboutWindow.h"
 
 
-MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar")
+MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
 {
 	
 }

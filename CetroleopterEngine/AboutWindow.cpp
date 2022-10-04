@@ -6,7 +6,7 @@
 #include "AboutWindow.h"
 
 
-AboutWindow::AboutWindow(const char* name, bool isActive) : ImGuiWindowBase("AboutWindow")
+AboutWindow::AboutWindow(const char* name, bool isActive) : ImGuiWindowBase("AboutWindow", isActive = false)
 {
 	//fps = 0;
 }

@@ -8,7 +8,7 @@
 class MainMenuBar: public ImGuiWindowBase
 {
 public:
-	MainMenuBar(const char* name, bool isActive = false);
+	MainMenuBar(const char* name, bool isActive = true);
 	~MainMenuBar();
 
 	bool Draw(ImGuiIO& io);
