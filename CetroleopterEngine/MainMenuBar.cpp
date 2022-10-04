@@ -91,7 +91,7 @@ bool MainMenuBar::EditMenuBar()
 
 		}
 		ImGui::Separator();
-		if (ImGui::MenuItem("Settings"))
+		if (ImGui::MenuItem("Settings", "", App->moduleUi->configurationWindow->isActive))
 		{
 			App->moduleUi->configurationWindow->ChangeActive();
 		}
@@ -143,22 +143,11 @@ bool MainMenuBar::HelpMenuBar()
 			App->OpenBrowserWebPage("https://github.com/TheGewehr/Cetroleopter-Engine");
 		}
 
-		if (ImGui::MenuItem("About"))
+		if (ImGui::MenuItem("About", "", App->moduleUi->aboutWindow->isActive))
 		{
-			//aboutON = !aboutON;
 			App->moduleUi->aboutWindow->ChangeActive();
 
 		}
-
-		/*if (aboutON == false)
-		{
-			App->moduleUi->aboutWindow->Disable();
-		}
-		else if (aboutON == true)
-		{
-			App->moduleUi->aboutWindow->Enable();
-
-		}*/
 
 		ImGui::EndMenu();
 	}

@@ -26,8 +26,8 @@ private:
 	bool faceCullingMode = false;
 	bool disableLights = false;
 	bool showConsole = false;
-	bool showConfig = true;
-	//bool aboutON = false;
+	bool showSettings = true;
+	bool aboutON = false;
 };
 
 #endif 
