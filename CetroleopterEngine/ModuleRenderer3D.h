@@ -8,7 +8,7 @@
 #include <MathGeoLib.h>
 
 #define MAX_LIGHTS 10
-#define GLVertexDD(idx) {float3& v = vertices[*idx - 1]; glVertex3f(v.x, v.y, v.z);}
+//#define GLVertexDD(idx) {float3& v = vertices[*idx - 1]; glVertex3f(v.x, v.y, v.z);}
 
 class ModuleRenderer3D : public Module
 {
