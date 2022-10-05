@@ -5,6 +5,7 @@
 #include "ModuleSceneIntro.h"
 #include "AboutWindow.h"
 
+//#include "assimp/Include/version.h" // From assimp
 
 AboutWindow::AboutWindow(const char* name, bool isActive) : ImGuiWindowBase("About", isActive = false)
 {

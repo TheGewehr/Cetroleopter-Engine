@@ -49,6 +49,9 @@
     <Filter Include="ExternalTools\json">
       <UniqueIdentifier>{46772ba3-a816-4183-810e-144412b2c519}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ExternalTools\assimp">
+      <UniqueIdentifier>{fff16248-2834-4318-9768-a0f7adb148b9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -374,6 +377,15 @@
     </ClInclude>
     <ClInclude Include="AboutWindow.h">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
+    <ClInclude Include="assimp\Include\postprocess.h">
+      <Filter>ExternalTools\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="assimp\Include\scene.h">
+      <Filter>ExternalTools\assimp</Filter>
+    </ClInclude>
+    <ClInclude Include="assimp\Include\cimport.h">
+      <Filter>ExternalTools\assimp</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
