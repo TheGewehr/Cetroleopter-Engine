@@ -101,6 +101,7 @@ bool AboutWindow::AboutHeader()
 	//ImGui::Spacing();
 	//ImGui::BulletText("DevIL v?"); // 1.7.8 ?
 	//ImGui::Spacing();
+	//Ray tracing library: https://github.com/engilas/raytracing-opengl
 	ImGui::BulletText("MathGeoLib v?"); // 2.0 ?
 	ImGui::Spacing();
 	//ImGui::BulletText("PhysFS v3.0.2");

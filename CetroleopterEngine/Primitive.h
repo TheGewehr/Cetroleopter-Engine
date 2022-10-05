@@ -37,11 +37,11 @@ protected:
 };
 
 // ============================================
-class Cube : public Primitive
+class CubePrimitive : public Primitive
 {
 public :
-	Cube();
-	Cube(float sizeX, float sizeY, float sizeZ);
+	CubePrimitive();
+	CubePrimitive(float sizeX, float sizeY, float sizeZ);
 
 protected:
 	void InnerRender() const;
@@ -50,10 +50,10 @@ public:
 };
 
 // ============================================
-class Sphere : public Primitive
+class SpherePrimitive : public Primitive
 {
 public:
-	Sphere(float radius = 1.f, float mass = 1.f);
+	SpherePrimitive(float radius = 1.f, float mass = 1.f);
 
 protected:
 	void InnerRender() const;
@@ -62,11 +62,11 @@ public:
 };
 
 // ============================================
-class Cylinder : public Primitive
+class CylinderPrimitive : public Primitive
 {
 public:
-	Cylinder();
-	Cylinder(float radius, float height);
+	CylinderPrimitive();
+	CylinderPrimitive(float radius, float height);
 
 protected:
 	void InnerRender() const;
@@ -76,11 +76,11 @@ public:
 };
 
 // ============================================
-class Line : public Primitive
+class LinePrimitive : public Primitive
 {
 public:
-	Line();
-	Line(float x, float y, float z);
+	LinePrimitive();
+	LinePrimitive(float x, float y, float z);
 
 protected:
 	void InnerRender() const;
@@ -90,11 +90,11 @@ public:
 };
 
 // ============================================
-class Plane : public Primitive
+class PlanePrimitive : public Primitive
 {
 public:
-	Plane();
-	Plane(float x, float y, float z, float d);
+	PlanePrimitive();
+	PlanePrimitive(float x, float y, float z, float d);
 
 protected:
 	void InnerRender() const;
