@@ -23,8 +23,9 @@
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
-ModuleRenderer3D::ModuleRenderer3D(bool start_enabled) : Module(start_enabled)
+ModuleRenderer3D::ModuleRenderer3D(bool start_enabled) : Module(start_enabled = true)
 {
+	
 }
 
 // Destructor
@@ -175,7 +176,7 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 	//ImGui::NewFrame();
-
+	LOG("PUTO ERROR");
 	//ImGui::ShowDemoWindow(false);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -198,31 +199,32 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-	glBegin(GL_TRIANGLES);
-	glColor3f(1.f, 0.f, 0.f);
-	glVertex3f(0.f, 0.f, 0.f);
-	glVertex3f(1.f, 0.f, 0.f);
-	glVertex3f(0.f, 1.f, 0.f);
-	// glVertex3f(0.f, 0.f, 10.f);
-	//glNormal3f(0.f,0.f,1.f);
-	//glTexCoord3();
-	//glTexCoord3f(0.f, 0.f, 1.f);
-	glEnd();
+	//glBegin(GL_TRIANGLES);
+	//glColor3f(1.f, 0.f, 0.f);
+	//glVertex3f(0.f, 0.f, 0.f);
+	//glVertex3f(1.f, 0.f, 0.f);
+	//glVertex3f(0.f, 1.f, 0.f);
+	//// glVertex3f(0.f, 0.f, 10.f);
+	////glNormal3f(0.f,0.f,1.f);
+	////glTexCoord3();
+	////glTexCoord3f(0.f, 0.f, 1.f);
+	//glEnd();
+	//LOG("PUTO ERROR");
+	//glBegin(GL_TRIANGLES);
+	//glColor3f(0.f, 1.f, 0.f);
+	//glVertex3f(1.f, 1.f, 0.f);
+	//glVertex3f(0.f, 1.f, 0.f);
+	//glVertex3f(1.f, 0.f, 0.f);
+	//glEnd();
+	//
+	//glBegin(GL_TRIANGLES);
+	//glColor3f(0.f, 0.f, 1.f);
+	//glVertex3f(1.f, 1.f, -1.f);
+	//glVertex3f(1.f, 1.f, 0.f);
+	//glVertex3f(1.f, 0.f, 0.f);
+	//glEnd();
 
-	glBegin(GL_TRIANGLES);
-	glColor3f(0.f, 1.f, 0.f);
-	glVertex3f(1.f, 1.f, 0.f);
-	glVertex3f(0.f, 1.f, 0.f);
-	glVertex3f(1.f, 0.f, 0.f);
-	glEnd();
-
-	glBegin(GL_TRIANGLES);
-	glColor3f(0.f, 0.f, 1.f);
-	glVertex3f(1.f, 1.f, -1.f);
-	glVertex3f(1.f, 1.f, 0.f);
-	glVertex3f(1.f, 0.f, 0.f);
-	glEnd();
-
+	DDCube_BadIndices();
 	// This must be the last line
 	SDL_GL_SwapWindow(App->window->window);
 
@@ -235,7 +237,7 @@ bool ModuleRenderer3D::CleanUp()
 	LOG("Destroying 3D Renderer");
 
 	SDL_GL_DeleteContext(context);
-
+	
 	return true;
 }
 
@@ -243,7 +245,7 @@ bool ModuleRenderer3D::CleanUp()
 void ModuleRenderer3D::OnResize(int width, int height)
 {
 	glViewport(0, 0, width, height);
-
+	
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	ProjectionMatrix = perspective(60.0f, (float)width / (float)height, 0.125f, 512.0f);
@@ -251,4 +253,88 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+
+void ModuleRenderer3D::DDCube_VecIndices()
+{
+	
+	glBegin(GL_TRIANGLES);
+	int col = -1;
+	for (int i = 0; i < sizeof(indices) / sizeof(int); ++i) {
+		if (i % 6 == 0) {
+			++col;
+			glColor3f(colors[col].x, colors[col].y, colors[col].z);
+		}
+		GLVertexDD(&indices[i]);
+	}
+	glEnd();
+}
+
+void ModuleRenderer3D::DDCube_BadIndices()
+{
+	glBegin(GL_TRIANGLES);
+	int* idx = indices;
+	
+	// Front Face
+	glColor3f(1., 1., 0.);
+	GLVertexDD(idx); idx++; // 5
+	GLVertexDD(idx); idx++; // 6
+	GLVertexDD(idx); idx++; // 8
+
+	GLVertexDD(idx); idx++; // 5
+	GLVertexDD(idx); idx++; // 8
+	GLVertexDD(idx); idx++; // 7
+
+	// Back Fave
+	glColor3f(1., 0., 1.);
+	GLVertexDD(idx); idx++; // 4
+	GLVertexDD(idx); idx++; // 2
+	GLVertexDD(idx); idx++; // 1
+
+	GLVertexDD(idx); idx++; // 1
+	GLVertexDD(idx); idx++; // 3
+	GLVertexDD(idx); idx++; // 4
+
+	// Top Face
+	glColor3f(0., 1., 1.);
+	GLVertexDD(idx); idx++; // 4
+	GLVertexDD(idx); idx++; // 3
+	GLVertexDD(idx); idx++; // 8
+
+	GLVertexDD(idx); idx++; // 3
+	GLVertexDD(idx); idx++; // 7
+	GLVertexDD(idx); idx++; // 8
+
+	// Bottom Face
+	glColor3f(1., 0., 0.);
+	GLVertexDD(idx); idx++; // 2
+	GLVertexDD(idx); idx++; // 6
+	GLVertexDD(idx); idx++; // 1
+
+	GLVertexDD(idx); idx++; // 1
+	GLVertexDD(idx); idx++; // 6
+	GLVertexDD(idx); idx++; // 5
+
+	// SideL / TriT
+	glColor3f(0., 1., 0.);
+	GLVertexDD(idx); idx++; // 1
+	GLVertexDD(idx); idx++; // 7
+	GLVertexDD(idx); idx++; // 3
+
+	GLVertexDD(idx); idx++; // 1
+	GLVertexDD(idx); idx++; // 5
+	GLVertexDD(idx); idx++; // 7
+
+	// SideR / TriT
+	glColor3f(0., 0., 1.);
+	GLVertexDD(idx); idx++; // 2
+	GLVertexDD(idx); idx++; // 4
+	GLVertexDD(idx); idx++; // 8
+
+	GLVertexDD(idx); idx++; // 2
+	GLVertexDD(idx); idx++; // 8
+	GLVertexDD(idx); idx++; // 6
+
+	glEnd();
 }

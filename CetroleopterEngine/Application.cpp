@@ -7,9 +7,9 @@ Application::Application() : debug(false)
 	input = new ModuleInput();
 	audio = new ModuleAudio();
 	scene_intro = new ModuleSceneIntro();
-	renderer3D = new ModuleRenderer3D();
 	camera = new ModuleCamera3D();
 	moduleUi = new ModuleUi();
+	renderer3D = new ModuleRenderer3D();
 	
 	//physics = new ModulePhysics3D();
 
