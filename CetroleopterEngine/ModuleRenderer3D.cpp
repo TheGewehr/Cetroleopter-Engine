@@ -14,7 +14,6 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "SDL\include\SDL_opengl.h"
-#include "Primitive.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
@@ -170,8 +169,6 @@ bool ModuleRenderer3D::Init()
 	}
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
-	CylinderPrimitive cylinder = CylinderPrimitive(1.f, 2.f);
-
 
 	return ret;
 }
@@ -240,6 +237,16 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	// … bind and use other buffers
 	//glDrawArrays(GL_TRIANGLES, 0,8);
 	//glDisableClientState(GL_VERTEX_ARRAY);
+	// 
+// activate and specify pointer to vertex array
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glVertexPointer(3, GL_FLOAT, 0, (GLfloat*)&vertices);
+
+	// draw a cube
+	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (GLubyte*)indices);
+
+	// deactivate vertex arrays after drawing
+	glDisableClientState(GL_VERTEX_ARRAY);
 
 	// This must be the last line
 	SDL_GL_SwapWindow(App->window->window);

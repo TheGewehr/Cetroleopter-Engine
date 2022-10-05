@@ -32,11 +32,7 @@ public:
 
 	void DDCube_VecIndices();
 	void DDCube_BadIndices();
-	//void GLVertexDirectDraw(int* idx)
-	//{
-	//	float3& v = vertices[*idx - 1];
-	//	glVertex3f(v.x, v.y, v.z);
-	//}
+	
 	
 	float3 vertices[8] = {
 	{-1., -1., -1.}, {1., -1., -1.},
@@ -58,8 +54,6 @@ public:
 		{1., 1., 0.}, {1., 0., 1.}, {0., 1., 1.},
 		{1., 0., 0.}, {0., 1., 0.}, {0., 0., 1.}
 	};
-
-	//uint firstBuffer = 0;
 
 
 };
