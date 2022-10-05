@@ -169,6 +169,8 @@ bool ModuleRenderer3D::Init()
 	}
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
+	
+
 	return ret;
 }
 
@@ -224,7 +226,20 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//glVertex3f(1.f, 0.f, 0.f);
 	//glEnd();
 
-	DDCube_BadIndices();
+	//DDCube_BadIndices();
+
+	
+	//glGenBuffers(1, (GLuint*)&(firstBuffer));
+	//glBindBuffer(GL_ARRAY_BUFFER, firstBuffer);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 8 * 3, vertices, GL_STATIC_DRAW);
+	
+	//glEnableClientState(GL_VERTEX_ARRAY);
+	//glBindBuffer(GL_ARRAY_BUFFER, firstBuffer); 
+	//glVertexPointer(3, GL_FLOAT, 0, NULL);
+	// … bind and use other buffers
+	//glDrawArrays(GL_TRIANGLES, 0,8);
+	//glDisableClientState(GL_VERTEX_ARRAY);
+
 	// This must be the last line
 	SDL_GL_SwapWindow(App->window->window);
 
@@ -235,6 +250,8 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 bool ModuleRenderer3D::CleanUp()
 {
 	LOG("Destroying 3D Renderer");
+
+	
 
 	SDL_GL_DeleteContext(context);
 	
