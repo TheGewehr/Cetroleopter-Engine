@@ -14,6 +14,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "SDL\include\SDL_opengl.h"
+#include "Primitive.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
@@ -169,7 +170,8 @@ bool ModuleRenderer3D::Init()
 	}
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
-	
+	CylinderPrimitive cylinder = CylinderPrimitive(1.f, 2.f);
+
 
 	return ret;
 }
@@ -227,7 +229,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//glEnd();
 
 	//DDCube_BadIndices();
-
 	
 	//glGenBuffers(1, (GLuint*)&(firstBuffer));
 	//glBindBuffer(GL_ARRAY_BUFFER, firstBuffer);
