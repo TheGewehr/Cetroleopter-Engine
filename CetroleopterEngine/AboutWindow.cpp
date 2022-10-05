@@ -5,7 +5,7 @@
 #include "ModuleSceneIntro.h"
 #include "AboutWindow.h"
 
-//#include "assimp/Include/version.h" // From assimp
+#include "assimp/Include/version.h" // From assimp
 
 AboutWindow::AboutWindow(const char* name, bool isActive) : ImGuiWindowBase("About", isActive = false)
 {
@@ -98,8 +98,8 @@ bool AboutWindow::AboutHeader()
 	ImGui::Spacing();
 	ImGui::BulletText("ImGui v%s (Docking)", ImGui::GetVersion());
 	ImGui::Spacing();
-	//ImGui::BulletText("Assimp v%i.%i.%i", aiGetVersionMajor(), aiGetVersionMinor(), aiGetVersionRevision());
-	//ImGui::Spacing();
+	ImGui::BulletText("Assimp v%i.%i.%i", aiGetVersionMajor(), aiGetVersionMinor(), aiGetVersionRevision());
+	ImGui::Spacing();
 	//ImGui::BulletText("DevIL v?"); // 1.7.8 ?
 	//ImGui::Spacing();
 	//Ray tracing library: https://github.com/engilas/raytracing-opengl
