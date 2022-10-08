@@ -52,6 +52,9 @@
     <Filter Include="ExternalTools\assimp">
       <UniqueIdentifier>{fff16248-2834-4318-9768-a0f7adb148b9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sources\Modules\Importers">
+      <UniqueIdentifier>{6b0f7c2c-cc1f-4234-8d53-c990fea99429}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -387,6 +390,9 @@
     <ClInclude Include="assimp\Include\cimport.h">
       <Filter>ExternalTools\assimp</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleMeshImport.h">
+      <Filter>Sources\Modules\Importers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -595,6 +601,9 @@
     </ClCompile>
     <ClCompile Include="AboutWindow.cpp">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleMeshImport.cpp">
+      <Filter>Sources\Modules\Importers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

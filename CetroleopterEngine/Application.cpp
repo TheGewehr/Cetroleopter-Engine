@@ -5,6 +5,7 @@ Application::Application() : debug(false)
 {
 	window = new ModuleWindow();
 	input = new ModuleInput();
+	meshImport = new ModuleMeshImport();
 	audio = new ModuleAudio();
 	scene_intro = new ModuleSceneIntro();
 	camera = new ModuleCamera3D();
@@ -21,6 +22,7 @@ Application::Application() : debug(false)
 	AddModule(window);
 	AddModule(camera);
 	AddModule(input);
+	AddModule(meshImport);
 	AddModule(audio);
 	//AddModule(physics);
 	

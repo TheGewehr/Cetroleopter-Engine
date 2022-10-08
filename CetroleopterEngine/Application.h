@@ -13,6 +13,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
 #include "ModuleUi.h"
+#include "ModuleMeshImport.h"
 
 //#include "ModulePhysics3D.h"
 
@@ -21,6 +22,7 @@ class Application
 public:
 	ModuleWindow* window;
 	ModuleInput* input;
+	ModuleMeshImport* meshImport;
 	ModuleAudio* audio;
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;

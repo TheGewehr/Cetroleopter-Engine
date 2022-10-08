@@ -41,11 +41,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ProjectDir);$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ProjectDir);$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -55,7 +55,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -77,7 +77,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -193,6 +193,7 @@
     <ClInclude Include="mathGeoLib\Time\Clock.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCamera3D.h" />
+    <ClInclude Include="ModuleMeshImport.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="ModuleUi.h" />
     <ClInclude Include="Module.h" />
@@ -267,6 +268,7 @@
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleMeshImport.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
     <ClCompile Include="ModuleUi.cpp" />
