@@ -177,7 +177,7 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 	//ImGui::NewFrame();
-	LOG("PUTO ERROR");
+	//LOG("PUTO ERROR");
 	//ImGui::ShowDemoWindow(false);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -193,6 +193,24 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 		lights[i].Render();
 
 	
+
+	return UPDATE_CONTINUE;
+}
+
+update_status ModuleRenderer3D::Update(float dt)
+{
+
+
+	if (wireframeMode == true)
+	{
+		// Turns on wiremode
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+	}
+	else if (wireframeMode == false)
+	{
+		// Turns off wiremode
+		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
 
 	return UPDATE_CONTINUE;
 }

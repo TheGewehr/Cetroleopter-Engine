@@ -22,7 +22,7 @@ private:
 	bool HelpMenuBar();
 
 private:
-	bool wireframeMode = false;
+	//bool wireframeMode = false; Already inside module renderer
 	bool faceCullingMode = false;
 	bool disableLights = false;
 	bool showConsole = false;
