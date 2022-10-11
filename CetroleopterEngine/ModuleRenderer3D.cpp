@@ -169,6 +169,25 @@ bool ModuleRenderer3D::Init()
 	}
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
+	glGenBuffers(1, &IndexBuffer);
+
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	
+	
+
+	// ..:: Initialization code :: ..
+	// 1. bind Vertex Array Object
+	glBindVertexArray(ObjectBuffer);
+	// 2. copy our vertices array in a vertex buffer for OpenGL to use
+	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	// 3. copy our index array in a element buffer for OpenGL to use
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	// 4. then set the vertex attributes pointers
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	glEnableVertexAttribArray(0);
 
 	return ret;
 }
@@ -257,14 +276,22 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//glDisableClientState(GL_VERTEX_ARRAY);
 	// 
 // activate and specify pointer to vertex array
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glVertexPointer(3, GL_FLOAT, 0, (GLfloat*)&vertices);
+	//glEnableClientState(GL_VERTEX_ARRAY);
+	//glVertexPointer(3, GL_FLOAT, 0, (GLfloat*)&vertices);
+	//
+	//// draw a cube
+	//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (GLubyte*)indices);
+	//
+	//// deactivate vertex arrays after drawing
+	//glDisableClientState(GL_VERTEX_ARRAY);
 
-	// draw a cube
-	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (GLubyte*)indices);
-
-	// deactivate vertex arrays after drawing
-	glDisableClientState(GL_VERTEX_ARRAY);
+	
+	
+	// ..:: Drawing code (in render loop) :: ..
+	glUseProgram(shaderProgram);
+	glBindVertexArray(ObjectBuffer);
+	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+	glBindVertexArray(0);
 
 	// This must be the last line
 	SDL_GL_SwapWindow(App->window->window);
@@ -298,86 +325,3 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glLoadIdentity();
 }
 
-
-void ModuleRenderer3D::DDCube_VecIndices()
-{
-	
-	glBegin(GL_TRIANGLES);
-	int col = -1;
-	for (int i = 0; i < sizeof(indices) / sizeof(int); ++i) {
-		if (i % 6 == 0) {
-			++col;
-			glColor3f(colors[col].x, colors[col].y, colors[col].z);
-		}
-		GLVertexDD(&indices[i]);
-	}
-	glEnd();
-}
-
-void ModuleRenderer3D::DDCube_BadIndices()
-{
-	glBegin(GL_TRIANGLES);
-	int* idx = indices;
-	
-	// Front Face
-	glColor3f(1., 1., 0.);
-	GLVertexDD(idx); idx++; // 5
-	GLVertexDD(idx); idx++; // 6
-	GLVertexDD(idx); idx++; // 8
-
-	GLVertexDD(idx); idx++; // 5
-	GLVertexDD(idx); idx++; // 8
-	GLVertexDD(idx); idx++; // 7
-
-	// Back Fave
-	glColor3f(1., 0., 1.);
-	GLVertexDD(idx); idx++; // 4
-	GLVertexDD(idx); idx++; // 2
-	GLVertexDD(idx); idx++; // 1
-
-	GLVertexDD(idx); idx++; // 1
-	GLVertexDD(idx); idx++; // 3
-	GLVertexDD(idx); idx++; // 4
-
-	// Top Face
-	glColor3f(0., 1., 1.);
-	GLVertexDD(idx); idx++; // 4
-	GLVertexDD(idx); idx++; // 3
-	GLVertexDD(idx); idx++; // 8
-
-	GLVertexDD(idx); idx++; // 3
-	GLVertexDD(idx); idx++; // 7
-	GLVertexDD(idx); idx++; // 8
-
-	// Bottom Face
-	glColor3f(1., 0., 0.);
-	GLVertexDD(idx); idx++; // 2
-	GLVertexDD(idx); idx++; // 6
-	GLVertexDD(idx); idx++; // 1
-
-	GLVertexDD(idx); idx++; // 1
-	GLVertexDD(idx); idx++; // 6
-	GLVertexDD(idx); idx++; // 5
-
-	// SideL / TriT
-	glColor3f(0., 1., 0.);
-	GLVertexDD(idx); idx++; // 1
-	GLVertexDD(idx); idx++; // 7
-	GLVertexDD(idx); idx++; // 3
-
-	GLVertexDD(idx); idx++; // 1
-	GLVertexDD(idx); idx++; // 5
-	GLVertexDD(idx); idx++; // 7
-
-	// SideR / TriT
-	glColor3f(0., 0., 1.);
-	GLVertexDD(idx); idx++; // 2
-	GLVertexDD(idx); idx++; // 4
-	GLVertexDD(idx); idx++; // 8
-
-	GLVertexDD(idx); idx++; // 2
-	GLVertexDD(idx); idx++; // 8
-	GLVertexDD(idx); idx++; // 6
-
-	glEnd();
-}

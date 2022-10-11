@@ -32,31 +32,22 @@ public:
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 	bool wireframeMode = false;
 
-	void DDCube_VecIndices();
-	void DDCube_BadIndices();
-	
-	
-	float3 vertices[8] = {
-	{-1., -1., -1.}, {1., -1., -1.},
-	{-1., 1., -1.}, {1., 1., -1.},
-	{-1., -1., 1.}, {1., -1., 1.},
-	{-1., 1., 1.}, {1., 1., 1.},
-	};
-	
-	int indices[36] = {
-		5,6,8,	5,8,7,
-		4,2,1,	1,3,4,
-		4,3,8,	3,7,8,
-		2,6,1,	1,6,5,
-		1,7,3,	1,5,7,
-		2,4,8,	2,8,6
-	};
-	
-	float3 colors[6] = {
-		{1., 1., 0.}, {1., 0., 1.}, {0., 1., 1.},
-		{1., 0., 0.}, {0., 1., 0.}, {0., 0., 1.}
+	float vertices[12] = {
+	 0.5f,  0.5f, 0.0f,  // top right
+	 0.5f, -0.5f, 0.0f,  // bottom right
+	-0.5f, -0.5f, 0.0f,  // bottom left
+	-0.5f,  0.5f, 0.0f   // top left 
 	};
 
+	unsigned int indices[6] = {  // note that we start from 0!
+		0, 1, 3,   // first triangle
+		1, 2, 3    // second triangle
+	};
+
+	unsigned int IndexBuffer;
+	unsigned int VertexBuffer;
+	unsigned int ObjectBuffer;
+	unsigned int shaderProgram;
 
 };
 
