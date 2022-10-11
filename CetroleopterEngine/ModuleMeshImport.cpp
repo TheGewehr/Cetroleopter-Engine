@@ -82,13 +82,13 @@ void ModuleMeshImport::LoadMesh(const char* path)
 			{
 				vertexData.num_indices = scene->mMeshes[i]->mNumFaces * 3;
 				vertexData.indices = new uint[vertexData.num_indices]; // assume each face is a triangle
-				for (uint i = 0; i < scene->mMeshes[i]->mNumFaces; ++i)
+				for (uint j = 0; j < scene->mMeshes[j]->mNumFaces; ++j) // <-- ERROR
 				{
-					if (scene->mMeshes[i]->mFaces[i].mNumIndices != 3)
+					if (scene->mMeshes[i]->mFaces[j].mNumIndices != 3)
 					{
 						LOG("WARNING, geometry face with != 3 indices!");
 					}
-					else memcpy(&vertexData.indices[i * 3], scene->mMeshes[i]->mFaces[i].mIndices, 3 * sizeof(uint));
+					else memcpy(&vertexData.indices[j * 3], scene->mMeshes[i]->mFaces[j].mIndices, 3 * sizeof(uint));
 				}
 			}
 		}

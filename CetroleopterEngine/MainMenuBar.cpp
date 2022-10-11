@@ -6,6 +6,7 @@
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
 #include "ConfigurationWindow.h"
+#include "ModuleMeshImport.h"
 
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
@@ -94,6 +95,11 @@ bool MainMenuBar::EditMenuBar()
 		if (ImGui::MenuItem("Settings", "", App->moduleUi->configurationWindow->isActive))
 		{
 			App->moduleUi->configurationWindow->ChangeActive();
+		}
+		ImGui::Separator();
+		if (ImGui::MenuItem("Load Test Model"))
+		{
+			App->meshImport->LoadMesh("Assets/train.fbx");
 		}
 
 		ImGui::EndMenu();
