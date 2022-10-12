@@ -208,8 +208,6 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(App->camera->GetViewMatrix());
 
-	glEnable(GL_DEPTH_TEST);
-
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
 
@@ -223,7 +221,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 update_status ModuleRenderer3D::Update(float dt)
 {
-
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_AMBIENT);
 
 	if (wireframeMode == false)
 	{
