@@ -306,8 +306,6 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	glBindVertexArray(0);*/
 
-	RenderModels();
-
 	// This must be the last line
 	SDL_GL_SwapWindow(App->window->window);
 

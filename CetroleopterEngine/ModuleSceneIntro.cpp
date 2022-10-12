@@ -67,6 +67,8 @@ update_status ModuleSceneIntro::PostUpdate(float dt)
 		primitives[n]->Render();
 	}*/
 
+	App->renderer3D->RenderModels();
+
 	return UPDATE_CONTINUE;
 }
 
