@@ -13,6 +13,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleRenderer3D.h"
+#include "ModuleModelImport.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -220,15 +221,26 @@ update_status ModuleRenderer3D::Update(float dt)
 {
 
 
-	if (wireframeMode == true)
+	if (wireframeMode == false)
 	{
 		// Turns on wiremode
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-	else if (wireframeMode == false)
+	else if (wireframeMode == true)
 	{
 		// Turns off wiremode
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	}
+
+	if (faceCullingMode == false)
+	{
+		// Turns on wiremode
+		glDisable(GL_CULL_FACE);
+	}
+	else if (faceCullingMode == true)
+	{
+		// Turns off wiremode
+		glEnable(GL_CULL_FACE);
 	}
 
 	return UPDATE_CONTINUE;
@@ -284,14 +296,14 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	//
 	//// deactivate vertex arrays after drawing
 	//glDisableClientState(GL_VERTEX_ARRAY);
-
-	
 	
 	// ..:: Drawing code (in render loop) :: ..
-	glUseProgram(shaderProgram);
+	/*glUseProgram(shaderProgram);
 	glBindVertexArray(ObjectBuffer);
 	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);
+	glBindVertexArray(0);*/
+
+	RenderModels();
 
 	// This must be the last line
 	SDL_GL_SwapWindow(App->window->window);
@@ -323,5 +335,26 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
+}
+
+void ModuleRenderer3D::RenderModels()
+{
+	for (int i = 0; i < App->modelImport->meshes.size(); i++)
+	{
+		// Draw elements
+		MeshVertexData* vertexData = &App->modelImport->meshes[i];
+		{
+			glEnableClientState(GL_VERTEX_ARRAY);
+
+			// Render things in Element mode
+			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
+			glVertexPointer(3, GL_FLOAT, 0, NULL);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
+			glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glDisableClientState(GL_VERTEX_ARRAY);
+		}
+	}
 }
 

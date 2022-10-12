@@ -15,11 +15,11 @@ struct MeshVertexData
 	float* vertices = nullptr;
 };
 
-class ModuleMeshImport : public Module
+class ModuleModelImport : public Module
 {
 public:
-	ModuleMeshImport(bool start_enabled = true);
-	~ModuleMeshImport();
+	ModuleModelImport(bool start_enabled = true);
+	~ModuleModelImport();
 
 	bool Init();
 	update_status Update(float dt);
@@ -29,13 +29,8 @@ public:
 	void LoadMesh(const char* path); //Loads the mesh
 	void LoadTexture(); //Loads the textures
 
-	void VertexBuffer(float* vertices, uint& size, uint& id_vertex);
-	void IndexBuffer(uint* indices, uint& size, uint& id_index);
-	void TextureBuffer();
-	void DeleteBuffer(uint& type);
-
 public:
-
+	std::vector<MeshVertexData> meshes;
 	
 };
 

@@ -6,7 +6,7 @@
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
 #include "ConfigurationWindow.h"
-#include "ModuleMeshImport.h"
+#include "ModuleModelImport.h"
 
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
@@ -99,7 +99,7 @@ bool MainMenuBar::EditMenuBar()
 		ImGui::Separator();
 		if (ImGui::MenuItem("Load Test Model"))
 		{
-			App->meshImport->LoadMesh("Assets/train.fbx");
+			App->modelImport->LoadMesh("Assets/BusStation.fbx");
 		}
 
 		ImGui::EndMenu();
@@ -119,7 +119,7 @@ bool MainMenuBar::ViewMenuBar()
 		{
 			//App->renderer3D->wireframeMode = !App->renderer3D->wireframeMode; Not needed (the change of state is done up on the if statement if (ImGui::Checkbox("Wireframe Mode", &App->renderer3D->wireframeMode))
 		}
-		if (ImGui::Checkbox("Cull Faces", &faceCullingMode))
+		if (ImGui::Checkbox("Cull Faces", &App->renderer3D->faceCullingMode))
 		{
 
 		}

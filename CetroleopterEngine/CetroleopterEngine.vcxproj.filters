@@ -390,7 +390,7 @@
     <ClInclude Include="assimp\Include\cimport.h">
       <Filter>ExternalTools\assimp</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleMeshImport.h">
+    <ClInclude Include="ModuleModelImport.h">
       <Filter>Sources\Modules\Importers</Filter>
     </ClInclude>
   </ItemGroup>
@@ -602,7 +602,7 @@
     <ClCompile Include="AboutWindow.cpp">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleMeshImport.cpp">
+    <ClCompile Include="ModuleModelImport.cpp">
       <Filter>Sources\Modules\Importers</Filter>
     </ClCompile>
   </ItemGroup>

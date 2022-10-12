@@ -24,6 +24,8 @@ public:
 
 	void OnResize(int width, int height);
 
+	void RenderModels();
+
 public:
 
 	Light lights[MAX_LIGHTS];
@@ -31,6 +33,7 @@ public:
 	mat3x3 NormalMatrix;
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 	bool wireframeMode = false;
+	bool faceCullingMode = false;
 
 	float vertices[12] = {
 	 0.5f,  0.5f, 0.0f,  // top right
