@@ -122,7 +122,10 @@ void ModuleModelImport::LoadMesh(const char* path)
 
 		aiReleaseImport(scene);
 	}
-	else LOG("Error loading scene % s", path);
+	else
+	{
+		LOG("Error loading scene % s", path);
+	}
 
 }
 

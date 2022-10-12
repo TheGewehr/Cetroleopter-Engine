@@ -170,25 +170,28 @@ bool ModuleRenderer3D::Init()
 	}
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
-	glGenBuffers(1, &IndexBuffer);
 
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//THIS SHIT CAUSES MESHES NOT TO RENDER CORRECTLY - DO NOT UNCOMMENT THE LINES BEOLW
 	
-	
+	//glGenBuffers(1, &IndexBuffer);
 
-	// ..:: Initialization code :: ..
-	// 1. bind Vertex Array Object
-	glBindVertexArray(ObjectBuffer);
-	// 2. copy our vertices array in a vertex buffer for OpenGL to use
-	glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	// 3. copy our index array in a element buffer for OpenGL to use
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-	// 4. then set the vertex attributes pointers
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//
+	//
+
+	//// ..:: Initialization code :: ..
+	//// 1. bind Vertex Array Object
+	//glBindVertexArray(ObjectBuffer);
+	//// 2. copy our vertices array in a vertex buffer for OpenGL to use
+	//glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+	//// 3. copy our index array in a element buffer for OpenGL to use
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//// 4. then set the vertex attributes pointers
+	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+	//glEnableVertexAttribArray(0);
 
 	return ret;
 }
@@ -197,7 +200,6 @@ bool ModuleRenderer3D::Init()
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
 	//ImGui::NewFrame();
-	//LOG("PUTO ERROR");
 	//ImGui::ShowDemoWindow(false);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -205,6 +207,8 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadMatrixf(App->camera->GetViewMatrix());
+
+	glEnable(GL_DEPTH_TEST);
 
 	// light 0 on cam pos
 	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
