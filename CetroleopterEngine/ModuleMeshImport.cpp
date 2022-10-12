@@ -1,3 +1,5 @@
+#include "glew/include/GL/glew.h"
+
 #include "Application.h"
 #include "Globals.h"
 #include "ModuleRenderer3D.h"
@@ -8,7 +10,10 @@
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 
+//#include "SDL\include\SDL_opengl.h"
+
 #pragma comment (lib, "assimp/libx86/assimp-vc142-mt.lib")
+//#pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
 ModuleMeshImport::ModuleMeshImport(bool start_enabled) : Module(start_enabled = true)
 {
@@ -91,8 +96,13 @@ void ModuleMeshImport::LoadMesh(const char* path)
 					else memcpy(&vertexData.indices[j * 3], scene->mMeshes[i]->mFaces[j].mIndices, 3 * sizeof(uint));
 				}
 			}
+			
+			VertexBuffer(vertexData.vertices, vertexData.num_vertices, vertexData.id_vertex);
+			IndexBuffer(vertexData.indices, vertexData.num_indices, vertexData.id_index);
+			//TextureBuffer();
 		}
 		aiReleaseImport(scene);
+		
 	}
 	else LOG("Error loading scene % s", path);
 
@@ -101,4 +111,30 @@ void ModuleMeshImport::LoadMesh(const char* path)
 void ModuleMeshImport::LoadTexture()
 {
 	
+}
+
+void ModuleMeshImport::VertexBuffer(float* vertices, uint& size, uint& id_vertex)
+{
+	glGenBuffers(1, (GLuint*)&(id_vertex));
+	glBindBuffer(GL_ARRAY_BUFFER, id_vertex);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(float) * size, vertices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void ModuleMeshImport::IndexBuffer(uint* indices, uint& size, uint& id_index)
+{
+	glGenBuffers(1, (GLuint*)&(id_index));
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, id_index);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * size, indices, GL_STATIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
+void ModuleMeshImport::TextureBuffer()
+{
+	
+}
+
+void ModuleMeshImport::DeleteBuffer(uint& type)
+{
+	glDeleteBuffers(1, &(GLuint)type);
 }

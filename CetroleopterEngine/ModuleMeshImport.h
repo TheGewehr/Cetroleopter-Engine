@@ -29,6 +29,11 @@ public:
 	void LoadMesh(const char* path); //Loads the mesh
 	void LoadTexture(); //Loads the textures
 
+	void VertexBuffer(float* vertices, uint& size, uint& id_vertex);
+	void IndexBuffer(uint* indices, uint& size, uint& id_index);
+	void TextureBuffer();
+	void DeleteBuffer(uint& type);
+
 public:
 
 	
