@@ -258,26 +258,38 @@ update_status ModuleRenderer3D::Update(float dt)
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_AMBIENT);
 
+
 	if (wireframeMode == false)
 	{
-		// Turns on wiremode
+		// Turns off wiremode
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 	else if (wireframeMode == true)
 	{
-		// Turns off wiremode
+		// Turns on wiremode
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	}
 
 	if (faceCullingMode == false)
 	{
-		// Turns on wiremode
+		// Turns off wiremode
 		glDisable(GL_CULL_FACE);
 	}
 	else if (faceCullingMode == true)
 	{
-		// Turns off wiremode
+		// Turns on wiremode
 		glEnable(GL_CULL_FACE);
+	}
+
+	if (texturesOFF == false)
+	{
+		// Turns on textures
+		glEnable(GL_TEXTURE_2D);
+	}
+	else if (texturesOFF == true)
+	{
+		// Turns off textures
+		glDisable(GL_TEXTURE_2D);
 	}
 
 	return UPDATE_CONTINUE;
@@ -396,5 +408,23 @@ void ModuleRenderer3D::RenderModels()
 			glDisableClientState(GL_VERTEX_ARRAY);
 		}
 	}
+}
+
+void ModuleRenderer3D::RenderTextures()
+{
+	for (int i = 0; i < App->modelImport->textures.size(); i++)
+	{
+		// Draw elements
+		TextureData* textureData = &App->modelImport->textures[i];
+		{
+			//Draws current texture:
+
+
+			//Cleans current texture:
+			glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
+		}
+	}
+
+	
 }
 

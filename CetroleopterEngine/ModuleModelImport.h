@@ -4,6 +4,11 @@
 #include "Application.h"
 #include "Module.h"
 
+#include "glew/include/GL/glew.h"
+
+#define CHECKERS_HEIGHT 50
+#define CHECKERS_WIDTH 50
+
 struct MeshVertexData
 {
 	uint id_index = 0; // index in VRAM
@@ -13,6 +18,19 @@ struct MeshVertexData
 	uint id_vertex = 0; // unique vertex in VRAM
 	uint num_vertices = 0;
 	float* vertices = nullptr;
+};
+
+struct TextureData
+{
+	GLuint texture_ID;
+
+	uint width;
+	uint height;
+
+	uint format;
+	uint internalFormat;
+
+	const void* texture = nullptr;
 };
 
 class ModuleModelImport : public Module
@@ -27,11 +45,15 @@ public:
 
 	void LoadModel(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures)
 	void LoadMesh(const char* path); //Loads the mesh
-	void LoadTexture(const char* path); //Loads the textures
+	void LoadTexture(const void* texture, uint width, uint height, uint format, uint internalFormat); //Loads the textures (not finished)
+
+	void LoadCheckerTexture(GLuint textureID, const void* texture); //Maybe I join those 2 checker functions in one
+	void CheckerTexture();
 
 public:
 	std::vector<MeshVertexData> meshes;
-	
+	std::vector<TextureData> textures;
+
 };
 
 #endif // !_MESH_IMPORTER_H_

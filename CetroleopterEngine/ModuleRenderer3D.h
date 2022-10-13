@@ -25,6 +25,7 @@ public:
 	void OnResize(int width, int height);
 
 	void RenderModels();
+	void RenderTextures();
 
 public:
 
@@ -34,6 +35,7 @@ public:
 	mat4x4 ModelMatrix, ViewMatrix, ProjectionMatrix;
 	bool wireframeMode = false;
 	bool faceCullingMode = false;
+	bool texturesOFF = false;
 
 	float vertices[9] = {
 	-0.5f, -0.5f, 0.0f,

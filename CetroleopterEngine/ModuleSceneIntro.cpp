@@ -68,6 +68,7 @@ update_status ModuleSceneIntro::PostUpdate(float dt)
 	}*/
 
 	App->renderer3D->RenderModels();
+	//App->renderer3D->RenderTextures(); Not finished function
 
 	return UPDATE_CONTINUE;
 }

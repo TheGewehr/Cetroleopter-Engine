@@ -119,6 +119,10 @@ bool MainMenuBar::ViewMenuBar()
 		{
 			//App->renderer3D->wireframeMode = !App->renderer3D->wireframeMode; Not needed (the change of state is done up on the if statement if (ImGui::Checkbox("Wireframe Mode", &App->renderer3D->wireframeMode))
 		}
+		if (ImGui::Checkbox("Disable Textures", &App->renderer3D->texturesOFF))
+		{
+			
+		}
 		if (ImGui::Checkbox("Cull Faces", &App->renderer3D->faceCullingMode))
 		{
 
