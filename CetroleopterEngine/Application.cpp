@@ -47,7 +47,7 @@ Application::~Application()
 	while (item != list_modules.rend())
 	{
 		delete* item;
-		++item;  // Has to be ++item; and NOT item++; if not it crashes with an asertion error
+		item++;  // Has to be ++item; and NOT item++; if not it crashes with an asertion error - Nevermind, now its the other way round...
 	}
 }
 
