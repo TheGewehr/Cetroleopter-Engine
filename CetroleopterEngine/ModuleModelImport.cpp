@@ -10,6 +10,9 @@
 #include "Assimp/include/scene.h"
 #include "Assimp/include/postprocess.h"
 
+#include "devIL/include/ilu.h"
+#include "devIL/include/ilut.h"
+
 //#include "SDL\include\SDL_opengl.h"
 
 #pragma comment (lib, "assimp/libx86/assimp-vc142-mt.lib")
@@ -31,6 +34,20 @@ bool ModuleModelImport::Init()
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
 
+
+	if (ilGetInteger(IL_VERSION_NUM) < IL_VERSION || ilGetInteger(ILU_VERSION_NUM) < ILU_VERSION || ilGetInteger(ILUT_VERSION_NUM) < ILUT_VERSION)
+	{
+		LOG("Error: DevIL Version does not match with lib version.");
+	}
+	else
+	{
+		LOG("Initializing DevIL");
+		ilInit();
+		iluInit();
+		ilutInit();
+		ilutRenderer(ILUT_OPENGL);
+	}
+
 	return true;
 }
 
@@ -48,6 +65,9 @@ bool ModuleModelImport::CleanUp()
 {
 	// detach log stream
 	aiDetachAllLogStreams();
+
+	LOG("Shutting down DevIL");
+	ilShutDown();
 
 	return true;
 }

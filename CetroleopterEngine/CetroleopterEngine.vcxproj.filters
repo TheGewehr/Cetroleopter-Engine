@@ -55,6 +55,9 @@
     <Filter Include="Sources\Modules\Importers">
       <UniqueIdentifier>{6b0f7c2c-cc1f-4234-8d53-c990fea99429}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ExternalTools\devIL">
+      <UniqueIdentifier>{86327e60-bd8f-4246-b66e-78a3bbf18282}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -392,6 +395,30 @@
     </ClInclude>
     <ClInclude Include="ModuleModelImport.h">
       <Filter>Sources\Modules\Importers</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\ilu.h">
+      <Filter>ExternalTools\devIL</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\ilu_region.h">
+      <Filter>ExternalTools\devIL</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\ilut.h">
+      <Filter>ExternalTools\devIL</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\ilut_config.h">
+      <Filter>ExternalTools\devIL</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\config.h">
+      <Filter>ExternalTools\devIL</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\devil_internal_exports.h">
+      <Filter>ExternalTools\devIL</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\il.h">
+      <Filter>ExternalTools\devIL</Filter>
+    </ClInclude>
+    <ClInclude Include="devIL\include\il_wrap.h">
+      <Filter>ExternalTools\devIL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
