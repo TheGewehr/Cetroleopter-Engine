@@ -25,9 +25,9 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void LoadModel(); //Loads the model (meshes and its textures)
+	void LoadModel(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures)
 	void LoadMesh(const char* path); //Loads the mesh
-	void LoadTexture(); //Loads the textures
+	void LoadTexture(const char* path); //Loads the textures
 
 public:
 	std::vector<MeshVertexData> meshes;

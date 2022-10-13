@@ -221,7 +221,8 @@ bool ModuleRenderer3D::Init()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 	// 3. then set our vertex attributes pointers
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	glEnableVertexAttribArray(0);
+
+	//glEnableVertexAttribArray(0); // <-- Makes fbx models not print
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);

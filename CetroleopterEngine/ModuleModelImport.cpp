@@ -52,9 +52,9 @@ bool ModuleModelImport::CleanUp()
 	return true;
 }
 
-void ModuleModelImport::LoadModel()
+void ModuleModelImport::LoadModel(const char* meshPath, const char* texturePath)
 {
-
+	LoadMesh(meshPath);
 }
 
 void ModuleModelImport::LoadMesh(const char* path)
@@ -129,7 +129,7 @@ void ModuleModelImport::LoadMesh(const char* path)
 
 }
 
-void ModuleModelImport::LoadTexture()
+void ModuleModelImport::LoadTexture(const char* path)
 {
 	
 }
