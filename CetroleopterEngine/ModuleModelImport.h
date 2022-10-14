@@ -45,10 +45,9 @@ public:
 
 	void LoadModel(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures)
 	void LoadMesh(const char* path); //Loads the mesh
-	void LoadTexture(const void* texture, uint width, uint height, uint format, uint internalFormat); //Loads the textures (not finished)
+	uint LoadTexture(const char* path); //Loads the textures
 
-	void LoadCheckerTexture(GLuint textureID, const void* texture); //Maybe I join those 2 checker functions in one
-	void CheckerTexture();
+	uint CheckerTexture();
 
 public:
 	std::vector<MeshVertexData> meshes;

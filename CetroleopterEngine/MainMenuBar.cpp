@@ -99,7 +99,9 @@ bool MainMenuBar::EditMenuBar()
 		ImGui::Separator();
 		if (ImGui::MenuItem("Load Test Model"))
 		{
-			App->modelImport->LoadMesh("Assets/BusStation.fbx");
+			//App->modelImport->LoadMesh("Assets/BusStation.fbx");
+			//App->modelImport->LoadTexture("Assets/lambert23_Base_Color.png");
+			App->modelImport->LoadModel("Assets/BusStation.fbx", "Assets/lambert23_Base_Color.png");
 		}
 
 		ImGui::EndMenu();

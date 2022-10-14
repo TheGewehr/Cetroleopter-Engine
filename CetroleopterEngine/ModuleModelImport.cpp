@@ -71,6 +71,7 @@ bool ModuleModelImport::CleanUp()
 void ModuleModelImport::LoadModel(const char* meshPath, const char* texturePath)
 {
 	LoadMesh(meshPath);
+	LoadTexture(texturePath);
 }
 
 void ModuleModelImport::LoadMesh(const char* path)
@@ -145,43 +146,65 @@ void ModuleModelImport::LoadMesh(const char* path)
 
 }
 
-void ModuleModelImport::LoadTexture(const void* texture, uint width, uint height, uint format, uint internalFormat)
+uint ModuleModelImport::LoadTexture(const char* path)
 {
 	uint textureID = 0;
 
-	glGenTextures(1, (GLuint*)&textureID);
-	glBindTexture(GL_TEXTURE_2D, textureID);
+	if (path != nullptr)
+	{
+		uint imageID = 0;
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		ilGenImages(1, (ILuint*)&imageID);
+		ilBindImage(imageID);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, internalFormat, GL_UNSIGNED_BYTE, texture);
-	glGenerateMipmap(GL_TEXTURE_2D);
+		if (ilLoadImage(path))
+		{
+			if (ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
+			{
+				LOG("Texture correctly loaded from path: %s", path);
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+				glGenTextures(1, (GLuint*)&textureID);
+				glBindTexture(GL_TEXTURE_2D, textureID);
 
-	//return textureID; <-- Necessary?
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+				glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+				glGenerateMipmap(GL_TEXTURE_2D);
+
+				glBindTexture(GL_TEXTURE_2D, 0);
+
+				//The original:
+				/*glGenTextures(1, (GLuint*)&textureID);
+				glBindTexture(GL_TEXTURE_2D, textureID);
+
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+				glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, internalFormat, GL_UNSIGNED_BYTE, texture);
+				glGenerateMipmap(GL_TEXTURE_2D);
+
+				glBindTexture(GL_TEXTURE_2D, 0);*/
+				
+			}
+			else LOG("ERROR converting image: %s", iluErrorString(ilGetError()));
+		}
+		else LOG("ERROR loading image: %s", iluErrorString(ilGetError()));
+	}
+	else LOG("ERROR loading image from path: %s", path);
+
+
+
+	return textureID;
 }
 
 
 
-void ModuleModelImport::LoadCheckerTexture(GLuint textureID, const void* texture)
-{
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_2D, textureID);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, CHECKERS_WIDTH, CHECKERS_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, texture);
-}
-
-void ModuleModelImport::CheckerTexture()
+uint ModuleModelImport::CheckerTexture()
 {
 	GLubyte checkerImage[CHECKERS_HEIGHT][CHECKERS_WIDTH][4];
 
@@ -197,4 +220,22 @@ void ModuleModelImport::CheckerTexture()
 		}
 
 	}
+
+
+	uint textureID = 0;
+
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	glGenTextures(1, (GLuint*)&textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, CHECKERS_WIDTH, CHECKERS_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, checkerImage);
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	return textureID;
 }
