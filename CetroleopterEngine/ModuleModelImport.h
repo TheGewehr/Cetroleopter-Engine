@@ -22,7 +22,8 @@ struct MeshVertexData
 
 struct TextureData
 {
-	GLuint texture_ID;
+	uint texture_ID;
+	uint image_ID;
 
 	uint width;
 	uint height;

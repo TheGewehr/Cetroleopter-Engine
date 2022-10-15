@@ -148,14 +148,16 @@ void ModuleModelImport::LoadMesh(const char* path)
 
 uint ModuleModelImport::LoadTexture(const char* path)
 {
-	uint textureID = 0;
+	TextureData textureData;
+
+	textureData.texture_ID = 0;
+	textureData.image_ID = 0;
 
 	if (path != nullptr)
 	{
-		uint imageID = 0;
 
-		ilGenImages(1, (ILuint*)&imageID);
-		ilBindImage(imageID);
+		ilGenImages(1, (ILuint*)&textureData.image_ID);
+		ilBindImage(textureData.image_ID);
 
 		if (ilLoadImage(path))
 		{
@@ -163,8 +165,8 @@ uint ModuleModelImport::LoadTexture(const char* path)
 			{
 				LOG("Texture correctly loaded from path: %s", path);
 
-				glGenTextures(1, (GLuint*)&textureID);
-				glBindTexture(GL_TEXTURE_2D, textureID);
+				glGenTextures(1, (GLuint*)&textureData.texture_ID);
+				glBindTexture(GL_TEXTURE_2D, textureData.texture_ID);
 
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -174,7 +176,7 @@ uint ModuleModelImport::LoadTexture(const char* path)
 				glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 				glGenerateMipmap(GL_TEXTURE_2D);
 
-				glBindTexture(GL_TEXTURE_2D, 0);
+				//glBindTexture(GL_TEXTURE_2D, 0);
 
 				//The original:
 				/*glGenTextures(1, (GLuint*)&textureID);
@@ -197,9 +199,9 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	}
 	else LOG("ERROR loading image from path: %s", path);
 
+	textures.push_back(textureData);
 
-
-	return textureID;
+	return textureData.texture_ID;
 }
 
 

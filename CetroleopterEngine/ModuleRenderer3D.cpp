@@ -395,18 +395,17 @@ void ModuleRenderer3D::RenderModels()
 	{
 		// Draw elements
 		MeshVertexData* vertexData = &App->modelImport->meshes[i];
-		{
-			glEnableClientState(GL_VERTEX_ARRAY);
+		
+		glEnableClientState(GL_VERTEX_ARRAY);
 
-			// Render things in Element mode
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
-			glVertexPointer(3, GL_FLOAT, 0, NULL);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
-			glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-			glDisableClientState(GL_VERTEX_ARRAY);
-		}
+		// Render things in Element mode
+		glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
+		glVertexPointer(3, GL_FLOAT, 0, NULL);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
+		glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 }
 
@@ -416,15 +415,25 @@ void ModuleRenderer3D::RenderTextures()
 	{
 		// Draw elements
 		TextureData* textureData = &App->modelImport->textures[i];
-		{
-			//Draws current texture:
 
+		
 
-			//Cleans current texture:
-			glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
-		}
+		//Cleans current texture:
+		glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
 	}
+	//for (int i = 250; i <= 450; i++)
+	//{
+	//	Color color;
+	//	color.r = 100;
+	//	color.g = 100;
+	//	color.b = 100;
+	//	color.a = 100;
 
+	//	glColor4f(color.r, color.g, color.b, color.a);
+
+	//	glBindTexture(GL_TEXTURE_2D, i);
+	//}
+	
 	
 }
 

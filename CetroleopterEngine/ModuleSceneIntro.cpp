@@ -68,7 +68,10 @@ update_status ModuleSceneIntro::PostUpdate(float dt)
 	}*/
 
 	App->renderer3D->RenderModels();
-	//App->renderer3D->RenderTextures(); Not finished function
+	App->renderer3D->RenderTextures(); //Not finished function??
+
+
+	//glEnable(GL_TEXTURE_2D);
 
 	return UPDATE_CONTINUE;
 }
