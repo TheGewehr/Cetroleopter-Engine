@@ -9,21 +9,6 @@
 #define CHECKERS_HEIGHT 50
 #define CHECKERS_WIDTH 50
 
-struct MeshVertexData
-{
-	uint id_index = 0; // index in VRAM
-	uint num_indices = 0;
-	uint* indices = nullptr;
-
-	uint id_vertex = 0; // unique vertex in VRAM
-	uint num_vertices = 0;
-	float* vertices = nullptr;
-
-	uint id_UV = 0; // id of the UV
-	uint num_UVs = 0;
-	uint* UVs = nullptr;
-};
-
 struct TextureData
 {
 	uint texture_ID;
@@ -36,6 +21,25 @@ struct TextureData
 	uint internalFormat;
 
 	const void* texture = nullptr;
+	std::string	path;
+};
+
+struct MeshVertexData
+{
+
+	uint id_index = 0; // index in VRAM
+	uint num_indices = 0;
+	uint* indices = nullptr;
+
+	uint id_vertex = 0; // unique vertex in VRAM
+	uint num_vertices = 0;
+	float* vertices = nullptr;
+
+	uint id_UV = 0; // id of the UV
+	uint num_UVs = 0;
+	GLfloat* texture_coords_indices = nullptr;
+
+	TextureData meshTexturesData;
 };
 
 class ModuleModelImport : public Module
@@ -48,7 +52,8 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void LoadModel(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures)
+	void LoadModel(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures
+	void LoadModelThroughMesh(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures)
 	void LoadMesh(const char* path); //Loads the mesh
 	uint LoadTexture(const char* path); //Loads the textures
 

@@ -402,27 +402,35 @@ void ModuleRenderer3D::RenderModels()
 		glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
 		glVertexPointer(3, GL_FLOAT, 0, NULL);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
+
+		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_UV);
+		glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+		glBindTexture(GL_TEXTURE_2D, vertexData->meshTexturesData.texture_ID);
+
 		glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
+
+		glBindTexture(GL_TEXTURE_2D, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glDisableClientState(GL_VERTEX_ARRAY);
-
+		glDisableClientState(GL_VERTEX_ARRAY);
 
 	}
 }
 
 void ModuleRenderer3D::RenderTextures()
 {
-	for (int i = 0; i < App->modelImport->textures.size(); i++)
-	{
-		// Draw elements
-		TextureData* textureData = &App->modelImport->textures[i];
+	//for (int i = 0; i < App->modelImport->textures.size(); i++)
+	//{
+	//	// Draw elements
+	//	TextureData* textureData = &App->modelImport->textures[i];
 
-		
+	//	
 
-		//Cleans current texture:
-		glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
-	}
+	//	//Cleans current texture:
+	//	glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
+	//}
 	//for (int i = 250; i <= 450; i++)
 	//{
 	//	Color color;
