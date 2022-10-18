@@ -407,13 +407,14 @@ void ModuleRenderer3D::RenderModels()
 		glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_UV);
 		glTexCoordPointer(3, GL_FLOAT, 0, NULL);
 		glBindTexture(GL_TEXTURE_2D, vertexData->meshTexturesData.texture_ID);
+		//glBindTexture(GL_TEXTURE_2D, 2); //Automatic fast test mesh hardcoding
 
 		glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
 
 		glBindTexture(GL_TEXTURE_2D, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glDisableClientState(GL_VERTEX_ARRAY);
+		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 		glDisableClientState(GL_VERTEX_ARRAY);
 
 	}

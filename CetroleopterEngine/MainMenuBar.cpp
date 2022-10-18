@@ -97,11 +97,13 @@ bool MainMenuBar::EditMenuBar()
 			App->moduleUi->configurationWindow->ChangeActive();
 		}
 		ImGui::Separator();
-		if (ImGui::MenuItem("Load Test Model"))
+		if (ImGui::MenuItem("Load Test Model - BakerHouse"))
 		{
-			//App->modelImport->LoadMesh("Assets/BusStation.fbx");
-			//App->modelImport->LoadTexture("Assets/lambert23_Base_Color.png");
-			App->modelImport->LoadModel("Assets/BusStation.fbx", "Assets/lambert23_Base_Color.png");
+			App->modelImport->LoadModel_Textured("Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+		}
+		if (ImGui::MenuItem("Load Test Model - BusStation"))
+		{
+			App->modelImport->LoadModel_Textured("Assets/BusStation.fbx", "Assets/lambert23_Base_Color.png");
 		}
 
 		ImGui::EndMenu();

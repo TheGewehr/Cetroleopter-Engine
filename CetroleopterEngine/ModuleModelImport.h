@@ -11,14 +11,14 @@
 
 struct TextureData
 {
-	uint texture_ID;
-	uint image_ID;
+	uint texture_ID = 0;
+	uint image_ID = 0;
 
-	uint width;
-	uint height;
+	uint width = 0;
+	uint height = 0;
 
-	uint format;
-	uint internalFormat;
+	uint format = 0;
+	uint internalFormat = 0;
 
 	const void* texture = nullptr;
 	std::string	path;
@@ -34,6 +34,13 @@ struct MeshVertexData
 	uint id_vertex = 0; // unique vertex in VRAM
 	uint num_vertices = 0;
 	float* vertices = nullptr;
+
+	/*GLuint id_normal = 0;
+	aiVector3D num_normals[3] = {};
+	float* normals = nullptr;
+
+	GLuint id_normalVertices = 0;
+	GLfloat* normalVertices = nullptr;*/
 
 	uint id_UV = 0; // id of the UV
 	uint num_UVs = 0;
@@ -52,8 +59,8 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void LoadModel(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures
-	void LoadModelThroughMesh(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures)
+	void LoadModelAndTexture(const char* meshPath, const char* texturePath); //Loads the model (meshes and a texture)
+	void LoadModel_Textured(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
 	void LoadMesh(const char* path); //Loads the mesh
 	uint LoadTexture(const char* path); //Loads the textures
 
