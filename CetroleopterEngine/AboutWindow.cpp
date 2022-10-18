@@ -98,6 +98,8 @@ bool AboutWindow::AboutHeader()
 	ImGui::Spacing();
 	ImGui::BulletText("ImGui v%s (Docking)", ImGui::GetVersion());
 	ImGui::Spacing();
+	ImGui::BulletText("JSON Parser v?"); // 3.10.4 ?
+	ImGui::Spacing();
 	ImGui::BulletText("Assimp v%i.%i.%i", aiGetVersionMajor(), aiGetVersionMinor(), aiGetVersionRevision());
 	ImGui::Spacing();
 	ImGui::BulletText("DevIL v1.8.0"); // 1.7.8 ?
@@ -106,8 +108,6 @@ bool AboutWindow::AboutHeader()
 	ImGui::BulletText("MathGeoLib v?"); // 2.0 ?
 	ImGui::Spacing();
 	//ImGui::BulletText("PhysFS v3.0.2");
-	//ImGui::Spacing();
-	ImGui::BulletText("JSON Parser v?"); // 3.10.4 ?
 
 	ImGui::Spacing();
 	ImGui::Spacing();

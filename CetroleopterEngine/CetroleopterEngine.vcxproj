@@ -20,13 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -41,11 +41,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\devIL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ProjectDir);$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\devIL\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)SDL\include;$(ProjectDir)mathGeoLib;$(ProjectDir)mathGeoLib\Algorithm;$(ProjectDir)mathGeoLib\Algorithm\Random;$(ProjectDir)mathGeoLib\Geometry;$(ProjectDir)mathGeoLib\Math;$(ProjectDir)mathGeoLib\Time;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ProjectDir);$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -55,7 +55,7 @@
       <SDLCheck>false</SDLCheck>
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\devIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <StructMemberAlignment>Default</StructMemberAlignment>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -64,7 +64,7 @@
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
       <AdditionalDependencies>glew32.lib;SDL2.lib;SDL2main.lib;assimp-vc142-mt.lib;assimp-vc142-mtd.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(ProjectDir)glew\lib\Release\Win32;$(ProjectDir)SDL\libx86;$(ProjectDir)\assimp\libx86;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\devIL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)glew\lib\Release\Win32;$(ProjectDir)SDL\libx86;$(ProjectDir)\assimp\libx86;$(ProjectDir)devIL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -77,7 +77,7 @@
       <ExceptionHandling>false</ExceptionHandling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PreprocessorDefinitions>WINDOWS_IGNORE_PACKING_MISMATCH;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\assimp\Include\Compiler;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\devIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)imgui;$(ProjectDir)SDL\include;$(ProjectDir)json;$(ProjectDir)assimp\Include;$(ProjectDir)assimp\Include\Compiler;$(ProjectDir)devIL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -85,7 +85,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <SubSystem>Windows</SubSystem>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
-      <AdditionalLibraryDirectories>$(ProjectDir)glew\lib\Release\Win32;$(ProjectDir)SDL\libx86;$(ProjectDir)\assimp\libx86;C:\GitHub\Cetroleopter-Engine\CetroleopterEngine\devIL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(ProjectDir)glew\lib\Release\Win32;$(ProjectDir)SDL\libx86;$(ProjectDir)\assimp\libx86;$(ProjectDir)devIL\libx86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glew32.lib;SDL2.lib;SDL2main.lib;assimp-vc142-mt.lib;assimp-vc142-mtd.lib;DevIL.lib;ILU.lib;ILUT.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
