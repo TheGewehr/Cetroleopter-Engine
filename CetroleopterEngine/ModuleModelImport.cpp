@@ -125,7 +125,7 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
 				vertexData.texture_coords_indices = new float[vertexData.num_UVs * 3];
 				memcpy(vertexData.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], vertexData.num_UVs * sizeof(float3));
-
+				//memcpy(vertexData.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], vertexData.id_UV * sizeof(float3));
 				vertexData.meshTexturesData.texture_ID = scene->mMeshes[i]->mMaterialIndex;
 			}
 

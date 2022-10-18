@@ -420,31 +420,18 @@ void ModuleRenderer3D::RenderModels()
 	}
 }
 
-void ModuleRenderer3D::RenderTextures()
-{
-	//for (int i = 0; i < App->modelImport->textures.size(); i++)
-	//{
-	//	// Draw elements
-	//	TextureData* textureData = &App->modelImport->textures[i];
-
-	//	
-
-	//	//Cleans current texture:
-	//	glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
-	//}
-	//for (int i = 250; i <= 450; i++)
-	//{
-	//	Color color;
-	//	color.r = 100;
-	//	color.g = 100;
-	//	color.b = 100;
-	//	color.a = 100;
-
-	//	glColor4f(color.r, color.g, color.b, color.a);
-
-	//	glBindTexture(GL_TEXTURE_2D, i);
-	//}
-	
-	
-}
-
+//void ModuleRenderer3D::RenderTextures()
+//{
+//	for (int i = 0; i < App->modelImport->textures.size(); i++)
+//	{
+//		// Draw elements
+//		TextureData* textureData = &App->modelImport->textures[i];
+//
+//		
+//
+//		//Cleans current texture:
+//		glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
+//	}
+//	
+//	
+//}
