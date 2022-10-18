@@ -18,6 +18,10 @@ struct MeshVertexData
 	uint id_vertex = 0; // unique vertex in VRAM
 	uint num_vertices = 0;
 	float* vertices = nullptr;
+
+	uint id_UV = 0; // id of the UV
+	uint num_UVs = 0;
+	uint* UVs = nullptr;
 };
 
 struct TextureData

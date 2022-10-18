@@ -83,7 +83,7 @@ void ModuleModelImport::LoadMesh(const char* path)
 	if (scene != nullptr && scene->HasMeshes()) //The original: if (scene != nullptr && aiScene > HasMeshes())
 	{
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
-
+		
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
 
@@ -123,6 +123,10 @@ void ModuleModelImport::LoadMesh(const char* path)
 					}
 				}
 			}
+			
+			/*vertexData.num_UVs = scene->mMeshes[i]->mNumUVComponents[AI_MAX_NUMBER_OF_TEXTURECOORDS];
+			vertexData.UVs = new uint[vertexData.num_UVs];
+			memcpy(&vertexData.UVs, scene->mMeshes[i]->mNumUVComponents, 3 * sizeof(uint));*/
 
 			glGenBuffers(1, &vertexData.id_vertex);
 			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_vertex);
@@ -133,6 +137,13 @@ void ModuleModelImport::LoadMesh(const char* path)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_index);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+			/*glGenBuffers(1, &vertexData.id_UV);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_UVs, vertexData.UVs, GL_STATIC_DRAW);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);*/
+
+
 
 			meshes.push_back(vertexData);
 		}
