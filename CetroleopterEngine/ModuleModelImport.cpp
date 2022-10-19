@@ -76,6 +76,58 @@ void ModuleModelImport::LoadModelAndTexture(const char* meshPath, const char* te
 
 void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* texturePath)
 {
+	//Texture Loading part
+
+	TextureData textureData;
+
+	textureData.texture_ID = 0;
+	textureData.image_ID = 0;
+
+	if (texturePath != nullptr)
+	{
+
+		ilGenImages(1, (ILuint*)&textureData.image_ID);
+		ilBindImage(textureData.image_ID);
+
+		if (ilLoadImage(texturePath))
+		{
+			if (ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
+			{
+				LOG("Texture correctly loaded from path: %s", texturePath);
+
+				glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+				glGenTextures(1, (GLuint*)&textureData.texture_ID);
+				glBindTexture(GL_TEXTURE_2D, textureData.texture_ID);
+
+				//For the UVs (in this case its STs ??)
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+				glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
+				glGenerateMipmap(GL_TEXTURE_2D);
+
+				glBindTexture(GL_TEXTURE_2D, 0);
+
+				
+			}
+			else LOG("ERROR converting image: %s", iluErrorString(ilGetError()));
+		}
+		else
+		{
+			LOG("ERROR loading image: %s", iluErrorString(ilGetError()));
+			ilDeleteImages(1, &textureData.image_ID);
+		}
+	}
+	else LOG("ERROR loading image from path: %s", texturePath);
+
+	
+	textures.push_back(textureData);
+
+
+
 	//Mesh Loading part
 
 	const aiScene* scene = aiImportFile(meshPath, aiProcessPreset_TargetRealtime_MaxQuality);
@@ -112,7 +164,7 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 					}
 				}
 			}
-			
+
 			if (scene->mMeshes[i]->HasNormals())
 			{
 				/*vertexData.num_normals = *scene->mMeshes[i]->mNormals;
@@ -149,6 +201,13 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_UVs, vertexData.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+			vertexData.meshTexturesData.path = texturePath;
+			//vertexData->meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
+			vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
+			vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
+			vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+			meshes.push_back(vertexData);
 		}
 
 		aiReleaseImport(scene);
@@ -157,62 +216,6 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 	{
 		LOG("Error loading scene % s", meshPath);
 	}
-
-
-
-	//Texture Loading part
-
-	TextureData textureData;
-
-	textureData.texture_ID = 0;
-	textureData.image_ID = 0;
-
-	if (texturePath != nullptr)
-	{
-
-		ilGenImages(1, (ILuint*)&textureData.image_ID);
-		ilBindImage(textureData.image_ID);
-
-		if (ilLoadImage(texturePath))
-		{
-			if (ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
-			{
-				LOG("Texture correctly loaded from path: %s", texturePath);
-
-				glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-				glGenTextures(1, (GLuint*)&textureData.texture_ID);
-				glBindTexture(GL_TEXTURE_2D, textureData.texture_ID);
-
-				//For the UVs (in this case its STs ??)
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-
-				glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
-				glGenerateMipmap(GL_TEXTURE_2D);
-
-				glBindTexture(GL_TEXTURE_2D, 0);
-
-				vertexData.meshTexturesData.path = texturePath;
-				//vertexData->meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
-				vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
-				vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
-				vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
-			}
-			else LOG("ERROR converting image: %s", iluErrorString(ilGetError()));
-		}
-		else
-		{
-			LOG("ERROR loading image: %s", iluErrorString(ilGetError()));
-			ilDeleteImages(1, &textureData.image_ID);
-		}
-	}
-	else LOG("ERROR loading image from path: %s", texturePath);
-
-	meshes.push_back(vertexData);
-	textures.push_back(textureData);
 }
 
 void ModuleModelImport::LoadMesh(const char* path)

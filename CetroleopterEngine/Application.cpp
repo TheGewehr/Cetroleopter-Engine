@@ -3,14 +3,14 @@
 
 Application::Application() : debug(false)
 {
-	window = new ModuleWindow();
-	input = new ModuleInput();
-	modelImport = new ModuleModelImport();
+	window = new ModuleWindow(true);
+	input = new ModuleInput(true);
+	modelImport = new ModuleModelImport(true);
 	audio = new ModuleAudio();
-	scene_intro = new ModuleSceneIntro();
-	camera = new ModuleCamera3D();
-	moduleUi = new ModuleUi();
-	renderer3D = new ModuleRenderer3D();
+	scene_intro = new ModuleSceneIntro(true);
+	camera = new ModuleCamera3D(true);
+	moduleUi = new ModuleUi(true);
+	renderer3D = new ModuleRenderer3D(true);
 	
 	//physics = new ModulePhysics3D();
 

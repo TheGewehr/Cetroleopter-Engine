@@ -227,7 +227,15 @@ bool ModuleRenderer3D::Init()
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
+	
+
 	return ret;
+}
+
+bool ModuleRenderer3D::Start()
+{
+
+	return true;
 }
 
 // PreUpdate: clear buffer
