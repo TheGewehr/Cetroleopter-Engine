@@ -76,9 +76,6 @@ void ModuleModelImport::LoadModelAndTexture(const char* meshPath, const char* te
 
 void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* texturePath)
 {
-
-
-
 	//Mesh Loading part
 
 	const aiScene* scene = aiImportFile(meshPath, aiProcessPreset_TargetRealtime_MaxQuality);
