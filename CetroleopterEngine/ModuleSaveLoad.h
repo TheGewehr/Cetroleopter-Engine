@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "SDL/include/SDL.h"
+#include "parson.h"
 
 
 class Application;
@@ -20,10 +21,7 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-
-public:
-	
-
+	bool SaveInJson();
 
 };
 
