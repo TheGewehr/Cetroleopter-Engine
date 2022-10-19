@@ -203,6 +203,7 @@
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleModelImport.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
+    <ClInclude Include="ModuleSaveLoad.h" />
     <ClInclude Include="ModuleUi.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -278,6 +279,7 @@
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleModelImport.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
+    <ClCompile Include="ModuleSaveLoad.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
     <ClCompile Include="ModuleUi.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />

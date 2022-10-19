@@ -420,6 +420,9 @@
     <ClInclude Include="devIL\include\il_wrap.h">
       <Filter>ExternalTools\devIL</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleSaveLoad.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -631,6 +634,9 @@
     </ClCompile>
     <ClCompile Include="ModuleModelImport.cpp">
       <Filter>Sources\Modules\Importers</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleSaveLoad.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -14,6 +14,7 @@
 #include "ModuleCamera3D.h"
 #include "ModuleUi.h"
 #include "ModuleModelImport.h"
+#include "ModuleSaveLoad.h"
 
 //#include "ModulePhysics3D.h"
 
@@ -24,10 +25,12 @@ public:
 	ModuleInput* input;
 	ModuleModelImport* modelImport;
 	ModuleAudio* audio;
+	ModuleSaveLoad* save_load;
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 	ModuleUi* moduleUi;
+	
 	
 	//ModulePhysics3D* physics;
 

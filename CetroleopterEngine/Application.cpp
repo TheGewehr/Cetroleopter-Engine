@@ -11,7 +11,7 @@ Application::Application() : debug(false)
 	camera = new ModuleCamera3D(true);
 	moduleUi = new ModuleUi(true);
 	renderer3D = new ModuleRenderer3D(true);
-	
+	save_load = new ModuleSaveLoad(true);
 	//physics = new ModulePhysics3D();
 
 	// The order of calls is very important!
@@ -24,6 +24,7 @@ Application::Application() : debug(false)
 	AddModule(input);
 	AddModule(modelImport);
 	AddModule(audio);
+	AddModule(save_load);
 	//AddModule(physics);
 	
 	// Scenes
