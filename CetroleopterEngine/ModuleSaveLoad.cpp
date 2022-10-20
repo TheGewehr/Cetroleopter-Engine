@@ -16,7 +16,8 @@ bool ModuleSaveLoad::Init()
 {
 	LOG("Initializing ModuleSaveLoad");
 
-	SaveInJson();
+	//SaveInJson();
+	LoadFromJson();
 
 	return true;
 }
@@ -60,6 +61,26 @@ bool ModuleSaveLoad::SaveInJson()
 	json_value_free(file);
 
 	LOG("Saving testo");
+
+	return true;
+}
+
+bool ModuleSaveLoad::LoadFromJson()
+{
+	// loading a file
+	JSON_Value* file = json_parse_file("Test.json");
+
+	LOG("loading testo");
+
+	// Loading content
+	const char* buf = json_object_dotget_string(json_object(file), "TestClass.Category01.TestString");
+	const int integer = (int) json_object_dotget_number(json_object(file), "TestClass.Category03TestInteger");
+	const float floato = (float)json_object_dotget_number(json_object(file), "TestClass.Category02.TestFloatOrDouble");
+
+	// free the file ptr
+	json_value_free(file);
+
+	LOG("loading testo");
 
 	return true;
 }

@@ -22,6 +22,7 @@ public:
 	bool CleanUp();
 
 	bool SaveInJson();
+	bool LoadFromJson();
 
 };
 
