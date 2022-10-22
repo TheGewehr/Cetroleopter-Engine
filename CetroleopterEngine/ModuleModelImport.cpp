@@ -79,11 +79,11 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 	//Mesh Loading part
 
 	const aiScene* scene = aiImportFile(meshPath, aiProcessPreset_TargetRealtime_MaxQuality);
-	MeshVertexData vertexData;
 	//aiMesh* mesh = nullptr;
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
+		MeshVertexData vertexData;
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
@@ -135,14 +135,13 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 			glGenBuffers(1, &vertexData.id_UV);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_UVs, vertexData.texture_coords_indices, GL_STATIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
 			//Texture Loading part
 
 			TextureData textureData;
-
 			textureData.texture_ID = 0;
 			textureData.image_ID = 0;
 
@@ -166,8 +165,10 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 
 						glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 						glGenerateMipmap(GL_TEXTURE_2D);
@@ -189,11 +190,15 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 			textures.push_back(textureData);
 
-			vertexData.meshTexturesData.path = texturePath;
-			//vertexData->meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
-			vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
-			vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
-			vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+			if (textureData.texture_ID != 0)
+			{
+				vertexData.meshTexturesData.path = texturePath;
+				//vertexData->meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
+				vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
+				vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
+				vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+			}
+
 			meshes.push_back(vertexData);
 		}
 

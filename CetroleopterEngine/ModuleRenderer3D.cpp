@@ -171,6 +171,7 @@ bool ModuleRenderer3D::Init()
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
 	App->modelImport->Init();
+
 	//THIS SHIT CAUSES MESHES NOT TO RENDER CORRECTLY - DO NOT UNCOMMENT THE LINES BEOLW
 	
 	//glGenBuffers(1, &IndexBuffer);
@@ -234,7 +235,7 @@ bool ModuleRenderer3D::Init()
 
 bool ModuleRenderer3D::Start()
 {
-
+	//App->modelImport->Init();
 	return true;
 }
 
