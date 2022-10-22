@@ -59,7 +59,7 @@ int main(int argc, char ** argv)
 				LOG("Application Update exits with ERROR");
 				state = MAIN_EXIT;
 			}
-			if (App->appExit == true || update_return == UPDATE_STOP)
+			if (App->appExit == true)
 			{
 				const SDL_MessageBoxButtonData buttons[] = {
 		   { /* .flags, .buttonid, .text */        0, 0, "No" },

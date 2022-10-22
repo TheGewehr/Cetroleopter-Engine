@@ -79,11 +79,11 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 	//Mesh Loading part
 
 	const aiScene* scene = aiImportFile(meshPath, aiProcessPreset_TargetRealtime_MaxQuality);
-	MeshVertexData vertexData;
 	//aiMesh* mesh = nullptr;
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
+		MeshVertexData vertexData;
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
@@ -113,13 +113,6 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 				}
 			}
 
-			if (scene->mMeshes[i]->HasNormals())
-			{
-				/*vertexData.num_normals = *scene->mMeshes[i]->mNormals;
-				vertexData.normals = new float[vertexData.num_normals * 3];
-				memcpy(vertexData.normals, scene->mMeshes[i]->mNormals, vertexData.num_normals * sizeof(float3));*/
-			}
-
 			if (scene->mMeshes[i]->HasTextureCoords(0))
 			{
 				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
@@ -140,21 +133,15 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-			/*glGenBuffers(1, &vertexData.id_normal);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_normal);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_normals * 3, vertexData.normals, GL_STATIC_DRAW);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);*/
-
 			glGenBuffers(1, &vertexData.id_UV);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_UVs, vertexData.texture_coords_indices, GL_STATIC_DRAW);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
 			//Texture Loading part
 
 			TextureData textureData;
-
 			textureData.texture_ID = 0;
 			textureData.image_ID = 0;
 
@@ -178,8 +165,10 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
 
 						glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 						glGenerateMipmap(GL_TEXTURE_2D);
@@ -201,11 +190,15 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 			textures.push_back(textureData);
 
-			vertexData.meshTexturesData.path = texturePath;
-			//vertexData->meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
-			vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
-			vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
-			vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+			if (textureData.texture_ID != 0)
+			{
+				vertexData.meshTexturesData.path = texturePath;
+				//vertexData->meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
+				vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
+				vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
+				vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+			}
+
 			meshes.push_back(vertexData);
 		}
 
@@ -260,6 +253,13 @@ void ModuleModelImport::LoadMesh(const char* path)
 				}
 			}
 
+			if (scene->mMeshes[i]->HasNormals())
+			{
+				/*vertexData.num_normals = *scene->mMeshes[i]->mNormals;
+				vertexData.normals = new float[vertexData.num_normals * 3];
+				memcpy(vertexData.normals, scene->mMeshes[i]->mNormals, vertexData.num_normals * sizeof(float3));*/
+			}
+
 			if (scene->mMeshes[i]->HasTextureCoords(0))
 			{
 				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
@@ -279,6 +279,11 @@ void ModuleModelImport::LoadMesh(const char* path)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_index);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+			/*glGenBuffers(1, &vertexData.id_normal);
+			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_normal);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_normals * 3, vertexData.normals, GL_STATIC_DRAW);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);*/
 
 			glGenBuffers(1, &vertexData.id_UV);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
