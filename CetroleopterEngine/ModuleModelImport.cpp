@@ -113,13 +113,6 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 				}
 			}
 
-			if (scene->mMeshes[i]->HasNormals())
-			{
-				/*vertexData.num_normals = *scene->mMeshes[i]->mNormals;
-				vertexData.normals = new float[vertexData.num_normals * 3];
-				memcpy(vertexData.normals, scene->mMeshes[i]->mNormals, vertexData.num_normals * sizeof(float3));*/
-			}
-
 			if (scene->mMeshes[i]->HasTextureCoords(0))
 			{
 				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
@@ -139,11 +132,6 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_index);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-			/*glGenBuffers(1, &vertexData.id_normal);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_normal);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_normals * 3, vertexData.normals, GL_STATIC_DRAW);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);*/
 
 			glGenBuffers(1, &vertexData.id_UV);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
@@ -260,6 +248,13 @@ void ModuleModelImport::LoadMesh(const char* path)
 				}
 			}
 
+			if (scene->mMeshes[i]->HasNormals())
+			{
+				/*vertexData.num_normals = *scene->mMeshes[i]->mNormals;
+				vertexData.normals = new float[vertexData.num_normals * 3];
+				memcpy(vertexData.normals, scene->mMeshes[i]->mNormals, vertexData.num_normals * sizeof(float3));*/
+			}
+
 			if (scene->mMeshes[i]->HasTextureCoords(0))
 			{
 				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
@@ -279,6 +274,11 @@ void ModuleModelImport::LoadMesh(const char* path)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_index);
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+			/*glGenBuffers(1, &vertexData.id_normal);
+			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_normal);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_normals * 3, vertexData.normals, GL_STATIC_DRAW);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);*/
 
 			glGenBuffers(1, &vertexData.id_UV);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
