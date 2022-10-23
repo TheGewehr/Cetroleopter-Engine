@@ -5,13 +5,14 @@ Application::Application() : debug(false)
 {
 	window = new ModuleWindow(true);
 	input = new ModuleInput(true);
-	modelImport = new ModuleModelImport(true);
 	audio = new ModuleAudio();
 	scene_intro = new ModuleSceneIntro(true);
 	camera = new ModuleCamera3D(true);
 	moduleUi = new ModuleUi(true);
 	renderer3D = new ModuleRenderer3D(true);
 	save_load = new ModuleSaveLoad(true);
+	modelImport = new ModuleModelImport(true);
+
 	//physics = new ModulePhysics3D();
 
 	// The order of calls is very important!
@@ -23,7 +24,7 @@ Application::Application() : debug(false)
 	AddModule(camera);
 	AddModule(input);
 	AddModule(modelImport);
-	AddModule(audio);
+	//AddModule(audio);
 	AddModule(save_load);
 	//AddModule(physics);
 	
@@ -48,7 +49,7 @@ Application::~Application()
 	while (item != list_modules.rend())
 	{
 		delete* item;
-		item++;  // Has to be ++item; and NOT item++; if not it crashes with an asertion error - Nevermind, now its the other way round...
+		++item;  // Has to be ++item; and NOT item++; if not it crashes with an asertion error - Nevermind, now its the other way round...
 	}
 }
 

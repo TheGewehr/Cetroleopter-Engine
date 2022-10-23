@@ -16,6 +16,7 @@
 //#include "SDL\include\SDL_opengl.h"
 
 #pragma comment (lib, "assimp/libx86/assimp-vc142-mt.lib")
+
 //#pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
 
 ModuleModelImport::ModuleModelImport(bool start_enabled) : Module(start_enabled = true)
@@ -33,7 +34,6 @@ bool ModuleModelImport::Init()
 	struct aiLogStream stream;
 	stream = aiGetPredefinedLogStream(aiDefaultLogStream_DEBUGGER, nullptr);
 	aiAttachLogStream(&stream);
-
 
 	if (ilGetInteger(IL_VERSION_NUM) < IL_VERSION || ilGetInteger(ILU_VERSION_NUM) < ILU_VERSION || ilGetInteger(ILUT_VERSION_NUM) < ILUT_VERSION)
 	{
@@ -118,10 +118,9 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
 				vertexData.texture_coords_indices = new float[vertexData.num_UVs * 3];
 				memcpy(vertexData.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], vertexData.num_UVs * sizeof(float3));
-				//memcpy(vertexData.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], vertexData.id_UV * sizeof(float3));
 				vertexData.meshTexturesData.texture_ID = scene->mMeshes[i]->mMaterialIndex;
 			}
-
+			
 
 			glGenBuffers(1, &vertexData.id_vertex);
 			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_vertex);
@@ -133,9 +132,9 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-			glGenBuffers(1, &vertexData.id_UV);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
+			glGenBuffers(1, &(vertexData.id_UV));
+			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_UV);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
@@ -158,21 +157,20 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 						LOG("Texture correctly loaded from path: %s", texturePath);
 
 						glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
 						glGenTextures(1, (GLuint*)&textureData.texture_ID);
 						glBindTexture(GL_TEXTURE_2D, textureData.texture_ID);
 
-						//For the UVs (in this case its STs ??)
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
+						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
 						glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 						glGenerateMipmap(GL_TEXTURE_2D);
-
 						glBindTexture(GL_TEXTURE_2D, 0);
 
 
