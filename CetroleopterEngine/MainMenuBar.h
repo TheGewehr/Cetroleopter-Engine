@@ -18,6 +18,7 @@ private:
 
 	bool FileMenuBar();
 	bool EditMenuBar();
+	bool CreateMenuBar();
 	bool ViewMenuBar();
 	bool HelpMenuBar();
 

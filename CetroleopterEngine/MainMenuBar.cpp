@@ -31,6 +31,7 @@ bool MainMenuBar::Draw(ImGuiIO& io)
 
 	FileMenuBar();
 	EditMenuBar();
+	CreateMenuBar();
 	ViewMenuBar();
 	HelpMenuBar();
 
@@ -104,6 +105,47 @@ bool MainMenuBar::EditMenuBar()
 		if (ImGui::MenuItem("Load Test Model - BusStation"))
 		{
 			App->modelImport->LoadModel_Textured("Assets/BusStation.fbx", "Assets/lambert23_Base_Color.png");
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::CreateMenuBar()
+{
+	bool ret = true;
+
+	if (ImGui::BeginMenu("Create"))
+	{
+		if (ImGui::MenuItem("Cube"))
+		{
+			App->modelImport->LoadMesh("Assets/Primitives/cube_primitive.fbx");
+		}
+		if (ImGui::MenuItem("Sphere"))
+		{
+			App->modelImport->LoadMesh("Assets/Primitives/sphere_primitive.fbx");
+		}
+		if (ImGui::MenuItem("Cone"))
+		{
+			App->modelImport->LoadMesh("Assets/Primitives/cone_primitive.fbx");
+		}
+		if (ImGui::MenuItem("Pyramid"))
+		{
+			App->modelImport->LoadMesh("Assets/Primitives/pyramid_primitive.fbx");
+		}
+		if (ImGui::MenuItem("Cylinder"))
+		{
+			App->modelImport->LoadMesh("Assets/Primitives/cylinder_primitive.fbx");
+		}
+		if (ImGui::MenuItem("Torus"))
+		{
+			App->modelImport->LoadMesh("Assets/Primitives/torus_primitive.fbx");
+		}
+		if (ImGui::MenuItem("Polyhedron Ball"))
+		{
+			App->modelImport->LoadMesh("Assets/Primitives/polyhedron_primitive.fbx");
 		}
 
 		ImGui::EndMenu();
