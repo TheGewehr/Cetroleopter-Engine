@@ -9,8 +9,21 @@
 #define CHECKERS_HEIGHT 50
 #define CHECKERS_WIDTH 50
 
+enum TextureMaterialType
+{
+	NONE = 0,
+	DIFFUSE,
+	METALLIC,
+	ROUGHNESS,
+	HEIGH_MAP,
+	NORMAL_MAP,
+	EMISSIVE
+};
+
 struct TextureData
 {
+	TextureMaterialType materialType; //Will be used later to load different texture materials
+
 	uint texture_ID = 0;
 	uint image_ID = 0;
 
