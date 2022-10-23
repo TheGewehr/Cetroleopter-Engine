@@ -156,6 +156,8 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 					{
 						LOG("Texture correctly loaded from path: %s", texturePath);
 
+						textureData.texture_ID = ilutGLBindTexImage(); //This fucking missing line generated the UV error
+
 						glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 						glGenTextures(1, (GLuint*)&textureData.texture_ID);
@@ -185,18 +187,16 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 			}
 			else LOG("ERROR loading image from path: %s", texturePath);
 
-
-			textures.push_back(textureData);
-
 			if (textureData.texture_ID != 0)
 			{
 				vertexData.meshTexturesData.path = texturePath;
-				//vertexData->meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
+				//vertexData.meshTexturesData.type = TEXTURE_TYPE::DIFFUSE;
 				vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
 				vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
 				vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
 			}
 
+			textures.push_back(textureData);
 			meshes.push_back(vertexData);
 		}
 
