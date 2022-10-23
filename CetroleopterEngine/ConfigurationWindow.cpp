@@ -75,6 +75,7 @@ bool ConfigurationWindow::WindowHeader()
 			App->window->SetWindowSize(width, height);
 		}
 
+		
 		if (ImGui::Checkbox("Fullscreen", &checkFullscreen))
 			checkFullscreen = !checkFullscreen;
 
@@ -109,4 +110,37 @@ bool ConfigurationWindow::AnotherHeader()
 
 
 	return ret;
+}
+
+
+bool ConfigurationWindow::SaveRequest()
+{
+	
+	json_object_dotset_number(json_object(App->save_load->configurationFile), "SettingsWindow.Brightness", brightness);
+	json_object_dotset_number(json_object(App->save_load->configurationFile), "SettingsWindow.Width", width);
+	json_object_dotset_number(json_object(App->save_load->configurationFile), "SettingsWindow.Height", height);
+
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Fullscreen", checkFullscreen);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Resizable", checkResizable);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Borderless", checkBorderless);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.FullDesktop", checkFullDesktop);
+
+	return true;
+}
+
+bool ConfigurationWindow::LoadRequest()
+{
+	brightness = (float)json_object_dotget_number(json_object(App->save_load->configurationFile), "SettingsWindow.Brightness");
+	App->window->SetBrightness(brightness);
+	
+	width = (int)json_object_dotget_number(json_object(App->save_load->configurationFile), "SettingsWindow.Width");
+	height = (int)json_object_dotget_number(json_object(App->save_load->configurationFile), "SettingsWindow.Height");
+	App->window->SetWindowSize(width, height);
+
+	checkFullscreen = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Fullscreen");
+	checkResizable = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Resizable");
+	checkBorderless = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Borderless");
+	checkFullDesktop = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.FullDesktop");
+
+	return true;
 }

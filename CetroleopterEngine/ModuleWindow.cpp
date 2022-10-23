@@ -142,3 +142,7 @@ void ModuleWindow::SetWindowSize(uint width, uint height)
 {
 	SDL_SetWindowSize(window, width, height);
 }
+
+
+
+

@@ -24,8 +24,9 @@ Application::Application() : debug(false)
 	AddModule(camera);
 	AddModule(input);
 	AddModule(modelImport);
-	//AddModule(audio);
-	AddModule(save_load);
+	AddModule(audio);
+	
+
 	//AddModule(physics);
 	
 	// Scenes
@@ -34,6 +35,9 @@ Application::Application() : debug(false)
 	// Renderer last!
 	AddModule(moduleUi);
 	AddModule(renderer3D);
+
+	//Allways save and load as the last task
+	AddModule(save_load);
 }
 
 Application::~Application()

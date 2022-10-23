@@ -21,8 +21,13 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
-	bool SaveInJson();
-	bool LoadFromJson();
+	bool SaveConfiguration();
+	bool LoadConfiguration();
+
+	bool saveConfigurationTrigger = false;
+	bool loadConfigurationTrigger = false;
+
+	JSON_Value* configurationFile = nullptr;
 
 };
 

@@ -7,7 +7,7 @@
 #include "AboutWindow.h"
 #include "ConfigurationWindow.h"
 #include "ModuleModelImport.h"
-
+#include "ModuleSaveLoad.h"
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
 {
@@ -56,11 +56,11 @@ bool MainMenuBar::FileMenuBar()
 
 		if (ImGui::MenuItem("Save Project"))
 		{
-			
+			App->save_load->saveConfigurationTrigger = true;
 		}
 		if (ImGui::MenuItem("Load Project"))
 		{
-			
+			App->save_load->loadConfigurationTrigger = true;
 		}
 		if (ImGui::MenuItem("Exit"))
 		{

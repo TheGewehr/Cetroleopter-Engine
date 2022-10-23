@@ -1,5 +1,8 @@
 #include "ModuleSaveLoad.h"
+#include "Application.h"
+#include "Globals.h"
 
+#include "ConfigurationWindow.h"
 
 
 ModuleSaveLoad::ModuleSaveLoad(bool start_enabled) : Module(start_enabled)
@@ -16,15 +19,27 @@ bool ModuleSaveLoad::Init()
 {
 	LOG("Initializing ModuleSaveLoad");
 
-	//SaveInJson();
-	LoadFromJson();
+	// Load Configuration.json file
+	configurationFile = json_parse_file("Configuration.json");
 
 	return true;
 }
 
 update_status ModuleSaveLoad::PostUpdate(float dt)
 {
-    
+	if (saveConfigurationTrigger == true)
+	{
+		SaveConfiguration();
+
+		saveConfigurationTrigger = false;
+	}
+
+	if (loadConfigurationTrigger == true)
+	{
+		LoadConfiguration();
+
+		loadConfigurationTrigger = false;
+	}
 
 	return UPDATE_CONTINUE;
 }
@@ -33,54 +48,29 @@ bool ModuleSaveLoad::CleanUp()
 {
 	LOG("Cleaning ModuleSaveLoad");
 
+	// Free file ptr
+	json_value_free(configurationFile);
+
+	//delete configurationFile;
+
 	return true;
 }
 
-bool ModuleSaveLoad::SaveInJson()
+bool ModuleSaveLoad::SaveConfiguration()
 {
-	// loading a file
-	JSON_Value* file = json_parse_file("Test.json");
-
-	LOG("Saving testo");
-
-	// saving content
-	const char* buf = " Test buffer ";
-	const int integer = 0;
-	const float floato = 1.8765;
-
-	json_object_dotset_string(json_object(file), "TestClass.Category01.TestString", buf);
-	
-	json_object_dotset_number(json_object(file), "TestClass.Category02.TestFloatOrDouble", (double)floato);
-
-	json_object_dotset_number(json_object(file), "TestClass.Category03TestInteger", (double)integer);
+	// calling save requests
+	App->moduleUi->configurationWindow->SaveRequest();
 
 	// Aplying save to the .json file
-	json_serialize_to_file(file, "Test.json");
-
-	// free the file ptr
-	json_value_free(file);
-
-	LOG("Saving testo");
+	json_serialize_to_file(configurationFile, "Configuration.json");
 
 	return true;
 }
 
-bool ModuleSaveLoad::LoadFromJson()
+bool ModuleSaveLoad::LoadConfiguration()
 {
-	// loading a file
-	JSON_Value* file = json_parse_file("Test.json");
-
-	LOG("loading testo");
-
-	// Loading content
-	const char* buf = json_object_dotget_string(json_object(file), "TestClass.Category01.TestString");
-	const int integer = (int) json_object_dotget_number(json_object(file), "TestClass.Category03TestInteger");
-	const float floato = (float)json_object_dotget_number(json_object(file), "TestClass.Category02.TestFloatOrDouble");
-
-	// free the file ptr
-	json_value_free(file);
-
-	LOG("loading testo");
+	// calling LoadRequest functions 
+	App->moduleUi->configurationWindow->LoadRequest();
 
 	return true;
 }

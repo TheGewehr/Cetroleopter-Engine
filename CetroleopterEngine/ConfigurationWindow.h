@@ -2,6 +2,7 @@
 #define _CONFIGURATIONWINDOW_H_
 
 #include "ImGuiWindowBase.h"
+#include "parson.h"
 
 #define MAX_HISTOGRAM_SIZE 100
 
@@ -17,6 +18,8 @@ public:
 	bool CleanUp();
 
 	//void UpdateFrameData(int frames, int ms);
+	bool SaveRequest();
+	bool LoadRequest();
 
 private:
 	
