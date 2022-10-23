@@ -156,7 +156,7 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 					{
 						LOG("Texture correctly loaded from path: %s", texturePath);
 
-						textureData.texture_ID = ilutGLBindTexImage(); //This fucking missing line generated the UV error
+						textureData.texture_ID = ilutGLBindTexImage(); //This fucking missing line generated the UV error - DONT erase it
 
 						glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
