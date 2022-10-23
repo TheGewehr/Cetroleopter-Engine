@@ -226,12 +226,6 @@ void ModuleModelImport::LoadMesh(const char* path)
 			memcpy(vertexData.vertices, scene->mMeshes[i]->mVertices, sizeof(float) * vertexData.num_vertices * 3); // * 3 ?
 			LOG("New mesh with %d vertices", vertexData.num_vertices);
 
-			//Can also be here??
-			/*glGenBuffers(1, &vertexData.id_vertex);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_vertex);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_vertices * 3, vertexData.vertices, GL_STATIC_DRAW);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);*/
-
 			// copy faces
 			if (scene->mMeshes[i]->HasFaces())
 			{
@@ -251,22 +245,14 @@ void ModuleModelImport::LoadMesh(const char* path)
 				}
 			}
 
-			if (scene->mMeshes[i]->HasNormals())
-			{
-				/*vertexData.num_normals = *scene->mMeshes[i]->mNormals;
-				vertexData.normals = new float[vertexData.num_normals * 3];
-				memcpy(vertexData.normals, scene->mMeshes[i]->mNormals, vertexData.num_normals * sizeof(float3));*/
-			}
-
 			if (scene->mMeshes[i]->HasTextureCoords(0))
 			{
 				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
 				vertexData.texture_coords_indices = new float[vertexData.num_UVs * 3];
 				memcpy(vertexData.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], vertexData.num_UVs * sizeof(float3));
-
 				vertexData.meshTexturesData.texture_ID = scene->mMeshes[i]->mMaterialIndex;
 			}
-			
+
 
 			glGenBuffers(1, &vertexData.id_vertex);
 			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_vertex);
@@ -278,14 +264,9 @@ void ModuleModelImport::LoadMesh(const char* path)
 			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-			/*glGenBuffers(1, &vertexData.id_normal);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_normal);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_normals * 3, vertexData.normals, GL_STATIC_DRAW);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);*/
-
-			glGenBuffers(1, &vertexData.id_UV);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_UV);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_UVs, vertexData.texture_coords_indices, GL_STATIC_DRAW);
+			glGenBuffers(1, &(vertexData.id_UV));
+			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_UV);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
@@ -319,6 +300,8 @@ uint ModuleModelImport::LoadTexture(const char* path)
 			if (ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
 			{
 				LOG("Texture correctly loaded from path: %s", path);
+
+				textureData.texture_ID = ilutGLBindTexImage();
 
 				glGenTextures(1, (GLuint*)&textureData.texture_ID);
 				glBindTexture(GL_TEXTURE_2D, textureData.texture_ID);
