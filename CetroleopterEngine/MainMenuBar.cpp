@@ -173,11 +173,15 @@ bool MainMenuBar::ViewMenuBar()
 		{
 
 		}
-		if (ImGui::Checkbox("Disable Lights", &disableLights))
+		if (ImGui::Checkbox("Disable Lights", &App->renderer3D->disableLights))
 		{
 
 		}
-		if (ImGui::Checkbox("Show Windows Console", &showConsole))
+		if (ImGui::Checkbox("Disable AO (Ambient Occlusion)", &App->renderer3D->disableAO))
+		{
+
+		}
+		if (ImGui::Checkbox("Show Windows Console", &App->renderer3D->showConsole))
 		{
 
 		}

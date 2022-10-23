@@ -37,6 +37,9 @@ public:
 	bool wireframeMode = false;
 	bool faceCullingMode = false;
 	bool texturesOFF = false;
+	bool disableLights = false;
+	bool disableAO = false;
+	bool showConsole = false;
 
 	float vertices[9] = {
 	-0.5f, -0.5f, 0.0f,

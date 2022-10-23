@@ -301,6 +301,28 @@ update_status ModuleRenderer3D::Update(float dt)
 		glDisable(GL_TEXTURE_2D);
 	}
 
+	if (disableLights == false)
+	{
+		// Turns on textures
+		glEnable(GL_LIGHTING);
+	}
+	else if (disableLights == true)
+	{
+		// Turns off textures
+		glDisable(GL_LIGHTING);
+	}
+
+	if (disableAO == false)
+	{
+		// Turns on textures
+		glEnable(GL_AMBIENT);
+	}
+	else if (disableAO == true)
+	{
+		// Turns off textures
+		glDisable(GL_AMBIENT);
+	}
+
 	return UPDATE_CONTINUE;
 }
 
