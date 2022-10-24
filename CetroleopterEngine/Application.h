@@ -40,10 +40,19 @@ public:
 
 private:
 
+	
+	
+	std::vector<Module*> list_modules;
+
+	// FPS variables
 	Timer	ms_timer;
 	float	dt;
-	//p2List<Module*> list_modules;
-	std::vector<Module*> list_modules;
+	int maxFps = 0;
+	float framMsCap = 0.0f;
+
+	Timer secondCount;
+	int frameCount;
+	int lastFps;
 
 public:
 
@@ -59,9 +68,13 @@ public:
 	// For log Windows
 	void AddLogFromApp(const char* str);
 
+	int GetMaxFPS()const;
+	void SetMaxFPS(int value);
+
 private:
 
 	void AddModule(Module* mod);
 	void PrepareUpdate();
-	void FinishUpdate();	
+	void FinishUpdate();
+	void UpdateFrameData(float frames, float ms);
 };

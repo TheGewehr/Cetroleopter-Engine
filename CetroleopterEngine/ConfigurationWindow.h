@@ -21,19 +21,17 @@ public:
 	bool SaveRequest();
 	bool LoadRequest();
 
+	void UpdateFrameData(int frames, int ms);
+
 private:
 	
-	bool PlotFrameHistogram();
 	bool WindowHeader();
 	bool AnotherHeader();
+	bool FPSHeader();
 
 private:
 
-	//Histogram Variables
-	//float fpsData[MAX_HISTOGRAM_SIZE];
-	//float msData[MAX_HISTOGRAM_SIZE];
-	//int fps;
-
+	
 	//Windows variables
 	float brightness = 1.000f;
 	int width;
@@ -42,6 +40,11 @@ private:
 	bool checkResizable;
 	bool checkBorderless;
 	bool checkFullDesktop;
+
+	// FPS Variable
+	int fps;
+	float fpsData[MAX_HISTOGRAM_SIZE];
+	float msData[MAX_HISTOGRAM_SIZE];
 
 };
 

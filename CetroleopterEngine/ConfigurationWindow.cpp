@@ -8,7 +8,7 @@
 
 ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Settings", isActive = true)
 {
-	//fps = 0;
+	fps = 0;
 	width = SCREEN_WIDTH;
 	height = SCREEN_HEIGHT;
 	checkResizable = WIN_RESIZABLE;
@@ -31,8 +31,8 @@ bool ConfigurationWindow::Draw(ImGuiIO& io)
 		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered(); // To know if the window is being moved
 	
 	WindowHeader();
-	AnotherHeader();
-	PlotFrameHistogram();
+	FPSHeader();
+	AnotherHeader();	
 	
 	ImGui::End();
 
@@ -46,12 +46,7 @@ bool ConfigurationWindow::CleanUp()
 	return ret;
 }
 
-bool ConfigurationWindow::PlotFrameHistogram()
-{
-	//ImGui::PlotHistogram("FPS", fpsData, IM_ARRAYSIZE(fpsData), 0, NULL, 0.0f, 144.0f, ImVec2(0, 80));
-	//ImGui::PlotHistogram("MS", msData, IM_ARRAYSIZE(msData), 0, NULL, 0.0f, 40.0f, ImVec2(0, 80));
-	return true;
-}
+
 
 bool ConfigurationWindow::WindowHeader()
 {
@@ -110,6 +105,35 @@ bool ConfigurationWindow::AnotherHeader()
 
 
 	return ret;
+}
+
+bool ConfigurationWindow::FPSHeader()
+{
+	bool ret = true;
+
+	if (ImGui::CollapsingHeader("FPS"))	{
+		
+		fps = App->GetMaxFPS();
+		ImGui::SliderInt("Max FPS", &fps, 5, 144);
+		ImGui::Text("Limit Framerate is at %d", fps);
+		App->SetMaxFPS(fps);
+	
+		ImGui::PlotHistogram("FPS", fpsData, IM_ARRAYSIZE(fpsData), 0, NULL, 0.0f, 144.0f, ImVec2(0, 80));
+		ImGui::PlotHistogram("Miliseconds", msData, IM_ARRAYSIZE(msData), 0, NULL, 0.0f, 40.0f, ImVec2(0, 80));
+	}
+
+	return ret;
+}
+
+void ConfigurationWindow::UpdateFrameData(int frames, int ms)
+{
+	for (uint i = 0; i < (MAX_HISTOGRAM_SIZE - 1); ++i)
+	{
+		fpsData[i] = fpsData[i + 1];
+		msData[i] = msData[i + 1];
+	}
+	fpsData[MAX_HISTOGRAM_SIZE - 1] = (float)frames;
+	msData[MAX_HISTOGRAM_SIZE - 1] = (float)ms;
 }
 
 

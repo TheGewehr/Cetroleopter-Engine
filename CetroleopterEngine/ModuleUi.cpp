@@ -235,3 +235,13 @@ void ModuleUi::AddLogFromModuleUi(const char* str)
     }
 
 }
+
+void ModuleUi::UpdateFrameData(float frames, float ms)
+{
+    if (configurationWindow != nullptr)
+    {
+        // Init window module error for no reason
+        configurationWindow->UpdateFrameData(frames, ms);
+    }
+    
+}

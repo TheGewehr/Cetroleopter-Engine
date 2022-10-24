@@ -1,6 +1,7 @@
+#include "ModuleWindow.h"
 #include "Globals.h"
 #include "Application.h"
-#include "ModuleWindow.h"
+
 
 //#include "imgui/imgui.h"
 ////#include "imgui/imgui_impl_glfw.h"  // CON EL GLEW? <- ????
@@ -61,7 +62,7 @@ bool ModuleWindow::Init()
 			flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
 		}
 
-		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);
+		window = SDL_CreateWindow(TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, flags);		
 
 		if(window == NULL)
 		{

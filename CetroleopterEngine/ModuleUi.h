@@ -30,6 +30,8 @@ public:
 
 	// For the console window
 	void AddLogFromModuleUi(const char* str);
+
+	void UpdateFrameData(float frames, float ms);
 	
 
 	// list of ImGui Windows

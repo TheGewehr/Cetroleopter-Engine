@@ -21,9 +21,9 @@ Application::Application() : debug(false)
 
 	// Main Modules
 	AddModule(window);
-	AddModule(camera);
-	AddModule(input);
-	AddModule(modelImport);
+	AddModule(camera);	
+	AddModule(input);	
+	AddModule(modelImport);	
 	AddModule(audio);
 	
 
@@ -31,13 +31,14 @@ Application::Application() : debug(false)
 	
 	// Scenes
 	AddModule(scene_intro);
-
+	
 	// Renderer last!
-	AddModule(moduleUi);
+	AddModule(moduleUi);	
 	AddModule(renderer3D);
-
+	
 	//Allways save and load as the last task
 	AddModule(save_load);
+	
 }
 
 Application::~Application()
@@ -97,6 +98,7 @@ bool Application::Init()
 	}
 	
 	ms_timer.Start();
+	
 	return ret;
 }
 
@@ -110,6 +112,24 @@ void Application::PrepareUpdate()
 // ---------------------------------------------
 void Application::FinishUpdate()
 {
+	if (maxFps > 0)
+		framMsCap = 1000 / (float)maxFps;
+	
+	float frameMs = ms_timer.Read();
+	if (frameMs > 0 && frameMs < framMsCap && maxFps != 0)
+	{
+		SDL_Delay(framMsCap - frameMs);
+	}
+	
+	frameCount++;
+	if (secondCount.Read() >= 1000)
+	{
+		secondCount.Start();
+		lastFps = frameCount;
+		frameCount = 0;
+	}
+	
+	UpdateFrameData(lastFps, (float)ms_timer.Read());
 }
 
 // Call PreUpdate, Update and PostUpdate on all modules
@@ -198,15 +218,34 @@ void Application::AddLogFromApp(const char* str)
 {
 	if (App->moduleUi != nullptr)
 	{
-		std::string full_log = str;                                                    // TMP. Switch to normalize later.
+		std::string full_log = str;                                                   
 
-		uint log_start = full_log.find_last_of("\\") + 1;                            // Gets the position of the last "" in the log string.
-		uint log_end = full_log.size();                                            // The last position of the log will be equal to the size of it.
+		uint log_start = full_log.find_last_of("\\") + 1;                           
+		uint log_end = full_log.size();                                            
 
-		std::string short_log = full_log.substr(log_start, log_end);                // Returns the string that is within the given positions.
+		std::string short_log = full_log.substr(log_start, log_end);                
 
 		App->moduleUi->AddLogFromModuleUi(short_log.c_str());
 	}
+}
+
+int Application::GetMaxFPS() const
+{
+	return maxFps;
+}
+
+void Application::SetMaxFPS(int value)
+{
+	maxFps = value;
+}
+
+void Application::UpdateFrameData(float frames, float ms)
+{
+	if (moduleUi != nullptr)
+	{
+		moduleUi->UpdateFrameData(frames, ms);
+	}
+	
 }
 
 Application* App = nullptr;
