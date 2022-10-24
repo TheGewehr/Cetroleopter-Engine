@@ -214,3 +214,29 @@ bool MainMenuBar::HelpMenuBar()
 
 	return ret;
 }
+
+bool MainMenuBar::SaveRequest()
+{
+	// view menu 
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.WireframeMode", App->renderer3D->wireframeMode);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableTextures", App->renderer3D->texturesOFF);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.FaceCullingMode", App->renderer3D->faceCullingMode);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableLights", App->renderer3D->disableLights);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableAO", App->renderer3D->disableAO);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.ShowConsole", App->renderer3D->showConsole);
+
+	return true;
+}
+
+bool MainMenuBar::LoadRequest()
+{
+	// load view tab parameters
+	App->renderer3D->wireframeMode = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.WireframeMode");
+	App->renderer3D->texturesOFF = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableTextures");
+	App->renderer3D->faceCullingMode = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.FaceCullingMode");
+	App->renderer3D->disableLights = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableLights");
+	App->renderer3D->disableAO = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableAO");
+	App->renderer3D->showConsole = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.ShowConsole");
+
+	return true;
+}

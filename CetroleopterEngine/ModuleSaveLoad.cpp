@@ -3,6 +3,7 @@
 #include "Globals.h"
 
 #include "ConfigurationWindow.h"
+#include "MainMenuBar.h"
 
 
 ModuleSaveLoad::ModuleSaveLoad(bool start_enabled) : Module(start_enabled)
@@ -60,6 +61,7 @@ bool ModuleSaveLoad::SaveConfiguration()
 {
 	// calling save requests
 	App->moduleUi->configurationWindow->SaveRequest();
+	App->moduleUi->mainMenuBar->SaveRequest();
 
 	// Aplying save to the .json file
 	json_serialize_to_file(configurationFile, "Configuration.json");
@@ -71,6 +73,7 @@ bool ModuleSaveLoad::LoadConfiguration()
 {
 	// calling LoadRequest functions 
 	App->moduleUi->configurationWindow->LoadRequest();
+	App->moduleUi->mainMenuBar->LoadRequest();
 
 	return true;
 }

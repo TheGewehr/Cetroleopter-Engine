@@ -14,6 +14,8 @@ public:
 	bool Draw(ImGuiIO& io);
 	bool CleanUp();
 
+	bool SaveRequest();
+	bool LoadRequest();
 private:
 
 	bool FileMenuBar();
