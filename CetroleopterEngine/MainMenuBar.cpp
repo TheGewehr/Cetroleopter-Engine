@@ -8,6 +8,7 @@
 #include "ConfigurationWindow.h"
 #include "ModuleModelImport.h"
 #include "ModuleSaveLoad.h"
+#include "ConsoleWindow.h"
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
 {
@@ -97,6 +98,10 @@ bool MainMenuBar::EditMenuBar()
 		{
 			App->moduleUi->configurationWindow->ChangeActive();
 		}
+		if (ImGui::MenuItem("Console", "", App->moduleUi->consoleWindow->isActive))
+		{
+			App->moduleUi->consoleWindow->ChangeActive();
+		}
 		ImGui::Separator();
 		if (ImGui::MenuItem("Load Test Model - BakerHouse"))
 		{
@@ -181,10 +186,10 @@ bool MainMenuBar::ViewMenuBar()
 		{
 
 		}
-		if (ImGui::Checkbox("Show Windows Console", &App->renderer3D->showConsole))
-		{
-
-		}
+		//if (ImGui::Checkbox("Show Windows Console", &App->renderer3D->showConsole))
+		//{
+		//
+		//}
 
 		ImGui::EndMenu();
 	}
@@ -223,7 +228,11 @@ bool MainMenuBar::SaveRequest()
 	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.FaceCullingMode", App->renderer3D->faceCullingMode);
 	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableLights", App->renderer3D->disableLights);
 	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableAO", App->renderer3D->disableAO);
-	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.ShowConsole", App->renderer3D->showConsole);
+	//json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.ShowConsole", App->renderer3D->showConsole);
+
+	// edit menu
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.Edit.SettingsWindow", App->moduleUi->configurationWindow->isActive);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "MenuBar.Edit.ConsoleWindow", App->moduleUi->consoleWindow->isActive);
 
 	return true;
 }
@@ -236,7 +245,11 @@ bool MainMenuBar::LoadRequest()
 	App->renderer3D->faceCullingMode = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.FaceCullingMode");
 	App->renderer3D->disableLights = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableLights");
 	App->renderer3D->disableAO = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.DisableAO");
-	App->renderer3D->showConsole = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.ShowConsole");
+	//App->renderer3D->showConsole = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.View.ShowConsole");
+	
+	// load edit tab parameters
+	App->moduleUi->configurationWindow->isActive = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.Edit.SettingsWindow");
+	App->moduleUi->consoleWindow->isActive = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "MenuBar.Edit.ConsoleWindow");
 
 	return true;
 }
