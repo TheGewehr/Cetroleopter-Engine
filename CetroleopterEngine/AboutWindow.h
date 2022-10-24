@@ -3,8 +3,6 @@
 
 #include "ImGuiWindowBase.h"
 
-#define MAX_HISTOGRAM_SIZE 100
-
 //class ImGuiWindowBase;
 
 class AboutWindow : public ImGuiWindowBase
@@ -21,9 +19,6 @@ public:
 private:
 	
 	bool AboutHeader();
-
-private:
-
 
 };
 

@@ -51,6 +51,7 @@ bool AboutWindow::AboutHeader()
 			○ Libraries(with versions queried in real time)
 			used with links to their web
 			○ Full text of the license*/
+
 	ImGui::Text("Cetreleopter Engine V0.5");
 	ImGui::Spacing();
 

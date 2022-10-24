@@ -22,15 +22,18 @@
 #include "ConfigurationWindow.h"
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
+#include "ConsoleWindow.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),
 configurationWindow(new ConfigurationWindow("ConfigurationWindow")),
 mainMenuBar(new MainMenuBar("MainMenuBar")),
-aboutWindow(new AboutWindow("AboutWindow", false))
+aboutWindow(new AboutWindow("AboutWindow", false)),
+consoleWindow(new ConsoleWindow("ConsoleWindow"))
 {
    AddImGuiWindow(configurationWindow);
    AddImGuiWindow(mainMenuBar);
    AddImGuiWindow(aboutWindow);
+   AddImGuiWindow(consoleWindow);
 }
 
 ModuleUi::~ModuleUi()
@@ -221,3 +224,14 @@ void ModuleUi::BeginDockspace(ImGuiIO& IO, const char* dockspace_id, ImGuiDockNo
     }
 }
 
+void ModuleUi::AddLogFromModuleUi(const char* str)
+{
+    if (App->appExit == false && App->moduleUi != nullptr)
+    {
+        if (consoleWindow != nullptr)
+        {
+            consoleWindow->AddLogsInConsole(str);
+        }
+    }
+
+}

@@ -423,6 +423,9 @@
     <ClInclude Include="ModuleSaveLoad.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="ConsoleWindow.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -637,6 +640,9 @@
     </ClCompile>
     <ClCompile Include="ModuleSaveLoad.cpp">
       <Filter>Sources\Modules</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleWindow.cpp">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

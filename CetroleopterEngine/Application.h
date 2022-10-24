@@ -56,9 +56,12 @@ public:
 
 	void OpenBrowserWebPage(const char* url)const;
 
+	// For log Windows
+	void AddLogFromApp(const char* str);
+
 private:
 
 	void AddModule(Module* mod);
 	void PrepareUpdate();
-	void FinishUpdate();
+	void FinishUpdate();	
 };

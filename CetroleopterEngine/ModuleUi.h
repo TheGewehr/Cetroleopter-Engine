@@ -13,6 +13,7 @@ class ImGuiWindowBase;
 class ConfigurationWindow;
 class MainMenuBar;
 class AboutWindow;
+class ConsoleWindow;
 
 class ModuleUi : public Module
 {
@@ -27,6 +28,9 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	// For the console window
+	void AddLogFromModuleUi(const char* str);
+	
 
 	// list of ImGui Windows
 	std::vector<ImGuiWindowBase*> list_ImGuiWindows;
@@ -35,6 +39,7 @@ public:
 	ConfigurationWindow* configurationWindow = nullptr;
 	MainMenuBar* mainMenuBar = nullptr;
 	AboutWindow* aboutWindow = nullptr;
+	ConsoleWindow* consoleWindow = nullptr;
 
 	bool hoveringWindow;
 
@@ -51,6 +56,7 @@ private:
 	bool BeginRootWindow(ImGuiIO& io, const char* window_id, bool docking, ImGuiWindowFlags window_flags = ImGuiWindowFlags_None); // Generates a root window for docking.
 	void BeginDockspace(ImGuiIO& io, const char* dockspace_id, ImGuiDockNodeFlags docking_flags = ImGuiDockNodeFlags_None, ImVec2 size = { 0.0f, 0.0f }); // Generates a new dockspace.
 
+	
 };
 
 #endif // !_MODULEUI_H_

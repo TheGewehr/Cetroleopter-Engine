@@ -194,4 +194,19 @@ void Application::OpenBrowserWebPage(const char* url)const
 	ShellExecuteA(NULL, "open", url, NULL, NULL, SW_SHOWNORMAL);
 }
 
+void Application::AddLogFromApp(const char* str)
+{
+	if (App->moduleUi != nullptr)
+	{
+		std::string full_log = str;                                                    // TMP. Switch to normalize later.
+
+		uint log_start = full_log.find_last_of("\\") + 1;                            // Gets the position of the last "" in the log string.
+		uint log_end = full_log.size();                                            // The last position of the log will be equal to the size of it.
+
+		std::string short_log = full_log.substr(log_start, log_end);                // Returns the string that is within the given positions.
+
+		App->moduleUi->AddLogFromModuleUi(short_log.c_str());
+	}
+}
+
 Application* App = nullptr;

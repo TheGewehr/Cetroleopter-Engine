@@ -97,6 +97,7 @@
     <ClInclude Include="assimp\Include\scene.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="ConfigurationWindow.h" />
+    <ClInclude Include="ConsoleWindow.h" />
     <ClInclude Include="devIL\include\config.h" />
     <ClInclude Include="devIL\include\devil_internal_exports.h" />
     <ClInclude Include="devIL\include\il.h" />
@@ -217,6 +218,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ConfigurationWindow.cpp" />
+    <ClCompile Include="ConsoleWindow.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_demo.cpp" />
