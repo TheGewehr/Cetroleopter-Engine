@@ -111,6 +111,30 @@ update_status ModuleInput::PreUpdate(float dt)
 				if(e.window.event == SDL_WINDOWEVENT_RESIZED)
 					App->renderer3D->OnResize(e.window.data1, e.window.data2);
 			}
+			break;
+			case SDL_DROPFILE:
+			{
+				if (e.drop.file != nullptr)
+				{
+					const char* dropped_filedir = e.drop.file;
+					if (App->moduleFS->GetFileExtension(dropped_filedir) == "fbx")
+					{
+						App->modelImport->LoadMesh(dropped_filedir);
+					}
+					if (App->moduleFS->GetFileExtension(dropped_filedir) == "png")
+					{
+						App->modelImport->LoadTexture(dropped_filedir);
+					}
+
+					SDL_free(&dropped_filedir);
+				}
+				else
+				{
+					LOG("Error when dropping file: File Path String was nullptr");
+					SDL_free(e.drop.file);
+				}
+			}
+			break;
 		}
 	}
 
