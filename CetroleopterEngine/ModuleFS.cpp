@@ -175,12 +175,12 @@ std::string ModuleFS::GetFileExtension(const char* file_path)
 {
 	if (file_path != nullptr)
 	{
-		std::string file_path = file_path;
+		std::string filePath = file_path;
 		std::string extension = "";
 
-		size_t dot_position = file_path.find_last_of(".");
+		size_t dot_position = filePath.find_last_of(".");
 
-		extension = file_path.substr(dot_position + 1);
+		extension = filePath.substr(dot_position + 1);
 
 		return extension;
 	}
