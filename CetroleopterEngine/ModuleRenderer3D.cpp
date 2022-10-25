@@ -126,7 +126,6 @@ bool ModuleRenderer3D::Init()
 
 	App->modelImport->Init();
 	
-
 	return ret;
 }
 
