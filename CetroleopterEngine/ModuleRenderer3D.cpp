@@ -116,52 +116,6 @@ bool ModuleRenderer3D::Init()
 	// Projection matrix for
 	OnResize(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	// ImGui Stuff
-	//IMGUI_CHECKVERSION();
-	//ImGui::CreateContext();
-	//ImGui::StyleColorsDark();
-	//ImGui_ImplOpenGL3_Init("#version 300 es");
-	//
-	//ImGui::GetIO();
-
-	//ImGui_ImplOpenGL3_CreateDeviceObjects();
-	//ImGui_ImplOpenGL3_CreateFontsTexture();
-
-	//ImGui::BeginMenuBar();
-	//ImGui_ImplOpenGL3_NewFrame();
-	//ImGui_ImplOpenGL3_RenderDrawData();
-	//ImGui_ImplOpenGL3_Shutdown();
-	
-
-	
-	//ImGui::SetNextWindowPos(ImVec2(10, 10), ImGuiCond_None);
-	//ImGui::SetNextWindowSize(ImVec2(100.0f, 100.0f), ImGuiCond_None);
-	//ImGui::BeginPopupContextWindow();
-	//float height = ImGui::GetWindowHeight();
-
-	
-
-	//ImGui::ShowDemoWindow(false);
-
-	//ImGui::Begin("Window A", false, ImGuiWindowFlags_MenuBar);
-	//ImGui::Text("This is window A");
-	//ImGui::End();
-	//
-	//ImGui::NewFrame();
-
-	//ImGui::Begin("Window B");
-	//ImGui::Text("This is window B");
-	//ImGui::End();
-	//
-	//ImGui::Begin("Window A");
-	//ImGui::Button("Button on window A");
-	//ImGui::End();
-	//
-	//ImGui::Begin("Window B");
-	//ImGui::Button("Button on window B");
-	//ImGui::End();
-
-
 
 	GLenum error = glewInit();
 	if (GLEW_OK != error)
@@ -171,63 +125,6 @@ bool ModuleRenderer3D::Init()
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
 	App->modelImport->Init();
-
-	//THIS SHIT CAUSES MESHES NOT TO RENDER CORRECTLY - DO NOT UNCOMMENT THE LINES BEOLW
-	
-	//glGenBuffers(1, &IndexBuffer);
-
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-	//
-	//
-
-	//// ..:: Initialization code :: ..
-	//// 1. bind Vertex Array Object
-	//glBindVertexArray(ObjectBuffer);
-	//// 2. copy our vertices array in a vertex buffer for OpenGL to use
-	//glBindBuffer(GL_ARRAY_BUFFER, VertexBuffer);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	//// 3. copy our index array in a element buffer for OpenGL to use
-	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBuffer);
-	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-	//// 4. then set the vertex attributes pointers
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-	//glEnableVertexAttribArray(0);
-
-	//glGenBuffers(1, &VBO);
-	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-	//vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	//glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	//glCompileShader(vertexShader);
-
-	//FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
-
-	//fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	//glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	//glCompileShader(fragmentShader);
-
-	//shaderProgram = glCreateProgram();
-	//glAttachShader(shaderProgram, vertexShader);
-	//glAttachShader(shaderProgram, fragmentShader);
-	//glLinkProgram(shaderProgram);
-
-	//glUseProgram(shaderProgram);
-
-	//// 1. bind Vertex Array Object
-	//glBindVertexArray(VAO);
-	//// 2. copy our vertices array in a buffer for OpenGL to use
-	//glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	//// 3. then set our vertex attributes pointers
-	//glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-
-	////glEnableVertexAttribArray(0); // <-- Makes fbx models not print
-
-	//glDeleteShader(vertexShader);
-	//glDeleteShader(fragmentShader);
-
 	
 
 	return ret;
@@ -329,61 +226,6 @@ update_status ModuleRenderer3D::Update(float dt)
 // PostUpdate present buffer to screen
 update_status ModuleRenderer3D::PostUpdate(float dt)
 {
-	//glBegin(GL_TRIANGLES);
-	//glColor3f(1.f, 0.f, 0.f);
-	//glVertex3f(0.f, 0.f, 0.f);
-	//glVertex3f(1.f, 0.f, 0.f);
-	//glVertex3f(0.f, 1.f, 0.f);
-	//// glVertex3f(0.f, 0.f, 10.f);
-	////glNormal3f(0.f,0.f,1.f);
-	////glTexCoord3();
-	////glTexCoord3f(0.f, 0.f, 1.f);
-	//glEnd();
-	//LOG("PUTO ERROR");
-	//glBegin(GL_TRIANGLES);
-	//glColor3f(0.f, 1.f, 0.f);
-	//glVertex3f(1.f, 1.f, 0.f);
-	//glVertex3f(0.f, 1.f, 0.f);
-	//glVertex3f(1.f, 0.f, 0.f);
-	//glEnd();
-	//
-	//glBegin(GL_TRIANGLES);
-	//glColor3f(0.f, 0.f, 1.f);
-	//glVertex3f(1.f, 1.f, -1.f);
-	//glVertex3f(1.f, 1.f, 0.f);
-	//glVertex3f(1.f, 0.f, 0.f);
-	//glEnd();
-
-	//DDCube_BadIndices();
-	
-	//glGenBuffers(1, (GLuint*)&(firstBuffer));
-	//glBindBuffer(GL_ARRAY_BUFFER, firstBuffer);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 8 * 3, vertices, GL_STATIC_DRAW);
-	
-	//glEnableClientState(GL_VERTEX_ARRAY);
-	//glBindBuffer(GL_ARRAY_BUFFER, firstBuffer); 
-	//glVertexPointer(3, GL_FLOAT, 0, NULL);
-	// … bind and use other buffers
-	//glDrawArrays(GL_TRIANGLES, 0,8);
-	//glDisableClientState(GL_VERTEX_ARRAY);
-	// 
-// activate and specify pointer to vertex array
-	//glEnableClientState(GL_VERTEX_ARRAY);
-	//glVertexPointer(3, GL_FLOAT, 0, (GLfloat*)&vertices);
-	//
-	//// draw a cube
-	//glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_BYTE, (GLubyte*)indices);
-	//
-	//// deactivate vertex arrays after drawing
-	//glDisableClientState(GL_VERTEX_ARRAY);
-	
-	// ..:: Drawing code (in render loop) :: ..
-	/*glUseProgram(shaderProgram);
-	glBindVertexArray(ObjectBuffer);
-	glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-	glBindVertexArray(0);*/
-
-	
 	glUseProgram(shaderProgram);
 	glBindVertexArray(VAO);
 	glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -438,7 +280,6 @@ void ModuleRenderer3D::RenderModels()
 		glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_UV);
 		glTexCoordPointer(3, GL_FLOAT, 0, NULL);
 		glBindTexture(GL_TEXTURE_2D, vertexData->meshTexturesData.texture_ID);
-		//glBindTexture(GL_TEXTURE_2D, 2); //Automatic fast test mesh hardcoding
 
 		glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
 
