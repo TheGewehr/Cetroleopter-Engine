@@ -6,9 +6,9 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleModelImport.h"
 
-#include "Assimp/include/cimport.h"
-#include "Assimp/include/scene.h"
-#include "Assimp/include/postprocess.h"
+#include "assimp/include/cimport.h"
+#include "assimp/include/scene.h"
+#include "assimp/include/postprocess.h"
 
 #include "devIL/include/ilu.h"
 #include "devIL/include/ilut.h"

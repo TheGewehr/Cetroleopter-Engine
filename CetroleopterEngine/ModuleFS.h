@@ -14,6 +14,12 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	bool AddPath(const char* filePath);
+
+	uint Load(const char* file_path, char** buffer_path);
+	uint Save(const char* file_path, const void* buffer, unsigned int size, bool append);
+	std::string GetFileExtension(const char* file_path);
+
 public:
 	
 
