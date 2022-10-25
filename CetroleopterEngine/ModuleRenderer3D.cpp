@@ -124,14 +124,14 @@ bool ModuleRenderer3D::Init()
 	}
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
-	App->modelImport->Init();
+	//App->modelImport->Init();
 	
 	return ret;
 }
 
 bool ModuleRenderer3D::Start()
 {
-	//App->modelImport->Init();
+	
 	return true;
 }
 

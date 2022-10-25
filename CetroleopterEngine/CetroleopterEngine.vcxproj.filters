@@ -435,6 +435,9 @@
     <ClInclude Include="physFS\include\physfs.h">
       <Filter>ExternalTools\physFs</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleFS.h">
+      <Filter>Sources\Modules\Importers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -655,6 +658,9 @@
     </ClCompile>
     <ClCompile Include="physFS\include\physfsrwops.c">
       <Filter>ExternalTools\physFs</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFS.cpp">
+      <Filter>Sources\Modules\Importers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

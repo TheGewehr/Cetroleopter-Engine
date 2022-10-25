@@ -11,6 +11,7 @@ Application::Application() : debug(false)
 	moduleUi = new ModuleUi(true);
 	renderer3D = new ModuleRenderer3D(true);
 	save_load = new ModuleSaveLoad(true);
+	moduleFS = new ModuleFS(true);
 	modelImport = new ModuleModelImport(true);
 
 	//physics = new ModulePhysics3D();
@@ -22,7 +23,8 @@ Application::Application() : debug(false)
 	// Main Modules
 	AddModule(window);
 	AddModule(camera);	
-	AddModule(input);	
+	AddModule(input);
+	AddModule(moduleFS);
 	AddModule(modelImport);	
 	AddModule(audio);
 	

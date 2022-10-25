@@ -15,6 +15,8 @@
 #include "ModuleUi.h"
 #include "ModuleModelImport.h"
 #include "ModuleSaveLoad.h"
+#include "ModuleFS.h"
+
 
 //#include "ModulePhysics3D.h"
 
@@ -23,6 +25,7 @@ class Application
 public:
 	ModuleWindow* window;
 	ModuleInput* input;
+	ModuleFS* moduleFS;
 	ModuleModelImport* modelImport;
 	ModuleAudio* audio;
 	ModuleSaveLoad* save_load;
