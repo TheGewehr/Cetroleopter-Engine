@@ -58,6 +58,9 @@
     <Filter Include="ExternalTools\devIL">
       <UniqueIdentifier>{86327e60-bd8f-4246-b66e-78a3bbf18282}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ExternalTools\physFs">
+      <UniqueIdentifier>{ffbc5c54-5ed8-46c9-a754-510d98a44b88}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -426,6 +429,12 @@
     <ClInclude Include="ConsoleWindow.h">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClInclude>
+    <ClInclude Include="physFS\include\physfsrwops.h">
+      <Filter>ExternalTools\physFs</Filter>
+    </ClInclude>
+    <ClInclude Include="physFS\include\physfs.h">
+      <Filter>ExternalTools\physFs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -643,6 +652,9 @@
     </ClCompile>
     <ClCompile Include="ConsoleWindow.cpp">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="physFS\include\physfsrwops.c">
+      <Filter>ExternalTools\physFs</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
