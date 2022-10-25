@@ -28,6 +28,8 @@ private:
 	bool WindowHeader();
 	bool AnotherHeader();
 	bool FPSHeader();
+	bool HardwareHeader();
+	
 
 private:
 

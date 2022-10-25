@@ -74,6 +74,11 @@ public:
 	int GetMaxFPS()const;
 	void SetMaxFPS(int value);
 
+	void GetSDLVersion(int& major, int& minor, int& patch);
+	void GetCPU(int& count, int& size);
+	float GetRAM();
+	void GetCPUFeatures(bool& threeD, bool& altiVec, bool& avx, bool& avx2, bool& mmx, bool& rdtsc, bool& sse, bool& sse2, bool& sse3, bool& sse41, bool& sse42);
+
 private:
 
 	void AddModule(Module* mod);

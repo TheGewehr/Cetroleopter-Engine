@@ -33,7 +33,8 @@ bool ConfigurationWindow::Draw(ImGuiIO& io)
 	WindowHeader();
 	FPSHeader();
 	AnotherHeader();	
-	
+	HardwareHeader();
+
 	ImGui::End();
 
 	return ret;
@@ -84,6 +85,8 @@ bool ConfigurationWindow::WindowHeader()
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Full Desktop", &checkFullDesktop))
 			checkFullDesktop = !checkFullDesktop;
+
+		ImGui::Separator();
 	}
 
 
@@ -101,6 +104,7 @@ bool ConfigurationWindow::AnotherHeader()
 		ImGui::Spacing();
 		ImGui::Spacing();
 		ImGui::Text("Put here wathever setting not about the window");
+		ImGui::Separator();
 	}
 
 
@@ -120,6 +124,8 @@ bool ConfigurationWindow::FPSHeader()
 	
 		ImGui::PlotHistogram("FPS", fpsData, IM_ARRAYSIZE(fpsData), 0, NULL, 0.0f, 144.0f, ImVec2(0, 80));
 		ImGui::PlotHistogram("Miliseconds", msData, IM_ARRAYSIZE(msData), 0, NULL, 0.0f, 40.0f, ImVec2(0, 80));
+
+		ImGui::Separator();	
 	}
 
 	return ret;
@@ -136,6 +142,33 @@ void ConfigurationWindow::UpdateFrameData(int frames, int ms)
 	msData[MAX_HISTOGRAM_SIZE - 1] = (float)ms;
 }
 
+bool ConfigurationWindow::HardwareHeader()
+{
+	bool ret = true;
+
+	if (ImGui::CollapsingHeader("Hardware Specifics"))
+	{
+		int major, minor, patch;
+		App->GetSDLVersion(major, minor, patch);
+		ImGui::Text("SDL Version: %d.%d.%d", major, minor, patch);
+		ImGui::Separator();
+		int count, size;
+		App->GetCPU(count, size);
+		ImGui::Text("CPUs: %d (%dKb)", count, size);
+		float ram = App->GetRAM();
+		ImGui::Text("RAM: %.2fGb", ram);
+		ImGui::Separator();
+		bool threeD, altiVec, avx, avx2, mmx, rdtsc, sse, sse2, sse3, sse41, sse42;
+		App->GetCPUFeatures(threeD, altiVec, avx, avx2, mmx, rdtsc, sse, sse2, sse3, sse41, sse42);
+		ImGui::Text("CPU features supported: %s%s%s%s%s%s", threeD ? "3DNow, " : "", altiVec ? "AltiVec, " : "", avx ? "AVX, " : "", avx2 ? "AVX2, " : "", mmx ? "MMX, " : "", rdtsc ? "RDTSC, " : "");
+		ImGui::Separator();
+		ImGui::Text("", "%s%s%s%s%s", sse ? "SSE, " : "", sse2 ? "SSE2, " : "", sse3 ? "SSE3, " : "", sse41 ? "SSE41, " : "", sse42 ? "SSE42" : "");
+		//ImGui::Separator();
+
+	}
+
+	return ret;
+}
 
 bool ConfigurationWindow::SaveRequest()
 {

@@ -250,4 +250,40 @@ void Application::UpdateFrameData(float frames, float ms)
 	
 }
 
+void Application::GetSDLVersion(int& major, int& minor, int& patch)
+{
+	SDL_version v;
+	SDL_GetVersion(&v);
+	major = v.major;
+	minor = v.minor;
+	patch = v.patch;
+}
+
+void Application::GetCPU(int& count, int& size)
+{
+	count = SDL_GetCPUCount();
+	size = SDL_GetCPUCacheLineSize();
+}
+
+float Application::GetRAM()
+{
+	return (float)SDL_GetSystemRAM() / 1000.0f;
+}
+
+void Application::GetCPUFeatures(bool& threeD, bool& altiVec, bool& avx, bool& avx2, bool& mmx, bool& rdtsc, bool& sse, bool& sse2, bool& sse3, bool& sse41, bool& sse42)
+{
+	threeD = SDL_Has3DNow();
+	altiVec = SDL_HasAltiVec();
+	avx = SDL_HasAVX();
+	avx2 = SDL_HasAVX2();
+	mmx = SDL_HasMMX();
+	rdtsc = SDL_HasRDTSC();
+	sse = SDL_HasSSE();
+	sse2 = SDL_HasSSE2();
+	sse3 = SDL_HasSSE3();
+	sse41 = SDL_HasSSE41();
+	sse42 = SDL_HasSSE42();
+}
+
+
 Application* App = nullptr;
