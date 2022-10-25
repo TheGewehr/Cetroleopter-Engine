@@ -178,9 +178,9 @@ std::string ModuleFS::GetFileExtension(const char* file_path)
 		std::string filePath = file_path;
 		std::string extension = "";
 
-		size_t dot_position = filePath.find_last_of(".");
+		size_t dotPosition = filePath.find_last_of(".");
 
-		extension = filePath.substr(dot_position + 1);
+		extension = filePath.substr(dotPosition + 1);
 
 		return extension;
 	}
