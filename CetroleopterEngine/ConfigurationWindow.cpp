@@ -4,7 +4,7 @@
 #include "imgui.h"
 #include "ModuleSceneIntro.h"
 #include "ConfigurationWindow.h"
-
+#include "glew/include/GL/glew.h"
 
 ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Settings", isActive = true)
 {
@@ -14,11 +14,14 @@ ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGu
 	checkResizable = WIN_RESIZABLE;
 	checkBorderless = WIN_BORDERLESS;
 	checkFullDesktop = WIN_FULLSCREEN_DESKTOP;
+
+	
 }
 
 ConfigurationWindow::~ConfigurationWindow()
 {
 }
+
 
 bool ConfigurationWindow::Draw(ImGuiIO& io)
 {
@@ -148,10 +151,10 @@ bool ConfigurationWindow::HardwareHeader()
 
 	if (ImGui::CollapsingHeader("Hardware Specifics"))
 	{
-		int major, minor, patch;
-		App->GetSDLVersion(major, minor, patch);
-		ImGui::Text("SDL Version: %d.%d.%d", major, minor, patch);
-		ImGui::Separator();
+		//int major, minor, patch;
+		//App->GetSDLVersion(major, minor, patch);
+		//ImGui::Text("SDL Version: %d.%d.%d", major, minor, patch);
+		//ImGui::Separator();
 		int count, size;
 		App->GetCPU(count, size);
 		ImGui::Text("CPUs: %d (%dKb)", count, size);
@@ -161,10 +164,10 @@ bool ConfigurationWindow::HardwareHeader()
 		bool threeD, altiVec, avx, avx2, mmx, rdtsc, sse, sse2, sse3, sse41, sse42;
 		App->GetCPUFeatures(threeD, altiVec, avx, avx2, mmx, rdtsc, sse, sse2, sse3, sse41, sse42);
 		ImGui::Text("CPU features supported: %s%s%s%s%s%s", threeD ? "3DNow, " : "", altiVec ? "AltiVec, " : "", avx ? "AVX, " : "", avx2 ? "AVX2, " : "", mmx ? "MMX, " : "", rdtsc ? "RDTSC, " : "");
-		ImGui::Separator();
-		ImGui::Text("", "%s%s%s%s%s", sse ? "SSE, " : "", sse2 ? "SSE2, " : "", sse3 ? "SSE3, " : "", sse41 ? "SSE41, " : "", sse42 ? "SSE42" : "");
 		//ImGui::Separator();
-
+		ImGui::Text("", "%s%s%s%s%s", sse ? "SSE, " : "", sse2 ? "SSE2, " : "", sse3 ? "SSE3, " : "", sse41 ? "SSE41, " : "", sse42 ? "SSE42" : "");
+		ImGui::Separator();
+		ImGui::Text("GPU \nVendor: %s\nRenderer: %s\nDrivers: %s", Vendor.c_str(), GPU_Model.c_str(), Drivers.c_str());
 	}
 
 	return ret;

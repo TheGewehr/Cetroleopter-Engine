@@ -23,6 +23,10 @@ public:
 
 	void UpdateFrameData(int frames, int ms);
 
+	std::string Vendor;
+	std::string GPU_Model;
+	std::string Drivers;
+
 private:
 	
 	bool WindowHeader();
@@ -47,6 +51,8 @@ private:
 	int fps;
 	float fpsData[MAX_HISTOGRAM_SIZE];
 	float msData[MAX_HISTOGRAM_SIZE];
+
+	
 
 };
 

@@ -51,6 +51,10 @@ bool ModuleUi::Start()
 {
     InitializeImGui();
 
+    App->moduleUi->configurationWindow->Vendor = (const char*)glGetString(GL_VENDOR);
+    App->moduleUi->configurationWindow->GPU_Model = (const char*)glGetString(GL_RENDERER);
+    App->moduleUi->configurationWindow->Drivers = (const char*)glGetString(GL_VERSION);
+
 	return true;
 }
 

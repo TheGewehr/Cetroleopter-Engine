@@ -270,6 +270,16 @@ float Application::GetRAM()
 	return (float)SDL_GetSystemRAM() / 1000.0f;
 }
 
+const GLubyte* GetGPUVendor()
+{
+	return glGetString(GL_VENDOR);
+}
+
+const GLubyte* GetGPURenderer()
+{
+	return glGetString(GL_RENDERER);
+}
+
 void Application::GetCPUFeatures(bool& threeD, bool& altiVec, bool& avx, bool& avx2, bool& mmx, bool& rdtsc, bool& sse, bool& sse2, bool& sse3, bool& sse41, bool& sse42)
 {
 	threeD = SDL_Has3DNow();
