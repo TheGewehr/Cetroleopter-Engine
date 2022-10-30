@@ -14,6 +14,7 @@ class ConfigurationWindow;
 class MainMenuBar;
 class AboutWindow;
 class ConsoleWindow;
+class GameObjectsWindow;
 
 class ModuleUi : public Module
 {
@@ -42,6 +43,7 @@ public:
 	MainMenuBar* mainMenuBar = nullptr;
 	AboutWindow* aboutWindow = nullptr;
 	ConsoleWindow* consoleWindow = nullptr;
+	GameObjectsWindow* gameObjectsWindow = nullptr;
 
 	bool hoveringWindow;
 

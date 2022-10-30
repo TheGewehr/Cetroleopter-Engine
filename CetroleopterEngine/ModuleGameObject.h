@@ -3,6 +3,26 @@
 
 #include "Application.h"
 #include "Module.h"
+#include "ModuleModelImport.h"
+
+struct TransformComponent
+{
+	//position
+	//rotation
+	//scale
+};
+
+struct GameObject
+{
+	uint objectID;
+
+	TransformComponent transform;
+
+	MeshVertexData mesh;
+	TextureData texture;
+
+	//std::vector<MeshVertexData> meshes;
+};
 
 class ModuleGameObject : public Module
 {
@@ -14,9 +34,12 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void AddGameObject(GameObject object);
+
 
 public:
 
+	std::vector<GameObject> objects;
 
 };
 
