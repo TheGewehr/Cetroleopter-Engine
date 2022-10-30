@@ -203,6 +203,7 @@
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="ModuleFS.h" />
+    <ClInclude Include="ModuleGameObject.h" />
     <ClInclude Include="ModuleModelImport.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="ModuleSaveLoad.h" />
@@ -282,6 +283,7 @@
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="ModuleFS.cpp" />
+    <ClCompile Include="ModuleGameObject.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleModelImport.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />

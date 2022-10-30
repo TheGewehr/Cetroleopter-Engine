@@ -16,6 +16,7 @@
 #include "ModuleModelImport.h"
 #include "ModuleSaveLoad.h"
 #include "ModuleFS.h"
+#include "ModuleGameObject.h"
 
 #include "glew/include/GL/glew.h"
 //#include "ModulePhysics3D.h"
@@ -33,6 +34,7 @@ public:
 	ModuleRenderer3D* renderer3D;
 	ModuleCamera3D* camera;
 	ModuleUi* moduleUi;
+	ModuleGameObject* moduleGameObject;
 	
 	
 	//ModulePhysics3D* physics;

@@ -13,6 +13,7 @@ Application::Application() : debug(false)
 	save_load = new ModuleSaveLoad(true);
 	moduleFS = new ModuleFS(true);
 	modelImport = new ModuleModelImport(true);
+	moduleGameObject = new ModuleGameObject(true);
 
 	//physics = new ModulePhysics3D();
 
@@ -25,7 +26,8 @@ Application::Application() : debug(false)
 	AddModule(camera);	
 	AddModule(input);
 	AddModule(moduleFS);
-	AddModule(modelImport);	
+	AddModule(modelImport);
+	AddModule(moduleGameObject);
 	AddModule(audio);
 	
 
