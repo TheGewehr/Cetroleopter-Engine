@@ -88,6 +88,9 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 	{
 		MeshVertexData vertexData;
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
+		TextureData textureData;
+		textureData.texture_ID = 0;
+		textureData.image_ID = 0;
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
@@ -143,9 +146,7 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 			//Texture Loading part
 
-			TextureData textureData;
-			textureData.texture_ID = 0;
-			textureData.image_ID = 0;
+			
 
 			if (texturePath != nullptr)
 			{
@@ -197,12 +198,14 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 				vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
 				vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
 			}
-
-			newGameObject.textures.push_back(textureData);
 			newGameObject.meshes.push_back(vertexData);
 			//textures.push_back(textureData);
 			//meshes.push_back(vertexData);
 		}
+
+		
+
+		newGameObject.textures.push_back(textureData);
 
 		App->moduleGameObject->objects.push_back(newGameObject);
 		aiReleaseImport(scene);

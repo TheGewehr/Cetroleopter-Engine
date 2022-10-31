@@ -60,6 +60,7 @@ struct MeshVertexData
 	GLfloat* texture_coords_indices = nullptr;
 
 	TextureData meshTexturesData;
+	std::string	path;
 };
 
 class ModuleModelImport : public Module

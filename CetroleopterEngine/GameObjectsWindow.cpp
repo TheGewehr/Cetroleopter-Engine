@@ -42,18 +42,19 @@ bool GameObjectsWindow::CleanUp()
 
 bool GameObjectsWindow::ObjectWindowHeader()
 {
-	if (App->moduleGameObject->objects.size() >= 1)
+	if (App->moduleGameObject->objects.size() > 0)
 	{
 		for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 		{
 			ImGui::Text("Game Object [%i]:", i);
 
 			ImGui::Text("	Meshes:");
-			if (App->moduleGameObject->objects[i].textures.size() >= 1)
+			if (App->moduleGameObject->objects[i].meshes.size() > 0)
 			{
 				for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
 				{
 					ImGui::Text("		Mesh [%i]:", j);
+					//ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[j].path);
 				}
 			}
 			else
@@ -63,11 +64,12 @@ bool GameObjectsWindow::ObjectWindowHeader()
 
 
 			ImGui::Text("	Textures:");
-			if (App->moduleGameObject->objects[i].textures.size() >= 1)
+			if (App->moduleGameObject->objects[i].textures.size() > 0)
 			{
 				for (int k = 0; k < App->moduleGameObject->objects[i].textures.size(); k++)
 				{
 					ImGui::Text("		Texture [%i]:", k);
+					//ImGui::Text("			%s", App->moduleGameObject->objects[i].textures[k].path);
 				}
 			}
 			else
