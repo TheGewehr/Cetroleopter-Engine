@@ -54,6 +54,17 @@ int main(int argc, char ** argv)
 		{
 			int update_return = App->Update();
 
+			if (App->AppTitleScreenFull == false)
+			{
+				//SDL_SetWindowSize(app->win->window, 1280, 720); <-- Ya se hace desde el XML
+				SDL_SetWindowFullscreen(App->window->window, 0);
+			}
+			else if (App->AppTitleScreenFull == true)
+			{
+				SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN);
+
+			}
+
 			if (update_return == UPDATE_ERROR)
 			{
 				LOG("Application Update exits with ERROR");

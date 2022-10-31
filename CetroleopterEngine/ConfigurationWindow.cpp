@@ -75,13 +75,6 @@ bool ConfigurationWindow::WindowHeader()
 			App->window->SetWindowSize(width, height);
 		}
 
-		checkFullscreen = App->window->GetFullscreen();
-		if (ImGui::Checkbox("Fullscreen", &checkFullscreen))
-		{
-
-		}
-			//checkFullscreen = !checkFullscreen;
-
 		checkResizable = App->window->GetResizable();
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Resizable", &checkResizable))
@@ -99,11 +92,10 @@ bool ConfigurationWindow::WindowHeader()
 
 		checkFullDesktop = App->window->GetFullscreenDesktop();
 		ImGui::SameLine();
-		if (ImGui::Checkbox("Full Desktop", &checkFullDesktop))
+		if (ImGui::Checkbox("Full Screen", &App->AppTitleScreenFull))
 		{
 
 		}
-			//checkFullDesktop = !checkFullDesktop;
 
 		if (App->renderer3D->vsyncEnabled != NULL)
 		{

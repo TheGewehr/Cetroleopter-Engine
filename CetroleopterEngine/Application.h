@@ -42,6 +42,7 @@ public:
 	bool debug;
 	bool appExit = false;
 	bool enginePaused = false;
+	bool AppTitleScreenFull = false;
 
 private:
 
