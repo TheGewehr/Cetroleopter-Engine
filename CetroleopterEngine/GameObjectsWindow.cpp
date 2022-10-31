@@ -88,9 +88,26 @@ bool GameObjectsWindow::ObjectWindowHeader()
 				ImGui::Spacing();
 				ImGui::Spacing();
 
-				if (ImGui::Button("Transform"))
+				if (ImGui::Button("Translate"))
 				{
+					// for q
+						//App->moduleGameObject->objects[i].meshes[q].transform.position
+				}
 
+				ImGui::SameLine();
+
+				if (ImGui::Button("Rotate"))
+				{
+					// for q
+						//App->moduleGameObject->objects[i].meshes[q].transform.rotate
+				}
+
+				ImGui::SameLine();
+
+				if (ImGui::Button("Scale"))
+				{
+					// for q
+						//App->moduleGameObject->objects[i].meshes[q].transform.scale
 				}
 
 				ImGui::Spacing();
