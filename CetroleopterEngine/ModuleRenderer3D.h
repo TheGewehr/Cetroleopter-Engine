@@ -28,6 +28,8 @@ public:
 	void RenderModels(); //Renders models (textures and meshes)
 	//void RenderTextures(); Not needed any more. Models have meshes and textures and both are rendered
 
+	void SetVsync(bool value);
+
 public:
 
 	Light lights[MAX_LIGHTS];
@@ -39,6 +41,7 @@ public:
 	bool texturesOFF = false;
 	bool disableLights = false;
 	bool disableAO = false;
+	bool vsyncEnabled = VSYNC;
 	//bool showConsole = false;
 
 	float vertices[9] = {

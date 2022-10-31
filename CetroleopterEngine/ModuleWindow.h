@@ -17,6 +17,7 @@ public:
 	virtual ~ModuleWindow();
 
 	bool Init();
+	update_status PreUpdate(float dt);
 	bool CleanUp();
 
 	void SetTitle(const char* title);
@@ -27,6 +28,20 @@ public:
 	void GetWindowsSize(SDL_Window* window, int& width, int& height);
 	void SetWindowSize(uint width, uint height);
 
+	bool GetFullscreen();
+	void SetFullscreen(bool result);
+
+	bool GetResizable();
+	void SetResizable(bool result);
+
+	bool GetBorderless();
+	void SetBorderless(bool result);
+
+	bool GetFullscreenDesktop();
+	void SetFullscreenDesktop(bool result);
+
+	void UpdateWindow();
+
 public:
 	//The window we'll be rendering to
 	SDL_Window* window;
@@ -34,6 +49,16 @@ public:
 	//The surface contained by the window
 	SDL_Surface* screen_surface;
 
+private:
+
+	bool fullscreen = false;
+	bool resizable = true;
+	bool borderless = false;
+	bool fullscreenDesktop = false;
+
+	Uint32 flags;
+	int width;
+	int height;
 	
 };
 

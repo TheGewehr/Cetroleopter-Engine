@@ -11,10 +11,11 @@ ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGu
 	fps = 0;
 	width = SCREEN_WIDTH;
 	height = SCREEN_HEIGHT;
+	checkFullscreen = WIN_FULLSCREEN;
 	checkResizable = WIN_RESIZABLE;
 	checkBorderless = WIN_BORDERLESS;
 	checkFullDesktop = WIN_FULLSCREEN_DESKTOP;
-
+	checkVsync = VSYNC;
 	
 }
 
@@ -74,20 +75,45 @@ bool ConfigurationWindow::WindowHeader()
 			App->window->SetWindowSize(width, height);
 		}
 
-		
+		checkFullscreen = App->window->GetFullscreen();
 		if (ImGui::Checkbox("Fullscreen", &checkFullscreen))
-			checkFullscreen = !checkFullscreen;
+		{
 
+		}
+			//checkFullscreen = !checkFullscreen;
+
+		checkResizable = App->window->GetResizable();
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Resizable", &checkResizable))
-			checkResizable = !checkResizable;
+		{
 
+		}
+			//checkResizable = !checkResizable;
+
+		checkBorderless = App->window->GetBorderless();
 		if (ImGui::Checkbox("Borderless", &checkBorderless))
-			checkBorderless = !checkBorderless;
+		{
 
+		}
+			//checkBorderless = !checkBorderless;
+
+		checkFullDesktop = App->window->GetFullscreenDesktop();
 		ImGui::SameLine();
 		if (ImGui::Checkbox("Full Desktop", &checkFullDesktop))
-			checkFullDesktop = !checkFullDesktop;
+		{
+
+		}
+			//checkFullDesktop = !checkFullDesktop;
+
+		if (App->renderer3D->vsyncEnabled != NULL)
+		{
+			checkVsync = App->renderer3D->vsyncEnabled;
+		}		
+		ImGui::SameLine();
+		if (ImGui::Checkbox("Vsync", &checkVsync))
+		{
+			App->renderer3D->SetVsync(checkVsync);
+		}
 
 		ImGui::Separator();
 	}
@@ -184,6 +210,7 @@ bool ConfigurationWindow::SaveRequest()
 	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Resizable", checkResizable);
 	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Borderless", checkBorderless);
 	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.FullDesktop", checkFullDesktop);
+	json_object_dotset_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Vsync", checkVsync);
 
 	return true;
 }
@@ -201,6 +228,8 @@ bool ConfigurationWindow::LoadRequest()
 	checkResizable = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Resizable");
 	checkBorderless = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Borderless");
 	checkFullDesktop = (bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.FullDesktop");
+
+	App->renderer3D->SetVsync((bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Vsync"));
 
 	return true;
 }

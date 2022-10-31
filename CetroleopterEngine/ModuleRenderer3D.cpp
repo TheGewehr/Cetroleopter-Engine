@@ -51,7 +51,7 @@ bool ModuleRenderer3D::Init()
 	if(ret == true)
 	{
 		//Use Vsync
-		if(VSYNC && SDL_GL_SetSwapInterval(1) < 0)
+		if(vsyncEnabled && SDL_GL_SetSwapInterval(1) < 0)
 			LOG("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
 
 		//Initialize Projection Matrix
@@ -234,6 +234,24 @@ update_status ModuleRenderer3D::PostUpdate(float dt)
 	SDL_GL_SwapWindow(App->window->window);
 
 	return UPDATE_CONTINUE;
+}
+
+void ModuleRenderer3D::SetVsync(bool value)
+{
+	vsyncEnabled = value;
+
+	if (vsyncEnabled == true)
+	{
+		if (SDL_GL_SetSwapInterval(1) < 0)
+		{
+			LOG("Warning: Unable to set VSync! SDL Error: %s\n", SDL_GetError());
+		}		
+	}
+	else
+	{
+		SDL_GL_SetSwapInterval(0);
+	}
+		
 }
 
 // Called before quitting

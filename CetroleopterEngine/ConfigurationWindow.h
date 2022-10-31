@@ -46,6 +46,7 @@ private:
 	bool checkResizable;
 	bool checkBorderless;
 	bool checkFullDesktop;
+	bool checkVsync;
 
 	// FPS Variable
 	int fps;
