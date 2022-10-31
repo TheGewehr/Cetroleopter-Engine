@@ -14,6 +14,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleModelImport.h"
+#include "ModuleGameObject.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -263,31 +264,37 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 void ModuleRenderer3D::RenderModels()
 {
-	for (int i = 0; i < App->modelImport->meshes.size(); i++)
+	/*objects.push_back(object);
+	object.textures.push_back(texture);*/
+	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 	{
-		// Draw elements
-		MeshVertexData* vertexData = &App->modelImport->meshes[i];
-		
-		glEnableClientState(GL_VERTEX_ARRAY);
+		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+		{
+			// Draw elements
+			//MeshVertexData* vertexData = &App->modelImport->meshes[j];
+			MeshVertexData* vertexData = &App->moduleGameObject->objects[i].meshes[j];
 
-		// Render things in Element mode
-		glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
-		glVertexPointer(3, GL_FLOAT, 0, NULL);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
+			glEnableClientState(GL_VERTEX_ARRAY);
 
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_UV);
-		glTexCoordPointer(3, GL_FLOAT, 0, NULL);
-		glBindTexture(GL_TEXTURE_2D, vertexData->meshTexturesData.texture_ID);
+			// Render things in Element mode
+			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
+			glVertexPointer(3, GL_FLOAT, 0, NULL);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
 
-		glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
+			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_UV);
+			glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+			glBindTexture(GL_TEXTURE_2D, vertexData->meshTexturesData.texture_ID);
 
-		glBindTexture(GL_TEXTURE_2D, 0);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
-		glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-		glDisableClientState(GL_VERTEX_ARRAY);
+			glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
 
+			glBindTexture(GL_TEXTURE_2D, 0);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+			glBindBuffer(GL_ARRAY_BUFFER, 0);
+			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+			glDisableClientState(GL_VERTEX_ARRAY);
+
+		}
 	}
 }
 

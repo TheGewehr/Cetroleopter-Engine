@@ -34,8 +34,3 @@ bool ModuleGameObject::CleanUp()
 
 	return true;
 }
-
-void ModuleGameObject::AddGameObject(GameObject object)
-{
-	objects.push_back(object);
-}

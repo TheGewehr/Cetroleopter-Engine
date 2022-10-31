@@ -16,12 +16,8 @@ struct GameObject
 {
 	uint objectID;
 
-	TransformComponent transform;
-
-	MeshVertexData mesh;
-	TextureData texture;
-
-	//std::vector<MeshVertexData> meshes;
+	std::vector<MeshVertexData> meshes;
+	std::vector<TextureData> textures;
 };
 
 class ModuleGameObject : public Module
@@ -33,8 +29,6 @@ public:
 	bool Init();
 	update_status Update(float dt);
 	bool CleanUp();
-
-	void AddGameObject(GameObject object);
 
 
 public:

@@ -80,8 +80,8 @@ public:
 	uint CheckerTexture();
 
 public:
-	std::vector<MeshVertexData> meshes;
-	std::vector<TextureData> textures;
+	//std::vector<MeshVertexData> meshes;
+	//std::vector<TextureData> textures;
 
 };
 

@@ -5,6 +5,7 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleModelImport.h"
+#include "ModuleGameObject.h"
 
 #include "assimp/include/cimport.h"
 #include "assimp/include/scene.h"
@@ -76,6 +77,8 @@ void ModuleModelImport::LoadModelAndTexture(const char* meshPath, const char* te
 
 void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* texturePath)
 {
+	GameObject newGameObject;
+
 	//Mesh Loading part
 
 	const aiScene* scene = aiImportFile(meshPath, aiProcessPreset_TargetRealtime_MaxQuality);
@@ -195,10 +198,13 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 				vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
 			}
 
-			textures.push_back(textureData);
-			meshes.push_back(vertexData);
+			newGameObject.textures.push_back(textureData);
+			newGameObject.meshes.push_back(vertexData);
+			//textures.push_back(textureData);
+			//meshes.push_back(vertexData);
 		}
 
+		App->moduleGameObject->objects.push_back(newGameObject);
 		aiReleaseImport(scene);
 	}
 	else
@@ -209,6 +215,8 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 void ModuleModelImport::LoadMesh(const char* path)
 {
+	GameObject newGameObject;
+
 	const aiScene* scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality);
 	MeshVertexData vertexData;
 	//aiMesh* mesh = nullptr;
@@ -269,9 +277,11 @@ void ModuleModelImport::LoadMesh(const char* path)
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
-			meshes.push_back(vertexData);
+			newGameObject.meshes.push_back(vertexData);
+			//meshes.push_back(vertexData);
 		}
 
+		App->moduleGameObject->objects.push_back(newGameObject);
 		aiReleaseImport(scene);
 	}
 	else
@@ -283,6 +293,8 @@ void ModuleModelImport::LoadMesh(const char* path)
 
 uint ModuleModelImport::LoadTexture(const char* path)
 {
+	GameObject newGameObject;
+
 	TextureData textureData;
 
 	textureData.texture_ID = 0;
@@ -336,7 +348,10 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	}
 	else LOG("ERROR loading image from path: %s", path);
 
-	textures.push_back(textureData);
+	newGameObject.textures.push_back(textureData);
+	//textures.push_back(textureData);
+
+	App->moduleGameObject->objects.push_back(newGameObject);
 
 	return textureData.texture_ID;
 }
