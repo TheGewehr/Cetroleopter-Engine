@@ -125,6 +125,10 @@ update_status ModuleInput::PreUpdate(float dt)
 					{
 						App->modelImport->LoadTexture(dropped_filedir);
 					}
+					if (App->moduleFS->GetFileExtension(dropped_filedir) == "dds")
+					{
+						App->modelImport->LoadTexture(dropped_filedir);
+					}
 
 					SDL_free(&dropped_filedir);
 				}

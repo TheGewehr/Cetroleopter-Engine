@@ -154,7 +154,22 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 				ilGenImages(1, (ILuint*)&textureData.image_ID);
 				ilBindImage(textureData.image_ID);
 
-				if (ilLoadImage(texturePath))
+				char* data = nullptr;
+				uint file_size = App->moduleFS->Load(texturePath, &data);
+
+				ILenum fileType = IL_TYPE_UNKNOWN;
+
+				if (App->moduleFS->GetFileExtension(texturePath) == "png")
+				{
+					fileType = IL_PNG;
+				}
+
+				if (App->moduleFS->GetFileExtension(texturePath) == "dds")
+				{
+					fileType = IL_DDS;
+				}
+
+				if (ilLoadL(fileType, (const void*)data, file_size))
 				{
 					if (ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE))
 					{
