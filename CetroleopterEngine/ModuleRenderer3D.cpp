@@ -264,8 +264,6 @@ void ModuleRenderer3D::OnResize(int width, int height)
 
 void ModuleRenderer3D::RenderModels()
 {
-	/*objects.push_back(object);
-	object.textures.push_back(texture);*/
 	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 	{
 		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)

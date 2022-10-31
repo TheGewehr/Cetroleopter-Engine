@@ -1,7 +1,9 @@
 #include "GameObjectsWindow.h"
 
 #include "Application.h"
-
+#include "ModuleGameObject.h"
+#include "Globals.h"
+#include "imgui.h"
 
 GameObjectsWindow::GameObjectsWindow(const char* name, bool isActive) : ImGuiWindowBase("GameObjects", isActive = true)
 {
@@ -24,6 +26,8 @@ bool GameObjectsWindow::Draw(ImGuiIO& io)
 	if (App->moduleUi->hoveringWindow == false)
 		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered(); // To know if the window is being moved
 
+	ObjectWindowHeader();
+
 	ImGui::End();
 
 	return ret;
@@ -38,7 +42,45 @@ bool GameObjectsWindow::CleanUp()
 
 bool GameObjectsWindow::ObjectWindowHeader()
 {
-	
+	if (App->moduleGameObject->objects.size() >= 1)
+	{
+		for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+		{
+			ImGui::Text("Game Object [%i]:", i);
+
+			ImGui::Text("	Meshes:");
+			if (App->moduleGameObject->objects[i].textures.size() >= 1)
+			{
+				for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+				{
+					ImGui::Text("		Mesh [%i]:", j);
+				}
+			}
+			else
+			{
+				ImGui::Text("		This Game Object has no meshes");
+			}
+
+
+			ImGui::Text("	Textures:");
+			if (App->moduleGameObject->objects[i].textures.size() >= 1)
+			{
+				for (int k = 0; k < App->moduleGameObject->objects[i].textures.size(); k++)
+				{
+					ImGui::Text("		Texture [%i]:", k);
+				}
+			}
+			else
+			{
+				ImGui::Text("		This Game Object has no textures");
+			}
+
+
+			ImGui::Spacing();
+			ImGui::Separator();
+			ImGui::Spacing();
+		}
+	}
 
 	return true;
 }

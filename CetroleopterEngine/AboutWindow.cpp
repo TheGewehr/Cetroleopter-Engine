@@ -93,22 +93,22 @@ bool AboutWindow::AboutHeader()
 	SDL_GetVersion(&sdlVersion);
 	ImGui::BulletText("SDL v%i.%i.%i", sdlVersion.major, sdlVersion.minor, sdlVersion.patch);
 	ImGui::Spacing();
-	ImGui::BulletText("Open GL v?"); //3.1 ?
+	ImGui::BulletText("Open GL v3.1"); //3.1 ?
 	ImGui::Spacing();
-	ImGui::BulletText("Glew v?"); // 2.1.0 ?
+	ImGui::BulletText("Glew v2.1"); // 2.1.0 ?
 	ImGui::Spacing();
 	ImGui::BulletText("ImGui v%s (Docking)", ImGui::GetVersion());
 	ImGui::Spacing();
-	ImGui::BulletText("JSON Parser v?"); // 3.10.4 ?
+	ImGui::BulletText("JSON Parser v3.10"); // 3.10.4 ?
 	ImGui::Spacing();
 	ImGui::BulletText("Assimp v%i.%i.%i", aiGetVersionMajor(), aiGetVersionMinor(), aiGetVersionRevision());
 	ImGui::Spacing();
 	ImGui::BulletText("DevIL v1.8.0"); // 1.7.8 ?
 	ImGui::Spacing();
 	//Ray tracing library: https://github.com/engilas/raytracing-opengl ----- fork: https://github.com/lucciffer/raytracing-opengl
-	ImGui::BulletText("MathGeoLib v?"); // 2.0 ?
+	ImGui::BulletText("MathGeoLib v2.0"); // 2.0 ?
 	ImGui::Spacing();
-	//ImGui::BulletText("PhysFS v3.0.2");
+	ImGui::BulletText("PhysFS v3.0.2");
 
 	ImGui::Spacing();
 	ImGui::Spacing();
