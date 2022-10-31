@@ -46,6 +46,11 @@ bool GameObjectsWindow::ObjectWindowHeader()
 	{
 		for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 		{
+			/*if (ImGui::CollapsingHeader("Game Object [%i]:", i)) // Very buggy
+			{
+
+			}*/
+
 			ImGui::Text("Game Object [%i]:", i);
 
 			ImGui::Text("	Meshes:");
@@ -76,6 +81,20 @@ bool GameObjectsWindow::ObjectWindowHeader()
 			else
 			{
 				ImGui::Text("		This Game Object has no textures");
+			}
+
+			if (App->moduleGameObject->objects[i].meshes.size() > 0)
+			{
+				ImGui::Spacing();
+				ImGui::Spacing();
+
+				if (ImGui::Button("Transform"))
+				{
+
+				}
+
+				ImGui::Spacing();
+				ImGui::Spacing();
 			}
 
 
