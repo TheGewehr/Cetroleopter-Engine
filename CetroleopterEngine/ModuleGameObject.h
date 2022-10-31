@@ -5,12 +5,12 @@
 #include "Module.h"
 #include "ModuleModelImport.h"
 
-struct TransformComponent
-{
-	//position
-	//rotation
-	//scale
-};
+//struct TransformComponent //Hacerlo en un modulo ComponentTransorm
+//{
+//	//position
+//	//rotation
+//	//scale
+//};
 
 struct GameObject
 {

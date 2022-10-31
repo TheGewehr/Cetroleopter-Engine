@@ -193,6 +193,7 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 			if (textureData.texture_ID != 0)
 			{
+				vertexData.path = meshPath;
 				vertexData.meshTexturesData.path = texturePath;
 				vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
 				vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);

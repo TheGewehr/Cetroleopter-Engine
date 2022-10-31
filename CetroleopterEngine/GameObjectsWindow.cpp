@@ -54,7 +54,7 @@ bool GameObjectsWindow::ObjectWindowHeader()
 				for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
 				{
 					ImGui::Text("		Mesh [%i]:", j);
-					//ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[j].path);
+					ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[j].path.c_str());
 				}
 			}
 			else
@@ -69,7 +69,7 @@ bool GameObjectsWindow::ObjectWindowHeader()
 				for (int k = 0; k < App->moduleGameObject->objects[i].textures.size(); k++)
 				{
 					ImGui::Text("		Texture [%i]:", k);
-					//ImGui::Text("			%s", App->moduleGameObject->objects[i].textures[k].path);
+					ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[k].meshTexturesData.path.c_str());
 				}
 			}
 			else

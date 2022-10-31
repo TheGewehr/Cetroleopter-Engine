@@ -3,7 +3,6 @@
 
 #include "Application.h"
 #include "Module.h"
-#include "ModuleGameObject.h"
 
 #include "glew/include/GL/glew.h"
 
@@ -63,7 +62,7 @@ struct MeshVertexData
 	TextureData meshTexturesData;
 	std::string	path;
 
-	TransformComponent transform;
+	//TransformComponent transform; //Hacerlo en un modulo ComponentTransorm
 };
 
 class ModuleModelImport : public Module
