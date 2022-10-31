@@ -18,6 +18,7 @@ struct GameObject
 
 	std::vector<MeshVertexData> meshes;
 	std::vector<TextureData> textures;
+	//std::vector<TransformComponent> transformComponents;
 };
 
 class ModuleGameObject : public Module

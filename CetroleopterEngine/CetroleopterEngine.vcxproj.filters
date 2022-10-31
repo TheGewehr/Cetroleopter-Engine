@@ -447,6 +447,9 @@
     <ClInclude Include="GameObjectsWindow.h">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleTransformComponent.h">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">

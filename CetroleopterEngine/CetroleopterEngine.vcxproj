@@ -208,6 +208,7 @@
     <ClInclude Include="ModuleModelImport.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="ModuleSaveLoad.h" />
+    <ClInclude Include="ModuleTransformComponent.h" />
     <ClInclude Include="ModuleUi.h" />
     <ClInclude Include="Module.h" />
     <ClInclude Include="ModuleInput.h" />
