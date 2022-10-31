@@ -193,6 +193,7 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 			if (textureData.texture_ID != 0)
 			{
+				textureData.path = texturePath;
 				vertexData.path = meshPath;
 				vertexData.meshTexturesData.path = texturePath;
 				vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
@@ -280,7 +281,7 @@ void ModuleModelImport::LoadMesh(const char* path)
 			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-
+			vertexData.path = path;
 			newGameObject.meshes.push_back(vertexData);
 			//meshes.push_back(vertexData);
 		}
@@ -352,6 +353,7 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	}
 	else LOG("ERROR loading image from path: %s", path);
 
+	textureData.path = path;
 	newGameObject.textures.push_back(textureData);
 	//textures.push_back(textureData);
 
