@@ -5,7 +5,18 @@ TransformComponent::TransformComponent()
 {
 	updateWorld = false;
 
-	for (int i = 0; i < owner.parent->meshes.size(); i++)
+	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+	{
+		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+		{
+			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
+			{
+				owner = App->moduleGameObject->objects[i];
+			}
+		}
+	}
+
+	for (int i = 0; i < owner.meshes.size(); i++)
 	{
 		localTransform[i] = float4x4::identity;
 		worldTransform[i] = float4x4::identity;
@@ -43,9 +54,7 @@ std::vector <float3> TransformComponent::GetWorldPosition()
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	const int dummyValue = (int)worldTransform.size();
-
-	float3 dummy[dummyValue];
+	std::vector <float3> dummy;
 
 	for (int i = 0; i < worldTransform.size(); i++)
 	{
@@ -60,13 +69,11 @@ std::vector <Quat> TransformComponent::GetWorldRotation()
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	const int dummyValue = (int)worldTransform.size();
-
-	Quat dummy[dummyValue];
+	std::vector <Quat> dummy;
 
 	for (int i = 0; i < worldTransform.size(); i++)
 	{
-		dummy[i] = worldTransform[i].RotatePart();
+		dummy[i] = (Quat)worldTransform[i].RotatePart();
 	}
 
 	return dummy;
@@ -77,9 +84,7 @@ std::vector <float3> TransformComponent::GetWorldEulerRotation()
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	const int dummyValue = (int)worldTransform.size();
-
-	float3 dummy[dummyValue];
+	std::vector <float3> dummy;
 
 	for (int i = 0; i < worldTransform.size(); i++)
 	{
@@ -94,9 +99,7 @@ std::vector <float3> TransformComponent::GetWorldScale()
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	const int dummyValue = (int)worldTransform.size();
-
-	float3 dummy[dummyValue];
+	std::vector <float3> dummy;
 
 	for (int i = 0; i < worldTransform.size(); i++)
 	{
@@ -307,17 +310,11 @@ void TransformComponent::SyncLocalToWorld()
 		{
 			localTransform[i] = worldTransform[i];
 		}
-	}
+	}	
 	
-	
-	for (int i = 0; i < localTransform.size(); i++)
-	{
-		SetLocalTransform(localTransform[i]);
-	}
+	SetLocalTransform(localTransform);	
 
 	SetChildsAsDirty();
-
-
 }
 
 void TransformComponent::SetPosition(float x, float y, float z)
