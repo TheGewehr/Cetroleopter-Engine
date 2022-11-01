@@ -1,13 +1,13 @@
-#ifndef _ModuleAudio_H_
-#define _ModuleAudio_H_
-
-#include "Module.h"
-
-#define DEFAULT_MUSIC_FADE_TIME 2.0f
-
-class ModuleAudio : public Module
-{
-public:
+//#ifndef _ModuleAudio_H_
+//#define _ModuleAudio_H_
+//
+//#include "Module.h"
+//
+//#define DEFAULT_MUSIC_FADE_TIME 2.0f
+//
+//class ModuleAudio : public Module
+//{
+//public:
 
 //	ModuleAudio(bool start_enabled = true);
 //	~ModuleAudio();
@@ -28,6 +28,6 @@ public:
 //
 //	Mix_Music*			music;
 //	p2List<Mix_Chunk*>	fx;
-};
-
-#endif // _ModuleAudio_H_
+//};
+//
+//#endif // _ModuleAudio_H_

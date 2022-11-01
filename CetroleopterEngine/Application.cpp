@@ -5,7 +5,7 @@ Application::Application() : debug(false)
 {
 	window = new ModuleWindow(true);
 	input = new ModuleInput(true);
-	audio = new ModuleAudio();
+	//audio = new ModuleAudio();
 	scene_intro = new ModuleSceneIntro(true);
 	camera = new ModuleCamera3D(true);
 	moduleUi = new ModuleUi(true);
@@ -28,7 +28,7 @@ Application::Application() : debug(false)
 	AddModule(moduleFS);
 	AddModule(modelImport);
 	AddModule(moduleGameObject);
-	AddModule(audio);
+	//AddModule(audio);
 	
 
 	//AddModule(physics);

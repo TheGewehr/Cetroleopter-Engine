@@ -28,7 +28,7 @@ public:
 	ModuleInput* input;
 	ModuleFS* moduleFS;
 	ModuleModelImport* modelImport;
-	ModuleAudio* audio;
+	//ModuleAudio* audio;
 	ModuleSaveLoad* save_load;
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;
