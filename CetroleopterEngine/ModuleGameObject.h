@@ -18,24 +18,6 @@ struct GameObject
 	std::vector<TextureData> textures;
 	std::vector<GameObject*> children;
 	
-
-	/*template<typename T>
-	T* GetComponent()const
-	{
-		COMPONENT_TYPE type = T::GetType();
-
-		if (type == COMPONENT_TYPE::TRANSFORM)
-			return (T*)transform;
-
-		for (uint i = 0; i < components.size(); ++i)
-		{
-			if (components[i]->GetType() == type)
-			{
-				return (T*)components[i];
-			}
-		}
-		return nullptr;
-	}*/
 };
 
 class ModuleGameObject : public Module

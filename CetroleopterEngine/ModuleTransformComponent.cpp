@@ -4,14 +4,27 @@
 TransformComponent::TransformComponent()
 {
 	updateWorld = false;
-	localTransform = float4x4::identity;
-	worldTransform = float4x4::identity;
 
-	localTransform.Decompose(position, rotation, scale);
+	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+	{
+		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+		{
+			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
+			{
+				owner = App->moduleGameObject->objects[i];
+			}
+		}
+	}
 
-	localEulerRotation = rotation.ToEulerXYZ();
+	for (int i = 0; i < owner.meshes.size(); i++)
+	{
+		localTransform[i] = float4x4::identity;
+		worldTransform[i] = float4x4::identity;
 
+		localTransform[i].Decompose(position, rotation, scale);
+	}
 	
+	localEulerRotation = rotation.ToEulerXYZ();	
 	
 }
 
@@ -36,39 +49,67 @@ float3 TransformComponent::GetScale() const
 	return scale;
 }
 
-float3 TransformComponent::GetWorldPosition()
+std::vector <float3> TransformComponent::GetWorldPosition()
 {
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	return worldTransform.TranslatePart();
+	std::vector <float3> dummy;
+
+	for (int i = 0; i < worldTransform.size(); i++)
+	{
+		dummy[i] = worldTransform[i].TranslatePart();
+	}
+
+	return dummy;
 }
 
-Quat TransformComponent::GetWorldRotation()
+std::vector <Quat> TransformComponent::GetWorldRotation()
 {
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	return Quat(worldTransform.RotatePart());
+	std::vector <Quat> dummy;
+
+	for (int i = 0; i < worldTransform.size(); i++)
+	{
+		dummy[i] = (Quat)worldTransform[i].RotatePart();
+	}
+
+	return dummy;
 }
 
-float3 TransformComponent::GetWorldEulerRotation()
+std::vector <float3> TransformComponent::GetWorldEulerRotation()
 {
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	return RadToDeg(worldTransform.RotatePart().ToEulerXYZ());
+	std::vector <float3> dummy;
+
+	for (int i = 0; i < worldTransform.size(); i++)
+	{
+		dummy[i] = RadToDeg(worldTransform[i].RotatePart().ToEulerXYZ());
+	}
+
+	return dummy;
 }
 
-float3 TransformComponent::GetWorldScale()
+std::vector <float3> TransformComponent::GetWorldScale()
 {
 	if (updateWorld)
 		UpdateWorldTransform();
 
-	return worldTransform.GetScale();
+	std::vector <float3> dummy;
+
+	for (int i = 0; i < worldTransform.size(); i++)
+	{
+		dummy[i] = worldTransform[i].GetScale();
+	}
+
+	return dummy;
 }
 
-float4x4 TransformComponent::GetWorldTransform()
+std::vector <float4x4> TransformComponent::GetWorldTransform()
 {
 	if (updateWorld)
 		UpdateWorldTransform();
@@ -76,23 +117,26 @@ float4x4 TransformComponent::GetWorldTransform()
 	return worldTransform;
 }
 
-void TransformComponent::SetWorldTransform(const float4x4& worldTransform)
+void TransformComponent::SetWorldTransform(std::vector <float4x4>& worldTransform)
 {
 	this->worldTransform = worldTransform;
 
 	SyncLocalToWorld();
 }
 
-float4x4 TransformComponent::GetLocalTransform() const
+std::vector <float4x4> TransformComponent::GetLocalTransform() const
 {
 	return localTransform;
 }
 
-void TransformComponent::SetLocalTransform(const float4x4& localTransform)
+void TransformComponent::SetLocalTransform(std::vector <float4x4>& localTransform)
 {
-	this->localTransform = localTransform;
-	localTransform.Decompose(position, rotation, scale);
-	localEulerRotation = localTransform.RotatePart().ToEulerXYZ();
+	for (int i = 0; i < localTransform.size(); i++)
+	{
+		this->localTransform[i] = localTransform[i];
+		localTransform[i].Decompose(position, rotation, scale);
+		localEulerRotation = localTransform[i].RotatePart().ToEulerXYZ();
+	}
 
 	UpdateWorldTransform();
 }
@@ -142,36 +186,48 @@ void TransformComponent::SetChildsAsDirty()
 
 void TransformComponent::SetWorldPosition(const float3& newPosition)
 {
-	worldTransform.SetTranslatePart(newPosition);
+	for (int i = 0; i < owner.parent->meshes.size(); i++)
+	{
+		worldTransform[i].SetTranslatePart(newPosition);
+	}
 
 	SyncLocalToWorld();
 }
 
 void TransformComponent::SetWorldRotation(const Quat& newRotation)
 {
-	worldTransform.SetRotatePart(newRotation);
+	for (int i = 0; i < owner.parent->meshes.size(); i++)
+	{
+		worldTransform[i].SetRotatePart(newRotation);
+	}
 
 	SyncLocalToWorld();
 }
 
 void TransformComponent::SetWorldRotation(const float3& new_rotation)
 {
-	worldTransform.SetRotatePart(Quat::FromEulerXYZ(new_rotation.x, new_rotation.y, new_rotation.z));
+	for (int i = 0; i < owner.parent->meshes.size(); i++)
+	{
+		worldTransform[i].SetRotatePart(Quat::FromEulerXYZ(new_rotation.x, new_rotation.y, new_rotation.z));
+	}
 
 	SyncLocalToWorld();
 }
 
 void TransformComponent::SetWorldScale(const float3& newScale)
 {
-	worldTransform.Scale(worldTransform.GetScale().Neg());
+	for (int i = 0; i < owner.parent->meshes.size(); i++)
+	{
+		worldTransform[i].Scale(worldTransform[i].GetScale().Neg());
 
-	if (newScale.x == 0.0f || newScale.y == 0.0f || newScale.z == 0.0f)
-	{
-		worldTransform.Scale(float3(0.1f, 0.1f, 0.1f));
-	}
-	else
-	{
-		worldTransform.Scale(newScale);
+		if (newScale.x == 0.0f || newScale.y == 0.0f || newScale.z == 0.0f)
+		{
+			worldTransform[i].Scale(float3(0.1f, 0.1f, 0.1f));
+		}
+		else
+		{
+			worldTransform[i].Scale(newScale);
+		}
 	}
 
 	SyncLocalToWorld();
@@ -179,7 +235,10 @@ void TransformComponent::SetWorldScale(const float3& newScale)
 
 void TransformComponent::UpdateLocalTransform()
 {
-	localTransform = float4x4::FromTRS(position, rotation, scale);
+	for (int i = 0; i < owner.parent->meshes.size(); i++)
+	{
+		localTransform[i] = float4x4::FromTRS(position, rotation, scale);
+	}
 
 	updateWorld = true;
 }
@@ -200,6 +259,22 @@ void TransformComponent::UpdateWorldTransform()
 	}
 
 	//worldTransform = (owner.parent != nullptr) ? owner.parent->GetComponent<TransformComponent>()->worldTransform * localTransform : localTransform;
+
+	if (owner.parent != nullptr)
+	{
+		for (int i = 0; i < owner.parent->meshes.size(); i++)
+		{
+			worldTransform[i] = owner.parent->meshes[i].transform->worldTransform[i] * localTransform[i];
+		}
+	}
+	else
+	{
+		for (int i = 0; i < owner.parent->meshes.size(); i++)
+		{
+			worldTransform[i] = localTransform[i];
+		}
+	}
+	
 
 	SetChildsAsDirty();
 
@@ -222,12 +297,24 @@ void TransformComponent::SyncLocalToWorld()
 	}
 
 	//localTransform = (owner.parent != nullptr) ? owner.parent->GetComponent<TransformComponent>()->worldTransform.Inverted() * worldTransform : worldTransform;
-
-	SetLocalTransform(localTransform);
+	if (owner.parent != nullptr)
+	{
+		for (int i = 0; i < owner.parent->meshes.size(); i++)
+		{
+			localTransform[i] = owner.parent->meshes[i].transform->worldTransform[i].Inverted() * worldTransform[i];
+		}
+	}
+	else
+	{
+		for (int i = 0; i < owner.parent->meshes.size(); i++)
+		{
+			localTransform[i] = worldTransform[i];
+		}
+	}	
+	
+	SetLocalTransform(localTransform);	
 
 	SetChildsAsDirty();
-
-
 }
 
 void TransformComponent::SetPosition(float x, float y, float z)
