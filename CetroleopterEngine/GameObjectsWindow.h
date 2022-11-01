@@ -18,7 +18,6 @@ public:
 private:
 	
 	bool ObjectWindowHeader();
-	bool ObjectWindowButton(int obj_id);
 
 public:
 
