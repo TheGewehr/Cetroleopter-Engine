@@ -680,6 +680,9 @@
     <ClCompile Include="GameObjectsWindow.cpp">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleTransformComponent.cpp">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleUi.cpp">

@@ -4,21 +4,36 @@
 #include "Application.h"
 #include "Module.h"
 #include "ModuleModelImport.h"
-
-//struct TransformComponent //Hacerlo en un modulo ComponentTransorm
-//{
-//	//position
-//	//rotation
-//	//scale
-//};
+#include "ModuleTransformComponent.h"
 
 struct GameObject
 {
 	uint objectID;
 
+	GameObject* parent = nullptr;
+
 	std::vector<MeshVertexData> meshes;
 	std::vector<TextureData> textures;
-	//std::vector<TransformComponent> transformComponents;
+	std::vector<GameObject*> children;
+	
+
+	template<typename T>
+	T* GetComponent()const
+	{
+		COMPONENT_TYPE type = T::GetType();
+
+		if (type == COMPONENT_TYPE::TRANSFORM)
+			return (T*)transform;
+
+		for (uint i = 0; i < components.size(); ++i)
+		{
+			if (components[i]->GetType() == type)
+			{
+				return (T*)components[i];
+			}
+		}
+		return nullptr;
+	}
 };
 
 class ModuleGameObject : public Module
