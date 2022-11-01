@@ -68,27 +68,44 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::Spacing();
 				ImGui::Spacing();
 
+				ImGui::PushID(App->moduleGameObject->currentSelectedObject);
 				if (ImGui::Button("Translate"))
 				{
+					//LOG("T %i", App->moduleGameObject->currentSelectedObject);
+
+
+
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.position
 				}
+				ImGui::PopID();
 
 				ImGui::SameLine();
 
+				ImGui::PushID(App->moduleGameObject->currentSelectedObject);
 				if (ImGui::Button("Rotate"))
 				{
+					//LOG("R %i", App->moduleGameObject->currentSelectedObject);
+
+
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.rotate
 				}
+				ImGui::PopID();
 
 				ImGui::SameLine();
 
+				ImGui::PushID(App->moduleGameObject->currentSelectedObject);
 				if (ImGui::Button("Scale"))
 				{
+					//LOG("S %i", App->moduleGameObject->currentSelectedObject);
+
+
+
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.scale
 				}
+				ImGui::PopID();
 
 				ImGui::Spacing();
 				ImGui::Spacing();
