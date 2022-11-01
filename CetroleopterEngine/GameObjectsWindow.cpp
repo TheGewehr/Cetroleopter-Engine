@@ -51,11 +51,16 @@ bool GameObjectsWindow::ObjectWindowHeader()
 			//ObjectWindowButton(App->moduleGameObject->objects[i].objectID);
 			ImGui::Text("[OBJ_ID %i]:", i);
 			ImGui::SameLine();
+
+			ImGui::PushID(i);
+			
 			if (ImGui::Button("Game Object"))
 			{
 				App->moduleGameObject->currentSelectedObject = App->moduleGameObject->objects[i].objectID;
 				LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
 			}
+
+			ImGui::PopID();
 
 			//ImGui::Text("Game Object [%i]:", i);
 
