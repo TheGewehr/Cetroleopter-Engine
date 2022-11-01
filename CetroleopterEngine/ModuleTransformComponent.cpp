@@ -4,6 +4,7 @@
 TransformComponent::TransformComponent()
 {
 	updateWorld = false;
+	
 
 	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 	{

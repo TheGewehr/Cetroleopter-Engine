@@ -68,44 +68,29 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::Spacing();
 				ImGui::Spacing();
 
-				ImGui::PushID(App->moduleGameObject->currentSelectedObject);
-				if (ImGui::Button("Translate"))
-				{
-					//LOG("T %i", App->moduleGameObject->currentSelectedObject);
+				//for (int k = 0; k < App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes.size(); k++)
+				//{
+				//	float3 position = App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].transform->GetPosition();
+				//
+				//	if (ImGui::DragFloat3("Position", (float*)&position, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+				//	{
+				//		App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].transform->SetPosition(position.x, position.y, position.z);
+				//	}
+				//}
 
+				
 
-
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.position
-				}
-				ImGui::PopID();
-
-				ImGui::SameLine();
-
-				ImGui::PushID(App->moduleGameObject->currentSelectedObject);
-				if (ImGui::Button("Rotate"))
-				{
-					//LOG("R %i", App->moduleGameObject->currentSelectedObject);
-
-
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.rotate
-				}
-				ImGui::PopID();
-
-				ImGui::SameLine();
-
-				ImGui::PushID(App->moduleGameObject->currentSelectedObject);
-				if (ImGui::Button("Scale"))
-				{
-					//LOG("S %i", App->moduleGameObject->currentSelectedObject);
-
-
-
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.scale
-				}
-				ImGui::PopID();
+				//float3 rotation = RadToDeg(comp->GetLocalEulerRotation());
+				//if (ImGui::DragFloat3("Rotation", (float*)&rotation, 1.0f, 0.0f, 0.0f, "%.3f", NULL))
+				//{
+				//	comp->SetLocalEulerRotation(rotation);
+				//}
+				//
+				//float3 scale = comp->GetScale();
+				//if (ImGui::DragFloat3("Scale", (float*)&scale, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+				//{
+				//	comp->SetScale(scale.x, scale.y, scale.z);
+				//}
 
 				ImGui::Spacing();
 				ImGui::Spacing();
@@ -136,3 +121,4 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 	return true;
 }
+

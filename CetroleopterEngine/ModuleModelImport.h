@@ -65,7 +65,7 @@ struct MeshVertexData
 	TextureData meshTexturesData;
 	std::string	path;
 
-	TransformComponent* transform; 
+	TransformComponent* transform = nullptr;
 };
 
 class ModuleModelImport : public Module
