@@ -46,79 +46,98 @@ bool GameObjectsWindow::ObjectWindowHeader()
 	{
 		for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 		{
-			/*if (ImGui::CollapsingHeader("Game Object [%i]:", i)) // Very buggy
-			{
+			App->moduleGameObject->objects[i].objectID = i;
 
-			}*/
-
-			ImGui::Text("Game Object [%i]:", i);
-
-			ImGui::Text("	Meshes:");
-			if (App->moduleGameObject->objects[i].meshes.size() > 0)
+			//ObjectWindowButton(App->moduleGameObject->objects[i].objectID);
+			ImGui::Text("[OBJ_ID %i]:", i);
+			ImGui::SameLine();
+			if (ImGui::Button("Game Object"))
 			{
-				for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-				{
-					ImGui::Text("		Mesh [%i]:", j);
-					ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[j].path.c_str());
-				}
-			}
-			else
-			{
-				ImGui::Text("		This Game Object has no meshes");
+				App->moduleGameObject->currentSelectedObject = App->moduleGameObject->objects[i].objectID;
+				LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
 			}
 
+			//ImGui::Text("Game Object [%i]:", i);
 
-			ImGui::Text("	Textures:");
-			if (App->moduleGameObject->objects[i].textures.size() > 0)
-			{
-				for (int k = 0; k < App->moduleGameObject->objects[i].textures.size(); k++)
-				{
-					ImGui::Text("		Texture [%i]:", k);
-					ImGui::Text("			%s", App->moduleGameObject->objects[i].textures[k].path.c_str());
-					//ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[k].meshTexturesData.path.c_str());
-				}
-			}
-			else
-			{
-				ImGui::Text("		This Game Object has no textures");
-			}
-
-			if (App->moduleGameObject->objects[i].meshes.size() > 0)
-			{
-				ImGui::Spacing();
-				ImGui::Spacing();
-
-				if (ImGui::Button("Translate"))
-				{
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.position
-				}
-
-				ImGui::SameLine();
-
-				if (ImGui::Button("Rotate"))
-				{
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.rotate
-				}
-
-				ImGui::SameLine();
-
-				if (ImGui::Button("Scale"))
-				{
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.scale
-				}
-
-				ImGui::Spacing();
-				ImGui::Spacing();
-			}
+			//ImGui::Text("	Meshes:");
+			//if (App->moduleGameObject->objects[i].meshes.size() > 0)
+			//{
+			//	for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+			//	{
+			//		ImGui::Text("		Mesh [%i]:", j);
+			//		ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[j].path.c_str());
+			//	}
+			//}
+			//else
+			//{
+			//	ImGui::Text("		This Game Object has no meshes");
+			//}
 
 
-			ImGui::Spacing();
-			ImGui::Separator();
-			ImGui::Spacing();
+			//ImGui::Text("	Textures:");
+			//if (App->moduleGameObject->objects[i].textures.size() > 0)
+			//{
+			//	for (int k = 0; k < App->moduleGameObject->objects[i].textures.size(); k++)
+			//	{
+			//		ImGui::Text("		Texture [%i]:", k);
+			//		ImGui::Text("			%s", App->moduleGameObject->objects[i].textures[k].path.c_str());
+			//		//ImGui::Text("			%s", App->moduleGameObject->objects[i].meshes[k].meshTexturesData.path.c_str());
+			//	}
+			//}
+			//else
+			//{
+			//	ImGui::Text("		This Game Object has no textures");
+			//}
+
+			//if (App->moduleGameObject->objects[i].meshes.size() > 0)
+			//{
+			//	ImGui::Spacing();
+			//	ImGui::Spacing();
+
+			//	if (ImGui::Button("Translate"))
+			//	{
+			//		// for q
+			//			//App->moduleGameObject->objects[i].meshes[q].transform.position
+			//	}
+
+			//	ImGui::SameLine();
+
+			//	if (ImGui::Button("Rotate"))
+			//	{
+			//		// for q
+			//			//App->moduleGameObject->objects[i].meshes[q].transform.rotate
+			//	}
+
+			//	ImGui::SameLine();
+
+			//	if (ImGui::Button("Scale"))
+			//	{
+			//		// for q
+			//			//App->moduleGameObject->objects[i].meshes[q].transform.scale
+			//	}
+
+			//	ImGui::Spacing();
+			//	ImGui::Spacing();
+			//}
+
+
+			//ImGui::Spacing();
+			//ImGui::Separator();
+			//ImGui::Spacing();
 		}
+	}
+
+	return true;
+}
+
+bool GameObjectsWindow::ObjectWindowButton(int obj_id)
+{
+	ImGui::Text("[OBJ_ID %i]:", obj_id);
+	ImGui::SameLine();
+	if (ImGui::Button("Game Object"))
+	{
+		App->moduleGameObject->currentSelectedObject = obj_id;
+		LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
 	}
 
 	return true;

@@ -52,6 +52,7 @@ public:
 public:
 
 	std::vector<GameObject> objects;
+	int currentSelectedObject = -1;
 
 };
 

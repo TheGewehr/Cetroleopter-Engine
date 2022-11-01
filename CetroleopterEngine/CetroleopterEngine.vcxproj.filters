@@ -450,6 +450,9 @@
     <ClInclude Include="ModuleTransformComponent.h">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="ObjectsInspectorWindow.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -682,6 +685,9 @@
     </ClCompile>
     <ClCompile Include="ModuleTransformComponent.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectsInspectorWindow.cpp">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

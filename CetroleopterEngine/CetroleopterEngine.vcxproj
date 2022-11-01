@@ -214,6 +214,7 @@
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleSceneIntro.h" />
     <ClInclude Include="ModuleWindow.h" />
+    <ClInclude Include="ObjectsInspectorWindow.h" />
     <ClInclude Include="physFS\include\physfs.h" />
     <ClInclude Include="physFS\include\physfsrwops.h" />
     <ClInclude Include="Primitive.h" />
@@ -295,6 +296,7 @@
     <ClCompile Include="ModuleTransformComponent.cpp" />
     <ClCompile Include="ModuleUi.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
+    <ClCompile Include="ObjectsInspectorWindow.cpp" />
     <ClCompile Include="physFS\include\physfsrwops.c" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="Timer.cpp" />

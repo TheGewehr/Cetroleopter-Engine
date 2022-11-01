@@ -24,19 +24,23 @@
 #include "AboutWindow.h"
 #include "ConsoleWindow.h"
 #include "GameObjectsWindow.h"
+#include "ObjectsInspectorWindow.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),
 configurationWindow(new ConfigurationWindow("ConfigurationWindow", true)),
 mainMenuBar(new MainMenuBar("MainMenuBar", true)),
 aboutWindow(new AboutWindow("AboutWindow", false)),
 consoleWindow(new ConsoleWindow("ConsoleWindow", true)),
-gameObjectsWindow(new GameObjectsWindow("GameObjectsWindow", true))
+gameObjectsWindow(new GameObjectsWindow("GameObjectsWindow", true)),
+objectsInspectorWindow(new ObjectsInspectorWindow("ObjectsInspectorWindow", true))
 {
    AddImGuiWindow(configurationWindow);
    AddImGuiWindow(mainMenuBar);
    AddImGuiWindow(aboutWindow);
    AddImGuiWindow(consoleWindow);
    AddImGuiWindow(gameObjectsWindow);
+   AddImGuiWindow(objectsInspectorWindow);
+
 }
 
 ModuleUi::~ModuleUi()
