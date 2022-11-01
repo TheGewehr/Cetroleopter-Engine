@@ -10,6 +10,8 @@
 #define CHECKERS_HEIGHT 50
 #define CHECKERS_WIDTH 50
 
+struct TransformComponent;
+
 enum TextureMaterialType
 {
 	NONE = 0,

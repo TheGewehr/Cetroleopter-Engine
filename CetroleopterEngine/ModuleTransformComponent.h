@@ -3,11 +3,11 @@
 
 
 #include "MathGeoLib.h"
-#include "ModuleGameObject.h"
 #include "Application.h"
 #include "Globals.h"
+#include "ModuleGameObject.h"
 
-
+struct GameObject;
 
 class TransformComponent
 {

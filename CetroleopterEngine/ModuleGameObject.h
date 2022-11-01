@@ -4,7 +4,9 @@
 #include "Application.h"
 #include "Module.h"
 #include "ModuleModelImport.h"
-#include "ModuleTransformComponent.h"
+
+struct MeshVertexData;
+struct TextureData;
 
 struct GameObject
 {
@@ -17,7 +19,7 @@ struct GameObject
 	std::vector<GameObject*> children;
 	
 
-	template<typename T>
+	/*template<typename T>
 	T* GetComponent()const
 	{
 		COMPONENT_TYPE type = T::GetType();
@@ -33,7 +35,7 @@ struct GameObject
 			}
 		}
 		return nullptr;
-	}
+	}*/
 };
 
 class ModuleGameObject : public Module

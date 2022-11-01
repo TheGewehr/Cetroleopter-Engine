@@ -128,7 +128,7 @@ void TransformComponent::SetChildsAsDirty()
 	if (owner.children.empty())
 		return;
 
-	for (uint i = 0; i < owner.children.size(); ++i)
+	/*for (uint i = 0; i < owner.children.size(); ++i)
 	{
 		TransformComponent* childTransform = owner.children[i]->GetComponent<TransformComponent>();
 
@@ -137,7 +137,7 @@ void TransformComponent::SetChildsAsDirty()
 			childTransform->updateWorld = true;
 			childTransform->SetChildsAsDirty();
 		}
-	}
+	}*/
 }
 
 void TransformComponent::SetWorldPosition(const float3& newPosition)
@@ -199,7 +199,7 @@ void TransformComponent::UpdateWorldTransform()
 		}
 	}
 
-	worldTransform = (owner.parent != nullptr) ? owner.parent->GetComponent<TransformComponent>()->worldTransform * localTransform : localTransform;
+	//worldTransform = (owner.parent != nullptr) ? owner.parent->GetComponent<TransformComponent>()->worldTransform * localTransform : localTransform;
 
 	SetChildsAsDirty();
 
@@ -221,7 +221,7 @@ void TransformComponent::SyncLocalToWorld()
 		}
 	}
 
-	localTransform = (owner.parent != nullptr) ? owner.parent->GetComponent<TransformComponent>()->worldTransform.Inverted() * worldTransform : worldTransform;
+	//localTransform = (owner.parent != nullptr) ? owner.parent->GetComponent<TransformComponent>()->worldTransform.Inverted() * worldTransform : worldTransform;
 
 	SetLocalTransform(localTransform);
 
