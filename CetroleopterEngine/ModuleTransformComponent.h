@@ -20,20 +20,20 @@ public:
 	float3 GetScale()const;
 
 	//World transforms
-	float3 GetWorldPosition();
-	Quat GetWorldRotation();
-	float3 GetWorldEulerRotation();
-	float3 GetWorldScale();
+	std::vector <float3> GetWorldPosition();
+	std::vector <Quat> GetWorldRotation();
+	std::vector <float3> GetWorldEulerRotation();
+	std::vector <float3> GetWorldScale();
 
 	void SetPosition(float x, float y, float z);
 	void SetRotation(float x, float y, float z, float w);
 	void SetScale(float x, float y, float z);
 
-	float4x4 GetWorldTransform();
-	void SetWorldTransform(const float4x4& worldTransform);
+	std::vector <float4x4> GetWorldTransform();
+	void SetWorldTransform(std::vector <float4x4>& worldTransform);
 
-	float4x4 GetLocalTransform()const;
-	void SetLocalTransform(const float4x4& localTransform);
+	std::vector <float4x4> GetLocalTransform()const;
+	void SetLocalTransform(std::vector <float4x4>& localTransform);
 
 	float3 GetLocalEulerRotation()const;
 	void SetLocalEulerRotation(float3 euler);
@@ -54,8 +54,8 @@ private:
 	Quat rotation;
 	float3 scale;
 
-	float4x4 localTransform;
-	float4x4 worldTransform;
+	std::vector <float4x4> localTransform;
+	std::vector <float4x4> worldTransform;
 
 	float3 localEulerRotation;
 
