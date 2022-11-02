@@ -111,6 +111,10 @@ bool MainMenuBar::EditMenuBar()
 		{
 			App->modelImport->LoadModel_Textured("Assets/BusStation.fbx", "Assets/lambert23_Base_Color.png");
 		}
+		if (ImGui::MenuItem("Load Test Model - Zotac RTX_GPU"))
+		{
+			App->modelImport->LoadModel_Textured("Assets/graphic_card.fbx", "Assets/graphic_card_Base_Color.png");
+		}
 
 		ImGui::EndMenu();
 	}
