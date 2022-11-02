@@ -4,7 +4,7 @@
 
  #Our first game engine... ( ͡° ͜ʖ ͡°)
 
-Cetroleopter Engine its a 3D graphics Engine for Game Development developped with C++ developped by Alvaro Milla & Alexandre Carreras.
+Cetroleopter Engine its a 3D graphics Engine for Game Development developped with C++ developped by Álvaro Milla & Alexandre Carreras.
 
 ### Engine Features:
 
@@ -53,7 +53,7 @@ For now, it only saves and loads the configuration, but once we polish our game 
 
 ## Developers:
 
-- Alvaro Milla:
+- Álvaro Milla:
   - Github Account: [mrmille](https://github.com/mrmile)
 
 - Alexandre Carreras:
