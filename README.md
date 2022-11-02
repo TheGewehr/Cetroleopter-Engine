@@ -19,6 +19,8 @@ Cetroleopter Engine its a 3D graphics Engine for Game Development developped wit
 
 -**View**: this tab may be one of the most interesting ones. It displays diferent options to see our loaded object in the scene. Wireframe, Disable Textures, Cull Faces, Disable lights and disable Ambien Oclusion. 
 
+-**Help**: this window let you clic a link to this amazing engine, and also open an About window that shows you the license of this project, the libraries used and a link to our github page.
+
 -**GameObjects**: this window shows the objects created by number, and lets you click a button to see the specifics of the objects in the inspector.
 
 -**Inspector**: this window show the specifics of the object that we are looking at. Currenty only Texture and Mesh components of an object are available, others such as Transform components are work in progress
