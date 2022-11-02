@@ -59,3 +59,6 @@ For now, it only saves and loads the configuration, but once we polish our game 
 - Alexandre Carreras:
   - Github Account: [TheGewehr](https://github.com/TheGewehr)
   
+## Official Github Page:
+
+https://thegewehr.github.io/Cetroleopter-Engine/
