@@ -1,12 +1,6 @@
 #include "glew/include/GL/glew.h"
-//#include "glew/include/GL/eglew.h"
-//#include "glew/include/GL/glxew.h"
-//#include "glew/include/GL/wglew.h"
-//#include <gl/GL.h>
-//#include <gl/GLU.h>
 
 
-//#pragma comment (lib, "glut/glut32.lib")
 #pragma comment (lib, "glew/lib/Release/Win32/glew32.lib")
 #pragma comment (lib, "glew/lib/Release/Win32/glew32s.lib")
 
@@ -19,8 +13,6 @@
 #include <gl/GL.h>
 #include <gl/GLU.h>
 
-//#include "imgui.h"
-//#include "imgui_impl_opengl3.h"
 
 #pragma comment (lib, "glu32.lib")    /* link OpenGL Utility lib     */
 #pragma comment (lib, "opengl32.lib") /* link Microsoft OpenGL lib   */
@@ -125,7 +117,6 @@ bool ModuleRenderer3D::Init()
 	}
 	LOG("Glew version: %s\n", glewGetString(GLEW_VERSION));
 
-	//App->modelImport->Init();
 	
 	return ret;
 }
@@ -139,8 +130,6 @@ bool ModuleRenderer3D::Start()
 // PreUpdate: clear buffer
 update_status ModuleRenderer3D::PreUpdate(float dt)
 {
-	//ImGui::NewFrame();
-	//ImGui::ShowDemoWindow(false);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glLoadIdentity();
@@ -287,7 +276,6 @@ void ModuleRenderer3D::RenderModels()
 		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
 		{
 			// Draw elements
-			//MeshVertexData* vertexData = &App->modelImport->meshes[j];
 			MeshVertexData* vertexData = &App->moduleGameObject->objects[i].meshes[j];
 
 			glEnableClientState(GL_VERTEX_ARRAY);
@@ -313,19 +301,3 @@ void ModuleRenderer3D::RenderModels()
 		}
 	}
 }
-
-//void ModuleRenderer3D::RenderTextures()
-//{
-//	for (int i = 0; i < App->modelImport->textures.size(); i++)
-//	{
-//		// Draw elements
-//		TextureData* textureData = &App->modelImport->textures[i];
-//
-//		
-//
-//		//Cleans current texture:
-//		glBindTexture(GL_TEXTURE_2D, textureData->texture_ID);
-//	}
-//	
-//	
-//}

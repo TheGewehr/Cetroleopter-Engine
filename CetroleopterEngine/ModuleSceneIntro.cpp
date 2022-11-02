@@ -27,11 +27,6 @@ bool ModuleSceneIntro::CleanUp()
 {
 	LOG("Unloading Intro scene");
 
-	/*for (int n = 0; n < primitives.Count(); n++)
-	{
-		delete primitives[n];
-	}
-	primitives.Clear();*/
 
 	return true;
 }
@@ -51,27 +46,15 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 	}
 
-
-	/*for (uint n = 0; n < primitives.Count(); n++)
-	{
-		primitives[n]->Update();
-	}*/
-
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
-	/*for (uint n = 0; n < primitives.Count(); n++)
-	{
-		primitives[n]->Render();
-	}*/
 
 	App->renderer3D->RenderModels();
-	//App->renderer3D->RenderTextures(); Not finished and needed function??
 
 
-	//glEnable(GL_TEXTURE_2D);
 
 	return UPDATE_CONTINUE;
 }

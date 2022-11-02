@@ -26,7 +26,6 @@ public:
 	void OnResize(int width, int height);
 
 	void RenderModels(); //Renders models (textures and meshes)
-	//void RenderTextures(); Not needed any more. Models have meshes and textures and both are rendered
 
 	void SetVsync(bool value);
 

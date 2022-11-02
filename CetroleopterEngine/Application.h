@@ -8,7 +8,6 @@
 #include "Module.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
-#include "ModuleAudio.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleCamera3D.h"
@@ -28,7 +27,6 @@ public:
 	ModuleInput* input;
 	ModuleFS* moduleFS;
 	ModuleModelImport* modelImport;
-	//ModuleAudio* audio;
 	ModuleSaveLoad* save_load;
 	ModuleSceneIntro* scene_intro;
 	ModuleRenderer3D* renderer3D;
@@ -37,8 +35,6 @@ public:
 	ModuleGameObject* moduleGameObject;
 	
 	
-	//ModulePhysics3D* physics;
-
 	bool debug;
 	bool appExit = false;
 	bool enginePaused = false;
