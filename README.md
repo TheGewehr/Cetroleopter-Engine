@@ -1,6 +1,6 @@
 ### Cetroleopter Engine
 
-![logo_motor](https://user-images.githubusercontent.com/73583005/199370122-8b7107d8-fba2-47b2-b4b2-aa7961a00640.png)
+![logo_motor](https://user-images.githubusercontent.com/73583005/199374861-d922d9cb-46e2-48f1-bbcb-1b8dc3789e2c.png)
 
  #Our first game engine... ( ͡° ͜ʖ ͡°)
 
@@ -49,11 +49,12 @@ For now, it only saves and loads the configuration, but once we polish our game 
 
 - **Mouse Wheel Backward**: Camera Zoom Backwards
 
+- **Shift while mooving**: speeds up the movement of the camera
 
 ## Developers:
 
 - Alvaro Milla:
-  - Github Account: [mrmille](https://github.com/mrmille)
+  - Github Account: [mrmille](https://github.com/mrmile)
 
 - Alexandre Carreras:
   - Github Account: [TheGewehr](https://github.com/TheGewehr)
