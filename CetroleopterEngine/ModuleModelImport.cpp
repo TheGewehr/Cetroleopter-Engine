@@ -414,3 +414,15 @@ uint ModuleModelImport::CheckerTexture()
 
 	return textureID;
 }
+
+void ModuleModelImport::InitializeTransform(C_Transform* ctrans, const aiMatrix4x4& mat)
+{
+	aiVector3D t, s;
+	aiQuaternion r;
+	mat.Decompose(s, r, t);
+	Quat rot = Quat(r.x, r.y, r.z, r.w);
+	float3 scale = float3(s.x, s.y, s.z);
+	float3 pos = float3(t.x, t.y, t.z);
+	ctrans->local_mat = float4x4::FromTRS(pos, rot, scale);
+	ctrans->valid_tree = false;
+}

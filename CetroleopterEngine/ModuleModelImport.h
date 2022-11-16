@@ -85,6 +85,9 @@ public:
 
 	uint CheckerTexture();
 
+
+	void InitializeTransform(C_Transform* ctrans, const aiMatrix4x4& mat);
+
 public:
 	//std::vector<MeshVertexData> meshes;
 	//std::vector<TextureData> textures;
