@@ -202,6 +202,7 @@
     <ClInclude Include="mathGeoLib\Math\vec2d.h" />
     <ClInclude Include="mathGeoLib\Time\Clock.h" />
     <ClInclude Include="ModuleCamera3D.h" />
+    <ClInclude Include="Component.h" />
     <ClInclude Include="ModuleFS.h" />
     <ClInclude Include="ModuleGameObject.h" />
     <ClInclude Include="ModuleModelImport.h" />
@@ -284,6 +285,7 @@
     <ClCompile Include="mathGeoLib\Math\TransformOps.cpp" />
     <ClCompile Include="mathGeoLib\Time\Clock.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
+    <ClCompile Include="Component.cpp" />
     <ClCompile Include="ModuleFS.cpp" />
     <ClCompile Include="ModuleGameObject.cpp" />
     <ClCompile Include="ModuleInput.cpp" />

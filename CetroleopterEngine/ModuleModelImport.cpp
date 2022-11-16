@@ -6,6 +6,8 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleModelImport.h"
 #include "ModuleGameObject.h"
+#include "ModuleTransformComponent.h"
+#include "Component.h"
 
 #include "assimp/include/cimport.h"
 #include "assimp/include/scene.h"
@@ -75,14 +77,13 @@ void ModuleModelImport::LoadModelAndTexture(const char* meshPath, const char* te
 	LoadTexture(texturePath);
 }
 
-void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* texturePath)
+void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath)
 {
 	GameObject newGameObject;
 
 	//Mesh Loading part
 
 	const aiScene* scene = aiImportFile(meshPath, aiProcessPreset_TargetRealtime_MaxQuality);
-	//aiMesh* mesh = nullptr;
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
@@ -94,6 +95,21 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
+			ModuleComponentsMesh* NewMesh;
+			ModuleComponentMaterial* MaterialUsed;
+			Texture* textureUsed = new Texture();
+			if (i == 0)
+			{
+				NewMesh = (ModuleComponentsMesh*)objMain->GetComponent(ComponentTypes::MESH);
+				MaterialUsed = (ModuleComponentMaterial*)objMain->GetComponent(ComponentTypes::TEXTYRE);
+			}
+			if (i > 0)
+			{
+				ModuleGameObject* child = App->scene_intro->CreateEmptyGameObject("child", objMain);
+
+				NewMesh = (ModuleComponentsMesh*)child->GetComponent(ComponentTypes::MESH);
+				MaterialUsed = (ModuleComponentMaterial*)child->GetComponent(ComponentTypes::TEXTURE);
+			}
 
 			vertexData.num_vertices = scene->mMeshes[i]->mNumVertices;
 			vertexData.vertices = new float[vertexData.num_vertices * 3];
@@ -175,7 +191,7 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 					{
 						LOG("Texture correctly loaded from path: %s", texturePath);
 
-						textureData.texture_ID = ilutGLBindTexImage(); //This fucking missing line generated the UV error - DONT erase it
+						textureData.texture_ID = ilutGLBindTexImage();
 
 						glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
@@ -187,8 +203,6 @@ void ModuleModelImport::LoadModel_Textured(const char* meshPath, const char* tex
 
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-						//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
 						glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 						glGenerateMipmap(GL_TEXTURE_2D);
@@ -344,22 +358,6 @@ uint ModuleModelImport::LoadTexture(const char* path)
 
 				glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 				glGenerateMipmap(GL_TEXTURE_2D);
-
-				//glBindTexture(GL_TEXTURE_2D, 0);
-
-				//The original:
-				/*glGenTextures(1, (GLuint*)&textureID);
-				glBindTexture(GL_TEXTURE_2D, textureID);
-
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-
-				glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, internalFormat, GL_UNSIGNED_BYTE, texture);
-				glGenerateMipmap(GL_TEXTURE_2D);
-
-				glBindTexture(GL_TEXTURE_2D, 0);*/
 				
 			}
 			else LOG("ERROR converting image: %s", iluErrorString(ilGetError()));
@@ -413,16 +411,4 @@ uint ModuleModelImport::CheckerTexture()
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	return textureID;
-}
-
-void ModuleModelImport::InitializeTransform(C_Transform* ctrans, const aiMatrix4x4& mat)
-{
-	aiVector3D t, s;
-	aiQuaternion r;
-	mat.Decompose(s, r, t);
-	Quat rot = Quat(r.x, r.y, r.z, r.w);
-	float3 scale = float3(s.x, s.y, s.z);
-	float3 pos = float3(t.x, t.y, t.z);
-	ctrans->local_mat = float4x4::FromTRS(pos, rot, scale);
-	ctrans->valid_tree = false;
 }
