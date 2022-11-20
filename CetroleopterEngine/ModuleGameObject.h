@@ -6,20 +6,20 @@
 #include "ModuleModelImport.h"
 #include "Component.h"
 
-struct MeshVertexData;
-struct TextureData;
-
-struct GameObject
-{
-	uint objectID;
-
-	GameObject* parent = nullptr;
-
-	std::vector<MeshVertexData> meshes;
-	std::vector<TextureData> textures;
-	std::vector<GameObject*> children;
-	
-};
+//struct MeshVertexData;
+//struct TextureData;
+//
+//struct GameObject
+//{
+//	uint objectID;
+//
+//	GameObject* parent = nullptr;
+//
+//	std::vector<MeshVertexData> meshes;
+//	std::vector<TextureData> textures;
+//	std::vector<GameObject*> children;
+//	
+//};
 
 class ModuleGameObject
 {
@@ -28,24 +28,23 @@ public:
 	~ModuleGameObject();
 
 	bool Init();
-	update_status Update(float dt);
+	update_status Update();
 	void Render();
 	bool CleanUp();
 
 	bool GetObjectIsActive();
 	void SetObjectActive(bool state);
 	bool GetObjectIsSelected();
-	void CurrentSelectObject();
+	void SelectObject();
 	//std::string GetName();
 	void SetName(const char* newName);
 	std::string GetName();
 	std::string GetMeshPath();
 	std::string GetTexturePath();
 
-	bool AddChild(ModuleGameObject* child);
-	bool DeleteChild(ModuleGameObject* child);
+	void AddChild(ModuleGameObject* child);
+	void DeleteChild(ModuleGameObject* child);
 	Component* GetComponent(ComponentTypes type);
-	Component* AddComponent(ComponentTypes type);
 
 public:
 
@@ -60,8 +59,8 @@ private:
 
 	uint id_;
 	std::string name_;
-	bool is_active;
-	bool selectedForInspector = false;
+	bool isAtive_;
+	bool isObjectSelected_ = false;
 };
 
 #endif // !_GAME_OBJECT

@@ -79,7 +79,7 @@ void ModuleModelImport::LoadModelAndTexture(const char* meshPath, const char* te
 
 void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath)
 {
-	GameObject newGameObject;
+	//GameObject newGameObject;
 
 	//Mesh Loading part
 
@@ -95,12 +95,12 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
-			ModuleComponentsMesh* NewMesh;
-			ModuleComponentMaterial* MaterialUsed;
+			MeshComponent* mesh;
+			TextureComponent* textureUsed;
 			Texture* textureUsed = new Texture();
 			if (i == 0)
 			{
-				NewMesh = (ModuleComponentsMesh*)objMain->GetComponent(ComponentTypes::MESH);
+				NewMesh = (MeshComponent*)objMain->GetComponent(ComponentTypes::MESH);
 				MaterialUsed = (ModuleComponentMaterial*)objMain->GetComponent(ComponentTypes::TEXTYRE);
 			}
 			if (i > 0)

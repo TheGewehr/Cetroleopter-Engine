@@ -21,7 +21,10 @@ public:
 	Component(ModuleGameObject* objMain, ComponentTypes componentType, const char* name, bool isActive = true);
 	~Component();
 
-public:
+	bool Init();
+	update_status Update();
+	bool CleanUp();
+
 
 	bool IsComponentActive() const;
 	void SetComponentIsActive(const bool& state);

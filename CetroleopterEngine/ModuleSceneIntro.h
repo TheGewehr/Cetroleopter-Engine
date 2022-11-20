@@ -18,6 +18,6 @@ public:
 	bool CleanUp();
 
 
-private:
-	
+public:
+	std::vector<ModuleGameObject*> gameObjects;
 };

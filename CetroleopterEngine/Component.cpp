@@ -14,6 +14,27 @@ Component::~Component()
 
 }
 
+bool Component::Init()
+{
+
+
+	return true;
+}
+
+update_status Component::Update(float dt)
+{
+
+
+	return UPDATE_CONTINUE;
+}
+
+bool Component::CleanUp()
+{
+
+
+	return true;
+}
+
 bool Component::IsComponentActive() const
 {
 	return isActive_;

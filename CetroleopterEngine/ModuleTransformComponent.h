@@ -7,9 +7,9 @@
 #include "Globals.h"
 #include "ModuleGameObject.h"
 
-struct GameObject;
+class GameObject;
 
-class TransformComponent
+class TransformComponent : public Component
 {
 public:
 	TransformComponent();
