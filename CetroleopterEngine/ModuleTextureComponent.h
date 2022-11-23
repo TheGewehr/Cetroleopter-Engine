@@ -22,6 +22,8 @@ public:
 
 public:
 
+
+	const char* texturePath;
 };
 
 

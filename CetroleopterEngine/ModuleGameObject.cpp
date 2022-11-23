@@ -5,6 +5,8 @@
 #include "ModuleSceneIntro.h"
 #include "ModuleModelImport.h"
 #include "ModuleGameObject.h"
+#include "ModuleMeshComponent.h"
+#include "ModuleTextureComponent.h"
 
 ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive) : id_(obj_ID), name_(name), isAtive_(isActive)
 {

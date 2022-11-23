@@ -7,6 +7,8 @@
 #include "ModuleModelImport.h"
 #include "ModuleGameObject.h"
 #include "ModuleTransformComponent.h"
+#include "ModuleMeshComponent.h"
+#include "ModuleTextureComponent.h"
 #include "Component.h"
 
 #include "assimp/include/cimport.h"
@@ -96,19 +98,19 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
 			MeshComponent* mesh;
-			TextureComponent* textureUsed;
-			Texture* textureUsed = new Texture();
+			TextureComponent* texture;
+			TextureData* texture = new TextureData();
 			if (i == 0)
 			{
-				NewMesh = (MeshComponent*)objMain->GetComponent(ComponentTypes::MESH);
-				MaterialUsed = (ModuleComponentMaterial*)objMain->GetComponent(ComponentTypes::TEXTYRE);
+				mesh = (MeshComponent*)objMain->GetComponent(ComponentTypes::MESH);
+				texture = (TextureComponent*)objMain->GetComponent(ComponentTypes::TEXTURE);
 			}
 			if (i > 0)
 			{
 				ModuleGameObject* child = App->scene_intro->CreateEmptyGameObject("child", objMain);
 
-				NewMesh = (ModuleComponentsMesh*)child->GetComponent(ComponentTypes::MESH);
-				MaterialUsed = (ModuleComponentMaterial*)child->GetComponent(ComponentTypes::TEXTURE);
+				mesh = (MeshComponent*)child->GetComponent(ComponentTypes::MESH);
+				texture = (TextureComponent*)child->GetComponent(ComponentTypes::TEXTURE);
 			}
 
 			vertexData.num_vertices = scene->mMeshes[i]->mNumVertices;
