@@ -21,7 +21,7 @@ bool Component::Init()
 	return true;
 }
 
-update_status Component::Update(float dt)
+update_status Component::Update()
 {
 
 

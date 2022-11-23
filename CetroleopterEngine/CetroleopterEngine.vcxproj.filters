@@ -453,6 +453,12 @@
     <ClInclude Include="Component.h">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleMeshComponent.h">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleTextureComponent.h">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -687,6 +693,12 @@
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleMeshComponent.cpp">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleTextureComponent.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>

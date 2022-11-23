@@ -205,9 +205,11 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ModuleFS.h" />
     <ClInclude Include="ModuleGameObject.h" />
+    <ClInclude Include="ModuleMeshComponent.h" />
     <ClInclude Include="ModuleModelImport.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="ModuleSaveLoad.h" />
+    <ClInclude Include="ModuleTextureComponent.h" />
     <ClInclude Include="ModuleTransformComponent.h" />
     <ClInclude Include="ModuleUi.h" />
     <ClInclude Include="Module.h" />
@@ -289,10 +291,12 @@
     <ClCompile Include="ModuleFS.cpp" />
     <ClCompile Include="ModuleGameObject.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleMeshComponent.cpp" />
     <ClCompile Include="ModuleModelImport.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
     <ClCompile Include="ModuleSaveLoad.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
+    <ClCompile Include="ModuleTextureComponent.cpp" />
     <ClCompile Include="ModuleTransformComponent.cpp" />
     <ClCompile Include="ModuleUi.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
