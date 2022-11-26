@@ -13,7 +13,7 @@ class ModuleModelImport;
 class TextureComponent : public Component
 {
 public:
-	TextureComponent();
+	TextureComponent(ModuleGameObject* base);
 	~TextureComponent();
 
 	bool Init();
@@ -21,7 +21,8 @@ public:
 	bool CleanUp();
 
 public:
-
+	std::vector<TextureData*> textures;
+	TextureData* objectTexture;
 
 	const char* texturePath;
 };

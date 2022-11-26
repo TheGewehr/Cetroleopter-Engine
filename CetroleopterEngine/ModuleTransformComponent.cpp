@@ -1,7 +1,7 @@
 #include "ModuleTransformComponent.h"
 #include "ModuleGameObject.h"
 
-TransformComponent::TransformComponent()
+TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TRANSFORM, "Mesh")
 {
 	updateWorld = false;	
 
@@ -11,7 +11,7 @@ TransformComponent::TransformComponent()
 		{
 			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
 			{
-				owner = App->moduleGameObject->objects[i];
+				base = App->moduleGameObject->objects[i];
 
 				position = { 0,0,0 };
 				
@@ -132,14 +132,14 @@ void TransformComponent::SetChildsAsDirty()
 		{
 			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
 			{
-				owner = App->moduleGameObject->objects[i];
+				base = App->moduleGameObject->objects[i];
 				i = App->moduleGameObject->objects.size();
 				j = App->moduleGameObject->objects[i].meshes.size();
 			}
 		}
 	}
 	
-	if (owner.children.empty())
+	if (base.children.empty())
 		return;
 }
 
@@ -196,23 +196,23 @@ void TransformComponent::UpdateWorldTransform()
 		{
 			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
 			{
-				owner = App->moduleGameObject->objects[i];
+				base = App->moduleGameObject->objects[i];
 				i = App->moduleGameObject->objects.size();
 				j = App->moduleGameObject->objects[i].meshes.size();
 			}
 		}
 	}
 
-	if (owner.parent != nullptr)
+	if (base.parent != nullptr)
 	{
-		for (int i = 0; i < owner.parent->meshes.size(); i++)
+		for (int i = 0; i < base.parent->meshes.size(); i++)
 		{
-			worldTransform = owner.parent->meshes[i].transform->worldTransform * localTransform;
+			worldTransform = base.parent->meshes[i].transform->worldTransform * localTransform;
 		}
 	}
 	else
 	{
-		for (int i = 0; i < owner.parent->meshes.size(); i++)
+		for (int i = 0; i < base.parent->meshes.size(); i++)
 		{
 			worldTransform = localTransform;
 		}
@@ -232,18 +232,18 @@ void TransformComponent::SyncLocalToWorld()
 		{
 			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
 			{
-				owner = App->moduleGameObject->objects[i];
+				base = App->moduleGameObject->objects[i];
 				i = App->moduleGameObject->objects.size();
 				j = App->moduleGameObject->objects[i].meshes.size();
 			}
 		}
 	}
 
-	if (owner.parent != nullptr)
+	if (base.parent != nullptr)
 	{
-		for (int i = 0; i < owner.parent->meshes.size(); i++)
+		for (int i = 0; i < base.parent->meshes.size(); i++)
 		{
-			localTransform = owner.parent->meshes[i].transform->worldTransform.Inverted() * worldTransform;
+			localTransform = base.parent->meshes[i].transform->worldTransform.Inverted() * worldTransform;
 		}
 	}
 	else

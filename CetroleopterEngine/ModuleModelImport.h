@@ -78,9 +78,7 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void LoadModelAndTexture(const char* meshPath, const char* texturePath); //Loads the model (meshes and a texture)
 	void LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
-	void LoadMesh(const char* path); //Loads the mesh
 	uint LoadTexture(const char* path); //Loads the textures
 
 	uint CheckerTexture();

@@ -9,6 +9,10 @@
 #include "ModuleRenderer3D.h"
 #include "ModuleModelImport.h"
 #include "ModuleGameObject.h"
+#include "ModuleTransformComponent.h"
+#include "ModuleMeshComponent.h"
+#include "ModuleTextureComponent.h"
+#include "Component.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -306,10 +310,10 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 {
 	if (gameObject.GetObjectIsActive())
 	{
-		ModuleComponentsMesh* meshComponent = (ModuleComponentsMesh*)gameObject.GetComponent(ComponentTypes::MESH);
-		ModuleComponentMaterial* materialComponent = (ModuleComponentMaterial*)gameObject.GetComponent(ComponentTypes::TEXTURE);
+		MeshComponent* meshComponent = (MeshComponent*)gameObject.GetComponent(ComponentTypes::MESH);
+		TextureComponent* materialComponent = (TextureComponent*)gameObject.GetComponent(ComponentTypes::TEXTURE);
 
-		if (meshComponent->IsActive())
+		if (meshComponent->IsComponentActive())
 		{
 			if (meshComponent != nullptr)
 			{
@@ -320,14 +324,14 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 				glVertexPointer(3, GL_FLOAT, 0, NULL);
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshComponent->mesh.id_index);
 				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_uvs);
+				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_UV);
 
-				if (materialComponent->IsActive())
+				if (materialComponent->IsComponentActive())
 				{
-					if (materialComponent->materialUsed != nullptr)
+					if (materialComponent->objectTexture != nullptr)
 					{
 						glTexCoordPointer(3, GL_FLOAT, 0, NULL);
-						glBindTexture(GL_TEXTURE_2D, materialComponent->materialUsed->id);
+						glBindTexture(GL_TEXTURE_2D, materialComponent->objectTexture->texture_ID);
 					}
 				}
 
@@ -336,7 +340,7 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 					glBindTexture(GL_TEXTURE_2D, checkerTextureID);
 				}
 
-				glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_index, GL_UNSIGNED_INT, NULL);
+				glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
 				glBindTexture(GL_TEXTURE_2D, 0);
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 				glBindBuffer(GL_ARRAY_BUFFER, 0);

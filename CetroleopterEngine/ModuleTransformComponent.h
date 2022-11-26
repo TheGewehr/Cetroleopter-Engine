@@ -12,7 +12,7 @@ class GameObject;
 class TransformComponent : public Component
 {
 public:
-	TransformComponent();
+	TransformComponent(ModuleGameObject* base);
 	~TransformComponent();
 
 	float3 GetPosition()const;
@@ -61,7 +61,7 @@ public:
 
 	bool updateWorld;
 
-	GameObject owner;
+	GameObject base;
 
 };
 

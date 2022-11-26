@@ -17,6 +17,7 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	ModuleGameObject* CreateEmptyGameObject(ModuleGameObject* parent = nullptr, const char* name = nullptr);
 
 public:
 	std::vector<ModuleGameObject*> gameObjects;

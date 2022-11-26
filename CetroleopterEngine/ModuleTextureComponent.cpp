@@ -1,7 +1,7 @@
 #include "ModuleTextureComponent.h"
 #include "ModuleGameObject.h"
 
-TextureComponent::TextureComponent()
+TextureComponent::TextureComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TEXTURE, "Mesh")
 {
 	
 }

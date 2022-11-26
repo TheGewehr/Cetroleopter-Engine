@@ -53,10 +53,10 @@ void ModuleGameObject::Render()
 	{
 		TransformComponent* transform = (TransformComponent*)App->scene_intro->gameObjects[i]->GetComponent(ComponentTypes::TRANSFORM);
 		App->renderer3D->RenderGameObjects(*App->scene_intro->gameObjects.at(i), transform->position);
-		ModuleGameObject* owner = App->scene_intro->gameObjects.at(i);
-		for (int j = 0; j < owner->childs.size(); j++)
+		ModuleGameObject* base = App->scene_intro->gameObjects.at(i);
+		for (int j = 0; j < base->childs.size(); j++)
 		{
-			App->renderer3D->RenderGameObjects(*owner->childs.at(j), transform->position);
+			App->renderer3D->RenderGameObjects(*base->childs.at(j), transform->position);
 		}
 	}
 }

@@ -73,12 +73,6 @@ bool ModuleModelImport::CleanUp()
 	return true;
 }
 
-void ModuleModelImport::LoadModelAndTexture(const char* meshPath, const char* texturePath)
-{
-	LoadMesh(meshPath);
-	LoadTexture(texturePath);
-}
-
 void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath)
 {
 	//GameObject newGameObject;
@@ -89,40 +83,40 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
-		MeshVertexData vertexData;
+		//MeshVertexData vertexData;
 		// Use scene->mNumMeshes to iterate on scene->mMeshes array
-		TextureData textureData;
-		textureData.texture_ID = 0;
-		textureData.image_ID = 0;
+		//TextureData textureData;
+		//textureData.texture_ID = 0;
+		//textureData.image_ID = 0;
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
-			MeshComponent* mesh;
-			TextureComponent* texture;
+			MeshComponent* meshComponent;
+			TextureComponent* textureComponent;
 			TextureData* texture = new TextureData();
 			if (i == 0)
 			{
-				mesh = (MeshComponent*)objMain->GetComponent(ComponentTypes::MESH);
-				texture = (TextureComponent*)objMain->GetComponent(ComponentTypes::TEXTURE);
+				meshComponent = (MeshComponent*)objMain->GetComponent(ComponentTypes::MESH);
+				textureComponent = (TextureComponent*)objMain->GetComponent(ComponentTypes::TEXTURE);
 			}
 			if (i > 0)
 			{
-				ModuleGameObject* child = App->scene_intro->CreateEmptyGameObject("child", objMain);
+				ModuleGameObject* child = App->scene_intro->CreateEmptyGameObject(objMain, "child");
 
-				mesh = (MeshComponent*)child->GetComponent(ComponentTypes::MESH);
-				texture = (TextureComponent*)child->GetComponent(ComponentTypes::TEXTURE);
+				meshComponent = (MeshComponent*)child->GetComponent(ComponentTypes::MESH);
+				textureComponent = (TextureComponent*)child->GetComponent(ComponentTypes::TEXTURE);
 			}
 
-			vertexData.num_vertices = scene->mMeshes[i]->mNumVertices;
-			vertexData.vertices = new float[vertexData.num_vertices * 3];
-			memcpy(vertexData.vertices, scene->mMeshes[i]->mVertices, sizeof(float3) * vertexData.num_vertices);
-			LOG("New mesh with %d vertices", vertexData.num_vertices);
+			meshComponent->mesh.num_vertices = scene->mMeshes[i]->mNumVertices;
+			meshComponent->mesh.vertices = new float[meshComponent->mesh.num_vertices * 3];
+			memcpy(meshComponent->mesh.vertices, scene->mMeshes[i]->mVertices, sizeof(float3) * meshComponent->mesh.num_vertices);
+			LOG("New mesh with %d vertices", meshComponent->mesh.num_vertices);
 
 			// copy faces
 			if (scene->mMeshes[i]->HasFaces())
 			{
-				vertexData.num_indices = scene->mMeshes[i]->mNumFaces * 3;
-				vertexData.indices = new uint[vertexData.num_indices]; // assume each face is a triangle
+				meshComponent->mesh.num_indices = scene->mMeshes[i]->mNumFaces * 3;
+				meshComponent->mesh.indices = new uint[meshComponent->mesh.num_indices]; // assume each face is a triangle
 
 				for (uint j = 0; j < scene->mMeshes[i]->mNumFaces; j++)
 				{
@@ -132,45 +126,44 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 					}
 					else
 					{
-						memcpy(&vertexData.indices[j * 3], scene->mMeshes[i]->mFaces[j].mIndices, 3 * sizeof(uint));
+						memcpy(&meshComponent->mesh.indices[j * 3], scene->mMeshes[i]->mFaces[j].mIndices, 3 * sizeof(uint));
 					}
 				}
 			}
 
 			if (scene->mMeshes[i]->HasTextureCoords(0))
 			{
-				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
-				vertexData.texture_coords_indices = new float[vertexData.num_UVs * 3];
-				memcpy(vertexData.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], vertexData.num_UVs * sizeof(float3));
-				vertexData.meshTexturesData.texture_ID = scene->mMeshes[i]->mMaterialIndex;
+				meshComponent->mesh.num_UVs = scene->mMeshes[i]->mNumVertices;
+				meshComponent->mesh.texture_coords_indices = new float[meshComponent->mesh.num_UVs * 3];
+				memcpy(meshComponent->mesh.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], meshComponent->mesh.num_UVs * sizeof(float3));
+				meshComponent->mesh.meshTexturesData.texture_ID = scene->mMeshes[i]->mMaterialIndex;
 			}
 			
 
-			glGenBuffers(1, &vertexData.id_vertex);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_vertex);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_vertices * 3, vertexData.vertices, GL_STATIC_DRAW);
+			glGenBuffers(1, &meshComponent->mesh.id_vertex);
+			glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_vertex);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * meshComponent->mesh.num_vertices * 3, meshComponent->mesh.vertices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 
-			glGenBuffers(1, &vertexData.id_index);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_index);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
+			glGenBuffers(1, &meshComponent->mesh.id_index);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshComponent->mesh.id_index);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * meshComponent->mesh.num_indices, meshComponent->mesh.indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-			glGenBuffers(1, &(vertexData.id_UV));
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_UV);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
+			glGenBuffers(1, &(meshComponent->mesh.id_UV));
+			glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_UV);
+			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * meshComponent->mesh.num_UVs * 3, meshComponent->mesh.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 
 
 			//Texture Loading part
 
-			
-
 			if (texturePath != nullptr)
 			{
 
-				ilGenImages(1, (ILuint*)&textureData.image_ID);
-				ilBindImage(textureData.image_ID);
+				ilGenImages(1, (ILuint*)&texture->image_ID);
+				ilBindImage(texture->image_ID);
 
 				char* data = nullptr;
 				uint file_size = App->moduleFS->Load(texturePath, &data);
@@ -193,12 +186,12 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 					{
 						LOG("Texture correctly loaded from path: %s", texturePath);
 
-						textureData.texture_ID = ilutGLBindTexImage();
+						texture->texture_ID = ilutGLBindTexImage();
 
 						glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-						glGenTextures(1, (GLuint*)&textureData.texture_ID);
-						glBindTexture(GL_TEXTURE_2D, textureData.texture_ID);
+						glGenTextures(1, (GLuint*)&texture->texture_ID);
+						glBindTexture(GL_TEXTURE_2D, texture->texture_ID);
 
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 						glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -217,30 +210,31 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 				else
 				{
 					LOG("ERROR loading image: %s", iluErrorString(ilGetError()));
-					ilDeleteImages(1, &textureData.image_ID);
+					ilDeleteImages(1, &texture->image_ID);
 				}
 			}
 			else LOG("ERROR loading image from path: %s", texturePath);
 
-			if (textureData.texture_ID != 0)
+			if (texture->texture_ID != 0)
 			{
-				textureData.path = texturePath;
-				vertexData.path = meshPath;
-				vertexData.meshTexturesData.path = texturePath;
-				vertexData.meshTexturesData.texture_ID = textureData.texture_ID;
-				vertexData.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
-				vertexData.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+				texture->path = texturePath;
+				meshComponent->mesh.path = meshPath;
+				meshComponent->mesh.meshTexturesData.path = texturePath;
+				meshComponent->mesh.meshTexturesData.texture_ID = texture->texture_ID;
+				meshComponent->mesh.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
+				meshComponent->mesh.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+
+				textureComponent->objectTexture = texture;
+				textureComponent->textures.push_back(texture);
 			}
-			newGameObject.meshes.push_back(vertexData);
-			//textures.push_back(textureData);
-			//meshes.push_back(vertexData);
+			//newGameObject.meshes.push_back(vertexData);
 		}
 
 		
 
-		newGameObject.textures.push_back(textureData);
+		//newGameObject.textures.push_back(textureData);
 
-		App->moduleGameObject->objects.push_back(newGameObject);
+		//App->moduleGameObject->objects.push_back(newGameObject);
 		aiReleaseImport(scene);
 	}
 	else
@@ -249,87 +243,9 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 	}
 }
 
-void ModuleModelImport::LoadMesh(const char* path)
-{
-	GameObject newGameObject;
-
-	const aiScene* scene = aiImportFile(path, aiProcessPreset_TargetRealtime_MaxQuality);
-	MeshVertexData vertexData;
-	//aiMesh* mesh = nullptr;
-	
-	if (scene != nullptr && scene->HasMeshes()) //The original: if (scene != nullptr && aiScene > HasMeshes())
-	{
-		// Use scene->mNumMeshes to iterate on scene->mMeshes array
-		
-		for (uint i = 0; i < scene->mNumMeshes; i++)
-		{
-
-			vertexData.num_vertices = scene->mMeshes[i]->mNumVertices;
-			vertexData.vertices = new float[vertexData.num_vertices * 3];
-			memcpy(vertexData.vertices, scene->mMeshes[i]->mVertices, sizeof(float) * vertexData.num_vertices * 3); // * 3 ?
-			LOG("New mesh with %d vertices", vertexData.num_vertices);
-
-			// copy faces
-			if (scene->mMeshes[i]->HasFaces())
-			{
-				vertexData.num_indices = scene->mMeshes[i]->mNumFaces * 3;
-				vertexData.indices = new uint[vertexData.num_indices]; // assume each face is a triangle
-
-				for (uint j = 0; j < scene->mMeshes[i]->mNumFaces; j++)
-				{
-					if (scene->mMeshes[i]->mFaces[j].mNumIndices != 3)
-					{
-						LOG("WARNING, geometry face with != 3 indices!");
-					}
-					else
-					{
-						memcpy(&vertexData.indices[j * 3], scene->mMeshes[i]->mFaces[j].mIndices, 3 * sizeof(uint));
-					}
-				}
-			}
-
-			if (scene->mMeshes[i]->HasTextureCoords(0))
-			{
-				vertexData.num_UVs = scene->mMeshes[i]->mNumVertices;
-				vertexData.texture_coords_indices = new float[vertexData.num_UVs * 3];
-				memcpy(vertexData.texture_coords_indices, scene->mMeshes[i]->mTextureCoords[0], vertexData.num_UVs * sizeof(float3));
-				vertexData.meshTexturesData.texture_ID = scene->mMeshes[i]->mMaterialIndex;
-			}
-
-
-			glGenBuffers(1, &vertexData.id_vertex);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_vertex);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_vertices * 3, vertexData.vertices, GL_STATIC_DRAW);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-			glGenBuffers(1, &vertexData.id_index);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData.id_index);
-			glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * vertexData.num_indices, vertexData.indices, GL_STATIC_DRAW);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-			glGenBuffers(1, &(vertexData.id_UV));
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData.id_UV);
-			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * vertexData.num_UVs * 3, vertexData.texture_coords_indices, GL_STATIC_DRAW);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-			vertexData.path = path;
-			newGameObject.meshes.push_back(vertexData);
-			//meshes.push_back(vertexData);
-		}
-
-		App->moduleGameObject->objects.push_back(newGameObject);
-		aiReleaseImport(scene);
-	}
-	else
-	{
-		LOG("Error loading scene % s", path);
-	}
-
-}
-
 uint ModuleModelImport::LoadTexture(const char* path)
 {
-	GameObject newGameObject;
+	//GameObject newGameObject;
 
 	TextureData textureData;
 
@@ -369,10 +285,9 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	else LOG("ERROR loading image from path: %s", path);
 
 	textureData.path = path;
-	newGameObject.textures.push_back(textureData);
-	//textures.push_back(textureData);
+	//newGameObject.textures.push_back(textureData);
 
-	App->moduleGameObject->objects.push_back(newGameObject);
+	//App->moduleGameObject->objects.push_back(newGameObject);
 
 	return textureData.texture_ID;
 }
