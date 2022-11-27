@@ -117,15 +117,16 @@ update_status ModuleInput::PreUpdate(float dt)
 				if (e.drop.file != nullptr)
 				{
 					const char* dropped_filedir = e.drop.file;
-					if (App->moduleFS->GetFileExtension(dropped_filedir) == "fbx")
+					if (App->moduleFS->GetFileExtension(dropped_filedir) == "fbx" || App->moduleFS->GetFileExtension(dropped_filedir) == "FBX")
 					{
-						App->modelImport->LoadMesh(dropped_filedir);
+						//App->modelImport->LoadMesh(dropped_filedir);
+						App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "NOT_NAMED_YET"), dropped_filedir, nullptr);
 					}
-					if (App->moduleFS->GetFileExtension(dropped_filedir) == "png")
+					if (App->moduleFS->GetFileExtension(dropped_filedir) == "png" || App->moduleFS->GetFileExtension(dropped_filedir) == "PNG")
 					{
 						App->modelImport->LoadTexture(dropped_filedir);
 					}
-					if (App->moduleFS->GetFileExtension(dropped_filedir) == "dds")
+					if (App->moduleFS->GetFileExtension(dropped_filedir) == "dds" || App->moduleFS->GetFileExtension(dropped_filedir) == "DDS")
 					{
 						App->modelImport->LoadTexture(dropped_filedir);
 					}

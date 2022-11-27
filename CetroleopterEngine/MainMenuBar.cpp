@@ -105,15 +105,15 @@ bool MainMenuBar::EditMenuBar()
 		ImGui::Separator();
 		if (ImGui::MenuItem("Load Test Model - BakerHouse"))
 		{
-			App->modelImport->LoadModel_Textured("Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
 		}
 		if (ImGui::MenuItem("Load Test Model - BusStation"))
 		{
-			App->modelImport->LoadModel_Textured("Assets/BusStation.fbx", "Assets/lambert23_Base_Color.png");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BusStation"), "Assets/BusStation.fbx", "Assets/lambert23_Base_Color.png");
 		}
 		if (ImGui::MenuItem("Load Test Model - Zotac RTX_GPU"))
 		{
-			App->modelImport->LoadModel_Textured("Assets/graphic_card.fbx", "Assets/graphic_card_Base_Color.png");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "GraphicCard"), "Assets/graphic_card.fbx", "Assets/graphic_card_Base_Color.png");
 		}
 
 		ImGui::EndMenu();
@@ -130,31 +130,31 @@ bool MainMenuBar::CreateMenuBar()
 	{
 		if (ImGui::MenuItem("Cube"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/cube_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cube"), "Assets/Primitives/cube_primitive.fbx", nullptr);
 		}
 		if (ImGui::MenuItem("Sphere"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/sphere_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Sphere"), "Assets/Primitives/sphere_primitive.fbx", nullptr);
 		}
 		if (ImGui::MenuItem("Cone"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/cone_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cone"), "Assets/Primitives/cone_primitive.fbx", nullptr);
 		}
 		if (ImGui::MenuItem("Pyramid"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/pyramid_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Pyramid"), "Assets/Primitives/pyramid_primitive.fbx", nullptr);
 		}
 		if (ImGui::MenuItem("Cylinder"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/cylinder_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cylinder"), "Assets/Primitives/cylinder_primitive.fbx", nullptr);
 		}
 		if (ImGui::MenuItem("Torus"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/torus_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Torus"), "Assets/Primitives/torus_primitive.fbx", nullptr);
 		}
 		if (ImGui::MenuItem("Polyhedron Ball"))
 		{
-			App->modelImport->LoadMesh("Assets/Primitives/polyhedron_primitive.fbx");
+			App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Polyhedron"), "Assets/Primitives/polyhedron_primitive.fbx", nullptr);
 		}
 
 		ImGui::EndMenu();

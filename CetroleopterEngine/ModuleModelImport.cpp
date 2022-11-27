@@ -284,7 +284,11 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	}
 	else LOG("ERROR loading image from path: %s", path);
 
-	textureData.path = path;
+	//textureData.path = path;
+	if (textureData.texture_ID != 0)
+	{
+		textureData.path = path;
+	}
 	//newGameObject.textures.push_back(textureData);
 
 	//App->moduleGameObject->objects.push_back(newGameObject);
