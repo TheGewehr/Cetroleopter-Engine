@@ -310,8 +310,8 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 {
 	if (gameObject.GetObjectIsActive())
 	{
-		MeshComponent* meshComponent = (MeshComponent*)gameObject.GetComponent(ComponentTypes::MESH);
-		TextureComponent* materialComponent = (TextureComponent*)gameObject.GetComponent(ComponentTypes::TEXTURE);
+		MeshComponent* meshComponent = (MeshComponent*)gameObject.GetComponentOfType(ComponentTypes::MESH);
+		TextureComponent* materialComponent = (TextureComponent*)gameObject.GetComponentOfType(ComponentTypes::TEXTURE);
 
 		if (meshComponent->IsComponentActive())
 		{

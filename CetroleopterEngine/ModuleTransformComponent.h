@@ -61,7 +61,7 @@ public:
 
 	bool updateWorld;
 
-	GameObject base;
+	ModuleGameObject* ComponentOwner;
 
 };
 

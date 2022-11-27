@@ -42,6 +42,9 @@ bool GameObjectsWindow::CleanUp()
 
 bool GameObjectsWindow::ObjectWindowHeader()
 {
+	//App->scene_intro->gameObjects.size()
+	//App->scene_intro->gameObjects.at(i)
+	
 	if (App->moduleGameObject->objects.size() > 0)
 	{
 		for (int i = 0; i < App->moduleGameObject->objects.size(); i++)

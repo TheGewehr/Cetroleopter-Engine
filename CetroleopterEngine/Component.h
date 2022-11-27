@@ -32,6 +32,7 @@ public:
 	const char* GetName() const;
 	void SetName(const char* newName);
 
+	
 public:
 	ComponentTypes type_;
 

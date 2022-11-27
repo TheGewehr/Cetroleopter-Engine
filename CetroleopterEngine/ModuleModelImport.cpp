@@ -96,15 +96,15 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 			TextureData* texture = new TextureData();
 			if (i == 0)
 			{
-				meshComponent = (MeshComponent*)objMain->GetComponent(ComponentTypes::MESH);
-				textureComponent = (TextureComponent*)objMain->GetComponent(ComponentTypes::TEXTURE);
+				meshComponent = (MeshComponent*)objMain->GetComponentOfType(ComponentTypes::MESH);
+				textureComponent = (TextureComponent*)objMain->GetComponentOfType(ComponentTypes::TEXTURE);
 			}
 			if (i > 0)
 			{
 				ModuleGameObject* child = App->scene_intro->CreateEmptyGameObject(objMain, "child");
 
-				meshComponent = (MeshComponent*)child->GetComponent(ComponentTypes::MESH);
-				textureComponent = (TextureComponent*)child->GetComponent(ComponentTypes::TEXTURE);
+				meshComponent = (MeshComponent*)child->GetComponentOfType(ComponentTypes::MESH);
+				textureComponent = (TextureComponent*)child->GetComponentOfType(ComponentTypes::TEXTURE);
 			}
 
 			meshComponent->mesh.num_vertices = scene->mMeshes[i]->mNumVertices;

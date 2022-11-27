@@ -51,7 +51,7 @@ void ModuleGameObject::Render()
 {
 	for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
 	{
-		TransformComponent* transform = (TransformComponent*)App->scene_intro->gameObjects[i]->GetComponent(ComponentTypes::TRANSFORM);
+		TransformComponent* transform = (TransformComponent*)App->scene_intro->gameObjects[i]->GetComponentOfType(ComponentTypes::TRANSFORM);
 		App->renderer3D->RenderGameObjects(*App->scene_intro->gameObjects.at(i), transform->position);
 		ModuleGameObject* base = App->scene_intro->gameObjects.at(i);
 		for (int j = 0; j < base->childs.size(); j++)
@@ -152,7 +152,7 @@ void ModuleGameObject::DeleteChild(ModuleGameObject* child)
 	}
 }
 
-Component* ModuleGameObject::GetComponent(ComponentTypes type)
+Component* ModuleGameObject::GetComponentOfType(ComponentTypes type)
 {
 	Component* component = nullptr;
 

@@ -3,7 +3,7 @@
 
 TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TRANSFORM, "Mesh")
 {
-	updateWorld = false;	
+	/*updateWorld = false;	
 
 	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 	{
@@ -25,7 +25,17 @@ TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base,
 	localTransform.Decompose(position, rotation, scale);
 
 	
-	localEulerRotation = rotation.ToEulerXYZ();	
+	localEulerRotation = rotation.ToEulerXYZ();	*/
+
+	ComponentOwner = base;
+
+	updateWorld = false;
+	localTransform = float4x4::identity;
+	worldTransform = float4x4::identity;
+
+	localTransform.Decompose(position, rotation, scale);
+
+	localEulerRotation = rotation.ToEulerXYZ();
 	
 }
 
@@ -126,7 +136,7 @@ void TransformComponent::SetLocalEulerRotation(float3 euler)
 
 void TransformComponent::SetChildsAsDirty()
 {
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+	/*for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 	{
 		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
 		{
@@ -140,7 +150,24 @@ void TransformComponent::SetChildsAsDirty()
 	}
 	
 	if (base.children.empty())
+		return;*/
+
+
+	if (ComponentOwner->childs.empty())
 		return;
+
+	
+
+	for (uint i = 0; i < ComponentOwner->childs.size(); ++i)
+	{
+		TransformComponent* childTransform = ComponentOwner->childs[i]->GetComponent<TransformComponent>();
+
+		if (childTransform != nullptr)
+		{
+			childTransform->updateWorld = true;
+			childTransform->SetChildsAsDirty();
+		}
+	}
 }
 
 void TransformComponent::SetWorldPosition(const float3& newPosition)
@@ -190,7 +217,7 @@ void TransformComponent::UpdateLocalTransform()
 
 void TransformComponent::UpdateWorldTransform()
 {
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+	/*for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 	{
 		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
 		{
@@ -221,12 +248,26 @@ void TransformComponent::UpdateWorldTransform()
 
 	SetChildsAsDirty();
 
+	updateWorld = false;*/
+
+
+	worldTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetComponent<TransformComponent>()->worldTransform * localTransform : localTransform;
+
+	SetChildsAsDirty();
+	
+
 	updateWorld = false;
+
+	/*C_Camera* c_camera = owner->GetComponent<C_Camera>();
+	if (c_camera != nullptr)
+	{
+		c_camera->UpdateFrustumTransform();
+	}*/
 }
 
 void TransformComponent::SyncLocalToWorld()
 {
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+	/*for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
 	{
 		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
 		{
@@ -255,7 +296,21 @@ void TransformComponent::SyncLocalToWorld()
 	
 	SetLocalTransform(localTransform);	
 
+	SetChildsAsDirty();*/
+
+	
+
+	localTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetComponent<TransformComponent>()->worldTransform.Inverted() * worldTransform : worldTransform;
+
+	SetLocalTransform(localTransform);
+
 	SetChildsAsDirty();
+
+	/*C_Camera* cCamera = owner->GetComponent<C_Camera>();
+	if (cCamera != nullptr)
+	{
+		cCamera->UpdateFrustumTransform();
+	}*/
 }
 
 void TransformComponent::SetPosition(float x, float y, float z)

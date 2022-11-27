@@ -20,5 +20,5 @@ public:
 	ModuleGameObject* CreateEmptyGameObject(ModuleGameObject* parent = nullptr, const char* name = nullptr);
 
 public:
-	std::vector<ModuleGameObject*> gameObjects;
+	std::vector<ModuleGameObject*> gameObjects = {};
 };
