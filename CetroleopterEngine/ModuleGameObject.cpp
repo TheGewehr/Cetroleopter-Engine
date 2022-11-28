@@ -109,7 +109,7 @@ std::string ModuleGameObject::GetMeshPath()
 	{
 		if (App->scene_intro->gameObjects[i]->GetObjectIsSelected())
 		{
-			MeshComponent* mesh = (MeshComponent*)App->scene_intro->gameObjects[i]->GetComponent(ComponentTypes::MESH);
+			MeshComponent* mesh = (MeshComponent*)App->scene_intro->gameObjects[i]->GetComponentOfType(ComponentTypes::MESH);
 
 			return mesh->meshPath;
 		}
@@ -124,7 +124,7 @@ std::string ModuleGameObject::GetTexturePath()
 	{
 		if (App->scene_intro->gameObjects[i]->GetObjectIsSelected())
 		{
-			TextureComponent* texture = (TextureComponent*)App->scene_intro->gameObjects[i]->GetComponent(ComponentTypes::TEXTURE);
+			TextureComponent* texture = (TextureComponent*)App->scene_intro->gameObjects[i]->GetComponentOfType(ComponentTypes::TEXTURE);
 
 			return texture->texturePath;
 		}
