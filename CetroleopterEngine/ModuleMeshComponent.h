@@ -2,15 +2,13 @@
 #define _MODULE_MESH_COMPONENT_H_
 
 
-#include "MathGeoLib.h"
-#include "Application.h"
 #include "Globals.h"
 #include "ModuleGameObject.h"
 #include "ModuleModelImport.h"
 
-class GameObject;
+class ModuleGameObject;
 class ModuleModelImport;
-struct MeshVertexData;
+//struct MeshVertexData;
 
 class MeshComponent : public Component
 {

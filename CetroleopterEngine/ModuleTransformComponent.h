@@ -7,7 +7,7 @@
 #include "Globals.h"
 #include "ModuleGameObject.h"
 
-class GameObject;
+class ModuleGameObject;
 
 class TransformComponent : public Component
 {

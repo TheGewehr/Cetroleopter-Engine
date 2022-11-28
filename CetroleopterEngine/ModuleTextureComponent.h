@@ -8,9 +8,10 @@
 #include "ModuleGameObject.h"
 #include "ModuleModelImport.h"
 
-class GameObject;
+class ModuleGameObject;
 class ModuleModelImport;
-struct TextureData;
+
+struct TextureData; //<-- Here yes
 
 class TextureComponent : public Component
 {
