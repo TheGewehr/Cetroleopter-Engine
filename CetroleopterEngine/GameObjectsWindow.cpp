@@ -45,28 +45,28 @@ bool GameObjectsWindow::ObjectWindowHeader()
 	//App->scene_intro->gameObjects.size()
 	//App->scene_intro->gameObjects.at(i)
 	
-	if (App->moduleGameObject->objects.size() > 0)
-	{
-		for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-		{
-			App->moduleGameObject->objects[i].objectID = i;
-
-			ImGui::Text("[OBJ %i]:", i);
-			ImGui::SameLine();
-
-			ImGui::PushID(i);
-			
-			if (ImGui::Button("See Object"))
-			{
-				App->moduleGameObject->currentSelectedObject = App->moduleGameObject->objects[i].objectID;
-				//LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
-			}
-
-			ImGui::PopID();
-
-			
-		}
-	}
+	//if (App->scene_intro->gameObjects.size() > 0)
+	//{
+	//	for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+	//	{
+	//		App->moduleGameObject->objects[i].objectID = i;
+	//
+	//		ImGui::Text("[OBJ %i]:", i);
+	//		ImGui::SameLine();
+	//
+	//		ImGui::PushID(i);
+	//		
+	//		if (ImGui::Button("See Object"))
+	//		{
+	//			App->moduleGameObject->currentSelectedObject = App->moduleGameObject->objects[i].objectID;
+	//			//LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
+	//		}
+	//
+	//		ImGui::PopID();
+	//
+	//		
+	//	}
+	//}
 
 	return true;
 }
