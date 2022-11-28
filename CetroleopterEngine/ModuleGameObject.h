@@ -5,9 +5,15 @@
 #include "Module.h"
 #include "ModuleModelImport.h"
 #include "Component.h"
+#include "ModuleTransformComponent.h"
+#include "ModuleTextureComponent.h"
+#include "ModuleMeshComponent.h"
 
 enum class ComponentTypes;
 class Component;
+class TransformComponent;
+class MeshComponent;
+class TextureComponent;
 
 class ModuleGameObject
 {
@@ -34,40 +40,10 @@ public:
 	void DeleteChild(ModuleGameObject* child);
 	Component* GetComponentOfType(ComponentTypes type);
 
-
-	// Getters for the components
-	template<typename T>
-	T* GetComponent()const
-	{
-		ComponentTypes type = T::GetType();
-
-		if (type == ComponentTypes::TRANSFORM)
-			return (T*)transform;
-
-		for (uint i = 0; i < components.size(); ++i)
-		{
-			if (components[i]->GetType() == type)
-			{
-				return (T*)components[i];
-			}
-		}
-		return nullptr;
-	}
-
-	template <typename T>
-	bool GetComponents(std::vector<T*>& componentType)
-	{
-		ComponentTypes type = T::GetType();
-		for (uint i = 0; i < components.size(); ++i)
-		{
-			if (components[i]->GetType() == type)
-			{
-				componentType.push_back((T*)components[i]);
-			}
-		}
-
-		return  (componentType.empty()) ? false : true;
-	}
+	// Getters for each possible components
+	TransformComponent* GetTransformComponent();
+	TextureComponent* GetTextureComponent();
+	MeshComponent* GetMeshComponent();
 
 
 public:
@@ -80,6 +56,10 @@ public:
 	int currentSelectedObject = -1;
 
 private:
+
+	Component* componentMesh;
+	Component* componentTexture;
+	Component* componentTransform;
 
 	uint id_;
 	std::string name_;

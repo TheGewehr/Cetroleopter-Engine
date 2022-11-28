@@ -1,5 +1,6 @@
 #include "ModuleTransformComponent.h"
 #include "ModuleGameObject.h"
+#include "Component.h"
 
 TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TRANSFORM, "Mesh")
 {
@@ -160,7 +161,7 @@ void TransformComponent::SetChildsAsDirty()
 
 	for (uint i = 0; i < ComponentOwner->childs.size(); ++i)
 	{
-		TransformComponent* childTransform = ComponentOwner->childs[i]->GetComponent<TransformComponent>();
+		TransformComponent* childTransform = ComponentOwner->childs[i]->GetTransformComponent();
 
 		if (childTransform != nullptr)
 		{
@@ -251,7 +252,7 @@ void TransformComponent::UpdateWorldTransform()
 	updateWorld = false;*/
 
 
-	worldTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetComponent<TransformComponent>()->worldTransform * localTransform : localTransform;
+	worldTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform : localTransform;
 
 	SetChildsAsDirty();
 	
@@ -300,7 +301,7 @@ void TransformComponent::SyncLocalToWorld()
 
 	
 
-	localTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetComponent<TransformComponent>()->worldTransform.Inverted() * worldTransform : worldTransform;
+	localTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetTransformComponent()->worldTransform.Inverted() * worldTransform : worldTransform;
 
 	SetLocalTransform(localTransform);
 

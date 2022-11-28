@@ -62,3 +62,8 @@ void Component::SetName(const char* newName)
 {
 	name_ = newName;
 }
+
+ComponentTypes Component::GetType()
+{
+	return type_;
+}

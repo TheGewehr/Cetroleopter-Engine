@@ -31,6 +31,7 @@ public:
 
 	const char* GetName() const;
 	void SetName(const char* newName);
+	ComponentTypes GetType();
 
 	
 public:

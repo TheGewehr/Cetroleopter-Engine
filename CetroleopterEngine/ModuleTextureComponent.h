@@ -10,6 +10,7 @@
 
 class GameObject;
 class ModuleModelImport;
+struct TextureData;
 
 class TextureComponent : public Component
 {

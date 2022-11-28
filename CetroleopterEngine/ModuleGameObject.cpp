@@ -14,9 +14,9 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 	this->name_ = name;
 	this->isAtive_ = isActive;
 
-	Component* componentMesh = new MeshComponent(this);
-	Component* componentTexture = new TextureComponent(this);
-	Component* componentTransform = new TransformComponent(this);
+	componentMesh = new MeshComponent(this);
+	componentTexture = new TextureComponent(this);
+	componentTransform = new TransformComponent(this);
 
 	objectComponents.push_back(componentMesh);
 	objectComponents.push_back(componentTexture);
@@ -165,4 +165,33 @@ Component* ModuleGameObject::GetComponentOfType(ComponentTypes type)
 	}
 
 	return component;
+}
+
+TransformComponent* ModuleGameObject::GetTransformComponent()
+{
+	return (TransformComponent*)componentTransform;
+}
+
+TextureComponent* ModuleGameObject::GetTextureComponent()
+{
+	for (uint i = 0; i < objectComponents.size(); ++i)
+	{
+		if (objectComponents[i]->GetType() == ComponentTypes::TEXTURE)
+		{
+			return (TextureComponent*)objectComponents[i];
+		}
+	}
+	return nullptr;
+}
+
+MeshComponent* ModuleGameObject::GetMeshComponent()
+{
+	for (uint i = 0; i < objectComponents.size(); ++i)
+	{
+		if (objectComponents[i]->GetType() == ComponentTypes::MESH)
+		{
+			return (MeshComponent*)objectComponents[i];
+		}
+	}
+	return nullptr;
 }

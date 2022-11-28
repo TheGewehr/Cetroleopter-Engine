@@ -11,6 +11,7 @@
 
 class GameObject;
 class ModuleModelImport;
+struct MeshVertexData;
 
 class MeshComponent : public Component
 {
