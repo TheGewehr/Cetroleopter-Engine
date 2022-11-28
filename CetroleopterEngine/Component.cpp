@@ -48,7 +48,7 @@ void Component::SetComponentIsActive(const bool& state)
 	{
 		for (int i = 0; i < objMain_->objectComponents.size(); i++)
 		{
-			objMain_->childs[j]->objectComponents[i]->SetIsActive(objMain_->objectComponents[i]->IsComponentActive());
+			objMain_->childs[j]->objectComponents[i]->SetComponentIsActive(objMain_->objectComponents[i]->IsComponentActive());
 		}
 	}
 }

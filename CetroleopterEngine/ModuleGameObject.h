@@ -6,20 +6,8 @@
 #include "ModuleModelImport.h"
 #include "Component.h"
 
-//struct MeshVertexData;
-//struct TextureData;
-//
-//struct GameObject
-//{
-//	uint objectID;
-//
-//	GameObject* parent = nullptr;
-//
-//	std::vector<MeshVertexData> meshes;
-//	std::vector<TextureData> textures;
-//	std::vector<GameObject*> children;
-//	
-//};
+enum class ComponentTypes;
+class Component;
 
 class ModuleGameObject
 {
@@ -51,9 +39,9 @@ public:
 	template<typename T>
 	T* GetComponent()const
 	{
-		COMPONENT_TYPE type = T::GetType();
+		ComponentTypes type = T::GetType();
 
-		if (type == COMPONENT_TYPE::TRANSFORM)
+		if (type == ComponentTypes::TRANSFORM)
 			return (T*)transform;
 
 		for (uint i = 0; i < components.size(); ++i)
@@ -69,7 +57,7 @@ public:
 	template <typename T>
 	bool GetComponents(std::vector<T*>& componentType)
 	{
-		COMPONENT_TYPE type = T::GetType();
+		ComponentTypes type = T::GetType();
 		for (uint i = 0; i < components.size(); ++i)
 		{
 			if (components[i]->GetType() == type)

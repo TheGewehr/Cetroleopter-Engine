@@ -12,7 +12,7 @@
 
 struct TransformComponent;
 
-enum TextureMaterialType
+enum class TextureMaterialType
 {
 	NONE = 0,
 	DIFFUSE,

@@ -12,7 +12,7 @@ enum class ComponentTypes
 	NONE = 0,
 	MESH,
 	TEXTURE,
-	TRANSFORM,
+	TRANSFORM
 };
 
 class Component

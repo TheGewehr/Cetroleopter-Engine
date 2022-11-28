@@ -7,6 +7,7 @@
 #include "Globals.h"
 #include "ModuleGameObject.h"
 #include "ModuleModelImport.h"
+#include "Component.h"
 
 class GameObject;
 class ModuleModelImport;

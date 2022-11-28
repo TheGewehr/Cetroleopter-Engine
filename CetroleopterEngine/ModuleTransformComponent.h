@@ -6,6 +6,7 @@
 #include "Application.h"
 #include "Globals.h"
 #include "ModuleGameObject.h"
+#include "Component.h"
 
 class GameObject;
 
