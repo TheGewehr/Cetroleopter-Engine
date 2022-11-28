@@ -6,7 +6,7 @@
 #include "Application.h"
 #include "Globals.h"
 #include "ModuleGameObject.h"
-#include "Component.h"
+#include "ModuleModelImport.h"
 
 class GameObject;
 class ModuleModelImport;

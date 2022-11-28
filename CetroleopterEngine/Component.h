@@ -15,7 +15,7 @@ enum class ComponentTypes
 	TRANSFORM
 };
 
-class Component
+class Component : public Module
 {
 public:
 	Component(ModuleGameObject* objMain, ComponentTypes componentType, const char* name, bool isActive = true);
