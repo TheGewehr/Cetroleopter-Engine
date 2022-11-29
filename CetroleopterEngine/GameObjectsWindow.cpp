@@ -47,26 +47,92 @@ bool GameObjectsWindow::ObjectWindowHeader()
 	
 	if (App->scene_intro->gameObjects.size() > 0)
 	{
-		for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
-		{
-			//App->moduleGameObject->objects[i].objectID = i;
-			//
-			//ImGui::Text("[OBJ %i]:", i);
-			//ImGui::SameLine();
-			//
-			//ImGui::PushID(i);
-			//
-			//if (ImGui::Button("See Object"))
-			//{
-			//	App->moduleGameObject->currentSelectedObject = App->moduleGameObject->objects[i].objectID;
-			//	//LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
-			//}
-			//
-			//ImGui::PopID();
-	
-			
-		}
+		TreeProcessing(App->scene_intro->gameObjects);
 	}
 
 	return true;
+}
+
+const char* GameObjectsWindow::GetObjectName(std::string name) const
+{
+	return name.c_str();
+}
+
+void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
+{
+	for (int i = 0; i < objects.size(); i++)
+	{
+		//
+		//
+		//ImGui::Text("[OBJ %s]:", App->scene_intro->gameObjects.at(i)->GetName());
+		//ImGui::SameLine();
+
+		//const char* objectNameForHeader = "
+		//
+		//
+		//
+		//if (ImGui::CollapsingHeader(GetObjectName(objects.at(i)->GetName())))
+		//{
+		//	objects.at(i)->SelectObject();
+		//	//LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
+		//}
+		//
+		//
+
+		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;;
+
+		if (objects.at(i)->childs.empty())
+		{
+			flags |= ImGuiTreeNodeFlags_Leaf;
+		}
+		if (objects.at(i)->GetObjectIsSelected() != false && objects == App->scene_intro->gameObjects)
+		{
+			flags |= ImGuiTreeNodeFlags_Selected;
+		}
+		//if (app->sceneIntro->sceneRoot != nullptr && objs == app->sceneIntro->sceneRoot)
+		//{
+		//	flags |= ImGuiTreeNodeFlags_DefaultOpen;
+		//}
+
+		if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName()), flags))
+		{
+			if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
+			{
+				if (objects.at(i)->GetObjectIsSelected() == true)
+				{
+					objects.at(i)->SelectObject();
+				}
+				else
+				{ // Review this part
+					bool isOtherSelected = false;
+					for (int j = 0; j < objects.size(); j++)
+					{
+						if (objects.at(j)->GetObjectIsSelected() == true)
+						{
+							isOtherSelected = true;
+							break;
+						}
+						
+					}
+					if (isOtherSelected == false)
+					{
+						objects.at(i)->SelectObject();
+					}
+				}
+				
+			}
+
+
+			if (!objects.at(i)->childs.empty())
+			{
+				for (uint j = 0; j < objects.at(i)->childs.size(); ++j)
+				{
+					//TreeProcessing(objects.at(j)->childs[j]);
+				}
+			}
+			ImGui::TreePop();
+		}
+
+
+	}
 }

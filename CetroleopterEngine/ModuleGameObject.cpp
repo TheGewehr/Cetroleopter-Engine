@@ -91,7 +91,7 @@ bool ModuleGameObject::GetObjectIsSelected()
 
 void ModuleGameObject::SelectObject()
 {
-
+	isObjectSelected_ = !isObjectSelected_;
 }
 
 void ModuleGameObject::SetName(const char* newName)
