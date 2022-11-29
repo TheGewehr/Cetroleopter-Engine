@@ -1,8 +1,9 @@
 #ifndef _MESH_IMPORTER_H_
 #define _MESH_IMPORTER_H_
 
-#include "Application.h"
+//#include "Application.h"
 #include "Module.h"
+#include "ModuleGameObject.h"
 //#include "ModuleTransformComponent.h"
 
 #include "glew/include/GL/glew.h"

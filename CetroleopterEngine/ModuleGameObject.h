@@ -1,9 +1,10 @@
 #ifndef _GAME_OBJECT_H_
 #define _GAME_OBJECT_H_
 
-#include "Application.h"
+//#include "Application.h"
+#include <vector>
 #include "Module.h"
-#include "ModuleModelImport.h"
+//#include "ModuleModelImport.h"
 //#include "Component.h"
 //#include "ModuleTransformComponent.h"
 //#include "ModuleTextureComponent.h"
