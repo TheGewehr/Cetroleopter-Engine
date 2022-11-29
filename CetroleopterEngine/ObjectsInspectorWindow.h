@@ -4,6 +4,7 @@
 #include "ImGuiWindowBase.h"
 #include <vector>
 
+class ModuleGameObject;
 
 class ObjectsInspectorWindow : public ImGuiWindowBase
 {
@@ -18,6 +19,7 @@ public:
 private:
 	
 	bool InspectorWindowHeader();
+	ModuleGameObject* InspectorObject = nullptr;
 
 public:
 
