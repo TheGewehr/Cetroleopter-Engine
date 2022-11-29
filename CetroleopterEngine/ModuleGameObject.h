@@ -4,10 +4,10 @@
 #include "Application.h"
 #include "Module.h"
 #include "ModuleModelImport.h"
-#include "Component.h"
-#include "ModuleTransformComponent.h"
-#include "ModuleTextureComponent.h"
-#include "ModuleMeshComponent.h"
+//#include "Component.h"
+//#include "ModuleTransformComponent.h"
+//#include "ModuleTextureComponent.h"
+//#include "ModuleMeshComponent.h"
 
 enum class ComponentTypes;
 class Component;
@@ -44,6 +44,8 @@ public:
 	TransformComponent* GetTransformComponent();
 	TextureComponent* GetTextureComponent();
 	MeshComponent* GetMeshComponent();
+
+	
 
 
 public:

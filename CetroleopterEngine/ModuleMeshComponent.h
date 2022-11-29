@@ -5,9 +5,10 @@
 #include "Globals.h"
 #include "ModuleGameObject.h"
 #include "ModuleModelImport.h"
+#include "Component.h"
 
 class ModuleGameObject;
-class ModuleModelImport;
+//class ModuleModelImport;
 //struct MeshVertexData;
 
 class MeshComponent : public Component

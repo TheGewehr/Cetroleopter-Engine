@@ -49,20 +49,20 @@ bool GameObjectsWindow::ObjectWindowHeader()
 	{
 		for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
 		{
-			App->moduleGameObject->objects[i].objectID = i;
-	
-			ImGui::Text("[OBJ %i]:", i);
-			ImGui::SameLine();
-	
-			ImGui::PushID(i);
-			
-			if (ImGui::Button("See Object"))
-			{
-				App->moduleGameObject->currentSelectedObject = App->moduleGameObject->objects[i].objectID;
-				//LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
-			}
-	
-			ImGui::PopID();
+			//App->moduleGameObject->objects[i].objectID = i;
+			//
+			//ImGui::Text("[OBJ %i]:", i);
+			//ImGui::SameLine();
+			//
+			//ImGui::PushID(i);
+			//
+			//if (ImGui::Button("See Object"))
+			//{
+			//	App->moduleGameObject->currentSelectedObject = App->moduleGameObject->objects[i].objectID;
+			//	//LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
+			//}
+			//
+			//ImGui::PopID();
 	
 			
 		}

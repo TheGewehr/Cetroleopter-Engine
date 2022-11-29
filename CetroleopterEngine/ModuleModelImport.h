@@ -3,14 +3,14 @@
 
 #include "Application.h"
 #include "Module.h"
-#include "ModuleTransformComponent.h"
+//#include "ModuleTransformComponent.h"
 
 #include "glew/include/GL/glew.h"
 
 #define CHECKERS_HEIGHT 50
 #define CHECKERS_WIDTH 50
 
-struct TransformComponent;
+//struct TransformComponent;
 
 enum class TextureMaterialType
 {
