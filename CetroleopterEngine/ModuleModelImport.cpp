@@ -212,21 +212,26 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 					LOG("ERROR loading image: %s", iluErrorString(ilGetError()));
 					ilDeleteImages(1, &texture->image_ID);
 				}
-			}
-			else LOG("ERROR loading image from path: %s", texturePath);
 
-			if (texture->texture_ID != 0)
+				if (texture->texture_ID != 0)
+				{
+					texture->path = texturePath;
+					meshComponent->mesh.path = meshPath;
+					meshComponent->mesh.meshTexturesData.path = texturePath;
+					meshComponent->mesh.meshTexturesData.texture_ID = texture->texture_ID;
+					meshComponent->mesh.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
+					meshComponent->mesh.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+
+					textureComponent->objectTexture = texture;
+					textureComponent->textures.push_back(texture);
+				}
+			}
+			else
 			{
-				texture->path = texturePath;
-				meshComponent->mesh.path = meshPath;
-				meshComponent->mesh.meshTexturesData.path = texturePath;
-				meshComponent->mesh.meshTexturesData.texture_ID = texture->texture_ID;
-				meshComponent->mesh.meshTexturesData.width = ilGetInteger(IL_IMAGE_WIDTH);
-				meshComponent->mesh.meshTexturesData.height = ilGetInteger(IL_IMAGE_HEIGHT);
-
-				textureComponent->objectTexture = texture;
-				textureComponent->textures.push_back(texture);
+				LOG("ERROR loading image from path: %s", texturePath);
+				textureComponent->objectTexture = nullptr;
 			}
+
 			//newGameObject.meshes.push_back(vertexData);
 		}
 
