@@ -216,6 +216,8 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 				if (texture->texture_ID != 0)
 				{
 					texture->path = texturePath;
+					texture->width = ilGetInteger(IL_IMAGE_WIDTH);
+					texture->height = ilGetInteger(IL_IMAGE_HEIGHT);
 					meshComponent->mesh.path = meshPath;
 					meshComponent->mesh.meshTexturesData.path = texturePath;
 					meshComponent->mesh.meshTexturesData.texture_ID = texture->texture_ID;
@@ -228,7 +230,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 			}
 			else
 			{
-				LOG("ERROR loading image from path: %s", texturePath);
+				LOG("ERROR loading image from path: %s - Or object does simply not have any texture", texturePath);
 				textureComponent->objectTexture = nullptr;
 			}
 
@@ -256,6 +258,11 @@ uint ModuleModelImport::LoadTexture(const char* path)
 
 	textureData.texture_ID = 0;
 	textureData.image_ID = 0;
+
+	//MeshComponent* meshComponent;
+	//TextureComponent* textureComponent;
+	//TextureData* texture = new TextureData();
+	//textureComponent = (TextureComponent*)objMain->GetComponentOfType(ComponentTypes::TEXTURE);
 
 	if (path != nullptr)
 	{

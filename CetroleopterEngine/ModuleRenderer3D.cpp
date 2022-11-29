@@ -330,8 +330,28 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 				{
 					if (materialComponent->objectTexture != nullptr)
 					{
+						//glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+						//glBindTexture(GL_TEXTURE_2D, materialComponent->objectTexture->texture_ID);
+
+						glEnableClientState(GL_VERTEX_ARRAY);
+						
+						// Render things in Element mode
+						glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_vertex);
+						glVertexPointer(3, GL_FLOAT, 0, NULL);
+						glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshComponent->mesh.id_index);
+						
+						glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+						glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_UV);
 						glTexCoordPointer(3, GL_FLOAT, 0, NULL);
 						glBindTexture(GL_TEXTURE_2D, materialComponent->objectTexture->texture_ID);
+						
+						glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
+						
+						glBindTexture(GL_TEXTURE_2D, 0);
+						glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+						glBindBuffer(GL_ARRAY_BUFFER, 0);
+						glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+						glDisableClientState(GL_VERTEX_ARRAY);
 					}
 				}
 
@@ -340,13 +360,15 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 					glBindTexture(GL_TEXTURE_2D, checkerTextureID);
 				}
 
-				glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
-				glBindTexture(GL_TEXTURE_2D, 0);
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-				glBindBuffer(GL_ARRAY_BUFFER, 0);
-				glRasterPos3f(position.x, position.y, position.z);
-				glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-				glDisableClientState(GL_VERTEX_ARRAY);
+				//Da errores de puntero pero hace que funcione el renderizado mejor. Descomentar una vez corregido el error de puntero
+				
+				//glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
+				//glBindTexture(GL_TEXTURE_2D, 0);
+				//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+				//glBindBuffer(GL_ARRAY_BUFFER, 0);
+				//glRasterPos3f(position.x, position.y, position.z);
+				//glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+				//glDisableClientState(GL_VERTEX_ARRAY);
 			}
 		}
 	}
