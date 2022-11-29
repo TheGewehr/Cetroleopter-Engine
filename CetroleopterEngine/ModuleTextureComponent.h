@@ -5,11 +5,11 @@
 #include "MathGeoLib.h"
 #include "Application.h"
 #include "Globals.h"
-#include "ModuleGameObject.h"
+//#include "ModuleGameObject.h"
 #include "ModuleModelImport.h"
 #include "Component.h"
 
-//class ModuleGameObject;
+class ModuleGameObject;
 //class ModuleModelImport;
 
 //struct TextureData; 
