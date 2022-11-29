@@ -12,4 +12,25 @@ MeshComponent::~MeshComponent()
 	
 }
 
+bool MeshComponent::Init()
+{
+
+
+	return true;
+}
+
+update_status MeshComponent::Update()
+{
+
+
+	return UPDATE_CONTINUE;
+}
+
+bool MeshComponent::CleanUp()
+{
+
+
+	return true;
+}
+
 

@@ -12,3 +12,23 @@ TextureComponent::~TextureComponent()
 	
 }
 
+bool TextureComponent::Init()
+{
+
+
+	return true;
+}
+
+update_status TextureComponent::Update()
+{
+
+
+	return UPDATE_CONTINUE;
+}
+
+bool TextureComponent::CleanUp()
+{
+
+
+	return true;
+}
