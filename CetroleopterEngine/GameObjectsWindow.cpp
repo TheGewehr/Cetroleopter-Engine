@@ -79,55 +79,57 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 		//
 		//
 
-		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;;
-
-		if (objects.at(i)->childs.empty())
-		{
-			flags |= ImGuiTreeNodeFlags_Leaf;
-		}
-		if (objects.at(i)->GetObjectIsSelected() != false && objects == App->scene_intro->gameObjects)
-		{
-			flags |= ImGuiTreeNodeFlags_Selected;
-		}
+		//ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;;
+		//
+		//if (objects.at(i)->childs.empty())
+		//{
+		//	flags |= ImGuiTreeNodeFlags_Leaf;
+		//}
+		//if (objects.at(i)->GetObjectIsSelected() != false && objects == App->scene_intro->gameObjects)
+		//{
+		//	flags |= ImGuiTreeNodeFlags_Selected;
+		//}
 		//if (app->sceneIntro->sceneRoot != nullptr && objs == app->sceneIntro->sceneRoot)
 		//{
 		//	flags |= ImGuiTreeNodeFlags_DefaultOpen;
 		//}
 
-		if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName()), flags))
+		//if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName())))
+		if (ImGui::TreeNodeEx(std::to_string(i).c_str()))
 		{
-			if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
-			{
-				if (objects.at(i)->GetObjectIsSelected() == true)
-				{
-					objects.at(i)->SelectObject();
-				}
-				else
-				{ // Review this part
-					bool isOtherSelected = false;
-					for (int j = 0; j < objects.size(); j++)
-					{
-						if (objects.at(j)->GetObjectIsSelected() == true)
-						{
-							isOtherSelected = true;
-							break;
-						}
-						
-					}
-					if (isOtherSelected == false)
-					{
-						objects.at(i)->SelectObject();
-					}
-				}
-				
-			}
+			//ImGui::Text("n palabra (naranja)");
+			//if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
+			//{
+			//	if (objects.at(i)->GetObjectIsSelected() == true)
+			//	{
+			//		objects.at(i)->SelectObject(); // Deselect
+			//	}
+			//	else
+			//	{ // Review this part
+			//		bool isOtherSelected = false;
+			//		for (int j = 0; j < objects.size(); j++)
+			//		{
+			//			if (objects.at(j)->GetObjectIsSelected() == true && objects.at(i) != objects.at(j))
+			//			{
+			//				isOtherSelected = true;
+			//				break;
+			//			}
+			//			
+			//		}
+			//		if (isOtherSelected == false)
+			//		{
+			//			objects.at(i)->SelectObject();
+			//		}
+			//	}
+			//	
+			//}
 
 
 			if (!objects.at(i)->childs.empty())
 			{
 				for (uint j = 0; j < objects.at(i)->childs.size(); ++j)
 				{
-					//TreeProcessing(objects.at(j)->childs[j]);
+					TreeProcessing(objects.at(i)->childs);
 				}
 			}
 			ImGui::TreePop();
