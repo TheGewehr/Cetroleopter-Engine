@@ -95,7 +95,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 		//}
 
 		//if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName())))
-		if (ImGui::TreeNodeEx(std::to_string(i).c_str()))
+		if (ImGui::TreeNodeEx(std::to_string(i).c_str())) // Don't let them have the same name ;_-(
 		{
 			//ImGui::Text("n palabra (naranja)");
 			//if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
