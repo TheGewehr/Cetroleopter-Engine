@@ -79,23 +79,23 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 		//
 		//
 
-		//ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;;
-		//
-		//if (objects.at(i)->childs.empty())
-		//{
-		//	flags |= ImGuiTreeNodeFlags_Leaf;
-		//}
-		//if (objects.at(i)->GetObjectIsSelected() != false && objects == App->scene_intro->gameObjects)
-		//{
-		//	flags |= ImGuiTreeNodeFlags_Selected;
-		//}
+		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;;
+		
+		if (objects.at(i)->childs.empty())
+		{
+			flags |= ImGuiTreeNodeFlags_Leaf;
+		}
+		if (objects.at(i)->GetObjectIsSelected() != false && objects == App->scene_intro->gameObjects)
+		{
+			flags |= ImGuiTreeNodeFlags_Selected;
+		}
 		//if (app->sceneIntro->sceneRoot != nullptr && objs == app->sceneIntro->sceneRoot)
 		//{
 		//	flags |= ImGuiTreeNodeFlags_DefaultOpen;
 		//}
 
 		//if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName())))
-		if (ImGui::TreeNodeEx(std::to_string(i).c_str())) // Don't let them have the same name ;_-(
+		if (ImGui::TreeNodeEx(std::to_string(i).c_str(), flags)) // Don't let them have the same name ;_-(
 		{
 			//ImGui::Text("n palabra (naranja)");
 			//if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
