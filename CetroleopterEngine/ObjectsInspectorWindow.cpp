@@ -68,7 +68,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				//	ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[j].path.c_str());
 				//}
 				ImGui::Text("	Mesh:");
-				ImGui::Text("		%s", InspectorObject->GetMeshComponent()->meshPath);
+				ImGui::Text("		%c", InspectorObject->GetMeshComponent()->meshPath);
 
 
 			}
@@ -147,7 +147,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					//	//ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].meshTexturesData.path.c_str());
 					//}
 				
-				ImGui::Text("		%s", InspectorObject->GetTextureComponent()->texturePath);
+				ImGui::Text("		%c", InspectorObject->GetTextureComponent()->texturePath);
 			}
 				
 		}

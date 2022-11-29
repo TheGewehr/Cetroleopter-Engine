@@ -98,31 +98,31 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 		if (ImGui::TreeNodeEx(std::to_string(i).c_str(), flags)) // Don't let them have the same name ;_-(
 		{
 			//ImGui::Text("n palabra (naranja)");
-			//if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
-			//{
-			//	if (objects.at(i)->GetObjectIsSelected() == true)
-			//	{
-			//		objects.at(i)->SelectObject(); // Deselect
-			//	}
-			//	else
-			//	{ // Review this part
-			//		bool isOtherSelected = false;
-			//		for (int j = 0; j < objects.size(); j++)
-			//		{
-			//			if (objects.at(j)->GetObjectIsSelected() == true && objects.at(i) != objects.at(j))
-			//			{
-			//				isOtherSelected = true;
-			//				break;
-			//			}
-			//			
-			//		}
-			//		if (isOtherSelected == false)
-			//		{
-			//			objects.at(i)->SelectObject();
-			//		}
-			//	}
-			//	
-			//}
+			if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
+			{
+				if (objects.at(i)->GetObjectIsSelected() == true)
+				{
+					objects.at(i)->SelectObject(); // Deselect
+				}
+				else
+				{ // Review this part
+					bool isOtherSelected = false;
+					for (int j = 0; j < objects.size(); j++)
+					{
+						if (objects.at(j)->GetObjectIsSelected() == true && objects.at(i) != objects.at(j))
+						{
+							isOtherSelected = true;
+							break;
+						}
+						
+					}
+					if (isOtherSelected == false)
+					{
+						objects.at(i)->SelectObject();
+					}
+				}
+				
+			}
 
 
 			if (!objects.at(i)->childs.empty())
