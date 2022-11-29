@@ -45,13 +45,20 @@ bool ObjectsInspectorWindow::CleanUp()
 bool ObjectsInspectorWindow::InspectorWindowHeader()
 {
 	InspectorObject = nullptr;
+	bool noneSelected = true;
 
 	for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
 	{
 		if (App->scene_intro->gameObjects.at(i)->GetObjectIsSelected())
 		{
 			InspectorObject = App->scene_intro->gameObjects.at(i);
+			noneSelected = false;
 		}
+	}
+
+	if (InspectorObject != nullptr && noneSelected == true)
+	{
+		InspectorObject = nullptr;
 	}
 
 	if (InspectorObject != nullptr)
