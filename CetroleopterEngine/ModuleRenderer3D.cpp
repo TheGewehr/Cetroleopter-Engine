@@ -359,8 +359,6 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 				{
 					glBindTexture(GL_TEXTURE_2D, checkerTextureID);
 				}
-
-				//Da errores de puntero pero hace que funcione el renderizado mejor. Descomentar una vez corregido el error de puntero
 				
 				glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
 
