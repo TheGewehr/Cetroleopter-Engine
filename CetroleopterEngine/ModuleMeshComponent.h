@@ -3,7 +3,7 @@
 
 
 #include "Globals.h"
-#include "ModuleGameObject.h"
+//#include "ModuleGameObject.h"
 #include "ModuleModelImport.h"
 #include "Component.h"
 
