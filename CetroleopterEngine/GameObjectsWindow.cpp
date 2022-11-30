@@ -96,7 +96,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 
 		ImGui::PushID(i);
 		
-		if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName()), flags))
+		if (ImGui::TreeNodeEx(objects.at(i)->GetName().c_str(), flags))
 		{
 			//ImGui::Text("n palabra (naranja)");
 			if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
