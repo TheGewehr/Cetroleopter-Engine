@@ -108,10 +108,10 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 						//App->moduleGameObject->objects[i].meshes[q].transform.position
 					
 
-					float3 newPosition = vec(0, 0, 0);
-					newPosition.x = InspectorObject->GetTransformComponent()->GetPosition().x;
-					newPosition.y = InspectorObject->GetTransformComponent()->GetPosition().y;
-					newPosition.z = InspectorObject->GetTransformComponent()->GetPosition().z;
+					float3 newPosition = InspectorObject->GetTransformComponent()->GetPosition();
+					//newPosition.x = InspectorObject->GetTransformComponent()->GetPosition().x;
+					//newPosition.y = InspectorObject->GetTransformComponent()->GetPosition().y;
+					//newPosition.z = InspectorObject->GetTransformComponent()->GetPosition().z;
 
 					if (ImGui::DragFloat3("Location", &newPosition[0]))
 					{
@@ -119,7 +119,9 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 							InspectorObject->GetTransformComponent()->GetPosition().x+ newPosition.x,
 							InspectorObject->GetTransformComponent()->GetPosition().y + newPosition.y,
 							InspectorObject->GetTransformComponent()->GetPosition().z + newPosition.z
-						);						
+						);			
+						InspectorObject->GetTransformComponent()->UpdateWorldTransform();
+						InspectorObject->GetTransformComponent()->UpdateLocalTransform();
 					}
 				}
 				ImGui::PopID();
