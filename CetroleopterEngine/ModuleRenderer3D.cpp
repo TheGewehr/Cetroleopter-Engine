@@ -317,7 +317,9 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 		{
 			if (meshComponent != nullptr)
 			{
-				glEnableClientState(GL_VERTEX_ARRAY);
+				//glEnableClientState(GL_VERTEX_ARRAY);
+				glEnableClientState(GL_NORMAL_ARRAY);
+				//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
 				// Render things in Element mode
 				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_vertex);
