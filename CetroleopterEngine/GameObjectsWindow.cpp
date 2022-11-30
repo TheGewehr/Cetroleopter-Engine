@@ -94,8 +94,9 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 		//	flags |= ImGuiTreeNodeFlags_DefaultOpen;
 		//}
 
-		//if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName())))
-		if (ImGui::TreeNodeEx(std::to_string(i).c_str(), flags)) // Don't let them have the same name ;_-(
+		ImGui::PushID(i);
+		
+		if (ImGui::TreeNodeEx(GetObjectName(objects.at(i)->GetName()), flags))
 		{
 			//ImGui::Text("n palabra (naranja)");
 			if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
@@ -134,6 +135,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 			}
 			ImGui::TreePop();
 		}
+		ImGui::PopID();
 
 
 	}
