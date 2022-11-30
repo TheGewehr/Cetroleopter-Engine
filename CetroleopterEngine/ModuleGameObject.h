@@ -58,7 +58,7 @@ public:
 
 	int currentSelectedObject = -1;
 
-private:
+public:
 
 	Component* componentMesh;
 	Component* componentTexture;

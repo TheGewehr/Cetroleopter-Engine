@@ -311,7 +311,7 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 	if (gameObject.GetObjectIsActive())
 	{
 		MeshComponent* meshComponent = (MeshComponent*)gameObject.GetComponentOfType(ComponentTypes::MESH);
-		TextureComponent* materialComponent = (TextureComponent*)gameObject.GetComponentOfType(ComponentTypes::TEXTURE);
+		TextureComponent* textureComponent = (TextureComponent*)gameObject.GetComponentOfType(ComponentTypes::TEXTURE);
 
 		if (meshComponent->IsComponentActive())
 		{
@@ -326,9 +326,9 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_UV);
 
-				if (materialComponent->IsComponentActive())
+				if (textureComponent->IsComponentActive())
 				{
-					if (materialComponent->objectTexture != nullptr)
+					if (textureComponent->objectTexture != nullptr)
 					{
 						//glTexCoordPointer(3, GL_FLOAT, 0, NULL);
 						//glBindTexture(GL_TEXTURE_2D, materialComponent->objectTexture->texture_ID);
@@ -343,7 +343,7 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 						glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 						glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_UV);
 						glTexCoordPointer(3, GL_FLOAT, 0, NULL);
-						glBindTexture(GL_TEXTURE_2D, materialComponent->objectTexture->texture_ID);
+						glBindTexture(GL_TEXTURE_2D, textureComponent->objectTexture->texture_ID);
 						
 						glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
 						
