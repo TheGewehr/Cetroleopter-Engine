@@ -317,9 +317,15 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 		{
 			if (meshComponent != nullptr)
 			{
-				//glEnableClientState(GL_VERTEX_ARRAY);
-				glEnableClientState(GL_NORMAL_ARRAY);
-				//glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+				glEnableClientState(GL_VERTEX_ARRAY);
+				//glEnableClientState(GL_NORMAL_ARRAY);
+				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+
+				//glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, false, &value); <-- Original
+				
+				//glUniformMatrix4fv(glGetUniformLocation(0, gameObject.GetName().c_str()), 1, false, &projectionMat); // Put the 4x4 matrix in &mat
+				//glUniformMatrix4fv(glGetUniformLocation(0, gameObject.GetName().c_str()), 1, false, &viewMat); // Put the 4x4 matrix in &mat
+				//glUniformMatrix4fv(glGetUniformLocation(0, gameObject.GetName().c_str()), 1, false, &transformMat); // Put the 4x4 matrix in &mat
 
 				// Render things in Element mode
 				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_vertex);
@@ -368,8 +374,12 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 				glBindBuffer(GL_ARRAY_BUFFER, 0);
 				glRasterPos3f(position.x, position.y, position.z);
+
 				glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+				//glDisableClientState(GL_NORMAL_ARRAY); 
 				glDisableClientState(GL_VERTEX_ARRAY);
+
+				
 			}
 		}
 	}
