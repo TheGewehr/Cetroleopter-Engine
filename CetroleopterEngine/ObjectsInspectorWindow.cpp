@@ -155,17 +155,18 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					//	//ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].meshTexturesData.path.c_str());
 					//}
 				
-				for (int j = 0; j < InspectorObject->objectComponents.size(); j++)
+				for (int j = 0; j < InspectorObject->GetTextureComponent()->textures.size(); j++)
 				{
-					if (InspectorObject->objectComponents[j]->GetType() == ComponentTypes::TEXTURE)
+					if ( InspectorObject->GetTextureComponent()->textures[j]->path.c_str() != nullptr)
+					{						
+						ImGui::Text(InspectorObject->GetTextureComponent()->textures[j]->path.c_str());					
+					}
+					else
 					{
-						
-						
-						
-						
+						ImGui::Text(" No texture path");
 					}
 				}
-				ImGui::Text( InspectorObject->GetTextureComponent()->textures[0]->path.c_str());
+				
 				//->objMain_->GetTextureComponent()->objectTexture->path.c_str()
 				
 				//ImGui::Text("		%c", );
