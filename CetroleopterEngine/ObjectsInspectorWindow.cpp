@@ -6,6 +6,7 @@
 #include "imgui.h"
 #include "ModuleMeshComponent.h"
 #include "ModuleTextureComponent.h"
+#include "ModuleTransformComponent.h"
 
 ObjectsInspectorWindow::ObjectsInspectorWindow(const char* name, bool isActive) : ImGuiWindowBase("GameObjects Inspector", isActive = true)
 {
@@ -98,19 +99,34 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::Spacing();
 				ImGui::Spacing();
 
-				//ImGui::PushID(App->moduleGameObject->currentSelectedObject);
-				if (ImGui::Button("Translate"))
+				ImGui::PushID(0);
+				if (ImGui::CollapsingHeader("Translate"))
 				{
 					//LOG("T %i", App->moduleGameObject->currentSelectedObject);
 
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.position
+					
+
+					float3 newPosition = vec(0, 0, 0);
+					newPosition.x = InspectorObject->GetTransformComponent()->GetPosition().x;
+					newPosition.y = InspectorObject->GetTransformComponent()->GetPosition().y;
+					newPosition.z = InspectorObject->GetTransformComponent()->GetPosition().z;
+
+					if (ImGui::DragFloat3("Location", &newPosition[0]))
+					{
+						InspectorObject->GetTransformComponent()->SetPosition(
+							InspectorObject->GetTransformComponent()->GetPosition().x+ newPosition.x,
+							InspectorObject->GetTransformComponent()->GetPosition().y + newPosition.y,
+							InspectorObject->GetTransformComponent()->GetPosition().z + newPosition.z
+						);						
+					}
 				}
-				//ImGui::PopID();
+				ImGui::PopID();
 
 				ImGui::SameLine();
 
-				//ImGui::PushID(App->moduleGameObject->currentSelectedObject);
+				ImGui::PushID(1);
 				if (ImGui::Button("Rotate"))
 				{
 					//LOG("R %i", App->moduleGameObject->currentSelectedObject);
@@ -118,11 +134,11 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.rotate
 				}
-				//ImGui::PopID();
+				ImGui::PopID();
 
 				ImGui::SameLine();
 
-				//ImGui::PushID(App->moduleGameObject->currentSelectedObject);
+				ImGui::PushID(2);
 				if (ImGui::Button("Scale"))
 				{
 					//LOG("S %i", App->moduleGameObject->currentSelectedObject);
@@ -130,7 +146,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.scale
 				}
-				//ImGui::PopID();
+				ImGui::PopID();
 
 				ImGui::Spacing();
 				ImGui::Spacing();
