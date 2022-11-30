@@ -2,7 +2,7 @@
 #include "ModuleGameObject.h"
 #include "Component.h"
 
-TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TRANSFORM, "Mesh")
+TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TRANSFORM, "Transform")
 {
 	/*updateWorld = false;	
 
@@ -218,41 +218,9 @@ void TransformComponent::UpdateLocalTransform()
 
 void TransformComponent::UpdateWorldTransform()
 {
-	/*for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				base = App->moduleGameObject->objects[i];
-				i = App->moduleGameObject->objects.size();
-				j = App->moduleGameObject->objects[i].meshes.size();
-			}
-		}
-	}
 
-	if (base.parent != nullptr)
-	{
-		for (int i = 0; i < base.parent->meshes.size(); i++)
-		{
-			worldTransform = base.parent->meshes[i].transform->worldTransform * localTransform;
-		}
-	}
-	else
-	{
-		for (int i = 0; i < base.parent->meshes.size(); i++)
-		{
-			worldTransform = localTransform;
-		}
-	}
-	
-
-	SetChildsAsDirty();
-
-	updateWorld = false;*/
-
-
-	worldTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform : localTransform;
+	worldTransform = localTransform;
+	//worldTransform = (ComponentOwner->parent != nullptr ) ? ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform : localTransform;
 
 	SetChildsAsDirty();
 	

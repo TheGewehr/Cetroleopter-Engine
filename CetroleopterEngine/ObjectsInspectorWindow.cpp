@@ -6,6 +6,7 @@
 #include "imgui.h"
 #include "ModuleMeshComponent.h"
 #include "ModuleTextureComponent.h"
+#include "ModuleTransformComponent.h"
 
 ObjectsInspectorWindow::ObjectsInspectorWindow(const char* name, bool isActive) : ImGuiWindowBase("GameObjects Inspector", isActive = true)
 {
@@ -53,6 +54,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 		{
 			InspectorObject = App->scene_intro->gameObjects.at(i);
 			noneSelected = false;
+			break;
 		}
 	}
 
@@ -75,7 +77,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				//	ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[j].path.c_str());
 				//}
 				ImGui::Text("	Mesh:");
-				ImGui::Text("		%c", InspectorObject->GetMeshComponent()->meshPath);
+				ImGui::Text(InspectorObject->GetMeshComponent()->mesh.path.c_str());
 
 
 			}
@@ -97,19 +99,36 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::Spacing();
 				ImGui::Spacing();
 
-				//ImGui::PushID(App->moduleGameObject->currentSelectedObject);
-				if (ImGui::Button("Translate"))
+				ImGui::PushID(0);
+				if (ImGui::CollapsingHeader("Translate"))
 				{
 					//LOG("T %i", App->moduleGameObject->currentSelectedObject);
 
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.position
+					
+
+					float3 newPosition = InspectorObject->GetTransformComponent()->GetPosition();
+					//newPosition.x = InspectorObject->GetTransformComponent()->GetPosition().x;
+					//newPosition.y = InspectorObject->GetTransformComponent()->GetPosition().y;
+					//newPosition.z = InspectorObject->GetTransformComponent()->GetPosition().z;
+
+					if (ImGui::DragFloat3("Location", &newPosition[0]))
+					{
+						InspectorObject->GetTransformComponent()->SetPosition(
+							InspectorObject->GetTransformComponent()->GetPosition().x+ newPosition.x,
+							InspectorObject->GetTransformComponent()->GetPosition().y + newPosition.y,
+							InspectorObject->GetTransformComponent()->GetPosition().z + newPosition.z
+						);			
+						InspectorObject->GetTransformComponent()->UpdateWorldTransform();
+						InspectorObject->GetTransformComponent()->UpdateLocalTransform();
+					}
 				}
-				//ImGui::PopID();
+				ImGui::PopID();
 
 				ImGui::SameLine();
 
-				//ImGui::PushID(App->moduleGameObject->currentSelectedObject);
+				ImGui::PushID(1);
 				if (ImGui::Button("Rotate"))
 				{
 					//LOG("R %i", App->moduleGameObject->currentSelectedObject);
@@ -117,11 +136,11 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.rotate
 				}
-				//ImGui::PopID();
+				ImGui::PopID();
 
 				ImGui::SameLine();
 
-				//ImGui::PushID(App->moduleGameObject->currentSelectedObject);
+				ImGui::PushID(2);
 				if (ImGui::Button("Scale"))
 				{
 					//LOG("S %i", App->moduleGameObject->currentSelectedObject);
@@ -129,7 +148,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					// for q
 						//App->moduleGameObject->objects[i].meshes[q].transform.scale
 				}
-				//ImGui::PopID();
+				ImGui::PopID();
 
 				ImGui::Spacing();
 				ImGui::Spacing();
@@ -154,7 +173,21 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					//	//ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].meshTexturesData.path.c_str());
 					//}
 				
-				ImGui::Text("		%c", InspectorObject->GetTextureComponent()->texturePath);
+				for (int j = 0; j < InspectorObject->GetTextureComponent()->textures.size(); j++)
+				{
+					if ( InspectorObject->GetTextureComponent()->textures[j]->path.c_str() != nullptr)
+					{						
+						ImGui::Text(InspectorObject->GetTextureComponent()->textures[j]->path.c_str());					
+					}
+					else
+					{
+						ImGui::Text(" No texture path");
+					}
+				}
+				
+				//->objMain_->GetTextureComponent()->objectTexture->path.c_str()
+				
+				//ImGui::Text("		%c", );
 			}
 				
 		}
