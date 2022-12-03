@@ -19,9 +19,10 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	// ??? GetCameraTransform();
+	// ???(varType) GetCameraTransform();
 public:
 	
+	// ???(varType) cameraTransform;
 };
 
 
