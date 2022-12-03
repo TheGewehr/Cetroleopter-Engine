@@ -12,7 +12,8 @@ enum class ComponentTypes
 	NONE = 0,
 	MESH,
 	TEXTURE,
-	TRANSFORM
+	TRANSFORM,
+	CAMERA
 };
 
 class Component : public Module

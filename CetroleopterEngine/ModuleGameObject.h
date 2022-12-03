@@ -15,6 +15,7 @@ class Component;
 class TransformComponent;
 class MeshComponent;
 class TextureComponent;
+class CameraComponent;
 
 class ModuleGameObject
 {
@@ -45,6 +46,7 @@ public:
 	TransformComponent* GetTransformComponent();
 	TextureComponent* GetTextureComponent();
 	MeshComponent* GetMeshComponent();
+	CameraComponent* GetCameraComponent();
 
 	
 

@@ -85,7 +85,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 		else
 		{
 			ImGui::Spacing();
-			ImGui::Text("	This Game Object has no meshes");
+			ImGui::Text("- This Game Object has no meshes");
 			ImGui::Spacing();
 		}
 
@@ -157,7 +157,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 		else
 		{
 			ImGui::Spacing();
-			ImGui::Text("	Objects with no meshes cannot be transformed");
+			ImGui::Text("- Objects with no meshes cannot be transformed");
 			ImGui::Spacing();
 		}
 		if (InspectorObject->GetTextureComponent() != nullptr)
@@ -194,7 +194,24 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 		else
 		{
 			ImGui::Spacing();
-			ImGui::Text("	This Game Object has no textures");
+			ImGui::Text("- This Game Object has no textures");
+			ImGui::Spacing();
+		}
+		if (InspectorObject->GetCameraComponent() != nullptr)
+		{
+			if (ImGui::CollapsingHeader("Camera"))
+			{
+				ImGui::Text("Cameras:");
+
+				
+				ImGui::Text("\nNothing here yet...\n");
+
+			}
+		}
+		else
+		{
+			ImGui::Spacing();
+			ImGui::Text("- This Game Object has no cameras");
 			ImGui::Spacing();
 		}
 	}

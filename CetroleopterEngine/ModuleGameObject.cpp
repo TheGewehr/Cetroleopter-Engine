@@ -8,6 +8,7 @@
 #include "ModuleMeshComponent.h"
 #include "ModuleTextureComponent.h"
 #include "ModuleTransformComponent.h"
+#include "ModuleCameraComponent.h"
 
 ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive) : id_(obj_ID), name_(name), isAtive_(isActive)
 {
@@ -192,6 +193,18 @@ MeshComponent* ModuleGameObject::GetMeshComponent()
 		if (objectComponents[i]->GetType() == ComponentTypes::MESH)
 		{
 			return (MeshComponent*)objectComponents[i];
+		}
+	}
+	return nullptr;
+}
+
+CameraComponent* ModuleGameObject::GetCameraComponent()
+{
+	for (uint i = 0; i < objectComponents.size(); ++i)
+	{
+		if (objectComponents[i]->GetType() == ComponentTypes::CAMERA)
+		{
+			return (CameraComponent*)objectComponents[i];
 		}
 	}
 	return nullptr;
