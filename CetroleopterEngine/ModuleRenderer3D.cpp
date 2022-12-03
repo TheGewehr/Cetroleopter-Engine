@@ -12,6 +12,7 @@
 #include "ModuleTransformComponent.h"
 #include "ModuleMeshComponent.h"
 #include "ModuleTextureComponent.h"
+#include "ModuleTransformComponent.h"
 #include "Component.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
@@ -317,6 +318,9 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 		{
 			if (meshComponent != nullptr)
 			{
+				glPushMatrix();
+				glMultMatrixf((GLfloat*)&gameObject.GetTransformComponent()->GetWorldTransform().Transposed()); // Local for now
+
 				glEnableClientState(GL_VERTEX_ARRAY);
 				//glEnableClientState(GL_NORMAL_ARRAY);
 				glEnableClientState(GL_TEXTURE_COORD_ARRAY);

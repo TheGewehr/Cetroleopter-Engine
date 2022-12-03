@@ -27,8 +27,8 @@ public:
 	float3 GetWorldScale();
 
 	void SetPosition(float x, float y, float z);
-	void SetRotation(float x, float y, float z, float w);
-	void SetScale(float x, float y, float z);
+	void SetRotation(const float3& newRotation);
+	void SetScale(const float3& newScale);
 
 	float4x4 GetWorldTransform();
 	void SetWorldTransform(float4x4 worldTransform);

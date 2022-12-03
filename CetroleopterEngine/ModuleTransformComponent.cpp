@@ -288,19 +288,31 @@ void TransformComponent::SetPosition(float x, float y, float z)
 	UpdateLocalTransform();
 }
 
-void TransformComponent::SetRotation(float x, float y, float z, float w)
+void TransformComponent::SetRotation(const float3& newRotation)
 {
-	rotation.Set(x, y, z, w);
-	localEulerRotation = rotation.ToEulerXYZ();
+	rotation = Quat::FromEulerXYZ(newRotation.x, newRotation.y, newRotation.z);
+	localEulerRotation = newRotation;
 
 	UpdateLocalTransform();
 }
 
-void TransformComponent::SetScale(float x, float y, float z)
+void TransformComponent::SetScale(const float3& newScale)
 {
-	scale.x = (x != 0.0f) ? x : 0.5f;
-	scale.y = (y != 0.0f) ? y : 0.5f;
-	scale.z = (z != 0.0f) ? z : 0.5f;
+	
+	if (newScale.x == 0.0f || newScale.y == 0.0f || newScale.z == 0.0f)
+	{
+		float3 mod_scale = float3::one;
+
+		mod_scale.x = (newScale.x == 0.0f) ? 0.01f : newScale.x;
+		mod_scale.y = (newScale.y == 0.0f) ? 0.01f : newScale.y;
+		mod_scale.z = (newScale.z == 0.0f) ? 0.01f : newScale.z;
+
+		scale = mod_scale;
+	}
+	else
+	{
+		scale = newScale;
+	}
 
 	UpdateLocalTransform();
 }

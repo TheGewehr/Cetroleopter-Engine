@@ -112,41 +112,47 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					//newPosition.x = InspectorObject->GetTransformComponent()->GetPosition().x;
 					//newPosition.y = InspectorObject->GetTransformComponent()->GetPosition().y;
 					//newPosition.z = InspectorObject->GetTransformComponent()->GetPosition().z;
-
-					if (ImGui::DragFloat3("Location", &newPosition[0]))
+					
+					if (ImGui::DragFloat3("Location", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
 						InspectorObject->GetTransformComponent()->SetPosition(
 							InspectorObject->GetTransformComponent()->GetPosition().x+ newPosition.x,
 							InspectorObject->GetTransformComponent()->GetPosition().y + newPosition.y,
 							InspectorObject->GetTransformComponent()->GetPosition().z + newPosition.z
 						);			
-						InspectorObject->GetTransformComponent()->UpdateWorldTransform();
-						InspectorObject->GetTransformComponent()->UpdateLocalTransform();
+						//InspectorObject->GetTransformComponent()->UpdateWorldTransform();
+						//InspectorObject->GetTransformComponent()->UpdateWorldTransform();
+
 					}
 				}
 				ImGui::PopID();
 
-				ImGui::SameLine();
+				//ImGui::SameLine();
 
 				ImGui::PushID(1);
-				if (ImGui::Button("Rotate"))
+				if (ImGui::CollapsingHeader("Rotate"))
 				{
-					//LOG("R %i", App->moduleGameObject->currentSelectedObject);
+					float3 rotation = InspectorObject->GetTransformComponent()->GetLocalEulerRotation() * RADTODEG;
 
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.rotate
+
+					if (ImGui::DragFloat3("Location", (float*)&rotation, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+					{
+						
+						InspectorObject->GetTransformComponent()->SetRotation(rotation * DEGTORAD);
+					}
 				}
 				ImGui::PopID();
 
-				ImGui::SameLine();
+				//ImGui::SameLine();
 
 				ImGui::PushID(2);
-				if (ImGui::Button("Scale"))
+				if (ImGui::CollapsingHeader("Scale"))
 				{
-					//LOG("S %i", App->moduleGameObject->currentSelectedObject);
-
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.scale
+					float3 scale = InspectorObject->GetTransformComponent()->GetScale();
+					if (ImGui::DragFloat3("S", (float*)&scale, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+					{
+						InspectorObject->GetTransformComponent()->SetScale(scale);
+					}
 				}
 				ImGui::PopID();
 
