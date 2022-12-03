@@ -73,6 +73,13 @@ bool ModuleWindow::Init()
 		{
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
+
+			SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
+			if (icon != nullptr)
+			{
+				SDL_SetWindowIcon(window, icon);
+				SDL_FreeSurface(icon);
+			}
 		}
 	}
 
