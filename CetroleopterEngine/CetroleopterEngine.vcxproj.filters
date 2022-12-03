@@ -459,6 +459,9 @@
     <ClInclude Include="ModuleTextureComponent.h">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleCameraComponent.h">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -699,6 +702,9 @@
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="ModuleTextureComponent.cpp">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleCameraComponent.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>

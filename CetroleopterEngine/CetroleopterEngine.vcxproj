@@ -203,6 +203,7 @@
     <ClInclude Include="mathGeoLib\Time\Clock.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ModuleCameraComponent.h" />
     <ClInclude Include="ModuleFS.h" />
     <ClInclude Include="ModuleGameObject.h" />
     <ClInclude Include="ModuleMeshComponent.h" />
@@ -288,6 +289,7 @@
     <ClCompile Include="mathGeoLib\Time\Clock.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ModuleCameraComponent.cpp" />
     <ClCompile Include="ModuleFS.cpp" />
     <ClCompile Include="ModuleGameObject.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
