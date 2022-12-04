@@ -12,6 +12,7 @@ ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true
 
 	Position = vec3(0.0f, 50.0f, 50.0f);
 	Reference = vec3(0.0f, 0.0f, 0.0f);
+	isMainCameraMooving = false;
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -46,15 +47,15 @@ update_status ModuleCamera3D::Update(float dt)
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		speed = 25.0f * dt;
 
-	if(App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed;
-	if(App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed;
+	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed; isMainCameraMooving = true;
+	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed; isMainCameraMooving = true;
 
-	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= Z * speed;
-	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += Z * speed;
+	if(App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT) newPos -= Z * speed; isMainCameraMooving = true;
+	if(App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT) newPos += Z * speed; isMainCameraMooving = true;
 
 
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= X * speed;
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += X * speed;
+	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT) newPos -= X * speed; isMainCameraMooving = true;
+	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT) newPos += X * speed; isMainCameraMooving = true;
 
 	if (App->input->GetMouseZ() > 0)
 	{
@@ -73,43 +74,59 @@ update_status ModuleCamera3D::Update(float dt)
 
 	// Mouse motion ----------------
 
-	if((App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT) && (App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT))
+	if ((App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT))
 	{
-		int dx = -App->input->GetMouseXMotion();
-		int dy = -App->input->GetMouseYMotion();
-
-		float Sensitivity = 0.25f;
-
-		Position -= Reference;
-
-		if(dx != 0)
+		isMainCameraMooving = true;
+		if ((App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_REPEAT))
 		{
-			float DeltaX = (float)dx * Sensitivity;
 
-			X = rotate(X, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-			Y = rotate(Y, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-			Z = rotate(Z, DeltaX, vec3(0.0f, 1.0f, 0.0f));
-		}
+			
+			int dx = -App->input->GetMouseXMotion();
+			int dy = -App->input->GetMouseYMotion();
 
-		if(dy != 0)
-		{
-			float DeltaY = (float)dy * Sensitivity;
+			float Sensitivity = 0.25f;
 
-			Y = rotate(Y, DeltaY, X);
-			Z = rotate(Z, DeltaY, X);
+			Position -= Reference;
 
-			if(Y.y < 0.0f)
+			if (dx != 0)
 			{
-				Z = vec3(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
-				Y = cross(Z, X);
-			}
-		}
+				float DeltaX = (float)dx * Sensitivity;
 
-		Position = Reference + Z * length(Position);
+				X = rotate(X, DeltaX, vec3(0.0f, 1.0f, 0.0f));
+				Y = rotate(Y, DeltaX, vec3(0.0f, 1.0f, 0.0f));
+				Z = rotate(Z, DeltaX, vec3(0.0f, 1.0f, 0.0f));
+			}
+
+			if (dy != 0)
+			{
+				float DeltaY = (float)dy * Sensitivity;
+
+				Y = rotate(Y, DeltaY, X);
+				Z = rotate(Z, DeltaY, X);
+
+				if (Y.y < 0.0f)
+				{
+					Z = vec3(0.0f, Z.y > 0.0f ? 1.0f : -1.0f, 0.0f);
+					Y = cross(Z, X);
+				}
+			}
+
+			Position = Reference + Z * length(Position);
+		}
 	}
 
-
 	
+	if (App->input->GetKey(SDL_SCANCODE_R) != KEY_REPEAT)
+		if (App->input->GetKey(SDL_SCANCODE_F) != KEY_REPEAT)
+
+			if (App->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT)
+				if (App->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+
+
+					if (App->input->GetKey(SDL_SCANCODE_A) != KEY_REPEAT)
+						if (App->input->GetKey(SDL_SCANCODE_D) != KEY_REPEAT)
+							if ((App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT))
+								isMainCameraMooving = false;
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();

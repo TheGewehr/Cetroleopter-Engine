@@ -8,6 +8,7 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleModelImport.h"
+#include "ModuleCamera3D.h"
 #include "ModuleGameObject.h"
 #include "ModuleTransformComponent.h"
 #include "ModuleMeshComponent.h"
@@ -318,9 +319,18 @@ void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 pos
 		{
 			if (meshComponent != nullptr)
 			{
-				glPushMatrix();
-				glMultMatrixf((GLfloat*)&gameObject.GetTransformComponent()->GetWorldTransform().Transposed()); // Local for now
 
+				if (App->camera->isMainCameraMooving == false)
+				{
+					glPushMatrix();
+					glMultMatrixf((GLfloat*)&gameObject.GetTransformComponent()->GetWorldTransform().Transposed()); // Apply Transformation
+
+				}
+				else
+				{
+					glMultMatrixf((GLfloat*)&gameObject.GetTransformComponent()->GetWorldTransform().Transposed());
+				}
+				
 				glEnableClientState(GL_VERTEX_ARRAY);
 				//glEnableClientState(GL_NORMAL_ARRAY);
 				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
