@@ -112,18 +112,28 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					//newPosition.x = InspectorObject->GetTransformComponent()->GetPosition().x;
 					//newPosition.y = InspectorObject->GetTransformComponent()->GetPosition().y;
 					//newPosition.z = InspectorObject->GetTransformComponent()->GetPosition().z;
-					
-					if (ImGui::DragFloat3("Location", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+					ImGui::PushID(4);
+					if (ImGui::DragFloat3("", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
 						InspectorObject->GetTransformComponent()->SetPosition(
-							InspectorObject->GetTransformComponent()->GetPosition().x+ newPosition.x,
-							InspectorObject->GetTransformComponent()->GetPosition().y + newPosition.y,
-							InspectorObject->GetTransformComponent()->GetPosition().z + newPosition.z
+							newPosition.x,
+							newPosition.y,
+							newPosition.z
 						);			
 						//InspectorObject->GetTransformComponent()->UpdateWorldTransform();
 						//InspectorObject->GetTransformComponent()->UpdateWorldTransform();
 
 					}
+					ImGui::PopID();
+
+					ImGui::SameLine();
+
+					ImGui::PushID(7);
+					if (ImGui::Button("Reset"))
+					{
+						InspectorObject->GetTransformComponent()->SetPosition(0,0,0);
+					}
+					ImGui::PopID();
 				}
 				ImGui::PopID();
 
@@ -134,12 +144,23 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				{
 					float3 rotation = InspectorObject->GetTransformComponent()->GetLocalEulerRotation() * RADTODEG;
 
-
-					if (ImGui::DragFloat3("Location", (float*)&rotation, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+					ImGui::PushID(5);
+					if (ImGui::DragFloat3("", (float*)&rotation, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
 						
 						InspectorObject->GetTransformComponent()->SetRotation(rotation * DEGTORAD);
 					}
+					ImGui::PopID();
+
+					ImGui::SameLine();
+
+					ImGui::PushID(8);
+					if (ImGui::Button("Reset"))
+					{
+
+						InspectorObject->GetTransformComponent()->SetRotation(float3(0,0,0)*DEGTORAD);
+					}
+					ImGui::PopID();
 				}
 				ImGui::PopID();
 
@@ -149,10 +170,33 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				if (ImGui::CollapsingHeader("Scale"))
 				{
 					float3 scale = InspectorObject->GetTransformComponent()->GetScale();
-					if (ImGui::DragFloat3("S", (float*)&scale, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+
+					ImGui::PushID(6);
+					if (ImGui::DragFloat3("", (float*)&scale, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
 						InspectorObject->GetTransformComponent()->SetScale(scale);
 					}
+					ImGui::PopID();
+
+					ImGui::SameLine();
+
+					ImGui::PushID(9);
+					if (ImGui::Button("Reset"))
+					{
+						InspectorObject->GetTransformComponent()->SetScale(float3(1,1,1));
+					}
+					ImGui::PopID();
+				}
+				ImGui::PopID();
+
+				ImGui::Spacing();
+
+				ImGui::PushID(10);
+				if (ImGui::Button("Reset All"))
+				{
+					InspectorObject->GetTransformComponent()->SetPosition(0, 0, 0);
+					InspectorObject->GetTransformComponent()->SetRotation(float3(0, 0, 0) * DEGTORAD);
+					InspectorObject->GetTransformComponent()->SetScale(float3(1, 1, 1));
 				}
 				ImGui::PopID();
 
