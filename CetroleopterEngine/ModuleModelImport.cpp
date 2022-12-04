@@ -14,6 +14,7 @@
 #include "assimp/include/cimport.h"
 #include "assimp/include/scene.h"
 #include "assimp/include/postprocess.h"
+#include "physfs.h"
 
 #include "devIL/include/ilu.h"
 #include "devIL/include/ilut.h"
@@ -82,7 +83,54 @@ bool ModuleModelImport::Save_Mesh(MeshComponent* mesh, char** pointer)
 {
 	bool success = true;
 
+	// amount of indices / vertices / colors / normals / texture_coords / AABB
+	uint ranges[2] = { mesh->mesh.num_indices, mesh->mesh.num_vertices };
+	uint size = sizeof(ranges) + sizeof(uint) * mesh->mesh.num_indices + sizeof(float) * mesh->mesh.num_vertices * 3;
+	char* fileBuffer = new char[size]; // Allocate
+	char* cursor = fileBuffer;
+	uint bytes = sizeof(ranges); // First store ranges
+	memcpy(cursor, ranges, bytes);
+	cursor += bytes;
+	// Store indices
+	bytes = sizeof(uint) * mesh->mesh.num_indices;
+	memcpy(cursor, mesh->mesh.indices, bytes);
+	cursor += bytes;
 
+	bytes = sizeof(uint) * mesh->mesh.num_vertices;
+	memcpy(cursor, mesh->mesh.vertices, bytes);
+	cursor += bytes;
+
+	//bytes = sizeof(uint) * mesh->mesh.num_UVs;
+	//memcpy(cursor, mesh->mesh.id_UV, bytes);
+	//cursor += bytes;
+
+
+	std::string filePath = std::string("Library/Meshes/") + mesh->GetName() + std::string(MESH_FILE_EXTENSION);
+
+	PHYSFS_file* fs_file;																	// PHYSFS_file is a PhysFS file handle.
+	/**/																					// Whenever an op (r,w, etc) is done to a file, a ptr to one of these file handles is returned.
+
+	fs_file = PHYSFS_openWrite(filePath.c_str());
+
+	if (fs_file != nullptr)
+	{
+		uint written = (uint)PHYSFS_write(fs_file, fileBuffer, 1, size);						// Method that writes data from a PHYSFS_File to the given buffer. Returns the n of bytes written.
+
+		if (written != size)																// Checks whether or not all the data has been written.
+		{
+			LOG("[error] File System error while writing to file %s: %s", filePath, PHYSFS_getLastError());
+		}
+
+		bool closesCorrectly = PHYSFS_close(fs_file);						// Method that closes a PhysFS file handle. Returns 1 on success.
+		if (closesCorrectly == false)
+		{
+			LOG("[ERROR] File System error while closing file %s: %s", filePath, PHYSFS_getLastError());
+		}
+	}
+	else
+	{
+		LOG("[ERROR] File System error while opening file %s: %s", filePath, PHYSFS_getLastError());
+	}
 
 	return success;
 }

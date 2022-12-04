@@ -31,6 +31,10 @@ void log(const char file[], int line, const char* format, ...);
 
 #define ASSETS_FOLDER "Assets/"
 #define CONFIG_FOLDER "Config/"
+#define LIBRARY_FOLDER "Library/"
+
+#define MESH_FILE_EXTENSION ".FcVg_mesh"
+#define TEXTURE_FILE_EXTENSION ".FcVg_texture"
 
 #define RELEASE_ARRAY( x )\
 	{\
