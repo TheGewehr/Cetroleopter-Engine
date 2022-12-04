@@ -96,10 +96,12 @@ bool ModuleModelImport::Save_Mesh(MeshComponent* mesh, char** pointer)
 	memcpy(cursor, mesh->mesh.indices, bytes);
 	cursor += bytes;
 
+	// Store vertices
 	bytes = sizeof(uint) * mesh->mesh.num_vertices;
 	memcpy(cursor, mesh->mesh.vertices, bytes);
 	cursor += bytes;
 
+	// Store UVs (not working - pointer sintax errors)
 	//bytes = sizeof(uint) * mesh->mesh.num_UVs;
 	//memcpy(cursor, mesh->mesh.id_UV, bytes);
 	//cursor += bytes;
@@ -139,14 +141,39 @@ bool ModuleModelImport::Save_Mesh(MeshComponent* mesh, char** pointer)
 		LOG("[ERROR] File System error while opening file %s: %s", filePath, PHYSFS_getLastError());
 	}
 
+	//Load_Mesh(mesh, cursor);
+
 	return success;
 }
 
-bool ModuleModelImport::Load_Mesh(MeshComponent* mesh, const char* pointer)
+bool ModuleModelImport::Load_Mesh(MeshComponent* mesh, char* pointer)
 {
 	bool success = true;
 
+	char* cursor = pointer;
 
+	// amount of indices / vertices / colors / normals / texture_coords
+	uint ranges[5];
+	uint bytes = sizeof(ranges);
+	memcpy(ranges, cursor, bytes);
+	cursor += bytes;
+	mesh->mesh.num_indices = ranges[0];
+	mesh->mesh.num_vertices = ranges[1];
+
+	// Load indices
+	bytes = sizeof(uint) * mesh->mesh.num_indices;
+	mesh->mesh.indices = new uint[mesh->mesh.num_indices];
+	memcpy(mesh->mesh.indices, cursor, bytes);
+	cursor += bytes;
+
+	// Load vertices
+	bytes = sizeof(uint) * mesh->mesh.num_vertices;
+	mesh->mesh.vertices = new float[mesh->mesh.num_vertices];
+	memcpy(mesh->mesh.vertices, cursor, bytes);
+	cursor += bytes;
+
+	//Load UVs
+	//UVs not stored so not loaded for the moment
 
 	return success;
 }
@@ -243,7 +270,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 			if (success == true)
 			{
-				success = Load_Mesh(meshComponent, pointer);
+				//success = Load_Mesh(meshComponent, pointer);
 
 				if(success == false) LOG("Error loading mesh from custom file format");
 			}
