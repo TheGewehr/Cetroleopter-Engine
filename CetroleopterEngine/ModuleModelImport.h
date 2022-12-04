@@ -94,6 +94,7 @@ public:
 	//std::vector<MeshVertexData> meshes;
 	//std::vector<TextureData> textures;
 
+	uint childPostfix = 0;
 };
 
 #endif // !_MESH_IMPORTER_H_
