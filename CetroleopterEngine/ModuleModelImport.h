@@ -79,6 +79,12 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void Import_Mesh(MeshComponent* mesh);
+
+	bool Save_Mesh(MeshComponent* mesh, char** pointer);
+
+	bool Load_Mesh(MeshComponent* mesh, const char* pointer);
+
 	void LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
 	uint LoadTexture(const char* path); //Loads the textures
 

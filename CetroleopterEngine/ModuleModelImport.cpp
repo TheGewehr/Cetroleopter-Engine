@@ -73,6 +73,29 @@ bool ModuleModelImport::CleanUp()
 	return true;
 }
 
+void ModuleModelImport::Import_Mesh(MeshComponent* mesh)
+{
+
+}
+
+bool ModuleModelImport::Save_Mesh(MeshComponent* mesh, char** pointer)
+{
+	bool success = true;
+
+
+
+	return success;
+}
+
+bool ModuleModelImport::Load_Mesh(MeshComponent* mesh, const char* pointer)
+{
+	bool success = true;
+
+
+
+	return success;
+}
+
 void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath)
 {
 	//GameObject newGameObject;
@@ -155,6 +178,24 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 			glBufferData(GL_ARRAY_BUFFER, sizeof(float) * meshComponent->mesh.num_UVs * 3, meshComponent->mesh.texture_coords_indices, GL_STATIC_DRAW);
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+
+
+			// Mesh file format Save/Load part
+
+			char* pointer = nullptr;
+			bool success;
+			success = Save_Mesh(meshComponent, &pointer);
+
+			if (success == true)
+			{
+				success = Load_Mesh(meshComponent, pointer);
+
+				if(success == false) LOG("Error loading mesh from custom file format");
+			}
+			else
+			{
+				LOG("Error saving mesh to custom file format");
+			}
 
 
 			//Texture Loading part
