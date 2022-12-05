@@ -235,6 +235,16 @@ void ModuleWindow::SetFullscreenDesktop(bool result)
 	fullscreenDesktop = result;
 }
 
+int ModuleWindow::GetHeight()
+{
+	return height;
+}
+
+int ModuleWindow::GetWidth()
+{
+	return width;
+}
+
 void ModuleWindow::UpdateWindow()
 {
 	if (window != NULL)

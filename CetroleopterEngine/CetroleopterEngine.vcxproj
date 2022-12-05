@@ -98,6 +98,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="ConfigurationWindow.h" />
     <ClInclude Include="ConsoleWindow.h" />
+    <ClInclude Include="DebugSceneViewWindow.h" />
     <ClInclude Include="devIL\include\config.h" />
     <ClInclude Include="devIL\include\devil_internal_exports.h" />
     <ClInclude Include="devIL\include\il.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ConfigurationWindow.cpp" />
     <ClCompile Include="ConsoleWindow.cpp" />
+    <ClCompile Include="DebugSceneViewWindow.cpp" />
     <ClCompile Include="GameObjectsWindow.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />

@@ -462,6 +462,9 @@
     <ClInclude Include="ModuleCameraComponent.h">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="DebugSceneViewWindow.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -706,6 +709,9 @@
     </ClCompile>
     <ClCompile Include="ModuleCameraComponent.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="DebugSceneViewWindow.cpp">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
