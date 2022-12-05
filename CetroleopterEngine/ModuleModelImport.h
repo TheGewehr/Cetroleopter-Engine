@@ -88,7 +88,7 @@ public:
 
 	bool Save_Texture(TextureComponent* texture, char** pointer);
 
-	bool Load_Texture(TextureComponent* texture, char** pointer);
+	bool Load_Texture(TextureComponent* texture, char** pointer, uint size);
 
 	void LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
 	uint LoadTexture(ModuleGameObject* objMain, const char* path); //Loads the textures
