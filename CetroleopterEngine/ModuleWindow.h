@@ -40,6 +40,9 @@ public:
 	bool GetFullscreenDesktop();
 	void SetFullscreenDesktop(bool result);
 
+	int GetHeight();
+	int GetWidth();
+
 	void UpdateWindow();
 
 public:
