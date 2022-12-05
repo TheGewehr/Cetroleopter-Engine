@@ -74,6 +74,11 @@ update_status ModuleCamera3D::Update(float dt)
 
 	// Mouse motion ----------------
 
+	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+	{
+		MakeRayCast();
+	}
+
 	if ((App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT))
 	{
 		isMainCameraMooving = true;
@@ -179,6 +184,11 @@ void ModuleCamera3D::Move(const vec3 &Movement)
 float* ModuleCamera3D::GetViewMatrix()
 {
 	return &ViewMatrix;
+}
+
+void ModuleCamera3D::MakeRayCast()
+{
+
 }
 
 // -----------------------------------------------------------------
