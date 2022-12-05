@@ -1,6 +1,7 @@
 #include "Globals.h"
 #include "Application.h"
 #include "ModuleCamera3D.h"
+#include <MathGeoLib.h>
 
 ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true)
 {
@@ -188,7 +189,17 @@ float* ModuleCamera3D::GetViewMatrix()
 
 void ModuleCamera3D::MakeRayCast()
 {
+	float tab_width = App->window->GetWidth(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
+	float tab_height = App->window->GetHeight(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
 
+	float2 screen_mouse_pos = float2((float)App->input->GetMouseX(), (float)App->window->GetHeight() - (float)App->input->GetMouseY()) - float2(0 /*tab_origin.x*/, 0 /*tab_origin.y + 22.5f*/);
+	float2 norm_screen_pos = float2(screen_mouse_pos.x / tab_width, screen_mouse_pos.y / tab_height);
+	float2 world_mouse_pos = float2(norm_screen_pos.x * (float)App->window->GetWidth(), norm_screen_pos.y * (float)App->window->GetHeight());
+
+	float normalized_x = (world_mouse_pos.x / App->window->GetWidth() - 0.5f) * 2;
+	float normalized_y = (world_mouse_pos.y / App->window->GetHeight() - 0.5f) * 2;
+
+	//LineSegment picking = dummy->frustum.UnProjectLineSegment(normalized_x, normalized_y);
 }
 
 // -----------------------------------------------------------------
