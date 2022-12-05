@@ -79,20 +79,28 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void Import_Mesh(MeshComponent* mesh);
+	//void Import_Mesh(MeshComponent* mesh); Already done in LoadModel_Textured()
+	//void Import_Texture(MeshComponent* mesh); Already done in LoadModel_Textured()
 
 	bool Save_Mesh(MeshComponent* mesh, char** pointer);
 
-	bool Load_Mesh(MeshComponent* mesh, const char* pointer);
+	bool Load_Mesh(MeshComponent* mesh, char* pointer);
+
+	bool Save_Texture(TextureComponent* texture, char** pointer);
+
+	bool Load_Texture(TextureComponent* texture, char** pointer);
 
 	void LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
-	uint LoadTexture(const char* path); //Loads the textures
+	uint LoadTexture(ModuleGameObject* objMain, const char* path); //Loads the textures
 
 	uint CheckerTexture();
 
 public:
 	//std::vector<MeshVertexData> meshes;
 	//std::vector<TextureData> textures;
+
+	uint childPostfix = 0;
+	uint textPostfix = 0;
 
 };
 

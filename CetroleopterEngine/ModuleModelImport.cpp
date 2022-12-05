@@ -14,6 +14,7 @@
 #include "assimp/include/cimport.h"
 #include "assimp/include/scene.h"
 #include "assimp/include/postprocess.h"
+#include "physfs.h"
 
 #include "devIL/include/ilu.h"
 #include "devIL/include/ilut.h"
@@ -73,21 +74,164 @@ bool ModuleModelImport::CleanUp()
 	return true;
 }
 
-void ModuleModelImport::Import_Mesh(MeshComponent* mesh)
-{
-
-}
-
 bool ModuleModelImport::Save_Mesh(MeshComponent* mesh, char** pointer)
 {
 	bool success = true;
 
+	// amount of indices / vertices / colors / normals / texture_coords / AABB
+	uint ranges[2] = { mesh->mesh.num_indices, mesh->mesh.num_vertices };
+	uint size = sizeof(ranges) + sizeof(uint) * mesh->mesh.num_indices + sizeof(float) * mesh->mesh.num_vertices * 3;
+	char* fileBuffer = new char[size]; // Allocate
+	char* cursor = fileBuffer;
+	uint bytes = sizeof(ranges); // First store ranges
+	memcpy(cursor, ranges, bytes);
+	cursor += bytes;
+	// Store indices
+	bytes = sizeof(uint) * mesh->mesh.num_indices;
+	memcpy(cursor, mesh->mesh.indices, bytes);
+	cursor += bytes;
 
+	// Store vertices
+	bytes = sizeof(uint) * mesh->mesh.num_vertices;
+	memcpy(cursor, mesh->mesh.vertices, bytes);
+	cursor += bytes;
+
+	// Store UVs (not working - pointer sintax errors)
+	//bytes = sizeof(uint) * mesh->mesh.num_UVs;
+	//memcpy(cursor, mesh->mesh.id_UV, bytes);
+	//cursor += bytes;
+
+
+	std::string filePath;
+	if (mesh->objMain_->name_ == "child")
+	{
+		filePath = std::string("Library/Meshes/") + mesh->objMain_->name_.c_str() + std::to_string(childPostfix) + std::string(MESH_FILE_EXTENSION);
+		childPostfix++;
+	}
+	else
+	{
+		filePath = std::string("Library/Meshes/") + mesh->objMain_->name_.c_str() + std::string(MESH_FILE_EXTENSION);
+	}
+
+	PHYSFS_file* fs_file;
+
+	fs_file = PHYSFS_openWrite(filePath.c_str());
+
+	if (fs_file != nullptr)
+	{
+		uint written = (uint)PHYSFS_write(fs_file, fileBuffer, 1, size);
+		if (written != size)
+		{
+			LOG("PhysFS error while writing to file %s: %s", filePath, PHYSFS_getLastError());
+		}
+
+		bool closesCorrectly = PHYSFS_close(fs_file);
+		if (closesCorrectly == false)
+		{
+			LOG("PhysFS error while closing file %s: %s", filePath, PHYSFS_getLastError());
+		}
+	}
+	else
+	{
+		LOG("PhysFS error while opening file %s: %s", filePath, PHYSFS_getLastError());
+	}
+
+	filePath.clear();
+	//Load_Mesh(mesh, cursor);
 
 	return success;
 }
 
-bool ModuleModelImport::Load_Mesh(MeshComponent* mesh, const char* pointer)
+bool ModuleModelImport::Load_Mesh(MeshComponent* mesh, char* pointer)
+{
+	bool success = true;
+
+	char* cursor = pointer;
+
+	// amount of indices / vertices / colors / normals / texture_coords
+	uint ranges[5];
+	uint bytes = sizeof(ranges);
+	memcpy(ranges, cursor, bytes);
+	cursor += bytes;
+	mesh->mesh.num_indices = ranges[0];
+	mesh->mesh.num_vertices = ranges[1];
+
+	// Load indices
+	bytes = sizeof(uint) * mesh->mesh.num_indices;
+	mesh->mesh.indices = new uint[mesh->mesh.num_indices];
+	memcpy(mesh->mesh.indices, cursor, bytes);
+	cursor += bytes;
+
+	// Load vertices
+	bytes = sizeof(uint) * mesh->mesh.num_vertices;
+	mesh->mesh.vertices = new float[mesh->mesh.num_vertices];
+	memcpy(mesh->mesh.vertices, cursor, bytes);
+	cursor += bytes;
+
+	//Load UVs
+	//UVs not stored so not loaded for the moment
+
+	return success;
+}
+
+bool ModuleModelImport::Save_Texture(TextureComponent* texture, char** pointer)
+{
+	bool success = true;
+
+	ilEnable(IL_FILE_OVERWRITE);
+	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
+
+	ILuint size = ilSaveL(IL_PNG, nullptr, 0);
+
+	
+
+	
+
+	if (size > 0)
+	{
+		ILubyte* data = new ILubyte[size];
+
+		if (ilSaveL(IL_PNG, data, size) > 0)
+		{
+			std::string filePath;
+			//filePath = std::string("Library/Textures/") + texture->objMain_->name_.c_str() + std::string(TEXTURE_FILE_EXTENSION);
+			filePath = std::string("Library/Textures/") + std::to_string(textPostfix) + std::string(TEXTURE_FILE_EXTENSION);
+			textPostfix++;
+			
+			PHYSFS_file* fs_file;
+
+			fs_file = PHYSFS_openWrite(filePath.c_str());
+
+			if (fs_file != nullptr)
+			{
+				char* fileBuffer = (char*)data;
+				uint written = (uint)PHYSFS_write(fs_file, fileBuffer, 1, size);
+				if (written != size)
+				{
+					LOG("PhysFS error while writing to file %s: %s", filePath, PHYSFS_getLastError());
+				}
+
+				bool closesCorrectly = PHYSFS_close(fs_file);
+				if (closesCorrectly == false)
+				{
+					LOG("PhysFS error while closing file %s: %s", filePath, PHYSFS_getLastError());
+				}
+			}
+			else
+			{
+				LOG("PhysFS error while opening file %s: %s", filePath, PHYSFS_getLastError());
+			}
+
+			filePath.clear();
+		}
+	}
+
+	
+
+	return success;
+}
+
+bool ModuleModelImport::Load_Texture(TextureComponent* texture, char** pointer)
 {
 	bool success = true;
 
@@ -106,11 +250,6 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
-		//MeshVertexData vertexData;
-		// Use scene->mNumMeshes to iterate on scene->mMeshes array
-		//TextureData textureData;
-		//textureData.texture_ID = 0;
-		//textureData.image_ID = 0;
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
@@ -188,7 +327,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 			if (success == true)
 			{
-				success = Load_Mesh(meshComponent, pointer);
+				//success = Load_Mesh(meshComponent, pointer);
 
 				if(success == false) LOG("Error loading mesh from custom file format");
 			}
@@ -268,6 +407,23 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 					textureComponent->objectTexture = texture;
 					textureComponent->textures.push_back(texture);
 				}
+
+				// Mesh file format Save/Load part
+
+				char* pointer2 = nullptr;
+				bool success2;
+				success2 = Save_Texture(textureComponent, &pointer2);
+
+				if (success2 == true)
+				{
+					//success2 = Load_Texture(textureComponent, &pointer2);
+
+					if (success2 == false) LOG("Error loading texture from custom file format");
+				}
+				else
+				{
+					LOG("Error saving texture to custom file format");
+				}
 			}
 			else
 			{
@@ -275,14 +431,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 				textureComponent->objectTexture = nullptr;
 			}
 
-			//newGameObject.meshes.push_back(vertexData);
 		}
-
-		
-
-		//newGameObject.textures.push_back(textureData);
-
-		//App->moduleGameObject->objects.push_back(newGameObject);
 		aiReleaseImport(scene);
 	}
 	else
@@ -291,7 +440,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 	}
 }
 
-uint ModuleModelImport::LoadTexture(const char* path)
+uint ModuleModelImport::LoadTexture(ModuleGameObject* objMain, const char* path)
 {
 	//GameObject newGameObject;
 
@@ -300,14 +449,13 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	textureData.texture_ID = 0;
 	textureData.image_ID = 0;
 
-	//MeshComponent* meshComponent;
-	//TextureComponent* textureComponent;
-	//TextureData* texture = new TextureData();
-	//textureComponent = (TextureComponent*)objMain->GetComponentOfType(ComponentTypes::TEXTURE);
+	TextureComponent* textureComponent;
+	TextureData* texture = new TextureData();
+
+	textureComponent = (TextureComponent*)objMain->GetComponentOfType(ComponentTypes::TEXTURE);
 
 	if (path != nullptr)
 	{
-
 		ilGenImages(1, (ILuint*)&textureData.image_ID);
 		ilBindImage(textureData.image_ID);
 
@@ -337,14 +485,32 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	}
 	else LOG("ERROR loading image from path: %s", path);
 
-	//textureData.path = path;
+	
 	if (textureData.texture_ID != 0)
 	{
 		textureData.path = path;
-	}
-	//newGameObject.textures.push_back(textureData);
 
-	//App->moduleGameObject->objects.push_back(newGameObject);
+		textureData.width = ilGetInteger(IL_IMAGE_WIDTH);
+		textureData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+
+		textureComponent->objectTexture = texture;
+		textureComponent->textures.push_back(texture);
+	}
+	
+	char* pointer = nullptr;
+	bool success;
+	success = Save_Texture(textureComponent, &pointer);
+
+	if (success == true)
+	{
+		//success2 = Load_Texture(textureComponent, &pointer2);
+
+		if (success == false) LOG("Error loading texture from custom file format");
+	}
+	else
+	{
+		LOG("Error saving texture to custom file format");
+	}
 
 	return textureData.texture_ID;
 }
