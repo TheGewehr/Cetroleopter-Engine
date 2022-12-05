@@ -74,11 +74,6 @@ bool ModuleModelImport::CleanUp()
 	return true;
 }
 
-void ModuleModelImport::Import_Mesh(MeshComponent* mesh)
-{
-
-}
-
 bool ModuleModelImport::Save_Mesh(MeshComponent* mesh, char** pointer)
 {
 	bool success = true;
@@ -174,6 +169,24 @@ bool ModuleModelImport::Load_Mesh(MeshComponent* mesh, char* pointer)
 
 	//Load UVs
 	//UVs not stored so not loaded for the moment
+
+	return success;
+}
+
+bool ModuleModelImport::Save_Texture(TextureComponent* mesh, char** pointer)
+{
+	bool success = true;
+
+
+
+	return success;
+}
+
+bool ModuleModelImport::Load_Texture(TextureComponent* mesh, char** pointer)
+{
+	bool success = true;
+
+
 
 	return success;
 }
