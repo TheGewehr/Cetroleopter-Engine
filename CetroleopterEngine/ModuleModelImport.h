@@ -91,7 +91,7 @@ public:
 	bool Load_Texture(TextureComponent* texture, char** pointer);
 
 	void LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
-	uint LoadTexture(const char* path); //Loads the textures
+	uint LoadTexture(ModuleGameObject* objMain, const char* path); //Loads the textures
 
 	uint CheckerTexture();
 

@@ -178,7 +178,7 @@ bool ModuleModelImport::Save_Texture(TextureComponent* texture, char** pointer)
 {
 	bool success = true;
 
-	ilEnable(IL_FILE_OVERWRITE);																				// Allowing DevIL to overwrite existing files.
+	ilEnable(IL_FILE_OVERWRITE);
 	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
 
 	ILuint size = ilSaveL(IL_PNG, nullptr, 0);
@@ -250,11 +250,6 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 	if (scene != nullptr && scene->HasMeshes())
 	{
-		//MeshVertexData vertexData;
-		// Use scene->mNumMeshes to iterate on scene->mMeshes array
-		//TextureData textureData;
-		//textureData.texture_ID = 0;
-		//textureData.image_ID = 0;
 
 		for (uint i = 0; i < scene->mNumMeshes; i++)
 		{
@@ -423,11 +418,11 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 				{
 					//success2 = Load_Texture(textureComponent, &pointer2);
 
-					if (success2 == false) LOG("Error loading mesh from custom file format");
+					if (success2 == false) LOG("Error loading texture from custom file format");
 				}
 				else
 				{
-					LOG("Error saving mesh to custom file format");
+					LOG("Error saving texture to custom file format");
 				}
 			}
 			else
@@ -436,14 +431,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 				textureComponent->objectTexture = nullptr;
 			}
 
-			//newGameObject.meshes.push_back(vertexData);
 		}
-
-		
-
-		//newGameObject.textures.push_back(textureData);
-
-		//App->moduleGameObject->objects.push_back(newGameObject);
 		aiReleaseImport(scene);
 	}
 	else
@@ -452,7 +440,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 	}
 }
 
-uint ModuleModelImport::LoadTexture(const char* path)
+uint ModuleModelImport::LoadTexture(ModuleGameObject* objMain, const char* path)
 {
 	//GameObject newGameObject;
 
@@ -461,14 +449,13 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	textureData.texture_ID = 0;
 	textureData.image_ID = 0;
 
-	//MeshComponent* meshComponent;
-	//TextureComponent* textureComponent;
-	//TextureData* texture = new TextureData();
-	//textureComponent = (TextureComponent*)objMain->GetComponentOfType(ComponentTypes::TEXTURE);
+	TextureComponent* textureComponent;
+	TextureData* texture = new TextureData();
+
+	textureComponent = (TextureComponent*)objMain->GetComponentOfType(ComponentTypes::TEXTURE);
 
 	if (path != nullptr)
 	{
-
 		ilGenImages(1, (ILuint*)&textureData.image_ID);
 		ilBindImage(textureData.image_ID);
 
@@ -498,14 +485,32 @@ uint ModuleModelImport::LoadTexture(const char* path)
 	}
 	else LOG("ERROR loading image from path: %s", path);
 
-	//textureData.path = path;
+	
 	if (textureData.texture_ID != 0)
 	{
 		textureData.path = path;
-	}
-	//newGameObject.textures.push_back(textureData);
 
-	//App->moduleGameObject->objects.push_back(newGameObject);
+		textureData.width = ilGetInteger(IL_IMAGE_WIDTH);
+		textureData.height = ilGetInteger(IL_IMAGE_HEIGHT);
+
+		textureComponent->objectTexture = texture;
+		textureComponent->textures.push_back(texture);
+	}
+	
+	char* pointer = nullptr;
+	bool success;
+	success = Save_Texture(textureComponent, &pointer);
+
+	if (success == true)
+	{
+		//success2 = Load_Texture(textureComponent, &pointer2);
+
+		if (success == false) LOG("Error loading texture from custom file format");
+	}
+	else
+	{
+		LOG("Error saving texture to custom file format");
+	}
 
 	return textureData.texture_ID;
 }
