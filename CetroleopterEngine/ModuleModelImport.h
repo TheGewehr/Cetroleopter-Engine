@@ -86,9 +86,9 @@ public:
 
 	bool Load_Mesh(MeshComponent* mesh, char* pointer);
 
-	bool Save_Texture(TextureComponent* mesh, char** pointer);
+	bool Save_Texture(TextureComponent* texture, char** pointer);
 
-	bool Load_Texture(TextureComponent* mesh, char** pointer);
+	bool Load_Texture(TextureComponent* texture, char** pointer);
 
 	void LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
 	uint LoadTexture(const char* path); //Loads the textures
@@ -100,6 +100,8 @@ public:
 	//std::vector<TextureData> textures;
 
 	uint childPostfix = 0;
+	uint textPostfix = 0;
+
 };
 
 #endif // !_MESH_IMPORTER_H_

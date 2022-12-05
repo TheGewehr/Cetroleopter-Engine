@@ -122,20 +122,21 @@ bool ModuleModelImport::Save_Mesh(MeshComponent* mesh, char** pointer)
 		uint written = (uint)PHYSFS_write(fs_file, fileBuffer, 1, size);
 		if (written != size)
 		{
-			LOG("[error] File System error while writing to file %s: %s", filePath, PHYSFS_getLastError());
+			LOG("PhysFS error while writing to file %s: %s", filePath, PHYSFS_getLastError());
 		}
 
 		bool closesCorrectly = PHYSFS_close(fs_file);
 		if (closesCorrectly == false)
 		{
-			LOG("[ERROR] File System error while closing file %s: %s", filePath, PHYSFS_getLastError());
+			LOG("PhysFS error while closing file %s: %s", filePath, PHYSFS_getLastError());
 		}
 	}
 	else
 	{
-		LOG("[ERROR] File System error while opening file %s: %s", filePath, PHYSFS_getLastError());
+		LOG("PhysFS error while opening file %s: %s", filePath, PHYSFS_getLastError());
 	}
 
+	filePath.clear();
 	//Load_Mesh(mesh, cursor);
 
 	return success;
@@ -173,16 +174,64 @@ bool ModuleModelImport::Load_Mesh(MeshComponent* mesh, char* pointer)
 	return success;
 }
 
-bool ModuleModelImport::Save_Texture(TextureComponent* mesh, char** pointer)
+bool ModuleModelImport::Save_Texture(TextureComponent* texture, char** pointer)
 {
 	bool success = true;
 
+	ilEnable(IL_FILE_OVERWRITE);																				// Allowing DevIL to overwrite existing files.
+	ilSetInteger(IL_DXTC_FORMAT, IL_DXT5);
 
+	ILuint size = ilSaveL(IL_PNG, nullptr, 0);
+
+	
+
+	
+
+	if (size > 0)
+	{
+		ILubyte* data = new ILubyte[size];
+
+		if (ilSaveL(IL_PNG, data, size) > 0)
+		{
+			std::string filePath;
+			//filePath = std::string("Library/Textures/") + texture->objMain_->name_.c_str() + std::string(TEXTURE_FILE_EXTENSION);
+			filePath = std::string("Library/Textures/") + std::to_string(textPostfix) + std::string(TEXTURE_FILE_EXTENSION);
+			textPostfix++;
+			
+			PHYSFS_file* fs_file;
+
+			fs_file = PHYSFS_openWrite(filePath.c_str());
+
+			if (fs_file != nullptr)
+			{
+				char* fileBuffer = (char*)data;
+				uint written = (uint)PHYSFS_write(fs_file, fileBuffer, 1, size);
+				if (written != size)
+				{
+					LOG("PhysFS error while writing to file %s: %s", filePath, PHYSFS_getLastError());
+				}
+
+				bool closesCorrectly = PHYSFS_close(fs_file);
+				if (closesCorrectly == false)
+				{
+					LOG("PhysFS error while closing file %s: %s", filePath, PHYSFS_getLastError());
+				}
+			}
+			else
+			{
+				LOG("PhysFS error while opening file %s: %s", filePath, PHYSFS_getLastError());
+			}
+
+			filePath.clear();
+		}
+	}
+
+	
 
 	return success;
 }
 
-bool ModuleModelImport::Load_Texture(TextureComponent* mesh, char** pointer)
+bool ModuleModelImport::Load_Texture(TextureComponent* texture, char** pointer)
 {
 	bool success = true;
 
@@ -362,6 +411,23 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 					textureComponent->objectTexture = texture;
 					textureComponent->textures.push_back(texture);
+				}
+
+				// Mesh file format Save/Load part
+
+				char* pointer2 = nullptr;
+				bool success2;
+				success2 = Save_Texture(textureComponent, &pointer2);
+
+				if (success2 == true)
+				{
+					//success2 = Load_Texture(textureComponent, &pointer2);
+
+					if (success2 == false) LOG("Error loading mesh from custom file format");
+				}
+				else
+				{
+					LOG("Error saving mesh to custom file format");
 				}
 			}
 			else
