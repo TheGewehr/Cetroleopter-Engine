@@ -472,7 +472,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 
 				if (success2 == true)
 				{
-					//success2 = Load_Texture(textureComponent, &pointer2);
+					//success2 = Load_Texture(textureComponent, &pointer2); Already inside Save_Texture();
 
 					if (success2 == false) LOG("Error loading texture from custom file format");
 				}
@@ -559,7 +559,7 @@ uint ModuleModelImport::LoadTexture(ModuleGameObject* objMain, const char* path)
 
 	if (success == true)
 	{
-		//success2 = Load_Texture(textureComponent, &pointer2);
+		//success2 = Load_Texture(textureComponent, &pointer2); Already inside Save_Texture();
 
 		if (success == false) LOG("Error loading texture from custom file format");
 	}
