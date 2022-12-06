@@ -23,6 +23,9 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 	objectComponents.push_back(componentMesh);
 	objectComponents.push_back(componentTexture);
 	objectComponents.push_back(componentTransform);
+
+	obb.SetNegativeInfinity();
+	aabb.SetNegativeInfinity();
 }
 
 ModuleGameObject::~ModuleGameObject()
@@ -44,6 +47,11 @@ update_status ModuleGameObject::Update()
 		{
 			objectComponents[i]->Update();
 		}
+
+		//if (objectComponents[i]->GetType() == ComponentTypes::MESH)
+		//{
+		//	obb = objectComponents[i]->objMain_->GetMeshComponent();
+		//}
 	}
 
 	return UPDATE_CONTINUE;

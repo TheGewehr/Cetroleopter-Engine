@@ -83,7 +83,7 @@ update_status ModuleCamera3D::Update(float dt)
 
 	// Mouse motion ----------------
 
-	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN)
+	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->GetKey(SDL_SCANCODE_LALT) == KEY_IDLE)
 	{
 		MakeRayCast();
 	}
@@ -198,6 +198,8 @@ float* ModuleCamera3D::GetViewMatrix()
 
 void ModuleCamera3D::MakeRayCast()
 {
+
+	//Ray part
 	float tab_width = App->window->GetWidth(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
 	float tab_height = App->window->GetHeight(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
 
@@ -209,6 +211,16 @@ void ModuleCamera3D::MakeRayCast()
 	float normalized_y = (world_mouse_pos.y / App->window->GetHeight() - 0.5f) * 2;
 
 	LineSegment picking = mainCamera->frustum.UnProjectLineSegment(normalized_x, normalized_y);
+	
+
+	//Object part
+	for (uint i = 0; i < App->scene_intro->gameObjects.size(); ++i)
+	{
+		if (picking.Intersects(App->scene_intro->gameObjects[i]->aabb))
+		{
+			App->scene_intro->gameObjects[i]->SelectObject();
+		}
+	}
 }
 
 // -----------------------------------------------------------------

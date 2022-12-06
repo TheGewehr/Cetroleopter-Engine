@@ -3,7 +3,12 @@
 
 //#include "Application.h"
 #include <vector>
+#include <string>
 #include "Module.h"
+
+#include "mathGeoLib/Geometry/AABB.h"
+#include "mathGeoLib/Geometry/OBB.h"
+
 //#include "ModuleModelImport.h"
 //#include "Component.h"
 //#include "ModuleTransformComponent.h"
@@ -65,6 +70,9 @@ public:
 	Component* componentMesh;
 	Component* componentTexture;
 	Component* componentTransform;
+
+	AABB aabb;
+	OBB obb;
 
 	uint id_;
 	std::string name_;
