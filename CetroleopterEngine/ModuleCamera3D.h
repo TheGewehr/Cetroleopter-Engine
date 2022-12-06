@@ -4,6 +4,9 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+#include "ModuleCameraComponent.h"
+
+class CameraComponent;
 
 class ModuleCamera3D : public Module
 {
@@ -28,7 +31,8 @@ private:
 
 public:
 	
-	vec3 X, Y, Z, Position, Reference;
+	//vec3 X, Y, Z, Position, Reference; <-- Inside mainCamera as camera component
+	CameraComponent* mainCamera;
 
 	bool isMainCameraMooving;
 
