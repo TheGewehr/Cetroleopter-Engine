@@ -264,6 +264,36 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 			ImGui::Text("- This Game Object has no cameras");
 			ImGui::Spacing();
 		}
+
+		if (ImGui::CollapsingHeader("Hierarchy Options"))
+		{
+			//ImGui::Text("Textures:");
+
+			//for (int k = 0; k < App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].textures.size(); k++)
+			//{
+			//	ImGui::Text("	Texture [%i]:", k);
+			//	ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].textures[k].path.c_str());
+			//	//ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].meshTexturesData.path.c_str());
+			//}
+			
+			int hierarchyDummy = (int)hierarchyOptions;
+
+			ImGui::Combo("##", &hierarchyDummy, "Nothing\0Set Parent\0Add Child\0Delete Object");
+
+			ImGui::SameLine();
+
+			if ((ImGui::Button(" DO ")))
+			{
+				//if (component_type != (int)COMPONENT_TYPE::NONE)
+				//{
+				//	selected_game_object->CreateComponent((COMPONENT_TYPE)component_type);
+				//}
+			}
+
+			//->objMain_->GetTextureComponent()->objectTexture->path.c_str()
+
+			//ImGui::Text("		%c", );
+		}
 	}
 	else 
 	{
