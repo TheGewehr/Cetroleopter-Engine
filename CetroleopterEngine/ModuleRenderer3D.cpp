@@ -14,6 +14,7 @@
 #include "ModuleMeshComponent.h"
 #include "ModuleTextureComponent.h"
 #include "ModuleTransformComponent.h"
+#include "ModuleCameraComponent.h"
 #include "Component.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
