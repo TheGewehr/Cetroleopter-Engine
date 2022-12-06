@@ -4,7 +4,7 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
-#include "ModuleCameraComponent.h"
+//#include "ModuleCameraComponent.h"
 
 class CameraComponent;
 

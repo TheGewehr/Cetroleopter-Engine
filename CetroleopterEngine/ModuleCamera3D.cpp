@@ -2,11 +2,11 @@
 #include "Application.h"
 #include "ModuleCamera3D.h"
 #include <MathGeoLib.h>
-//#include "ModuleCameraComponent.h"
+#include "ModuleCameraComponent.h"
 
 ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true)
 {
-	CalculateViewMatrix();
+	//CalculateViewMatrix();
 	
 	mainCamera->X = vec3(1.0f, 0.0f, 0.0f);
 	mainCamera->Y = vec3(0.0f, 1.0f, 0.0f);
@@ -15,6 +15,8 @@ ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true
 	mainCamera->Position = vec3(0.0f, 50.0f, 50.0f);
 	mainCamera->Reference = vec3(0.0f, 0.0f, 0.0f);
 	isMainCameraMooving = false;
+
+	CalculateViewMatrix();
 }
 
 ModuleCamera3D::~ModuleCamera3D()
