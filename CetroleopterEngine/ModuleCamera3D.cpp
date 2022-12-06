@@ -193,7 +193,7 @@ void ModuleCamera3D::Move(const vec3 &Movement)
 // -----------------------------------------------------------------
 float* ModuleCamera3D::GetViewMatrix()
 {
-	return &ViewMatrix;
+	return &mainCamera->ViewMatrix;
 }
 
 void ModuleCamera3D::MakeRayCast()
@@ -214,6 +214,6 @@ void ModuleCamera3D::MakeRayCast()
 // -----------------------------------------------------------------
 void ModuleCamera3D::CalculateViewMatrix()
 {
-	ViewMatrix = mat4x4(mainCamera->X.x, mainCamera->Y.x, mainCamera->Z.x, 0.0f, mainCamera->X.y, mainCamera->Y.y, mainCamera->Z.y, 0.0f, mainCamera->X.z, mainCamera->Y.z, mainCamera->Z.z, 0.0f, -dot(mainCamera->X, mainCamera->Position), -dot(mainCamera->Y, mainCamera->Position), -dot(mainCamera->Z, mainCamera->Position), 1.0f);
-	ViewMatrixInverse = inverse(ViewMatrix);
+	mainCamera->ViewMatrix = mat4x4(mainCamera->X.x, mainCamera->Y.x, mainCamera->Z.x, 0.0f, mainCamera->X.y, mainCamera->Y.y, mainCamera->Z.y, 0.0f, mainCamera->X.z, mainCamera->Y.z, mainCamera->Z.z, 0.0f, -dot(mainCamera->X, mainCamera->Position), -dot(mainCamera->Y, mainCamera->Position), -dot(mainCamera->Z, mainCamera->Position), 1.0f);
+	mainCamera->ViewMatrixInverse = inverse(mainCamera->ViewMatrix);
 }

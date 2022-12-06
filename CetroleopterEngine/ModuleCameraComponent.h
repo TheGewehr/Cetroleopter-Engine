@@ -25,6 +25,10 @@ public:
 	// ???(varType) cameraTransform;
 
 	vec3 X, Y, Z, Position, Reference;
+
+	mat4x4 ViewMatrix, ViewMatrixInverse;
+
+	Frustum frustum;
 };
 
 

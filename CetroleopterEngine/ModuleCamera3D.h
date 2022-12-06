@@ -38,7 +38,7 @@ public:
 
 private:
 
-	mat4x4 ViewMatrix, ViewMatrixInverse;
+	//mat4x4 ViewMatrix, ViewMatrixInverse; <-- Inside mainCamera as camera component
 };
 
 #endif // !_MODULE_CAMERA_H_
