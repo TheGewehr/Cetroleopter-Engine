@@ -51,16 +51,15 @@ update_status ModuleGameObject::Update()
 
 void ModuleGameObject::Render()
 {
-	for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+	
+	TransformComponent* transform = this->GetTransformComponent();
+	App->renderer3D->RenderGameObjects(*this, transform->position);
+	ModuleGameObject* base = this;
+	for (int j = 0; j < base->childs.size(); j++)
 	{
-		TransformComponent* transform = (TransformComponent*)App->scene_intro->gameObjects[i]->GetComponentOfType(ComponentTypes::TRANSFORM);
-		App->renderer3D->RenderGameObjects(*App->scene_intro->gameObjects.at(i), transform->position);
-		ModuleGameObject* base = App->scene_intro->gameObjects.at(i);
-		for (int j = 0; j < base->childs.size(); j++)
-		{
-			App->renderer3D->RenderGameObjects(*base->childs.at(j), transform->position);
-		}
+		App->renderer3D->RenderGameObjects(*base->childs.at(j), transform->position);
 	}
+	
 }
 
 bool ModuleGameObject::CleanUp()
