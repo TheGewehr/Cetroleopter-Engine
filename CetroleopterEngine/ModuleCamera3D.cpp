@@ -216,7 +216,7 @@ void ModuleCamera3D::MakeRayCast()
 	//Object part
 	for (uint i = 0; i < App->scene_intro->gameObjects.size(); ++i)
 	{
-		if (picking.Intersects(App->scene_intro->gameObjects[i]->aabb))
+		if (picking.Intersects(App->scene_intro->gameObjects[i]->componentMesh->objMain_->aabb))
 		{
 			App->scene_intro->gameObjects[i]->SelectObject();
 		}
