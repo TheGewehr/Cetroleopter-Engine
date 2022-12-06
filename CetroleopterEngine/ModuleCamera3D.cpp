@@ -62,11 +62,14 @@ update_status ModuleCamera3D::Update(float dt)
 	{
 		// dezoom
 		newPos -= Z * speed;
+		isMainCameraMooving = true;
+
 	}
 	if (App->input->GetMouseZ() < 0)
 	{
 		//zoom
 		newPos += Z * speed;
+		isMainCameraMooving = true;
 
 	}
 
@@ -132,7 +135,8 @@ update_status ModuleCamera3D::Update(float dt)
 					if (App->input->GetKey(SDL_SCANCODE_A) != KEY_REPEAT)
 						if (App->input->GetKey(SDL_SCANCODE_D) != KEY_REPEAT)
 							if ((App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT))
-								isMainCameraMooving = false;
+								if (App->input->GetMouseZ() == 0)
+									isMainCameraMooving = false;
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();

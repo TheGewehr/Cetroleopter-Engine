@@ -189,3 +189,24 @@ std::string ModuleFS::GetFileExtension(const char* file_path)
 		std::string errorString = "GetFileExtension Error: File Path was nullptr";
 	}
 }
+
+void ModuleFS::DiscoverFiles(const char* directory, std::vector<std::string>& file_list, std::vector<std::string>& dir_list) const
+{
+	char** file_listing = PHYSFS_enumerateFiles(directory);									// Method that returns a listing with all the files in a given search path's directory.
+
+	for (char** file = file_listing; *file != nullptr; ++file)								// Will iterate the file listing file per file.
+	{
+		std::string path = std::string(directory) + std::string("/") + std::string(*file);	// Will put together a path with the given directory and the file being currently iterated.
+
+		if (PHYSFS_isDirectory(path.c_str()))
+		{
+			dir_list.push_back(*file);														// If the path is a directory, the file will be added to the directory list.
+		}
+		else
+		{
+			file_list.push_back(*file);														// If the path is not a directory, the file will be added to the file list.
+		}
+	}
+
+	PHYSFS_freeList(file_listing);
+}

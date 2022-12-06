@@ -222,6 +222,7 @@
     <ClInclude Include="physFS\include\physfs.h" />
     <ClInclude Include="physFS\include\physfsrwops.h" />
     <ClInclude Include="Primitive.h" />
+    <ClInclude Include="RessourcesWindow.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +308,7 @@
     <ClCompile Include="ObjectsInspectorWindow.cpp" />
     <ClCompile Include="physFS\include\physfsrwops.c" />
     <ClCompile Include="Primitive.cpp" />
+    <ClCompile Include="RessourcesWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>

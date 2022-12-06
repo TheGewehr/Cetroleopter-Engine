@@ -465,6 +465,9 @@
     <ClInclude Include="DebugSceneViewWindow.h">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClInclude>
+    <ClInclude Include="RessourcesWindow.h">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -711,6 +714,9 @@
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="DebugSceneViewWindow.cpp">
+      <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="RessourcesWindow.cpp">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClCompile>
   </ItemGroup>
