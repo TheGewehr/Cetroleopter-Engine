@@ -7,6 +7,8 @@
 ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true)
 {
 	//CalculateViewMatrix();
+
+	mainCamera = new CameraComponent(nullptr);
 	
 	mainCamera->X = vec3(1.0f, 0.0f, 0.0f);
 	mainCamera->Y = vec3(0.0f, 1.0f, 0.0f);
