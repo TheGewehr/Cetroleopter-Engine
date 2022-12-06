@@ -24,23 +24,31 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 	objectComponents.push_back(componentTexture);
 	objectComponents.push_back(componentTransform);
 
-	obb.SetNegativeInfinity();
+
 	aabb.SetNegativeInfinity();
+	obb.SetNegativeInfinity();
+
+	aabbVertices = new float3[8];
+	obbVertices = new float3[8];
 }
 
 ModuleGameObject::~ModuleGameObject()
 {
+	//RELEASE_ARRAY(aabbVertices);
+	//RELEASE_ARRAY(obbVertices);
 }
 
 bool ModuleGameObject::Init()
 {
-	
+
 
 	return true;
 }
 
 update_status ModuleGameObject::Update()
 {
+	std::vector<MeshComponent*> meshesComponent;
+
 	for (uint i = 0; i < objectComponents.size(); i++)
 	{
 		if (objectComponents[i]->IsComponentActive())
@@ -48,11 +56,27 @@ update_status ModuleGameObject::Update()
 			objectComponents[i]->Update();
 		}
 
-		//if (objectComponents[i]->GetType() == ComponentTypes::MESH)
-		//{
-		//	obb = objectComponents[i]->objMain_->GetMeshComponent();
-		//}
+		if (objectComponents[i]->GetType() == ComponentTypes::MESH)
+		{
+			meshesComponent.push_back((MeshComponent*)objectComponents[i]);
+		}
 	}
+
+	for (uint i = 0; i < meshesComponent.size(); ++i)
+	{
+		if (meshesComponent[i] == nullptr  || meshesComponent[i]->objMain_->componentMesh == nullptr)
+		{
+			continue;
+		}
+
+		obb = meshesComponent[i]->objMain_->componentMesh->objMain_->aabb;
+		obb.Transform(GetTransformComponent()->GetWorldTransform());
+
+		aabb.SetNegativeInfinity();
+		aabb.Enclose(obb);
+	}
+
+	meshesComponent.clear();
 
 	return UPDATE_CONTINUE;
 }
@@ -67,6 +91,36 @@ void ModuleGameObject::Render()
 	{
 		App->renderer3D->RenderGameObjects(*base->childs.at(j), transform->position);
 	}
+
+
+	//Just for testing purposes
+	//
+	//std::vector<MeshComponent*> meshesComponent;
+	//
+	//for (uint i = 0; i < objectComponents.size(); i++)
+	//{
+	//
+	//	if (objectComponents[i]->GetType() == ComponentTypes::MESH)
+	//	{
+	//		meshesComponent.push_back((MeshComponent*)objectComponents[i]);
+	//	}
+	//}
+	//
+	//for (uint i = 0; i < meshesComponent.size(); ++i)
+	//{
+	//	if (meshesComponent[i] == nullptr || meshesComponent[i]->objMain_->componentMesh == nullptr)
+	//	{
+	//		continue;
+	//	}
+	//
+	//	obb = meshesComponent[i]->objMain_->componentMesh->objMain_->aabb;
+	//	obb.Transform(GetTransformComponent()->GetWorldTransform());
+	//
+	//	aabb.SetNegativeInfinity();
+	//	aabb.Enclose(obb);
+	//}
+	//
+	//meshesComponent.clear();
 	
 }
 

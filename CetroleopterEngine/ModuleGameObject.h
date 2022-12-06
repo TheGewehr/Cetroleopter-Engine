@@ -74,6 +74,10 @@ public:
 	AABB aabb;
 	OBB obb;
 
+	float3* aabbVertices;
+	float3* obbVertices;
+	
+
 	uint id_;
 	std::string name_;
 	bool isAtive_;
