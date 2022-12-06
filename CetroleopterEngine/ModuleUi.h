@@ -16,6 +16,7 @@ class AboutWindow;
 class ConsoleWindow;
 class GameObjectsWindow;
 class ObjectsInspectorWindow;
+class RessourcesWindow;
 
 class ModuleUi : public Module
 {
@@ -46,6 +47,7 @@ public:
 	ConsoleWindow* consoleWindow = nullptr;
 	GameObjectsWindow* gameObjectsWindow = nullptr;
 	ObjectsInspectorWindow* objectsInspectorWindow = nullptr;
+	RessourcesWindow* ressourcesWindow = nullptr;
 
 	bool hoveringWindow;
 

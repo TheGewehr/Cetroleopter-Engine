@@ -8,7 +8,7 @@
 
 #define MAX_DIRECTORY_SIZE 500
 
-RessourcesWindow::RessourcesWindow(const char* name, bool isActive) : ImGuiWindowBase("Ressources", isActive = true)
+RessourcesWindow::RessourcesWindow(const char* name, bool isActive) : ImGuiWindowBase("Ressources", true)
 {
 	directory_to_display = new char[MAX_DIRECTORY_SIZE];
 
@@ -23,17 +23,8 @@ bool RessourcesWindow::Draw(ImGuiIO& io)
 {
 	bool ret = true;
 
-
-	ImGui::Begin(GetName(), nullptr, ImGuiWindowFlags_None);
-
-	if (App->moduleUi->hoveringWindow == false)
-		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered(); // To know if the window is being moved
-
-	DrawMenuBar();
 	DrawAssetsTree();
 	DrawFolderExplorer();
-
-	ImGui::End();
 
 	return ret;
 }
@@ -54,23 +45,13 @@ void RessourcesWindow::GenerateDockspace(ImGuiIO& io) const
 	}
 }
 
-void RessourcesWindow::DrawMenuBar() const
-{
-	ImGui::BeginMenuBar();
-
-	if (ImGui::BeginMenu("Options"))
-	{
-		ImGui::MenuItem("Show In Explorer", nullptr, false, false);
-
-		ImGui::EndMenu();
-	}
-
-	ImGui::EndMenuBar();
-}
 
 void RessourcesWindow::DrawAssetsTree()
 {
 	ImGui::Begin("AssetsTree", false);
+
+	if (App->moduleUi->hoveringWindow == false)
+		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered();
 
 	if (ImGui::TreeNodeEx("Assets/", ImGuiTreeNodeFlags_DefaultOpen))
 	{
@@ -85,7 +66,10 @@ void RessourcesWindow::DrawFolderExplorer() const
 {
 	ImGui::Begin("FolderExplorer", false);
 
-	ImGui::Text("WORK IN PROGRESS");
+	ImGui::Text("Doesn't work yet");
+
+	if (App->moduleUi->hoveringWindow == false)
+		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered();
 
 	ImGui::End();
 }
