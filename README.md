@@ -10,7 +10,7 @@ Cetroleopter Engine its a 3D graphics Engine for Game Development developped wit
 
 ## UI:
 
--**File**: where you can save and load the configuration, and also can exit the engine (I don't know why you would do that, taking in account how great our engine is 
+-**File**: where you can save and load the configuration (and the scene), and also can exit the engine (I don't know why you would do that, taking in account how great our engine is 
 ( ͡° ͜ʖ ͡°))
 
 -**Edit**: here you can hide and show the settings window and the console window. The settings window has window settings, FPS setings and harware specifics. The console window just reads the console and print it. You can also load preselected fbx files with their respective Textures.
@@ -21,18 +21,37 @@ Cetroleopter Engine its a 3D graphics Engine for Game Development developped wit
 
 -**Help**: this window let you clic a link to this amazing engine, and also open an About window that shows you the license of this project, the libraries used and a link to our github page.
 
--**GameObjects**: this window shows the objects created by number, and lets you click a button to see the specifics of the objects in the inspector.
+-**GameObjects**: this window shows the objects in a tree, and lets you click a button to see the specifics of the objects in the inspector.(make a doble click on the arrow)
 
--**Inspector**: this window show the specifics of the object that we are looking at. Currenty only Texture and Mesh components of an object are available, others such as Transform components are work in progress
+-**Inspector**: this window show the specifics of the object that we are looking at. Currenty there is Texture, Mesh and Transform components of an object are available, camera could be perfectly added
 
 ## Drag&Drop Feature:
 
 Models and textures can be dropped directly into the engine, a new game object per mesh in the model and the texture will also be applied into that model. Cetroleopter Engine supports .fbx for the objects and dds/.png for the textures, there are not more formats in our plan, but we would be glad to add some :-)
 
-## Save & Load Features:
+## Scene Serialization
 
-For now, it only saves and loads the configuration, but once we polish our game objects system we will introduce a feature to save the hole scene!
+Everything is setted up to work, nothing crashes  while saving it or loading it, but it only saves the scene name :-/
+## Transformation & Hierarchy features:
 
+We added this recently, it was a pain but it is functional! 
+Hierarchy is another story. All the features of a transform component are implemented to support local to world position, supporting the children of an object. But we had problems with ImGui and we cannot modify the hierarchy ;_-(
+
+## Play & Stop features:
+
+Everything implemented but does not work, we found out that once an ImGui window has several ImGui components inside the last ones added cease to work, this is the case.
+
+## Camera features:
+
+Camera component exists and works, but the mouse picking is implemented but does not work.
+
+## Resource Management features:
+
+We have a chunk of the ressource management features, as showing the assets in a window and generating the library files.
+
+## Custom File Format
+
+Models, meshes and textures are saved to your own format under Library folder, the .fcvg Franccesco Virgolini file, the fastest file of the whole world.
 ## Engine Controls:
 
 - **W**: Move Forward
