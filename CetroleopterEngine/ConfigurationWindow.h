@@ -33,7 +33,8 @@ private:
 	bool AnotherHeader();
 	bool FPSHeader();
 	bool HardwareHeader();
-	
+	bool PlayPauseHeader();
+
 
 private:
 
@@ -53,8 +54,8 @@ private:
 	float fpsData[MAX_HISTOGRAM_SIZE];
 	float msData[MAX_HISTOGRAM_SIZE];
 
-	
-
+	uint sceneTimer = 0;
+	bool counterON = false;
 };
 
 #endif // !_CONFIGURATIONWINDOW_H_
