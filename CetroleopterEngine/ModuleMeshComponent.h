@@ -53,6 +53,16 @@ public:
 	const char* meshPath;
 
     std::vector<BB_Vertex> bb_vertices;
+    std::vector<float> bb_normals;
+    std::vector<float> bb_tex_coords;
+    std::vector<uint> bb_indices;
+
+    // Buffer data
+    uint VBO;
+    uint NBO;
+    uint TBO;
+    uint IBO;
+
     AABB bbox;
     vec bboxPoints[8];
 };

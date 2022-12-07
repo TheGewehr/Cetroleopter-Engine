@@ -374,6 +374,38 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
 
+			// bounding box thing
+			if (!meshComponent->bb_vertices.empty())
+			{
+				glGenBuffers(1, (GLuint*)&meshComponent->VBO);
+				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->VBO);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * meshComponent->bb_vertices.size(), &meshComponent->bb_vertices[0], GL_STATIC_DRAW);
+			}
+
+			if (!meshComponent->bb_normals.empty())
+			{
+				glGenBuffers(1, (GLuint*)&meshComponent->NBO);
+				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->NBO);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * meshComponent->bb_normals.size(), &meshComponent->bb_normals[0], GL_STATIC_DRAW);
+			}
+
+			if (!meshComponent->bb_tex_coords.empty())
+			{
+				glGenBuffers(1, (GLuint*)&meshComponent->TBO);
+				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->TBO);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(float) * meshComponent->bb_tex_coords.size(), &meshComponent->bb_tex_coords[0], GL_STATIC_DRAW);
+			}
+
+			if (!meshComponent->bb_indices.empty())
+			{
+				glGenBuffers(1, (GLuint*)&meshComponent->IBO);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshComponent->IBO);
+				glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(uint) * meshComponent->bb_indices.size(), &meshComponent->bb_indices[0], GL_STATIC_DRAW);
+			}
+
+			meshComponent->bbox.SetNegativeInfinity();
+			//meshComponent->bbox.Enclose((float3*)&meshComponent->bb_vertices[0], meshComponent->bb_vertices.size() / 3); //Causes assertion vector subscript out of range
+
 
 			// Mesh file format Save/Load part
 

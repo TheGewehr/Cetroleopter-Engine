@@ -25,21 +25,21 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 	objectComponents.push_back(componentTransform);
 
 
-	aabb.SetNegativeInfinity();
-	obb.SetNegativeInfinity();
-
-	aabbVertices = new float3[8];
-	obbVertices = new float3[8];
-
-	std::vector<BB_Vertex> vertices;
-	vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 1.0)));
-	vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 1.0)));
-	vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 0.0f)));
-	vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 0.0f)));
-	vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 1.0)));
-	vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 1.0)));
-	vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 0.0f)));
-	vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 0.0f)));
+	//aabb.SetNegativeInfinity();
+	//obb.SetNegativeInfinity();
+	//
+	//aabbVertices = new float3[8];
+	//obbVertices = new float3[8];
+	//
+	//std::vector<BB_Vertex> vertices;
+	//vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 1.0)));
+	//vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 1.0)));
+	//vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 0.0f)));
+	//vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 0.0f)));
+	//vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 1.0)));
+	//vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 1.0)));
+	//vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 0.0f)));
+	//vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 0.0f)));
 
 	
 }
