@@ -25,6 +25,7 @@
 #include "ConsoleWindow.h"
 #include "GameObjectsWindow.h"
 #include "ObjectsInspectorWindow.h"
+#include "RessourcesWindow.h"
 
 ModuleUi::ModuleUi(bool start_enabled) : Module(start_enabled),
 configurationWindow(new ConfigurationWindow("ConfigurationWindow", true)),
@@ -32,7 +33,8 @@ mainMenuBar(new MainMenuBar("MainMenuBar", true)),
 aboutWindow(new AboutWindow("AboutWindow", false)),
 consoleWindow(new ConsoleWindow("ConsoleWindow", true)),
 gameObjectsWindow(new GameObjectsWindow("GameObjectsWindow", true)),
-objectsInspectorWindow(new ObjectsInspectorWindow("ObjectsInspectorWindow", true))
+objectsInspectorWindow(new ObjectsInspectorWindow("ObjectsInspectorWindow", true)),
+ressourcesWindow(new RessourcesWindow("Ressources", true))
 {
    AddImGuiWindow(configurationWindow);
    AddImGuiWindow(mainMenuBar);
@@ -40,6 +42,7 @@ objectsInspectorWindow(new ObjectsInspectorWindow("ObjectsInspectorWindow", true
    AddImGuiWindow(consoleWindow);
    AddImGuiWindow(gameObjectsWindow);
    AddImGuiWindow(objectsInspectorWindow);
+   AddImGuiWindow(ressourcesWindow);
 
 }
 

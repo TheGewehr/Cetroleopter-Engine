@@ -8,7 +8,14 @@
 #include "Application.h"
 #include "ModuleRenderer3D.h"
 #include "ModuleModelImport.h"
+#include "ModuleCamera3D.h"
 #include "ModuleGameObject.h"
+#include "ModuleTransformComponent.h"
+#include "ModuleMeshComponent.h"
+#include "ModuleTextureComponent.h"
+#include "ModuleTransformComponent.h"
+#include "ModuleCameraComponent.h"
+#include "Component.h"
 #include "SDL\include\SDL_opengl.h"
 #include <gl/GL.h>
 #include <gl/GLU.h>
@@ -138,7 +145,7 @@ update_status ModuleRenderer3D::PreUpdate(float dt)
 	glLoadMatrixf(App->camera->GetViewMatrix());
 
 	// light 0 on cam pos
-	lights[0].SetPos(App->camera->Position.x, App->camera->Position.y, App->camera->Position.z);
+	lights[0].SetPos(App->camera->mainCamera->Position.x, App->camera->mainCamera->Position.y, App->camera->mainCamera->Position.z);
 
 	for(uint i = 0; i < MAX_LIGHTS; ++i)
 		lights[i].Render();
@@ -269,35 +276,126 @@ void ModuleRenderer3D::OnResize(int width, int height)
 	glLoadIdentity();
 }
 
-void ModuleRenderer3D::RenderModels()
+//void ModuleRenderer3D::RenderModels()
+//{
+//	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+//	{
+//		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+//		{
+//			// Draw elements
+//			MeshVertexData* vertexData = &App->moduleGameObject->objects[i].meshes[j];
+//
+//			glEnableClientState(GL_VERTEX_ARRAY);
+//
+//			// Render things in Element mode
+//			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
+//			glVertexPointer(3, GL_FLOAT, 0, NULL);
+//			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
+//
+//			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+//			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_UV);
+//			glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+//			glBindTexture(GL_TEXTURE_2D, vertexData->meshTexturesData.texture_ID);
+//
+//			glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
+//
+//			glBindTexture(GL_TEXTURE_2D, 0);
+//			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+//			glBindBuffer(GL_ARRAY_BUFFER, 0);
+//			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+//			glDisableClientState(GL_VERTEX_ARRAY);
+//
+//		}
+//	}
+//}
+
+void ModuleRenderer3D::RenderGameObjects(ModuleGameObject gameObject, float3 position)
 {
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
+	if (gameObject.GetObjectIsActive())
 	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
+		MeshComponent* meshComponent = (MeshComponent*)gameObject.GetComponentOfType(ComponentTypes::MESH);
+		TextureComponent* textureComponent = (TextureComponent*)gameObject.GetComponentOfType(ComponentTypes::TEXTURE);
+
+		if (meshComponent->IsComponentActive())
 		{
-			// Draw elements
-			MeshVertexData* vertexData = &App->moduleGameObject->objects[i].meshes[j];
+			if (meshComponent != nullptr)
+			{
 
-			glEnableClientState(GL_VERTEX_ARRAY);
+				if (App->camera->isMainCameraMooving == false)
+				{
+					glPushMatrix();
+					glMultMatrixf((GLfloat*)&gameObject.GetTransformComponent()->GetWorldTransform().Transposed()); // Apply Transformation
 
-			// Render things in Element mode
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_vertex);
-			glVertexPointer(3, GL_FLOAT, 0, NULL);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexData->id_index);
+				}
+				else
+				{
+					glMultMatrixf((GLfloat*)&gameObject.GetTransformComponent()->GetWorldTransform().Transposed());
+				}
+				
+				glEnableClientState(GL_VERTEX_ARRAY);
+				//glEnableClientState(GL_NORMAL_ARRAY);
+				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-			glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-			glBindBuffer(GL_ARRAY_BUFFER, vertexData->id_UV);
-			glTexCoordPointer(3, GL_FLOAT, 0, NULL);
-			glBindTexture(GL_TEXTURE_2D, vertexData->meshTexturesData.texture_ID);
+				//glUniformMatrix4fv(glGetUniformLocation(ID, name.c_str()), 1, false, &value); <-- Original
+				
+				//glUniformMatrix4fv(glGetUniformLocation(0, gameObject.GetName().c_str()), 1, false, &projectionMat); // Put the 4x4 matrix in &mat
+				//glUniformMatrix4fv(glGetUniformLocation(0, gameObject.GetName().c_str()), 1, false, &viewMat); // Put the 4x4 matrix in &mat
+				//glUniformMatrix4fv(glGetUniformLocation(0, gameObject.GetName().c_str()), 1, false, &transformMat); // Put the 4x4 matrix in &mat
 
-			glDrawElements(GL_TRIANGLES, vertexData->num_indices, GL_UNSIGNED_INT, NULL);
+				// Render things in Element mode
+				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_vertex);
+				glVertexPointer(3, GL_FLOAT, 0, NULL);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshComponent->mesh.id_index);
+				glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+				glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_UV);
 
-			glBindTexture(GL_TEXTURE_2D, 0);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-			glBindBuffer(GL_ARRAY_BUFFER, 0);
-			glDisableClientState(GL_TEXTURE_COORD_ARRAY);
-			glDisableClientState(GL_VERTEX_ARRAY);
+				if (textureComponent->IsComponentActive())
+				{
+					if (textureComponent->objectTexture != nullptr)
+					{
+						//glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+						//glBindTexture(GL_TEXTURE_2D, materialComponent->objectTexture->texture_ID);
 
+						glEnableClientState(GL_VERTEX_ARRAY);
+						
+						// Render things in Element mode
+						glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_vertex);
+						glVertexPointer(3, GL_FLOAT, 0, NULL);
+						glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, meshComponent->mesh.id_index);
+						
+						glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+						glBindBuffer(GL_ARRAY_BUFFER, meshComponent->mesh.id_UV);
+						glTexCoordPointer(3, GL_FLOAT, 0, NULL);
+						glBindTexture(GL_TEXTURE_2D, textureComponent->objectTexture->texture_ID);
+						
+						glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
+						
+						//glBindTexture(GL_TEXTURE_2D, 0);
+						//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+						//glBindBuffer(GL_ARRAY_BUFFER, 0);
+						//glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+						//glDisableClientState(GL_VERTEX_ARRAY);
+					}
+				}
+
+				if (App->renderer3D->checkerTextureON)
+				{
+					glBindTexture(GL_TEXTURE_2D, checkerTextureID);
+				}
+				
+				glDrawElements(GL_TRIANGLES, meshComponent->mesh.num_indices, GL_UNSIGNED_INT, NULL);
+
+				glBindTexture(GL_TEXTURE_2D, 0);
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+				glBindBuffer(GL_ARRAY_BUFFER, 0);
+				glRasterPos3f(position.x, position.y, position.z);
+
+				glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+				//glDisableClientState(GL_NORMAL_ARRAY); 
+				glDisableClientState(GL_VERTEX_ARRAY);
+
+				
+			}
 		}
 	}
 }

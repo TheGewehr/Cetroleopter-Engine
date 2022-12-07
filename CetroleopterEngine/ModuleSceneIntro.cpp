@@ -2,6 +2,7 @@
 #include "Application.h"
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
+#include "ModuleGameObject.h"
 //#include "PhysBody3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(bool start_enabled) : Module(start_enabled)
@@ -17,7 +18,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->modelImport->LoadModel_Textured("Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -48,16 +49,84 @@ update_status ModuleSceneIntro::Update(float dt)
 		}
 	}
 
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		gameObjects.at(i)->Render();
+		//gameObjects[i]->Render();
+	}
+
 	return UPDATE_CONTINUE;
 }
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
 
-	App->renderer3D->RenderModels();
+	//App->renderer3D->RenderModels();
 
 
 
 	return UPDATE_CONTINUE;
 }
 
+ModuleGameObject* ModuleSceneIntro::CreateEmptyGameObject(ModuleGameObject* parent, const char* name)
+{
+	if (parent == nullptr)
+	{
+		std::string gameObjName = name;
+
+		if (!gameObjects.empty())
+		{
+			gameObjName += std::to_string(gameObjects.size());
+		}
+		ModuleGameObject* gameObject = new ModuleGameObject(gameObjects.size(), gameObjName, true);
+		gameObjects.push_back(gameObject);
+		return gameObject;
+	}
+
+	if (parent != nullptr)
+	{
+		ModuleGameObject* gameObject = new ModuleGameObject(parent->childs.size(), name, true);
+		parent->childs.push_back(gameObject);
+		return gameObject;
+
+	}
+}
+
+bool ModuleSceneIntro::SaveRequest()
+{
+	
+	json_object_dotset_string(json_object(App->save_load->sceneFile),"Scene01.", name.c_str());
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.Size", gameObjects.size());	
+
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		gameObjects.at(i)->SaveObject();		
+	}
+
+	return true;
+}
+
+bool ModuleSceneIntro::LoadRequest()
+{
+	name = (char)json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01");
+	int listSize = (int)json_object_dotget_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.Size");
+	
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		gameObjects.at(i)->CleanUp();
+	}
+
+	gameObjects.clear();
+
+	for (int i = 0; i < listSize; i++)
+	{
+		gameObjects.push_back(new ModuleGameObject(-1, "Missigno", true));		
+	}
+
+	for (int i = 0; i < listSize; i++)
+	{
+		gameObjects.at(i)->LoadObject();
+	}
+
+	return true;
+}

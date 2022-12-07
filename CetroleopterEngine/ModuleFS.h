@@ -20,6 +20,7 @@ public:
 	uint Save(const char* file_path, const void* buffer, unsigned int size, bool append);
 	std::string GetFileExtension(const char* file_path);
 
+	void DiscoverFiles(const char* directory, std::vector<std::string>& file_list, std::vector<std::string>& dir_list) const;
 public:
 	
 

@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "ModuleSceneIntro.h"
 #include "ConfigurationWindow.h"
+#include "ModuleSaveLoad.h"
 #include "glew/include/GL/glew.h"
 
 ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Settings", isActive = true)
@@ -38,6 +39,7 @@ bool ConfigurationWindow::Draw(ImGuiIO& io)
 	FPSHeader();
 	AnotherHeader();	
 	HardwareHeader();
+	PlayPauseHeader();
 
 	ImGui::End();
 
@@ -224,4 +226,40 @@ bool ConfigurationWindow::LoadRequest()
 	App->renderer3D->SetVsync((bool)json_object_dotget_boolean(json_object(App->save_load->configurationFile), "SettingsWindow.Vsync"));
 
 	return true;
+}
+
+bool ConfigurationWindow::PlayPauseHeader()
+{
+	bool ret = true;
+
+	if (ImGui::CollapsingHeader("Play / Stop"))
+	{
+		if (ImGui::Button("Play"))
+		{
+			counterON == true;
+		}
+
+		ImGui::SameLine();
+
+		if (ImGui::Button("Stop"))
+		{
+			counterON == false;
+		}
+
+		ImGui::SameLine();
+
+		if (ImGui::Button("Reset"))
+		{
+			sceneTimer = 0;
+		}
+
+		ImGui::Text("\n Game time: %i \n", sceneTimer);
+	}
+
+	if (counterON == true)
+	{
+		sceneTimer++;
+	}
+
+	return ret;
 }

@@ -98,6 +98,7 @@
     <ClInclude Include="Color.h" />
     <ClInclude Include="ConfigurationWindow.h" />
     <ClInclude Include="ConsoleWindow.h" />
+    <ClInclude Include="DebugSceneViewWindow.h" />
     <ClInclude Include="devIL\include\config.h" />
     <ClInclude Include="devIL\include\devil_internal_exports.h" />
     <ClInclude Include="devIL\include\il.h" />
@@ -202,11 +203,15 @@
     <ClInclude Include="mathGeoLib\Math\vec2d.h" />
     <ClInclude Include="mathGeoLib\Time\Clock.h" />
     <ClInclude Include="ModuleCamera3D.h" />
+    <ClInclude Include="Component.h" />
+    <ClInclude Include="ModuleCameraComponent.h" />
     <ClInclude Include="ModuleFS.h" />
     <ClInclude Include="ModuleGameObject.h" />
+    <ClInclude Include="ModuleMeshComponent.h" />
     <ClInclude Include="ModuleModelImport.h" />
     <ClInclude Include="ModuleRenderer3D.h" />
     <ClInclude Include="ModuleSaveLoad.h" />
+    <ClInclude Include="ModuleTextureComponent.h" />
     <ClInclude Include="ModuleTransformComponent.h" />
     <ClInclude Include="ModuleUi.h" />
     <ClInclude Include="Module.h" />
@@ -217,6 +222,7 @@
     <ClInclude Include="physFS\include\physfs.h" />
     <ClInclude Include="physFS\include\physfsrwops.h" />
     <ClInclude Include="Primitive.h" />
+    <ClInclude Include="RessourcesWindow.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +231,7 @@
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="ConfigurationWindow.cpp" />
     <ClCompile Include="ConsoleWindow.cpp" />
+    <ClCompile Include="DebugSceneViewWindow.cpp" />
     <ClCompile Include="GameObjectsWindow.cpp" />
     <ClCompile Include="glmath.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
@@ -284,19 +291,24 @@
     <ClCompile Include="mathGeoLib\Math\TransformOps.cpp" />
     <ClCompile Include="mathGeoLib\Time\Clock.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
+    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ModuleCameraComponent.cpp" />
     <ClCompile Include="ModuleFS.cpp" />
     <ClCompile Include="ModuleGameObject.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
+    <ClCompile Include="ModuleMeshComponent.cpp" />
     <ClCompile Include="ModuleModelImport.cpp" />
     <ClCompile Include="ModuleRenderer3D.cpp" />
     <ClCompile Include="ModuleSaveLoad.cpp" />
     <ClCompile Include="ModuleSceneIntro.cpp" />
+    <ClCompile Include="ModuleTextureComponent.cpp" />
     <ClCompile Include="ModuleTransformComponent.cpp" />
     <ClCompile Include="ModuleUi.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="ObjectsInspectorWindow.cpp" />
     <ClCompile Include="physFS\include\physfsrwops.c" />
     <ClCompile Include="Primitive.cpp" />
+    <ClCompile Include="RessourcesWindow.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,9 @@
 
 #include "ImGuiWindowBase.h"
 #include <vector>
+#include <string>
 
+class ModuleGameObject;
 
 class GameObjectsWindow : public ImGuiWindowBase
 {
@@ -18,6 +20,10 @@ public:
 private:
 	
 	bool ObjectWindowHeader();
+
+	const char* GetObjectName(std::string name)const;
+
+	void TreeProcessing(std::vector<ModuleGameObject*> objects);
 
 public:
 

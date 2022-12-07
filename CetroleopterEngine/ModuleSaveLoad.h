@@ -24,10 +24,18 @@ public:
 	bool SaveConfiguration();
 	bool LoadConfiguration();
 
+	bool SaveScene();
+	bool LoadScene();
+
 	bool saveConfigurationTrigger = false;
 	bool loadConfigurationTrigger = false;
 
 	JSON_Value* configurationFile = nullptr;
+
+	bool saveSceneTrigger = false;
+	bool loadSceneTrigger = false;
+
+	JSON_Value* sceneFile = nullptr;
 
 };
 

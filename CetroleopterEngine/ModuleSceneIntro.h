@@ -4,6 +4,7 @@
 #include "Globals.h"
 
 class Primitive;
+class ModuleGameObject;
 //class  PhysBody3D;
 
 class ModuleSceneIntro : public Module
@@ -17,7 +18,12 @@ public:
 	update_status PostUpdate(float dt);
 	bool CleanUp();
 
+	ModuleGameObject* CreateEmptyGameObject(ModuleGameObject* parent = nullptr, const char* name = nullptr);
 
-private:
-	
+	bool SaveRequest();
+	bool LoadRequest();
+
+public:
+	std::vector<ModuleGameObject*> gameObjects = {};
+	std::string name = "DefaultScene";
 };

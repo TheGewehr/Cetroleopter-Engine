@@ -5,14 +5,15 @@
 #include "MathGeoLib.h"
 #include "Application.h"
 #include "Globals.h"
-#include "ModuleGameObject.h"
+//#include "ModuleGameObject.h"
+#include "Component.h"
 
-struct GameObject;
+class ModuleGameObject;
 
-class TransformComponent
+class TransformComponent : public Component
 {
 public:
-	TransformComponent();
+	TransformComponent(ModuleGameObject* base);
 	~TransformComponent();
 
 	float3 GetPosition()const;
@@ -26,8 +27,8 @@ public:
 	float3 GetWorldScale();
 
 	void SetPosition(float x, float y, float z);
-	void SetRotation(float x, float y, float z, float w);
-	void SetScale(float x, float y, float z);
+	void SetRotation(const float3& newRotation);
+	void SetScale(const float3& newScale);
 
 	float4x4 GetWorldTransform();
 	void SetWorldTransform(float4x4 worldTransform);
@@ -50,6 +51,9 @@ public:
 	void UpdateWorldTransform();
 	void SyncLocalToWorld();
 
+	bool SaveComponent();
+	bool LoadComponent();
+
 	float3 position;
 	Quat rotation;
 	float3 scale;
@@ -61,7 +65,7 @@ public:
 
 	bool updateWorld;
 
-	GameObject owner;
+	ModuleGameObject* ComponentOwner;
 
 };
 

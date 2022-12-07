@@ -73,6 +73,13 @@ bool ModuleWindow::Init()
 		{
 			//Get window surface
 			screen_surface = SDL_GetWindowSurface(window);
+
+			SDL_Surface* icon = SDL_LoadBMP("icon.bmp");
+			if (icon != nullptr)
+			{
+				SDL_SetWindowIcon(window, icon);
+				SDL_FreeSurface(icon);
+			}
 		}
 	}
 
@@ -226,6 +233,16 @@ bool ModuleWindow::GetFullscreenDesktop()
 void ModuleWindow::SetFullscreenDesktop(bool result)
 {
 	fullscreenDesktop = result;
+}
+
+int ModuleWindow::GetHeight()
+{
+	return height;
+}
+
+int ModuleWindow::GetWidth()
+{
+	return width;
 }
 
 void ModuleWindow::UpdateWindow()

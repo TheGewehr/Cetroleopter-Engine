@@ -1,18 +1,19 @@
 #ifndef _MESH_IMPORTER_H_
 #define _MESH_IMPORTER_H_
 
-#include "Application.h"
+//#include "Application.h"
 #include "Module.h"
-#include "ModuleTransformComponent.h"
+#include "ModuleGameObject.h"
+//#include "ModuleTransformComponent.h"
 
 #include "glew/include/GL/glew.h"
 
 #define CHECKERS_HEIGHT 50
 #define CHECKERS_WIDTH 50
 
-struct TransformComponent;
+//struct TransformComponent;
 
-enum TextureMaterialType
+enum class TextureMaterialType
 {
 	NONE = 0,
 	DIFFUSE,
@@ -65,7 +66,7 @@ struct MeshVertexData
 	TextureData meshTexturesData;
 	std::string	path;
 
-	TransformComponent* transform = nullptr;
+	//TransformComponent* transform = nullptr;
 };
 
 class ModuleModelImport : public Module
@@ -78,16 +79,28 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
-	void LoadModelAndTexture(const char* meshPath, const char* texturePath); //Loads the model (meshes and a texture)
-	void LoadModel_Textured(const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
-	void LoadMesh(const char* path); //Loads the mesh
-	uint LoadTexture(const char* path); //Loads the textures
+	//void Import_Mesh(MeshComponent* mesh); Already done in LoadModel_Textured()
+	//void Import_Texture(MeshComponent* mesh); Already done in LoadModel_Textured()
+
+	bool Save_Mesh(MeshComponent* mesh, char** pointer);
+
+	bool Load_Mesh(MeshComponent* mesh, char* pointer);
+
+	bool Save_Texture(TextureComponent* texture, char** pointer);
+
+	bool Load_Texture(TextureComponent* texture, char** pointer, uint size);
+
+	void LoadModel_Textured(ModuleGameObject* objMain, const char* meshPath, const char* texturePath); //Loads the model (meshes and its textures) and assigns texture IDs to it
+	uint LoadTexture(ModuleGameObject* objMain, const char* path); //Loads the textures
 
 	uint CheckerTexture();
 
 public:
 	//std::vector<MeshVertexData> meshes;
 	//std::vector<TextureData> textures;
+
+	uint childPostfix = 0;
+	uint textPostfix = 0;
 
 };
 

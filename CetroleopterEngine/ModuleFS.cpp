@@ -189,3 +189,24 @@ std::string ModuleFS::GetFileExtension(const char* file_path)
 		std::string errorString = "GetFileExtension Error: File Path was nullptr";
 	}
 }
+
+void ModuleFS::DiscoverFiles(const char* directory, std::vector<std::string>& file_list, std::vector<std::string>& dir_list) const
+{
+	char** file_listing = PHYSFS_enumerateFiles(directory);
+
+	for (char** file = file_listing; *file != nullptr; ++file)
+	{
+		std::string path = std::string(directory) + std::string("/") + std::string(*file);
+
+		if (PHYSFS_isDirectory(path.c_str()))
+		{
+			dir_list.push_back(*file);
+		}
+		else
+		{
+			file_list.push_back(*file);	 
+		}
+	}
+
+	PHYSFS_freeList(file_listing);
+}

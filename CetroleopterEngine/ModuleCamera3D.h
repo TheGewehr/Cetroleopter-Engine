@@ -4,6 +4,9 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
+//#include "ModuleCameraComponent.h"
+
+class CameraComponent;
 
 class ModuleCamera3D : public Module
 {
@@ -20,17 +23,22 @@ public:
 	void Move(const vec3 &Movement);
 	float* GetViewMatrix();
 
+	void MakeRayCast();
+
 private:
 
 	void CalculateViewMatrix();
 
 public:
 	
-	vec3 X, Y, Z, Position, Reference;
+	//vec3 X, Y, Z, Position, Reference; <-- Inside mainCamera as camera component
+	CameraComponent* mainCamera;
+
+	bool isMainCameraMooving;
 
 private:
 
-	mat4x4 ViewMatrix, ViewMatrixInverse;
+	//mat4x4 ViewMatrix, ViewMatrixInverse; <-- Inside mainCamera as camera component
 };
 
 #endif // !_MODULE_CAMERA_H_

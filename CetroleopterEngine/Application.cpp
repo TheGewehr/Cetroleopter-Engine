@@ -12,7 +12,7 @@ Application::Application() : debug(false)
 	save_load = new ModuleSaveLoad(true);
 	moduleFS = new ModuleFS(true);
 	modelImport = new ModuleModelImport(true);
-	moduleGameObject = new ModuleGameObject(true);
+	
 
 	// The order of calls is very important!
 	// Modules will Init() Start() and Update in this order
@@ -24,7 +24,7 @@ Application::Application() : debug(false)
 	AddModule(input);
 	AddModule(moduleFS);
 	AddModule(modelImport);
-	AddModule(moduleGameObject);	
+		
 	
 	// Scenes
 	AddModule(scene_intro);

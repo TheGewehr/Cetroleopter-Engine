@@ -4,6 +4,7 @@
 #include "ImGuiWindowBase.h"
 #include <vector>
 
+class ModuleGameObject;
 
 class ObjectsInspectorWindow : public ImGuiWindowBase
 {
@@ -18,10 +19,19 @@ public:
 private:
 	
 	bool InspectorWindowHeader();
+	void HierarchyOptions();
+	ModuleGameObject* InspectorObject = nullptr;
 
-public:
+	enum HierarchyOptions
+	{
+		NONE = 0,
+		SETPARENT,
+		ADDCHILD,
+		DELETEOBJECT		
+	};
 
-	
+
+	int hierarchyDummy = 0;
 
 };
 
