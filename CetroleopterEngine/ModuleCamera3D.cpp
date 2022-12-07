@@ -3,6 +3,7 @@
 #include "ModuleCamera3D.h"
 #include <MathGeoLib.h>
 #include "ModuleCameraComponent.h"
+#include "ModuleMeshComponent.h"
 
 ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true)
 {
@@ -200,8 +201,8 @@ void ModuleCamera3D::MakeRayCast()
 {
 
 	//Ray part
-	float tab_width = App->window->GetWidth(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
-	float tab_height = App->window->GetHeight(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
+	float tab_width = 0; //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
+	float tab_height = 0; //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
 
 	float2 screen_mouse_pos = float2((float)App->input->GetMouseX(), (float)App->window->GetHeight() - (float)App->input->GetMouseY()) - float2(0 /*tab_origin.x*/, 0 /*tab_origin.y + 22.5f*/);
 	float2 norm_screen_pos = float2(screen_mouse_pos.x / tab_width, screen_mouse_pos.y / tab_height);
@@ -214,9 +215,9 @@ void ModuleCamera3D::MakeRayCast()
 	
 
 	//Object part
-	for (uint i = 0; i < App->scene_intro->gameObjects.size(); ++i)
+	for (uint i = 0; i < App->scene_intro->gameObjects.size(); i++)
 	{
-		if (picking.Intersects(App->scene_intro->gameObjects[i]->componentMesh->objMain_->aabb))
+		if (picking.Intersects(App->scene_intro->gameObjects[i]->GetMeshComponent()->bbox))
 		{
 			App->scene_intro->gameObjects[i]->SelectObject();
 		}
