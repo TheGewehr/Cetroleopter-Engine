@@ -4,29 +4,7 @@
 
 TransformComponent::TransformComponent(ModuleGameObject* base) : Component(base, ComponentTypes::TRANSFORM, "Transform")
 {
-	/*updateWorld = false;	
-
-	for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				base = App->moduleGameObject->objects[i];
-
-				position = { 0,0,0 };
-				
-			}
-		}
-	}
-
-	localTransform = float4x4::identity;
-	worldTransform = float4x4::identity;
-
-	localTransform.Decompose(position, rotation, scale);
-
 	
-	localEulerRotation = rotation.ToEulerXYZ();	*/
 
 	ComponentOwner = base;
 
@@ -280,6 +258,30 @@ void TransformComponent::SyncLocalToWorld()
 	{
 		cCamera->UpdateFrustumTransform();
 	}*/
+}
+
+bool TransformComponent::SaveComponent()
+{
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Position.X", position.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Position.Y", position.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Position.Z", position.z);
+
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Rotation.X", rotation.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Rotation.Y", rotation.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Rotation.Z", rotation.z);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Rotation.W", rotation.w);
+
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Scale.X", scale.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Scale.Y", scale.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Scale.Z", scale.z);
+	
+
+	return true;
+}
+
+bool TransformComponent::LoadComponent()
+{
+	return true;
 }
 
 void TransformComponent::SetPosition(float x, float y, float z)

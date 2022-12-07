@@ -46,6 +46,9 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+    bool SaveComponent();
+    bool LoadComponent();
+
 public:
 
 	MeshVertexData mesh;

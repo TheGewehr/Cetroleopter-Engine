@@ -20,6 +20,10 @@ public:
 
 	ModuleGameObject* CreateEmptyGameObject(ModuleGameObject* parent = nullptr, const char* name = nullptr);
 
+	bool SaveRequest();
+	bool LoadRequest();
+
 public:
 	std::vector<ModuleGameObject*> gameObjects = {};
+	std::string name = "DefaultScene";
 };

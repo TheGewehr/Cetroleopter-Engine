@@ -25,21 +25,23 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 	objectComponents.push_back(componentTransform);
 
 
-	//aabb.SetNegativeInfinity();
-	//obb.SetNegativeInfinity();
-	//
-	//aabbVertices = new float3[8];
-	//obbVertices = new float3[8];
-	//
-	//std::vector<BB_Vertex> vertices;
-	//vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 1.0)));
-	//vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 1.0)));
-	//vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 0.0f)));
-	//vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 0.0f)));
-	//vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 1.0)));
-	//vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 1.0)));
-	//vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 0.0f)));
-	//vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 0.0f)));
+
+	aabb.SetNegativeInfinity();
+	obb.SetNegativeInfinity();
+
+	aabbVertices = new float3[8];
+	obbVertices = new float3[8];
+
+	/*std::vector<BB_Vertex> vertices;
+	vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 1.0)));
+	vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 1.0)));
+	vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 0.0f)));
+	vertices.push_back((BB_Vertex)(vec3(0.0f, 1.0, 0.0f)));
+	vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 1.0)));
+	vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 1.0)));
+	vertices.push_back((BB_Vertex)(vec3(0.0f, 0.0f, 0.0f)));
+	vertices.push_back((BB_Vertex)(vec3(1.0, 0.0f, 0.0f)));*/
+
 
 	
 }
@@ -281,4 +283,34 @@ CameraComponent* ModuleGameObject::GetCameraComponent()
 		}
 	}
 	return nullptr;
+}
+
+bool ModuleGameObject::SaveObject()
+{
+	
+	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID", id_);
+	json_object_dotset_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Name", name_.c_str());
+	json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.IsActive", isAtive_);
+
+	if (this->GetMeshComponent() != nullptr)
+	{
+
+	}
+
+	if (this->GetTextureComponent() != nullptr)
+	{
+
+	}
+
+	if (this->GetTransformComponent() != nullptr)
+	{
+
+	}
+
+	return true;
+}
+
+bool ModuleGameObject::LoadObject()
+{
+	return true;
 }

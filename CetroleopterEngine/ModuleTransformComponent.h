@@ -51,6 +51,9 @@ public:
 	void UpdateWorldTransform();
 	void SyncLocalToWorld();
 
+	bool SaveComponent();
+	bool LoadComponent();
+
 	float3 position;
 	Quat rotation;
 	float3 scale;
