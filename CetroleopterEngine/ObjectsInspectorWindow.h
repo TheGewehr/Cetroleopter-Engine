@@ -31,7 +31,8 @@ private:
 		DELETEOBJECT		
 	};
 
-	HierarchyOptions* hierarchyOptions = nullptr;
+
+	int hierarchyDummy = 0;
 
 public:
 

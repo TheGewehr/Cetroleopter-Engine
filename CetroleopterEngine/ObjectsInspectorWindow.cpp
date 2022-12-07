@@ -267,32 +267,34 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 		if (ImGui::CollapsingHeader("Hierarchy Options"))
 		{
-			//ImGui::Text("Textures:");
-
-			//for (int k = 0; k < App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].textures.size(); k++)
-			//{
-			//	ImGui::Text("	Texture [%i]:", k);
-			//	ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].textures[k].path.c_str());
-			//	//ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].meshTexturesData.path.c_str());
-			//}
-			
-			int hierarchyDummy = (int)hierarchyOptions;
-
-			ImGui::Combo("##", &hierarchyDummy, "Nothing\0Set Parent\0Add Child\0Delete Object");
+			ImGui::Combo("##", &hierarchyDummy, "Nothing\0Set Parent\0Add Child\0Delete Object");			
 
 			ImGui::SameLine();
+		
+			//ImGui::PushID(11);
+			//bool yes = ImGui::Button("DO");
 
-			if ((ImGui::Button(" DO ")))
+			if (ImGui::Button("DO") == true)
 			{
-				//if (component_type != (int)COMPONENT_TYPE::NONE)
-				//{
-				//	selected_game_object->CreateComponent((COMPONENT_TYPE)component_type);
-				//}
+				
+				if (hierarchyDummy != (int)NONE)
+				{
+					if (hierarchyDummy == (int)SETPARENT)
+					{
+						InspectorObject;
+					}
+					else if (hierarchyDummy == (int)ADDCHILD)
+					{
+
+					}
+					else if (hierarchyDummy == (int)DELETEOBJECT)
+					{
+
+					}
+				}
 			}
+			//ImGui::PopID();
 
-			//->objMain_->GetTextureComponent()->objectTexture->path.c_str()
-
-			//ImGui::Text("		%c", );
 		}
 	}
 	else 
