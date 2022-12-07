@@ -51,7 +51,15 @@ We have a chunk of the ressource management features, as showing the assets in a
 
 ## Custom File Format
 
-Models, meshes and textures are saved to your own format under Library folder, the .fcvg Franccesco Virgolini file, the fastest file of the whole world.
+Models, meshes and textures are saved to your own format under Library folder, the .FcVg Franccesco Virgolini file, the fastest file of the whole world.
+
+## Can also load complex maya fbx
+
+![1](https://user-images.githubusercontent.com/73582929/206307942-84bfe4bd-dfe3-4a29-b0dc-34e138f8929c.png)
+
+![2](https://user-images.githubusercontent.com/73582929/206307981-5213742c-b7de-422f-bf6d-10eef25e3c8b.png)
+
+
 ## Engine Controls:
 
 - **W**: Move Forward
