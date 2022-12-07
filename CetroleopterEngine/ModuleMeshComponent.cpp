@@ -66,6 +66,8 @@ bool MeshComponent::SaveComponent()
 
 bool MeshComponent::LoadComponent()
 {
+	meshPath = json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.MeshComponent.Path");
+
 	return false;
 }
 

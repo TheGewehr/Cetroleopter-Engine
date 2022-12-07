@@ -108,5 +108,16 @@ bool ModuleSceneIntro::SaveRequest()
 
 bool ModuleSceneIntro::LoadRequest()
 {
+	name = (char)json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01");
+	int listSize = (int)json_object_dotget_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.Size");
+	
+	gameObjects.clear();
+
+	for (int i = 0; i < listSize; i++)
+	{
+		gameObjects.at(i) = new ModuleGameObject(-1, "Missigno", true);
+		gameObjects.at(i)->LoadObject();
+	}
+
 	return true;
 }

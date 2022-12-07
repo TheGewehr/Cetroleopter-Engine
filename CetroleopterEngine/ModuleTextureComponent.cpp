@@ -42,5 +42,7 @@ bool TextureComponent::SaveComponent()
 
 bool TextureComponent::LoadComponent()
 {
+	texturePath = json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TextureComponent.Path");
+
 	return false;
 }
