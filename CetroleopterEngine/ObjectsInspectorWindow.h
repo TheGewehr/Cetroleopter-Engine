@@ -6,8 +6,6 @@
 
 class ModuleGameObject;
 
-
-
 class ObjectsInspectorWindow : public ImGuiWindowBase
 {
 public:
@@ -21,6 +19,7 @@ public:
 private:
 	
 	bool InspectorWindowHeader();
+	void HierarchyOptions();
 	ModuleGameObject* InspectorObject = nullptr;
 
 	enum HierarchyOptions
@@ -33,10 +32,6 @@ private:
 
 
 	int hierarchyDummy = 0;
-
-public:
-
-	
 
 };
 

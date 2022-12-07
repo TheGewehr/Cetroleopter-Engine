@@ -3,7 +3,7 @@
 #include "Application.h"
 #include "ModuleGameObject.h"
 #include "Globals.h"
-#include "imgui.h"
+//#include "imgui.h"
 #include "ModuleMeshComponent.h"
 #include "ModuleTextureComponent.h"
 #include "ModuleTransformComponent.h"
@@ -102,16 +102,8 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::PushID(0);
 				if (ImGui::CollapsingHeader("Translate"))
 				{
-					//LOG("T %i", App->moduleGameObject->currentSelectedObject);
-
-					// for q
-						//App->moduleGameObject->objects[i].meshes[q].transform.position
-					
-
 					float3 newPosition = InspectorObject->GetTransformComponent()->GetPosition();
-					//newPosition.x = InspectorObject->GetTransformComponent()->GetPosition().x;
-					//newPosition.y = InspectorObject->GetTransformComponent()->GetPosition().y;
-					//newPosition.z = InspectorObject->GetTransformComponent()->GetPosition().z;
+					
 					ImGui::PushID(4);
 					if (ImGui::DragFloat3("", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
@@ -120,9 +112,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 							newPosition.y,
 							newPosition.z
 						);			
-						//InspectorObject->GetTransformComponent()->UpdateWorldTransform();
-						//InspectorObject->GetTransformComponent()->UpdateWorldTransform();
-
+						
 					}
 					ImGui::PopID();
 
@@ -137,8 +127,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				}
 				ImGui::PopID();
 
-				//ImGui::SameLine();
-
+				
 				ImGui::PushID(1);
 				if (ImGui::CollapsingHeader("Rotate"))
 				{
@@ -164,8 +153,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				}
 				ImGui::PopID();
 
-				//ImGui::SameLine();
-
+				
 				ImGui::PushID(2);
 				if (ImGui::CollapsingHeader("Scale"))
 				{
@@ -214,14 +202,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 		{
 			if (ImGui::CollapsingHeader("Texture"))
 			{
-				ImGui::Text("Textures:");
-				
-					//for (int k = 0; k < App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].textures.size(); k++)
-					//{
-					//	ImGui::Text("	Texture [%i]:", k);
-					//	ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].textures[k].path.c_str());
-					//	//ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[k].meshTexturesData.path.c_str());
-					//}
+				ImGui::Text("Textures:");				
 				
 				for (int j = 0; j < InspectorObject->GetTextureComponent()->textures.size(); j++)
 				{
@@ -235,9 +216,6 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					}
 				}
 				
-				//->objMain_->GetTextureComponent()->objectTexture->path.c_str()
-				
-				//ImGui::Text("		%c", );
 			}
 				
 		}
@@ -265,42 +243,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 			ImGui::Spacing();
 		}
 
-		ImGui::PushID(13);
-		if (ImGui::CollapsingHeader("Hierarchy Options"))
-		{
-			ImGui::PushID(12);
-			ImGui::Combo("##", &hierarchyDummy, "Nothing\0Set Parent\0Add Child\0Delete Object");			
-			ImGui::PopID();
-
-			ImGui::SameLine();
-		
-			
-			//bool yes = ImGui::Button("DO");
-
-			ImGui::PushID(11);
-			if (ImGui::Button("DO") == true)
-			{
-				
-				if (hierarchyDummy != (int)NONE)
-				{
-					if (hierarchyDummy == (int)SETPARENT)
-					{
-						InspectorObject;
-					}
-					else if (hierarchyDummy == (int)ADDCHILD)
-					{
-
-					}
-					else if (hierarchyDummy == (int)DELETEOBJECT)
-					{
-
-					}
-				}
-			}
-			ImGui::PopID();
-
-		}
-		ImGui::PopID();
+		HierarchyOptions();
 	}
 	else 
 	{
@@ -311,5 +254,60 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 
 	return true;
+}
+
+void ObjectsInspectorWindow::HierarchyOptions()
+{
+	
+	ImGui::PushID(13);
+	if (ImGui::CollapsingHeader("Hierarchy Options"))
+	{
+		ImGui::PushID(12);
+		if (ImGui::Button("DOnete") == true)
+		{
+			if (hierarchyDummy != (int)NONE)
+			{
+				if (hierarchyDummy == (int)SETPARENT)
+				{
+					InspectorObject;
+				}
+				if (hierarchyDummy == (int)ADDCHILD)
+				{
+
+				}
+				if (hierarchyDummy == (int)DELETEOBJECT)
+				{
+
+				}
+			}
+		}
+		ImGui::PopID();
+
+		ImGui::SameLine();
+
+		ImGui::PushID(11);
+		if (ImGui::Button("DO") == true)
+		{
+			if (hierarchyDummy != (int)NONE)
+			{
+				if (hierarchyDummy == (int)SETPARENT)
+				{
+					InspectorObject;
+				}
+				if (hierarchyDummy == (int)ADDCHILD)
+				{
+
+				}
+				if (hierarchyDummy == (int)DELETEOBJECT)
+				{
+
+				}
+			}
+		}
+		ImGui::PopID();
+
+	}
+	ImGui::PopID();
+	
 }
 
