@@ -292,17 +292,29 @@ bool ModuleGameObject::SaveObject()
 
 	if (this->GetMeshComponent() != nullptr)
 	{
-
+		this->GetMeshComponent()->SaveComponent();
+	}
+	else
+	{
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasMeshComponent", false);
 	}
 
 	if (this->GetTextureComponent() != nullptr)
 	{
-
+		this->GetTextureComponent()->SaveComponent();
+	}
+	else
+	{
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTextureComponent", false);
 	}
 
 	if (this->GetTransformComponent() != nullptr)
 	{
-
+		this->GetTransformComponent()->SaveComponent();
+	}
+	else
+	{
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTransformComponent", id_);
 	}
 
 	return true;
@@ -310,5 +322,31 @@ bool ModuleGameObject::SaveObject()
 
 bool ModuleGameObject::LoadObject()
 {
+	
+	id_ = (int)json_object_dotget_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID");
+	name_ = (char)json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Name");
+	isAtive_ = (bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.IsActive");
+
+	if ((bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasMeshComponent") == true)
+	{
+		this->GetMeshComponent()->LoadComponent();
+
+		if ((bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTextureComponent") == true)
+		{
+			this->GetTextureComponent()->LoadComponent();
+
+			App->modelImport->LoadModel_Textured(this, this->GetMeshComponent()->meshPath, this->GetTextureComponent()->texturePath);
+		}
+		else 
+		{
+			App->modelImport->LoadModel_Textured(this, this->GetMeshComponent()->meshPath, "None");
+		}		
+	}	
+
+	if((bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTransformComponent") == true)
+	{
+		this->GetTransformComponent()->LoadComponent();
+	}
+
 	return true;
 }

@@ -29,6 +29,8 @@ MeshComponent::MeshComponent(ModuleGameObject* base) : Component(base, Component
 	//base->aabb.GetCornerPoints(bboxPoints);
 	//
 	//delete[] bboxVertices;
+
+	meshPath = mesh.path.c_str();
 }
 
 MeshComponent::~MeshComponent()
@@ -59,6 +61,7 @@ bool MeshComponent::CleanUp()
 
 bool MeshComponent::SaveComponent()
 {
+	meshPath = mesh.path.c_str();
 	json_object_dotset_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.MeshComponent.Path", meshPath);
 
 	return false;
@@ -66,6 +69,8 @@ bool MeshComponent::SaveComponent()
 
 bool MeshComponent::LoadComponent()
 {
+	meshPath = json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.MeshComponent.Path");
+
 	return false;
 }
 

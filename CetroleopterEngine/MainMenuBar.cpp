@@ -56,13 +56,21 @@ bool MainMenuBar::FileMenuBar()
 	if (ImGui::BeginMenu("File"))
 	{
 
-		if (ImGui::MenuItem("Save Project"))
+		if (ImGui::MenuItem("Save Configuration"))
 		{
 			App->save_load->saveConfigurationTrigger = true;
 		}
-		if (ImGui::MenuItem("Load Project"))
+		if (ImGui::MenuItem("Load Configuration"))
 		{
 			App->save_load->loadConfigurationTrigger = true;
+		}
+		if (ImGui::MenuItem("Save Scene"))
+		{
+			App->save_load->saveSceneTrigger = true;
+		}
+		if (ImGui::MenuItem("Load Scene"))
+		{
+			App->save_load->loadSceneTrigger = true;
 		}
 		if (ImGui::MenuItem("Exit"))
 		{
