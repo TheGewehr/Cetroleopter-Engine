@@ -35,6 +35,7 @@ bool TextureComponent::CleanUp()
 
 bool TextureComponent::SaveComponent()
 {
+	texturePath = textures[0]->path.c_str();
 	json_object_dotset_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TextureComponent.Path", texturePath);
 
 	return false;

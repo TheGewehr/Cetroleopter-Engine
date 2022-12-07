@@ -296,7 +296,7 @@ bool ModuleGameObject::SaveObject()
 	}
 	else
 	{
-		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasMeshComponent", id_);
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasMeshComponent", false);
 	}
 
 	if (this->GetTextureComponent() != nullptr)
@@ -305,7 +305,7 @@ bool ModuleGameObject::SaveObject()
 	}
 	else
 	{
-		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTextureComponent", id_);
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTextureComponent", false);
 	}
 
 	if (this->GetTransformComponent() != nullptr)
@@ -334,11 +334,13 @@ bool ModuleGameObject::LoadObject()
 		if ((bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTextureComponent") == true)
 		{
 			this->GetTextureComponent()->LoadComponent();
-		}
-		else
-		{
 
+			App->modelImport->LoadModel_Textured(this, this->GetMeshComponent()->meshPath, this->GetTextureComponent()->texturePath);
 		}
+		else 
+		{
+			App->modelImport->LoadModel_Textured(this, this->GetMeshComponent()->meshPath, "None");
+		}		
 	}	
 
 	if((bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTransformComponent") == true)
