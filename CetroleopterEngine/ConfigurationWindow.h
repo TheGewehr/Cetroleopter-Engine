@@ -2,7 +2,7 @@
 #define _CONFIGURATIONWINDOW_H_
 
 #include "ImGuiWindowBase.h"
-#include "parson.h"
+//#include "parson.h"
 
 #define MAX_HISTOGRAM_SIZE 100
 

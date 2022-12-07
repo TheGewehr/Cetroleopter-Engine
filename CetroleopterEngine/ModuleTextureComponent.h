@@ -24,6 +24,9 @@ public:
 	update_status Update();
 	bool CleanUp();
 
+	bool SaveComponent();
+	bool LoadComponent();
+
 public:
 	std::vector<TextureData*> textures;
 	TextureData* objectTexture;

@@ -4,6 +4,7 @@
 #include "imgui.h"
 #include "ModuleSceneIntro.h"
 #include "ConfigurationWindow.h"
+#include "ModuleSaveLoad.h"
 #include "glew/include/GL/glew.h"
 
 ConfigurationWindow::ConfigurationWindow(const char* name, bool isActive) : ImGuiWindowBase("Settings", isActive = true)
