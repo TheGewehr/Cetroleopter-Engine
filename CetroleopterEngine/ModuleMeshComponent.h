@@ -1,7 +1,7 @@
 #ifndef _MODULE_MESH_COMPONENT_H_
 #define _MODULE_MESH_COMPONENT_H_
 
-
+#include "Application.h"
 #include "Globals.h"
 #include "glmath.h"
 //#include "ModuleGameObject.h"

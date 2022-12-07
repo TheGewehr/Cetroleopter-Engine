@@ -57,4 +57,16 @@ bool MeshComponent::CleanUp()
 	return true;
 }
 
+bool MeshComponent::SaveComponent()
+{
+	json_object_dotset_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.MeshComponent.Path", meshPath);
+
+	return false;
+}
+
+bool MeshComponent::LoadComponent()
+{
+	return false;
+}
+
 
