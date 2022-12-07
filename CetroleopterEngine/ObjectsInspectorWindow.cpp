@@ -265,15 +265,19 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 			ImGui::Spacing();
 		}
 
+		ImGui::PushID(13);
 		if (ImGui::CollapsingHeader("Hierarchy Options"))
 		{
+			ImGui::PushID(12);
 			ImGui::Combo("##", &hierarchyDummy, "Nothing\0Set Parent\0Add Child\0Delete Object");			
+			ImGui::PopID();
 
 			ImGui::SameLine();
 		
-			//ImGui::PushID(11);
+			
 			//bool yes = ImGui::Button("DO");
 
+			ImGui::PushID(11);
 			if (ImGui::Button("DO") == true)
 			{
 				
@@ -293,9 +297,10 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 					}
 				}
 			}
-			//ImGui::PopID();
+			ImGui::PopID();
 
 		}
+		ImGui::PopID();
 	}
 	else 
 	{
