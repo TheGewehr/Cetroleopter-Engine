@@ -207,17 +207,17 @@ float* ModuleCamera3D::GetViewMatrix()
 void ModuleCamera3D::MakeRayCast()
 {
 
-	float tab_width = App->window->width; // Replace with tab window witdh when tabs created
-	float tab_height = App->window->height; // Replace with tab window height when tabs created
+	float tabWidth = App->window->GetWidth(); // Replace with tab window witdh when tabs created
+	float tabHeight = App->window->GetHeight(); // Replace with tab window height when tabs created
 
-	float2 screen_mouse_pos = float2((float)App->window->width - App->input->GetMouseX(), (float)App->window->height - (float)App->input->GetMouseY());
-	float2 norm_screen_pos = float2(screen_mouse_pos.x / tab_width, screen_mouse_pos.y / tab_height);
-	float2 world_mouse_pos = float2(norm_screen_pos.x * (float)App->window->width, norm_screen_pos.y * (float)App->window->height);
+	float2 screenMousePos = float2((float)App->window->GetWidth() - App->input->GetMouseX(), (float)App->window->GetHeight() - (float)App->input->GetMouseY());
+	float2 normScreenPos = float2(screenMousePos.x / tabWidth, screenMousePos.y / tabHeight);
+	float2 worldMousePos = float2(normScreenPos.x * (float)App->window->GetWidth(), normScreenPos.y * (float)App->window->GetHeight());
 
-	float normalized_x = (world_mouse_pos.x / App->window->width - 0.5f) * 2;
-	float normalized_y = (world_mouse_pos.y / App->window->height - 0.5f) * 2;
+	float normalizedX = (worldMousePos.x / App->window->GetWidth() - 0.5f) * 2;
+	float normalizedY = (worldMousePos.y / App->window->GetHeight() - 0.5f) * 2;
 
-	LineSegment picking = mainCamera->frustum.UnProjectLineSegment(normalized_x, normalized_y);
+	LineSegment picking = mainCamera->frustum.UnProjectLineSegment(normalizedX, normalizedY);
 	
 
 	//Object part

@@ -104,7 +104,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::PushID(buttonObjectID + 0);
 				if (ImGui::CollapsingHeader("Translate"))
 				{
-					float3 newPosition = InspectorObject->GetTransformComponent()->GetPosition();
+					float3 newPosition = App->scene_intro->gameObjects[App->moduleUi->currentSelectedObject]->GetTransformComponent()->GetPosition();
 					
 					ImGui::PushID(buttonObjectID + 4);
 					if (ImGui::DragFloat3("", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
