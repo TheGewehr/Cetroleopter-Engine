@@ -22,6 +22,10 @@ public:
 	// ???(varType) GetCameraTransform();
 	void UpdateGameObjectCamera(ModuleGameObject gameObject);
 	void DrawBoundingBox(float3* corners, Color color);
+
+	bool SaveRequest(bool isMainCamera , int positionInList);
+	bool LoadRequest(bool isMainCamera, int positionInList);
+
 public:
 	
 	// ???(varType) cameraTransform;
