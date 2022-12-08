@@ -19,10 +19,12 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 	componentMesh = new MeshComponent(this);
 	componentTexture = new TextureComponent(this);
 	componentTransform = new TransformComponent(this);
+	componentCamera = new CameraComponent(this);
 
 	objectComponents.push_back(componentMesh);
 	objectComponents.push_back(componentTexture);
 	objectComponents.push_back(componentTransform);
+	objectComponents.push_back(componentCamera);
 
 
 

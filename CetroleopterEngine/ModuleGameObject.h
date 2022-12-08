@@ -71,7 +71,7 @@ public:
 	Component* componentMesh;
 	Component* componentTexture;
 	Component* componentTransform;
-	
+	Component* componentCamera;
 
 	uint id_;
 	std::string name_;
