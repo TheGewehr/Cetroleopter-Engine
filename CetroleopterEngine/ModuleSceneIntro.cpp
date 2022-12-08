@@ -54,22 +54,18 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
-		glPolygonMode(GL_FRONT, GL_FILL);
+		if (App->scene_intro->gameObjects[i]->isObjectSelected_ == true)
+		{
+			glPolygonMode(GL_FRONT, GL_LINE);
+			App->camera->mainCamera->frustum.GetCornerPoints(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints);
+			App->camera->mainCamera->DrawBoundingBox(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints, App->camera->mainCamera->frustumColor);
+			glPolygonMode(GL_FRONT, GL_FILL);
+		}
+
 		gameObjects.at(i)->Render();
 		//gameObjects[i]->Render();
-
-		glPolygonMode(GL_FRONT, GL_LINE);
-		App->camera->mainCamera->frustum.GetCornerPoints(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints);
-		App->camera->mainCamera->DrawBoundingBox(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints, App->camera->mainCamera->frustumColor);
-		
-
 		
 	}
-
-	//for (uint i = 0; i < App->scene_intro->gameObjects.size(); i++)
-	//{
-	//	
-	//}
 
 	return UPDATE_CONTINUE;
 }

@@ -75,7 +75,7 @@ bool CameraComponent::CleanUp()
 void CameraComponent::DrawBoundingBox(float3* corners, Color color)
 {
 	glLineWidth(2.0f);
-	glColor4f(color.r, color.g, color.b, color.a);
+	glColor4f(0.75f, 0.75f, 0.75f, color.a);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 

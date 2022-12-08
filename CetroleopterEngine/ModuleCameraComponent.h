@@ -33,7 +33,7 @@ public:
 
 	Frustum frustum;
 	vec bboxPoints[8];
-	Color frustumColor = Color(0, 1, 0, 1);
+	Color frustumColor = Color(1, 0, 0, 1);
 };
 
 
