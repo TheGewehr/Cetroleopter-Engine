@@ -115,27 +115,9 @@ void TransformComponent::SetLocalEulerRotation(float3 euler)
 
 void TransformComponent::SetChildsAsDirty()
 {
-	/*for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				base = App->moduleGameObject->objects[i];
-				i = App->moduleGameObject->objects.size();
-				j = App->moduleGameObject->objects[i].meshes.size();
-			}
-		}
-	}
-	
-	if (base.children.empty())
-		return;*/
-
 
 	if (ComponentOwner->childs.empty())
-		return;
-
-	
+		return;	
 
 	for (uint i = 0; i < ComponentOwner->childs.size(); ++i)
 	{
@@ -197,8 +179,17 @@ void TransformComponent::UpdateLocalTransform()
 void TransformComponent::UpdateWorldTransform()
 {
 
-	worldTransform = localTransform;
-	//worldTransform = (ComponentOwner->parent != nullptr ) ? ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform : localTransform;
+	
+	worldTransform = (ComponentOwner->parent != nullptr ) ? ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform : localTransform;
+
+	//if (ComponentOwner->parent != nullptr && ComponentOwner->parent->GetTransformComponent() != nullptr)
+	//{
+	//	worldTransform = ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform;
+	//}
+	//else
+	//{
+	//	worldTransform = localTransform;
+	//}
 
 	SetChildsAsDirty();
 	
@@ -214,50 +205,16 @@ void TransformComponent::UpdateWorldTransform()
 
 void TransformComponent::SyncLocalToWorld()
 {
-	/*for (int i = 0; i < App->moduleGameObject->objects.size(); i++)
-	{
-		for (int j = 0; j < App->moduleGameObject->objects[i].meshes.size(); j++)
-		{
-			if (App->moduleGameObject->objects[i].meshes[j].transform == this)
-			{
-				base = App->moduleGameObject->objects[i];
-				i = App->moduleGameObject->objects.size();
-				j = App->moduleGameObject->objects[i].meshes.size();
-			}
-		}
-	}
-
-	if (base.parent != nullptr)
-	{
-		for (int i = 0; i < base.parent->meshes.size(); i++)
-		{
-			localTransform = base.parent->meshes[i].transform->worldTransform.Inverted() * worldTransform;
-		}
-	}
-	else
-	{
-		
-		localTransform = worldTransform;
-		
-	}	
-	
-	SetLocalTransform(localTransform);	
-
-	SetChildsAsDirty();*/
-
 	
 
 	localTransform = (ComponentOwner->parent != nullptr) ? ComponentOwner->parent->GetTransformComponent()->worldTransform.Inverted() * worldTransform : worldTransform;
+
 
 	SetLocalTransform(localTransform);
 
 	SetChildsAsDirty();
 
-	/*C_Camera* cCamera = owner->GetComponent<C_Camera>();
-	if (cCamera != nullptr)
-	{
-		cCamera->UpdateFrustumTransform();
-	}*/
+	
 }
 
 bool TransformComponent::SaveComponent()

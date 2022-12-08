@@ -62,7 +62,7 @@ public:
 	std::vector<Component*> objectComponents;
 	std::vector<ModuleGameObject*>	childs;
 
-	ModuleGameObject* parent;
+	ModuleGameObject* parent = nullptr;
 
 	int currentSelectedObject = -1;
 
