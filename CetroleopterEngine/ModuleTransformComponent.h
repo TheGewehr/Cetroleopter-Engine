@@ -52,7 +52,7 @@ public:
 	void SyncLocalToWorld();
 
 	bool SaveComponent(int positionInList);
-	bool LoadComponent();
+	bool LoadComponent(int positionInList);
 
 	float3 position;
 	Quat rotation;

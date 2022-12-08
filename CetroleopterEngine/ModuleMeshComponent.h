@@ -23,7 +23,7 @@ public:
 	bool CleanUp();
 
     bool SaveComponent(int positionInList);
-    bool LoadComponent();
+    bool LoadComponent(int positionInList);
 
 public:
 

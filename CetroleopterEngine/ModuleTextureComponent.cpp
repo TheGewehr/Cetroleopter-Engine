@@ -42,9 +42,11 @@ bool TextureComponent::SaveComponent(int positionInList)
 	return false;
 }
 
-bool TextureComponent::LoadComponent()
+bool TextureComponent::LoadComponent(int positionInList)
 {
-	texturePath = json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TextureComponent.Path");
+	std::string listPosition = std::to_string(positionInList);
+
+	texturePath = json_object_dotget_string(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TextureComponent.Path").c_str());
 
 	return false;
 }

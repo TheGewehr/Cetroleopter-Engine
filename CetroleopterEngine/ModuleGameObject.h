@@ -54,7 +54,7 @@ public:
 	CameraComponent* GetCameraComponent();
 
 	bool SaveObject(int positionInList);
-	bool LoadObject();
+	bool LoadObject(int positionInList);
 
 
 public:

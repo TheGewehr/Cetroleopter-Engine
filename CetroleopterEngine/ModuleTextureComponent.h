@@ -25,7 +25,7 @@ public:
 	bool CleanUp();
 
 	bool SaveComponent(int positionInList);
-	bool LoadComponent();
+	bool LoadComponent(int positionInList);
 
 public:
 	std::vector<TextureData*> textures;
