@@ -7,10 +7,12 @@
 
 ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true)
 {
-	//CalculateViewMatrix();
 
 	mainCamera = new CameraComponent(nullptr);
+	CalculateViewMatrix();
+
 	
+
 	mainCamera->X = vec3(1.0f, 0.0f, 0.0f);
 	mainCamera->Y = vec3(0.0f, 1.0f, 0.0f);
 	mainCamera->Z = vec3(0.0f, 0.0f, 1.0f);
@@ -19,7 +21,7 @@ ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true
 	mainCamera->Reference = vec3(0.0f, 0.0f, 0.0f);
 	isMainCameraMooving = false;
 
-	CalculateViewMatrix();
+	
 }
 
 ModuleCamera3D::~ModuleCamera3D()
@@ -34,7 +36,7 @@ bool ModuleCamera3D::Start()
 	mainCamera->frustum.nearPlaneDistance = 2;
 	mainCamera->frustum.farPlaneDistance = 20;
 	mainCamera->frustum.verticalFov = 60 * DEGTORAD;
-	mainCamera->frustum.horizontalFov = 60 * DEGTORAD;
+	mainCamera->frustum.horizontalFov = 60;
 
 
 	return ret;

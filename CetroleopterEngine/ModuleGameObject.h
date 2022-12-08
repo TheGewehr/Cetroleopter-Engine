@@ -71,12 +71,6 @@ public:
 	Component* componentMesh;
 	Component* componentTexture;
 	Component* componentTransform;
-
-	AABB aabb;
-	OBB obb;
-
-	float3* aabbVertices;
-	float3* obbVertices;
 	
 
 	uint id_;

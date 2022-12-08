@@ -26,11 +26,11 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 
 
 
-	aabb.SetNegativeInfinity();
-	obb.SetNegativeInfinity();
+	//aabb.SetNegativeInfinity();
+	//obb.SetNegativeInfinity();
 
-	aabbVertices = new float3[8];
-	obbVertices = new float3[8];
+	//aabbVertices = new float3[8];
+	//obbVertices = new float3[8];
 
 	/*std::vector<BB_Vertex> vertices;
 	vertices.push_back((BB_Vertex)(vec3(1.0, 1.0, 1.0)));
@@ -81,11 +81,11 @@ update_status ModuleGameObject::Update()
 			continue;
 		}
 
-		obb = meshesComponent[i]->objMain_->componentMesh->objMain_->aabb;
-		obb.Transform(GetTransformComponent()->GetWorldTransform());
+		//obb = meshesComponent[i]->objMain_->componentMesh->objMain_->aabb;
+		//obb.Transform(GetTransformComponent()->GetWorldTransform());
 
-		aabb.SetNegativeInfinity();
-		aabb.Enclose(obb);
+		//aabb.SetNegativeInfinity();
+		//aabb.Enclose(obb);
 	}
 
 	meshesComponent.clear();

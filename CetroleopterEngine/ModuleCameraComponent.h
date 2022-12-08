@@ -20,6 +20,8 @@ public:
 	bool CleanUp();
 
 	// ???(varType) GetCameraTransform();
+
+	void DrawBoundingBox(float3* corners, Color color);
 public:
 	
 	// ???(varType) cameraTransform;
@@ -27,8 +29,11 @@ public:
 	vec3 X, Y, Z, Position, Reference;
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
+	float fov = 60;
 
 	Frustum frustum;
+	vec bboxPoints[8];
+	Color frustumColor = Color(0, 1, 0, 1);
 };
 
 
