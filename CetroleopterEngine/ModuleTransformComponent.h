@@ -51,8 +51,8 @@ public:
 	void UpdateWorldTransform();
 	void SyncLocalToWorld();
 
-	bool SaveComponent();
-	bool LoadComponent();
+	bool SaveComponent(int positionInList);
+	bool LoadComponent(int positionInList);
 
 	float3 position;
 	Quat rotation;

@@ -108,12 +108,12 @@ ModuleGameObject* ModuleSceneIntro::CreateEmptyGameObject(ModuleGameObject* pare
 bool ModuleSceneIntro::SaveRequest()
 {
 	
-	json_object_dotset_string(json_object(App->save_load->sceneFile),"Scene01.", name.c_str());
+	json_object_dotset_string(json_object(App->save_load->sceneFile),"Scene01.Name", name.c_str());
 	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.Size", gameObjects.size());	
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
-		gameObjects.at(i)->SaveObject();		
+		gameObjects.at(i)->SaveObject(i);		
 	}
 
 	return true;
@@ -121,7 +121,7 @@ bool ModuleSceneIntro::SaveRequest()
 
 bool ModuleSceneIntro::LoadRequest()
 {
-	name = (char)json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01");
+	name = (char)json_object_dotget_string(json_object(App->save_load->sceneFile), "Scene01.Name");
 	int listSize = (int)json_object_dotget_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.Size");
 	
 	for (int i = 0; i < gameObjects.size(); i++)
@@ -138,7 +138,7 @@ bool ModuleSceneIntro::LoadRequest()
 
 	for (int i = 0; i < listSize; i++)
 	{
-		gameObjects.at(i)->LoadObject();
+		gameObjects.at(i)->LoadObject(i);
 	}
 
 	return true;

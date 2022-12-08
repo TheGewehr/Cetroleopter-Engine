@@ -24,8 +24,8 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	bool SaveComponent();
-	bool LoadComponent();
+	bool SaveComponent(int positionInList);
+	bool LoadComponent(int positionInList);
 
 public:
 	std::vector<TextureData*> textures;
