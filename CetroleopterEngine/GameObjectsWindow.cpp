@@ -101,30 +101,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 			//ImGui::Text("n palabra (naranja)");
 			if (ImGui::IsItemClicked(ImGuiMouseButton_Left))
 			{
-				if (objects.at(i)->GetObjectIsSelected() == true)
-				{
-					objects.at(i)->SelectObject(); // Deselect
-					App->moduleUi->currentSelectedObject = -1;
-				}
-				else
-				{ // Review this part
-					bool isOtherSelected = false;
-					for (int j = 0; j < objects.size(); j++)
-					{
-						if (objects.at(j)->GetObjectIsSelected() == true && objects.at(i) != objects.at(j))
-						{
-							isOtherSelected = true;
-							break;
-						}
-						
-					}
-					if (isOtherSelected == false)
-					{
-						objects.at(i)->SelectObject();
-						App->moduleUi->currentSelectedObject = i;
-					}
-				}
-				
+				objects.at(i)->SelectObject();
 			}
 
 
