@@ -7,6 +7,7 @@
 #include "ModuleMeshComponent.h"
 #include "ModuleTextureComponent.h"
 #include "ModuleTransformComponent.h"
+#include "GameObjectsWindow.h"
 
 ObjectsInspectorWindow::ObjectsInspectorWindow(const char* name, bool isActive) : ImGuiWindowBase("GameObjects Inspector", isActive = true)
 {
@@ -50,10 +51,11 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 	for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
 	{
-		if (App->scene_intro->gameObjects.at(i)->GetObjectIsSelected())
+		if (App->scene_intro->gameObjects[i]->GetObjectIsSelected())
 		{
-			InspectorObject = App->scene_intro->gameObjects.at(i);
+			InspectorObject = App->scene_intro->gameObjects[i];
 			noneSelected = false;
+			buttonObjectID = i;
 			break;
 		}
 	}
@@ -99,12 +101,12 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::Spacing();
 				ImGui::Spacing();
 
-				ImGui::PushID(0);
+				ImGui::PushID(buttonObjectID + 0);
 				if (ImGui::CollapsingHeader("Translate"))
 				{
 					float3 newPosition = InspectorObject->GetTransformComponent()->GetPosition();
 					
-					ImGui::PushID(4);
+					ImGui::PushID(buttonObjectID + 4);
 					if (ImGui::DragFloat3("", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
 						InspectorObject->GetTransformComponent()->SetPosition(
@@ -118,7 +120,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 					ImGui::SameLine();
 
-					ImGui::PushID(7);
+					ImGui::PushID(buttonObjectID + 7);
 					if (ImGui::Button("Reset"))
 					{
 						InspectorObject->GetTransformComponent()->SetPosition(0,0,0);
@@ -128,12 +130,12 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::PopID();
 
 				
-				ImGui::PushID(1);
+				ImGui::PushID(buttonObjectID + 1);
 				if (ImGui::CollapsingHeader("Rotate"))
 				{
 					float3 rotation = InspectorObject->GetTransformComponent()->GetLocalEulerRotation() * RADTODEG;
 
-					ImGui::PushID(5);
+					ImGui::PushID(buttonObjectID + 5);
 					if (ImGui::DragFloat3("", (float*)&rotation, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
 						
@@ -143,7 +145,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 					ImGui::SameLine();
 
-					ImGui::PushID(8);
+					ImGui::PushID(buttonObjectID + 8);
 					if (ImGui::Button("Reset"))
 					{
 
@@ -154,12 +156,12 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 				ImGui::PopID();
 
 				
-				ImGui::PushID(2);
+				ImGui::PushID(buttonObjectID + 2);
 				if (ImGui::CollapsingHeader("Scale"))
 				{
 					float3 scale = InspectorObject->GetTransformComponent()->GetScale();
 
-					ImGui::PushID(6);
+					ImGui::PushID(buttonObjectID + 6);
 					if (ImGui::DragFloat3("", (float*)&scale, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
 					{
 						InspectorObject->GetTransformComponent()->SetScale(scale);
@@ -168,7 +170,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 					ImGui::SameLine();
 
-					ImGui::PushID(9);
+					ImGui::PushID(buttonObjectID + 9);
 					if (ImGui::Button("Reset"))
 					{
 						InspectorObject->GetTransformComponent()->SetScale(float3(1,1,1));
@@ -179,7 +181,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 
 				ImGui::Spacing();
 
-				ImGui::PushID(10);
+				ImGui::PushID(buttonObjectID + 10);
 				if (ImGui::Button("Reset All"))
 				{
 					InspectorObject->GetTransformComponent()->SetPosition(0, 0, 0);

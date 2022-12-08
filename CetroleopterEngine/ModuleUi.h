@@ -51,6 +51,8 @@ public:
 
 	bool hoveringWindow;
 
+	int currentSelectedObject = -1;
+
 private:
 
 	bool InitializeImGui()const;

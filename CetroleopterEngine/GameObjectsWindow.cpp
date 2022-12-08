@@ -104,6 +104,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 				if (objects.at(i)->GetObjectIsSelected() == true)
 				{
 					objects.at(i)->SelectObject(); // Deselect
+					App->moduleUi->currentSelectedObject = -1;
 				}
 				else
 				{ // Review this part
@@ -120,6 +121,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 					if (isOtherSelected == false)
 					{
 						objects.at(i)->SelectObject();
+						App->moduleUi->currentSelectedObject = i;
 					}
 				}
 				

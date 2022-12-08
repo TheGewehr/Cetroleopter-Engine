@@ -33,6 +33,8 @@ private:
 
 	int hierarchyDummy = 0;
 
+	int buttonObjectID = 0;
+
 };
 
 #endif // !_OBJECTS_INSPECTOR_WINDOW_H_
