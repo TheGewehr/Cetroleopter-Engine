@@ -217,20 +217,22 @@ void TransformComponent::SyncLocalToWorld()
 	
 }
 
-bool TransformComponent::SaveComponent()
+bool TransformComponent::SaveComponent(int positionInList)
 {
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Position.X", position.x);
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Position.Y", position.y);
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Position.Z", position.z);
+	std::string listPosition = std::to_string(positionInList);
 
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Rotation.X", rotation.x);
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Rotation.Y", rotation.y);
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Rotation.Z", rotation.z);
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Rotation.W", rotation.w);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.X").c_str(), position.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.Y").c_str(), position.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Position.Z").c_str(), position.z);
 
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Scale.X", scale.x);
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Scale.Y", scale.y);
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TransformComponent.Scale.Z", scale.z);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.X").c_str(), rotation.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.Y").c_str(), rotation.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.Z").c_str(), rotation.z);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Rotation.W").c_str(), rotation.w);
+
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.X").c_str(), scale.x);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.Y").c_str(), scale.y);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TransformComponent.Scale.Z").c_str(), scale.z);
 	
 
 	return true;

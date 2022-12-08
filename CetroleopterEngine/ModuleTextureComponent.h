@@ -24,7 +24,7 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	bool SaveComponent();
+	bool SaveComponent(int positionInList);
 	bool LoadComponent();
 
 public:

@@ -33,10 +33,11 @@ bool TextureComponent::CleanUp()
 	return true;
 }
 
-bool TextureComponent::SaveComponent()
+bool TextureComponent::SaveComponent(int positionInList)
 {
+	std::string listPosition = std::to_string(positionInList);
 	texturePath = textures[0]->path.c_str();
-	json_object_dotset_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.TextureComponent.Path", texturePath);
+	json_object_dotset_string(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".TextureComponent.Path").c_str(), texturePath);
 
 	return false;
 }

@@ -59,10 +59,11 @@ bool MeshComponent::CleanUp()
 	return true;
 }
 
-bool MeshComponent::SaveComponent()
+bool MeshComponent::SaveComponent(int positionInList)
 {
+	std::string listPosition = std::to_string(positionInList);
 	meshPath = mesh.path.c_str();
-	json_object_dotset_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.MeshComponent.Path", meshPath);
+	json_object_dotset_string(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".MeshComponent.Path").c_str(), meshPath);
 
 	return false;
 }

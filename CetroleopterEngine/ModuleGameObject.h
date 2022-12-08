@@ -53,7 +53,7 @@ public:
 	MeshComponent* GetMeshComponent();
 	CameraComponent* GetCameraComponent();
 
-	bool SaveObject();
+	bool SaveObject(int positionInList);
 	bool LoadObject();
 
 

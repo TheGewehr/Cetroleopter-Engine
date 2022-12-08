@@ -51,7 +51,7 @@ public:
 	void UpdateWorldTransform();
 	void SyncLocalToWorld();
 
-	bool SaveComponent();
+	bool SaveComponent(int positionInList);
 	bool LoadComponent();
 
 	float3 position;

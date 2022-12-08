@@ -285,39 +285,50 @@ CameraComponent* ModuleGameObject::GetCameraComponent()
 	return nullptr;
 }
 
-bool ModuleGameObject::SaveObject()
+bool ModuleGameObject::SaveObject(int positionInList)
 {
+	std::string listPosition = std::to_string(positionInList);
 	
-	json_object_dotset_number(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID", id_);
-	json_object_dotset_string(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.Name", name_.c_str());
-	json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.IsActive", isAtive_);
+	json_object_dotset_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList."+ listPosition +".ID").c_str(), id_);
+	json_object_dotset_string(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".Name").c_str(), name_.c_str());
+	json_object_dotset_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".IsActive").c_str(), isAtive_);
 
 	if (this->GetMeshComponent() != nullptr)
 	{
-		this->GetMeshComponent()->SaveComponent();
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".HasMeshComponent").c_str(), true);
+		this->GetMeshComponent()->SaveComponent(positionInList);
 	}
 	else
 	{
-		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasMeshComponent", false);
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".HasMeshComponent").c_str(), false);
 	}
 
 	if (this->GetTextureComponent() != nullptr)
 	{
-		this->GetTextureComponent()->SaveComponent();
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".HasTextureComponent").c_str(), true);
+		this->GetTextureComponent()->SaveComponent(positionInList);
 	}
 	else
 	{
-		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTextureComponent", false);
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".HasTextureComponent").c_str(), false);
 	}
 
 	if (this->GetTransformComponent() != nullptr)
 	{
-		this->GetTransformComponent()->SaveComponent();
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".HasTransformComponent").c_str(), true);
+
+		this->GetTransformComponent()->SaveComponent(positionInList);
 	}
 	else
 	{
-		json_object_dotset_boolean(json_object(App->save_load->sceneFile), "Scene01.GameObjectsList.ID.HasTransformComponent", id_);
+
+		json_object_dotset_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".HasTransformComponent").c_str(), false);
 	}
+
+	//for (int j = 0; j < this->childs.size(); j++)
+	//{
+	//	this->SaveObject(j);
+	//}
 
 	return true;
 }
