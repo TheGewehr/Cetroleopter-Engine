@@ -391,6 +391,7 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 			}
 
 			meshComponent->bbox.Enclose(bbVertices, meshComponent->mesh.num_vertices / 3);
+			meshComponent->bbox.GetCornerPoints(meshComponent->bboxPoints);
 
 
 			// Mesh file format Save/Load part

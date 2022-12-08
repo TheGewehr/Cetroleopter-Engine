@@ -3,6 +3,9 @@
 #include "ModuleSceneIntro.h"
 #include "Primitive.h"
 #include "ModuleGameObject.h"
+#include "ModuleCamera3D.h"
+#include "ModuleCameraComponent.h"
+#include "ModuleMeshComponent.h"
 //#include "PhysBody3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(bool start_enabled) : Module(start_enabled)
@@ -18,7 +21,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+	//App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -51,9 +54,22 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
+		glPolygonMode(GL_FRONT, GL_FILL);
 		gameObjects.at(i)->Render();
 		//gameObjects[i]->Render();
+
+		glPolygonMode(GL_FRONT, GL_LINE);
+		App->camera->mainCamera->frustum.GetCornerPoints(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints);
+		App->camera->mainCamera->DrawBoundingBox(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints, App->camera->mainCamera->frustumColor);
+		
+
+		
 	}
+
+	//for (uint i = 0; i < App->scene_intro->gameObjects.size(); i++)
+	//{
+	//	
+	//}
 
 	return UPDATE_CONTINUE;
 }

@@ -1,6 +1,9 @@
 #include "ModuleCameraComponent.h"
 #include "ModuleGameObject.h"
 #include "Component.h"
+#include "ModuleCamera3D.h"
+#include "ModuleMeshComponent.h"
+
 //#include "mathGeoLib/Geometry/Frustum.h"
 
 CameraComponent::CameraComponent(ModuleGameObject* base) : Component(base, ComponentTypes::CAMERA, "Camera")
@@ -57,10 +60,7 @@ update_status CameraComponent::Update()
 	//frustum.pos = float3(Position.x, Position.y, Position.z);
 	//frustum.front = float3(Z.x, Z.y, Z.z);
 	//frustum.up = float3(Y.x, Y.y, Y.z);
-
-	//frustum.GetCornerPoints(bboxPoints);
-
-	DrawBoundingBox(bboxPoints, frustumColor);
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -74,5 +74,44 @@ bool CameraComponent::CleanUp()
 
 void CameraComponent::DrawBoundingBox(float3* corners, Color color)
 {
+	glLineWidth(2.0f);
+	glColor4f(color.r, color.g, color.b, color.a);
 
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
+	glDisable(GL_CULL_FACE);
+
+	glBegin(GL_QUADS);
+
+	glVertex3fv((GLfloat*)&corners[1]);
+	glVertex3fv((GLfloat*)&corners[5]);
+	glVertex3fv((GLfloat*)&corners[7]);
+	glVertex3fv((GLfloat*)&corners[3]);
+
+	glVertex3fv((GLfloat*)&corners[4]);
+	glVertex3fv((GLfloat*)&corners[0]);
+	glVertex3fv((GLfloat*)&corners[2]);
+	glVertex3fv((GLfloat*)&corners[6]);
+
+	glVertex3fv((GLfloat*)&corners[5]);
+	glVertex3fv((GLfloat*)&corners[4]);
+	glVertex3fv((GLfloat*)&corners[6]);
+	glVertex3fv((GLfloat*)&corners[7]);
+
+	glVertex3fv((GLfloat*)&corners[0]);
+	glVertex3fv((GLfloat*)&corners[1]);
+	glVertex3fv((GLfloat*)&corners[3]);
+	glVertex3fv((GLfloat*)&corners[2]);
+
+	glVertex3fv((GLfloat*)&corners[3]);
+	glVertex3fv((GLfloat*)&corners[7]);
+	glVertex3fv((GLfloat*)&corners[6]);
+	glVertex3fv((GLfloat*)&corners[2]);
+
+	glVertex3fv((GLfloat*)&corners[0]);
+	glVertex3fv((GLfloat*)&corners[4]);
+	glVertex3fv((GLfloat*)&corners[5]);
+	glVertex3fv((GLfloat*)&corners[1]);
+
+	glEnd();
 }
