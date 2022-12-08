@@ -20,7 +20,7 @@ public:
 	bool CleanUp();
 
 	// ???(varType) GetCameraTransform();
-
+	void UpdateGameObjectCamera(ModuleGameObject gameObject);
 	void DrawBoundingBox(float3* corners, Color color);
 public:
 	

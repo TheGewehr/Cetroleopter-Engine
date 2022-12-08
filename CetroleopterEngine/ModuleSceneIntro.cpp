@@ -21,7 +21,7 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	//App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -54,6 +54,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
+
 		if (App->scene_intro->gameObjects[i]->isObjectSelected_ == true)
 		{
 			glPolygonMode(GL_FRONT, GL_LINE);

@@ -4,14 +4,13 @@
 #include <MathGeoLib.h>
 #include "ModuleCameraComponent.h"
 #include "ModuleMeshComponent.h"
+#include "ModuleTransformComponent.h"
 
 ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true)
 {
 
 	mainCamera = new CameraComponent(nullptr);
 	CalculateViewMatrix();
-
-	
 
 	mainCamera->X = vec3(1.0f, 0.0f, 0.0f);
 	mainCamera->Y = vec3(0.0f, 1.0f, 0.0f);
@@ -208,16 +207,15 @@ float* ModuleCamera3D::GetViewMatrix()
 void ModuleCamera3D::MakeRayCast()
 {
 
-	//Ray part
-	float tab_width = App->window->GetWidth(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
-	float tab_height = App->window->GetHeight(); //Replace later with size of tab not window when scene is rendered inside tab and not the actual window
+	float tab_width = App->window->width; // Replace with tab window witdh when tabs created
+	float tab_height = App->window->height; // Replace with tab window height when tabs created
 
-	float2 screen_mouse_pos = float2((float)App->input->GetMouseX() - 560.5f, (float)App->window->GetHeight() - (float)App->input->GetMouseY() + 220.5f); /* - float2(0 tab_origin.x, 0 tab_origin.y + 22.5f*/
+	float2 screen_mouse_pos = float2((float)App->window->width - App->input->GetMouseX(), (float)App->window->height - (float)App->input->GetMouseY());
 	float2 norm_screen_pos = float2(screen_mouse_pos.x / tab_width, screen_mouse_pos.y / tab_height);
-	float2 world_mouse_pos = float2(norm_screen_pos.x * (float)App->window->GetWidth(), norm_screen_pos.y * (float)App->window->GetHeight());
+	float2 world_mouse_pos = float2(norm_screen_pos.x * (float)App->window->width, norm_screen_pos.y * (float)App->window->height);
 
-	float normalized_x = (world_mouse_pos.x / App->window->GetWidth() - 0.5f) * 2;
-	float normalized_y = (world_mouse_pos.y / App->window->GetHeight() - 0.5f) * 2;
+	float normalized_x = (world_mouse_pos.x / App->window->width - 0.5f) * 2;
+	float normalized_y = (world_mouse_pos.y / App->window->height - 0.5f) * 2;
 
 	LineSegment picking = mainCamera->frustum.UnProjectLineSegment(normalized_x, normalized_y);
 	
