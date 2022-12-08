@@ -20,6 +20,7 @@ ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true
 	mainCamera->Reference = vec3(0.0f, 0.0f, 0.0f);
 	isMainCameraMooving = false;
 
+	updateCameraView = false;
 	
 }
 
@@ -138,18 +139,26 @@ update_status ModuleCamera3D::Update(float dt)
 	}
 
 	
-	if (App->input->GetKey(SDL_SCANCODE_R) != KEY_REPEAT)
-		if (App->input->GetKey(SDL_SCANCODE_F) != KEY_REPEAT)
+	if (!updateCameraView)
+	{
+		if (App->input->GetKey(SDL_SCANCODE_R) != KEY_REPEAT)
+			if (App->input->GetKey(SDL_SCANCODE_F) != KEY_REPEAT)
 
-			if (App->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT)
-				if (App->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
+				if (App->input->GetKey(SDL_SCANCODE_W) != KEY_REPEAT)
+					if (App->input->GetKey(SDL_SCANCODE_S) != KEY_REPEAT)
 
 
-					if (App->input->GetKey(SDL_SCANCODE_A) != KEY_REPEAT)
-						if (App->input->GetKey(SDL_SCANCODE_D) != KEY_REPEAT)
-							if ((App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT))
-								if (App->input->GetMouseZ() == 0)
-									isMainCameraMooving = false;
+						if (App->input->GetKey(SDL_SCANCODE_A) != KEY_REPEAT)
+							if (App->input->GetKey(SDL_SCANCODE_D) != KEY_REPEAT)
+								if ((App->input->GetKey(SDL_SCANCODE_LALT) != KEY_REPEAT))
+									if (App->input->GetMouseZ() == 0)
+										isMainCameraMooving = false;
+		
+	}
+	else
+	{
+
+	}
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
@@ -228,6 +237,22 @@ void ModuleCamera3D::MakeRayCast()
 			App->scene_intro->gameObjects[i]->SelectObject();
 		}
 	}
+}
+
+bool ModuleCamera3D::SaveRequest()
+{
+	
+	this->mainCamera->SaveRequest(true, -1);
+
+	return true;
+}
+
+bool ModuleCamera3D::LoadRequest()
+{
+	this->mainCamera->LoadRequest(true, -1);
+	updateCameraView = true;
+
+	return true;
 }
 
 // -----------------------------------------------------------------

@@ -98,6 +98,7 @@ bool ModuleSaveLoad::SaveScene()
 {
 	// calling save requests
 	App->scene_intro->SaveRequest();
+	App->camera->SaveRequest();
 
 	// Aplying save to the .json file
 	json_serialize_to_file(sceneFile, "SceneSave.json");
@@ -109,6 +110,7 @@ bool ModuleSaveLoad::LoadScene()
 {
 	// calling LoadRequest functions 
 	App->scene_intro->LoadRequest();
+	App->camera->LoadRequest();
 
 	return true;
 }

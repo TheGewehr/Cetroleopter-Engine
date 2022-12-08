@@ -121,3 +121,94 @@ void CameraComponent::DrawBoundingBox(float3* corners, Color color)
 
 	glEnd();
 }
+
+bool CameraComponent::SaveRequest(bool isMainCamera , int positionInList) 
+{
+	
+
+	if (isMainCamera)
+	{
+
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.FrustrumType", frustum.type);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.FrustrumHandedness", frustum.handedness);
+
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.XVector.X", X.x);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.XVector.Y", X.y);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.XVector.Z", X.z);
+
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.YVector.X", Y.x);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.YVector.Y", Y.y);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.YVector.Z", Y.z);
+
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.ZVector.X", Z.x);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.ZVector.Y", Z.y);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.ZVector.Z", Z.z);
+
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.Position.X", Position.x);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.Position.Y", Position.y);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.Position.Z", Position.z);
+
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.Reference.X", Reference.x);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.Reference.Y", Reference.y);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.Reference.Z", Reference.z);
+
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.NearPlaneDistance", frustum.nearPlaneDistance);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.FarPlaneDistance", frustum.farPlaneDistance);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.VerticalFov", frustum.verticalFov);
+		json_object_dotset_number(json_object(App->save_load->sceneFile), "MainCamera.HorizontalFov", frustum.horizontalFov);
+
+	}
+	else
+	{
+
+	}
+
+	return true;
+}
+
+bool CameraComponent::LoadRequest(bool isMainCamera, int positionInList)
+{
+	
+
+	if (isMainCamera)
+	{
+		frustum.type = (FrustumType)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.FrustrumType");
+		frustum.handedness = (FrustumHandedness)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.FrustrumHandedness");
+					   
+		X.x = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.XVector.X");
+		X.y = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.XVector.Y");
+		X.z = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.XVector.Z");
+					   
+		Y.x = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.YVector.X");
+		Y.y = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.YVector.Y");
+		Y.z = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.YVector.Z");
+					   
+		Z.x = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.ZVector.X");
+		Z.y = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.ZVector.Y");
+		Z.z = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.ZVector.Z");
+					   
+		Position.x = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.Position.X");
+		Position.y = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.Position.Y");
+		Position.z = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.Position.Z");
+					   
+		Reference.x = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.Reference.X");
+		Reference.y = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.Reference.Y");
+		Reference.z = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.Reference.Z");
+
+		frustum.pos = float3(Position.x, Position.y, Position.z);
+		frustum.front = float3(Z.x, Z.y, Z.z);
+		frustum.up = float3(Y.x, Y.y, Y.z);
+					   
+		frustum.nearPlaneDistance = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.NearPlaneDistance");
+		frustum.farPlaneDistance = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.FarPlaneDistance");
+		frustum.verticalFov = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.VerticalFov");
+		frustum.horizontalFov = (float)json_object_dotget_number(json_object(App->save_load->sceneFile), "MainCamera.HorizontalFov");
+
+	}
+	else
+	{
+
+	}
+
+	return true;
+}

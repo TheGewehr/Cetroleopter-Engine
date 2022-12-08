@@ -25,6 +25,9 @@ public:
 
 	void MakeRayCast();
 
+	bool SaveRequest();
+	bool LoadRequest();
+
 private:
 
 	void CalculateViewMatrix();
@@ -35,9 +38,11 @@ public:
 	CameraComponent* mainCamera;
 
 	bool isMainCameraMooving;
+	bool updateCameraView;
 
 private:
 
+	
 	//mat4x4 ViewMatrix, ViewMatrixInverse; <-- Inside mainCamera as camera component
 };
 
