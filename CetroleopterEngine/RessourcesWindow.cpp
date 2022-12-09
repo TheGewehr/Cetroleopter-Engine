@@ -76,9 +76,7 @@ void RessourcesWindow::DrawFolderExplorer() const
 	for (uint i = 0; i < App->scene_intro->gameObjects.size(); i++)
 	{
 		ImGui::PushID(i);
-
-		ImGui::Text(App->scene_intro->gameObjects[i]->GetName().c_str());
-		ImGui::SameLine();
+		
 		if (ImGui::Button(ICON_FA_FILE))
 		{
 			for (uint j = 0; j < App->scene_intro->gameObjects.size(); j++)
@@ -91,6 +89,9 @@ void RessourcesWindow::DrawFolderExplorer() const
 			
 			App->scene_intro->gameObjects[i]->SelectObject();
 		}
+
+		ImGui::SameLine();
+		ImGui::Text(App->scene_intro->gameObjects[i]->GetName().c_str());
 
 		ImGui::PopID();
 
