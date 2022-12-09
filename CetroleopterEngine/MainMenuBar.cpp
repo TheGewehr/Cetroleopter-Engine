@@ -35,6 +35,7 @@ bool MainMenuBar::Draw(ImGuiIO& io)
 	CreateMenuBar();
 	ViewMenuBar();
 	HelpMenuBar();
+	PlayPauseMenuBar();
 
 	//ImGui::End();
 	ImGui::EndMainMenuBar();
@@ -213,7 +214,7 @@ bool MainMenuBar::HelpMenuBar()
 {
 	bool ret = true;
 	
-	if (ImGui::BeginMenu("Help",true))
+	if (ImGui::BeginMenu("Help"))
 	{
 		if (ImGui::MenuItem("Go to: https://github.com/TheGewehr/Cetroleopter-Engine"))
 		{
@@ -224,6 +225,42 @@ bool MainMenuBar::HelpMenuBar()
 		{
 			App->moduleUi->aboutWindow->ChangeActive();
 
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::PlayPauseMenuBar()
+{
+	bool ret = true;
+
+	if (ImGui::BeginMenu("Play/Stop", true))
+	{
+		if (ImGui::MenuItem("Play"))
+		{
+			counterON = true;
+		}
+
+		if (ImGui::MenuItem("Stop"))
+		{
+			counterON = false;
+		}
+
+		if (ImGui::MenuItem("Reset"))
+		{
+			sceneTimer = 0;
+		}
+
+		ImGui::Separator();
+
+		ImGui::Text("\n Game time: %i \n", sceneTimer);
+
+		if (counterON == true)
+		{
+			sceneTimer++;
 		}
 
 		ImGui::EndMenu();
