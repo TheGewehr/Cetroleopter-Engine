@@ -5,6 +5,8 @@
 #include "IconsFontAwesome5.h"
 
 #include "ModuleSceneIntro.h"
+#include "ModuleCamera3D.h"
+
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
 #include "ConfigurationWindow.h"
@@ -38,6 +40,7 @@ bool MainMenuBar::Draw(ImGuiIO& io)
 	ViewMenuBar();
 	HelpMenuBar();
 	PlayPauseMenuBar();
+	ExperimentalFeatures();
 
 	//ImGui::End();
 	ImGui::EndMainMenuBar();
@@ -263,6 +266,27 @@ bool MainMenuBar::PlayPauseMenuBar()
 		if (counterON == true)
 		{
 			sceneTimer++;
+		}
+
+		ImGui::EndMenu();
+	}
+
+	return ret;
+}
+
+bool MainMenuBar::ExperimentalFeatures()
+{
+	bool ret = true;
+
+	if (ImGui::BeginMenu("Experimental features toggling"))
+	{
+		ImGui::Text(ICON_FA_EXCLAMATION_TRIANGLE " WARNING!");
+		ImGui::Text("Features in this section \nin spite of being fully implemented, \nthey are quite buggy and may cause \nunnexpected results.\n");
+		ImGui::Separator();
+
+		if (ImGui::Checkbox("Enable Mouse Picking", &App->camera->mousePickExpFeatureActivated))
+		{
+
 		}
 
 		ImGui::EndMenu();

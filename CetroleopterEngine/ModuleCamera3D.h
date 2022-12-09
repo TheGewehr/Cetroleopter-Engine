@@ -40,6 +40,8 @@ public:
 	bool isMainCameraMooving;
 	bool updateCameraView;
 
+	bool mousePickExpFeatureActivated = false;
+
 private:
 
 	

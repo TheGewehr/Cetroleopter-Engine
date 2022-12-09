@@ -24,6 +24,7 @@ private:
 	bool ViewMenuBar();
 	bool HelpMenuBar();
 	bool PlayPauseMenuBar();
+	bool ExperimentalFeatures();
 
 private:
 	

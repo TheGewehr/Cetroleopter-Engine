@@ -92,9 +92,12 @@ update_status ModuleCamera3D::Update(float dt)
 
 	// Mouse motion ----------------
 
-	if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->GetKey(SDL_SCANCODE_LALT) == KEY_IDLE)
+	if (mousePickExpFeatureActivated == true)
 	{
-		MakeRayCast();
+		if (App->input->GetMouseButton(SDL_BUTTON_LEFT) == KEY_DOWN && App->input->GetKey(SDL_SCANCODE_LALT) == KEY_IDLE)
+		{
+			MakeRayCast();
+		}
 	}
 
 	if ((App->input->GetKey(SDL_SCANCODE_LALT) == KEY_REPEAT))
