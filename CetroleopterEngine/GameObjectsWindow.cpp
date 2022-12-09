@@ -62,22 +62,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 {
 	for (int i = 0; i < objects.size(); i++)
 	{
-		//
-		//
-		//ImGui::Text("[OBJ %s]:", App->scene_intro->gameObjects.at(i)->GetName());
-		//ImGui::SameLine();
-
-		//const char* objectNameForHeader = "
-		//
-		//
-		//
-		//if (ImGui::CollapsingHeader(GetObjectName(objects.at(i)->GetName())))
-		//{
-		//	objects.at(i)->SelectObject();
-		//	//LOG("Selected Object %i", App->moduleGameObject->currentSelectedObject);
-		//}
-		//
-		//
+		
 
 		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;;
 		
@@ -89,10 +74,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 		{
 			flags |= ImGuiTreeNodeFlags_Selected;
 		}
-		//if (app->sceneIntro->sceneRoot != nullptr && objs == app->sceneIntro->sceneRoot)
-		//{
-		//	flags |= ImGuiTreeNodeFlags_DefaultOpen;
-		//}
+		
 
 		ImGui::PushID(i);
 		

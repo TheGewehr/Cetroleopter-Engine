@@ -338,7 +338,7 @@ bool ModuleGameObject::LoadObject(int positionInList)
 	std::string listPosition = std::to_string(positionInList);
 	
 	id_ = (int)json_object_dotget_number(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".ID").c_str());
-	name_ = (char)json_object_dotget_string(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".Name").c_str());
+	name_ = json_object_dotget_string(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".Name").c_str());
 	isAtive_ = (bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".IsActive").c_str());
 
 	if ((bool)json_object_dotget_boolean(json_object(App->save_load->sceneFile), std::string("Scene01.GameObjectsList." + listPosition + ".HasMeshComponent").c_str()) == true)
