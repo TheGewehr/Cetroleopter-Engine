@@ -10,6 +10,7 @@
 #include "imgui/imgui_internal.h"
 #include "imgui/imgui_impl_opengl3.h"
 #include "imgui/imgui_impl_sdl.h"
+#include "IconsFontAwesome5.h"
 
 
 #include "ModuleUi.h"
@@ -65,6 +66,15 @@ bool ModuleUi::Start()
     App->moduleUi->configurationWindow->GPU_Model = (const char*)glGetString(GL_RENDERER);
     App->moduleUi->configurationWindow->Drivers = (const char*)glGetString(GL_VERSION);
 
+    ImGuiIO& io = ImGui::GetIO();
+    io.Fonts->AddFontDefault();
+
+    // merge in icons from Font Awesome
+    static const ImWchar icons_ranges[] = { ICON_MIN_FA, ICON_MAX_16_FA, 0 };
+    ImFontConfig icons_config; icons_config.MergeMode = true; icons_config.PixelSnapH = true;
+    io.Fonts->AddFontFromFileTTF(FONT_ICON_FILE_NAME_FAR, 16.0f, &icons_config, icons_ranges); //FONT_ICON_FILE_NAME_FAS <-- another option also
+    
+    // use FONT_ICON_FILE_NAME_FAR if you want regular instead of solid
 	return true;
 }
 

@@ -468,6 +468,9 @@
     <ClInclude Include="RessourcesWindow.h">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
     </ClInclude>
+    <ClInclude Include="imgui\IconsFontAwesome5.h">
+      <Filter>ExternalTools\imgui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">

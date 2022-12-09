@@ -2,6 +2,7 @@
 #include "Globals.h"
 #include "RessourcesWindow.h"
 #include "imgui.h"
+#include "IconsFontAwesome5.h"
 
 #include <vector>
 #include <algorithm>
@@ -66,10 +67,38 @@ void RessourcesWindow::DrawFolderExplorer() const
 {
 	ImGui::Begin("FolderExplorer", false);
 
-	ImGui::Text("Doesn't work yet");
+	//ImGui::Text("Doesn't work yet");
 
 	if (App->moduleUi->hoveringWindow == false)
 		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered();
+
+	//int sameLineCounter = 0;
+	for (uint i = 0; i < App->scene_intro->gameObjects.size(); i++)
+	{
+		ImGui::PushID(i);
+
+		ImGui::Text(App->scene_intro->gameObjects[i]->GetName().c_str());
+		ImGui::SameLine();
+		if (ImGui::Button(ICON_FA_FILE))
+		{
+			for (uint j = 0; j < App->scene_intro->gameObjects.size(); j++)
+			{
+				if (App->scene_intro->gameObjects[j]->isObjectSelected_ == true && App->scene_intro->gameObjects[i]->isObjectSelected_ == false)
+				{
+					App->scene_intro->gameObjects[j]->isObjectSelected_ = false;
+				}
+			}
+			
+			App->scene_intro->gameObjects[i]->SelectObject();
+		}
+
+		ImGui::PopID();
+
+		//if (i % 5 != 0 || i == 0)
+		//{
+		//	ImGui::SameLine();
+		//}
+	}
 
 	ImGui::End();
 }
