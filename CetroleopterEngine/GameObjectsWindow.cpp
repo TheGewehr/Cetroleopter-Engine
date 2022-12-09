@@ -64,7 +64,7 @@ void GameObjectsWindow::TreeProcessing(std::vector<ModuleGameObject*> objects)
 	{
 		
 
-		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;;
+		ImGuiTreeNodeFlags flags = ImGuiTreeNodeFlags_OpenOnArrow | ImGuiTreeNodeFlags_SpanAvailWidth;
 		
 		if (objects.at(i)->childs.empty())
 		{
