@@ -67,12 +67,11 @@ void RessourcesWindow::DrawFolderExplorer() const
 {
 	ImGui::Begin("FolderExplorer", false);
 
-	//ImGui::Text("Doesn't work yet");
-
+	
 	if (App->moduleUi->hoveringWindow == false)
 		App->moduleUi->hoveringWindow = ImGui::IsWindowHovered();
 
-	//int sameLineCounter = 0;
+	
 	for (uint i = 0; i < App->scene_intro->gameObjects.size(); i++)
 	{
 		ImGui::PushID(i);
@@ -95,10 +94,7 @@ void RessourcesWindow::DrawFolderExplorer() const
 
 		ImGui::PopID();
 
-		//if (i % 5 != 0 || i == 0)
-		//{
-		//	ImGui::SameLine();
-		//}
+		
 	}
 
 	ImGui::End();

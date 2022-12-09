@@ -74,11 +74,7 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 			{
 				ImGui::Text("Meshes:");
 
-				//for (int j = 0; j < App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes.size(); j++)
-				//{
-				//	ImGui::Text("	Mesh [%i]:", j);
-				//	ImGui::Text("		%s", App->moduleGameObject->objects[App->moduleGameObject->currentSelectedObject].meshes[j].path.c_str());
-				//}
+				
 				ImGui::Text("	Mesh:");
 				ImGui::Text(InspectorObject->GetMeshComponent()->mesh.path.c_str());
 
