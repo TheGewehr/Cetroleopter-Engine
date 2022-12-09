@@ -29,10 +29,6 @@ Cetroleopter Engine its a 3D graphics Engine for Game Development developped wit
 
 Models and textures can be dropped directly into the engine, a new game object per mesh in the model and the texture will also be applied into that model. Cetroleopter Engine supports .fbx for the objects and dds/.png for the textures, there are not more formats in our plan, but we would be glad to add some :-)
 
-## Scene Serialization
-
-Everything is setted up to work, nothing crashes  while saving it or loading it, but it only saves the scene name :-/
-
 ## Transformation & Hierarchy features:
 
 We added this recently, it was a pain but it is functional! 
@@ -54,7 +50,7 @@ It allows to click an object and select it for edditing it by making a raycast b
 
 ## Scene Serialization features:
 
-Cetroleopter engine is able so save and load the scene.
+Cetroleopter engine is able so save and load the scene. You cannot save or load the scene if you loaded a texture into the engine.
 
 ## Resource Management features:
 
