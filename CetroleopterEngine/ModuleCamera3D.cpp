@@ -222,7 +222,7 @@ void ModuleCamera3D::MakeRayCast()
 	float tabWidth = App->window->GetWidth(); // Replace with tab window witdh when tabs created
 	float tabHeight = App->window->GetHeight(); // Replace with tab window height when tabs created
 
-	float2 screenMousePos = float2((float)App->window->GetWidth() - App->input->GetMouseX(), (float)App->window->GetHeight() - (float)App->input->GetMouseY());
+	float2 screenMousePos = float2((float)App->window->GetWidth() - App->input->GetMouseX() - 500, (float)App->window->GetHeight() - (float)App->input->GetMouseY() + 50);
 	float2 normScreenPos = float2(screenMousePos.x / tabWidth, screenMousePos.y / tabHeight);
 	float2 worldMousePos = float2(normScreenPos.x * (float)App->window->GetWidth(), normScreenPos.y * (float)App->window->GetHeight());
 
