@@ -52,6 +52,10 @@ Camera is a component used by the main engine camera and also attached as a loca
 It allows to click an object and select it for edditing it by making a raycast between the mouse pointer direction proyection and the object's bounding box.
 (Mouse picking is currently an experimental feature)
 
+## Scene Serialization features:
+
+Cetroleopter engine is able so save and load the scene.
+
 ## Resource Management features:
 
 We have a chunk of the ressource management features, as showing the assets in a window and generating the library files.
