@@ -45,10 +45,10 @@ Everything implemented but does not work, we found out that once an ImGui window
 
 ## Camera Features:
 
-# Camera Component
+### Camera Component
 Camera is a component used by the main engine camera and also attached as a local component to game objects.
 
-# Mouse picking
+### Mouse picking
 It allows to click an object and select it for edditing it by making a raycast between the mouse pointer direction proyection and the object's bounding box.
 (Mouse picking is currently an experimental feature)
 
