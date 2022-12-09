@@ -125,10 +125,12 @@ update_status ModuleInput::PreUpdate(float dt)
 					if (App->moduleFS->GetFileExtension(dropped_filedir) == "png" || App->moduleFS->GetFileExtension(dropped_filedir) == "PNG")
 					{
 						App->modelImport->LoadTexture(App->scene_intro->CreateEmptyGameObject(nullptr, "NOT_NAMED_TEXTURE"), dropped_filedir);
+						singleTextureLoaded = true;
 					}
 					if (App->moduleFS->GetFileExtension(dropped_filedir) == "dds" || App->moduleFS->GetFileExtension(dropped_filedir) == "DDS")
 					{
 						App->modelImport->LoadTexture(App->scene_intro->CreateEmptyGameObject(nullptr, "NOT_NAMED_TEXTURE"), dropped_filedir);
+						singleTextureLoaded = true;
 					}
 
 					SDL_free(&dropped_filedir);

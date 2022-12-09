@@ -71,6 +71,8 @@ private:
 	int mouse_x_motion;
 	int mouse_y_motion;
 	//int mouse_z_motion;	
+public:
+	bool singleTextureLoaded = false;
 };
 
 #endif // !_MODULE_INPUT_H_

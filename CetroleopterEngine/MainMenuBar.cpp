@@ -6,6 +6,7 @@
 
 #include "ModuleSceneIntro.h"
 #include "ModuleCamera3D.h"
+#include "ModuleInput.h"
 
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
@@ -70,14 +71,24 @@ bool MainMenuBar::FileMenuBar()
 		{
 			App->save_load->loadConfigurationTrigger = true;
 		}
-		if (ImGui::MenuItem(ICON_FA_SAVE " Save Scene"))
+		ImGui::Separator();
+		if (App->input->singleTextureLoaded == true)
 		{
-			App->save_load->saveSceneTrigger = true;
+			ImGui::Text(ICON_FA_EXCLAMATION_TRIANGLE " Cannot Save or load Scene.\nYou have loaded an alone \ntexture as game object.");
 		}
-		if (ImGui::MenuItem(ICON_FA_FILE_UPLOAD " Load Scene"))
+		else if (App->input->singleTextureLoaded == false)
 		{
-			App->save_load->loadSceneTrigger = true;
+			if (ImGui::MenuItem(ICON_FA_SAVE " Save Scene"))
+			{
+				App->save_load->saveSceneTrigger = true;
+			}
+			if (ImGui::MenuItem(ICON_FA_FILE_UPLOAD " Load Scene"))
+			{
+				App->save_load->loadSceneTrigger = true;
+
+			}
 		}
+		ImGui::Separator();
 		if (ImGui::MenuItem(ICON_FA_DOOR_OPEN " Exit"))
 		{
 			App->appExit = true;
