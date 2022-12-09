@@ -228,6 +228,7 @@ void ModuleCamera3D::MakeRayCast()
 
 	float normalizedX = (worldMousePos.x / App->window->GetWidth() - 0.5f) * 2;
 	float normalizedY = (worldMousePos.y / App->window->GetHeight() - 0.5f) * 2;
+	//float normalizedY = -(worldMousePos.y / App->window->GetHeight() - 0.5f) * 2;
 
 	LineSegment picking = mainCamera->frustum.UnProjectLineSegment(normalizedX, normalizedY);
 	
