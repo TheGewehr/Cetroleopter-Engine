@@ -41,6 +41,7 @@ public:
 	bool updateCameraView;
 
 	bool mousePickExpFeatureActivated = false;
+	bool transformExpFeatureActivated = false;
 
 private:
 

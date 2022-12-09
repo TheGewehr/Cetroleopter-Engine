@@ -289,6 +289,11 @@ bool MainMenuBar::ExperimentalFeatures()
 
 		}
 
+		if (ImGui::Checkbox("Enable Mesh Transformations", &App->camera->transformExpFeatureActivated))
+		{
+
+		}
+
 		ImGui::EndMenu();
 	}
 

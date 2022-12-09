@@ -8,6 +8,7 @@
 #include "ModuleTextureComponent.h"
 #include "ModuleTransformComponent.h"
 #include "GameObjectsWindow.h"
+#include "ModuleSceneIntro.h"
 
 ObjectsInspectorWindow::ObjectsInspectorWindow(const char* name, bool isActive) : ImGuiWindowBase("GameObjects Inspector", isActive = true)
 {
@@ -96,103 +97,110 @@ bool ObjectsInspectorWindow::InspectorWindowHeader()
 		{
 			if (ImGui::CollapsingHeader("Transform"))
 			{
-				ImGui::Text("Transform:");
-
-				ImGui::Spacing();
-				ImGui::Spacing();
-
-				ImGui::PushID(buttonObjectID + 0);
-				if (ImGui::CollapsingHeader("Translate"))
+				if (App->camera->transformExpFeatureActivated == true)
 				{
-					float3 newPosition = InspectorObject->GetTransformComponent()->GetPosition();
-					
-					ImGui::PushID(buttonObjectID + 4);
-					if (ImGui::DragFloat3("", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+					ImGui::Text("Transform:");
+
+					ImGui::Spacing();
+					ImGui::Spacing();
+
+					ImGui::PushID(buttonObjectID + 0);
+					if (ImGui::CollapsingHeader("Translate"))
 					{
-						InspectorObject->GetTransformComponent()->SetPosition(
-							newPosition.x,
-							newPosition.y,
-							newPosition.z
-						);			
-						
+						float3 newPosition = InspectorObject->GetTransformComponent()->GetPosition();
+
+						ImGui::PushID(buttonObjectID + 4);
+						if (ImGui::DragFloat3("", (float*)&newPosition, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+						{
+							InspectorObject->GetTransformComponent()->SetPosition(
+								newPosition.x,
+								newPosition.y,
+								newPosition.z
+							);
+
+						}
+						ImGui::PopID();
+
+						ImGui::SameLine();
+
+						ImGui::PushID(buttonObjectID + 7);
+						if (ImGui::Button("Reset"))
+						{
+							InspectorObject->GetTransformComponent()->SetPosition(0, 0, 0);
+						}
+						ImGui::PopID();
 					}
 					ImGui::PopID();
 
-					ImGui::SameLine();
 
-					ImGui::PushID(buttonObjectID + 7);
-					if (ImGui::Button("Reset"))
+					ImGui::PushID(buttonObjectID + 1);
+					if (ImGui::CollapsingHeader("Rotate"))
 					{
-						InspectorObject->GetTransformComponent()->SetPosition(0,0,0);
+						float3 rotation = InspectorObject->GetTransformComponent()->GetLocalEulerRotation() * RADTODEG;
+
+						ImGui::PushID(buttonObjectID + 5);
+						if (ImGui::DragFloat3("", (float*)&rotation, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+						{
+
+							InspectorObject->GetTransformComponent()->SetRotation(rotation * DEGTORAD);
+						}
+						ImGui::PopID();
+
+						ImGui::SameLine();
+
+						ImGui::PushID(buttonObjectID + 8);
+						if (ImGui::Button("Reset"))
+						{
+
+							InspectorObject->GetTransformComponent()->SetRotation(float3(0, 0, 0) * DEGTORAD);
+						}
+						ImGui::PopID();
 					}
 					ImGui::PopID();
+
+
+					ImGui::PushID(buttonObjectID + 2);
+					if (ImGui::CollapsingHeader("Scale"))
+					{
+						float3 scale = InspectorObject->GetTransformComponent()->GetScale();
+
+						ImGui::PushID(buttonObjectID + 6);
+						if (ImGui::DragFloat3("", (float*)&scale, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
+						{
+							InspectorObject->GetTransformComponent()->SetScale(scale);
+						}
+						ImGui::PopID();
+
+						ImGui::SameLine();
+
+						ImGui::PushID(buttonObjectID + 9);
+						if (ImGui::Button("Reset"))
+						{
+							InspectorObject->GetTransformComponent()->SetScale(float3(1, 1, 1));
+						}
+						ImGui::PopID();
+					}
+					ImGui::PopID();
+
+					ImGui::Spacing();
+
+					ImGui::PushID(buttonObjectID + 10);
+					if (ImGui::Button("Reset All"))
+					{
+						InspectorObject->GetTransformComponent()->SetPosition(0, 0, 0);
+						InspectorObject->GetTransformComponent()->SetRotation(float3(0, 0, 0) * DEGTORAD);
+						InspectorObject->GetTransformComponent()->SetScale(float3(1, 1, 1));
+					}
+					ImGui::PopID();
+
+					ImGui::Spacing();
+					ImGui::Spacing();
 				}
-				ImGui::PopID();
-
-				
-				ImGui::PushID(buttonObjectID + 1);
-				if (ImGui::CollapsingHeader("Rotate"))
+				else if (App->camera->transformExpFeatureActivated == false)
 				{
-					float3 rotation = InspectorObject->GetTransformComponent()->GetLocalEulerRotation() * RADTODEG;
-
-					ImGui::PushID(buttonObjectID + 5);
-					if (ImGui::DragFloat3("", (float*)&rotation, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
-					{
-						
-						InspectorObject->GetTransformComponent()->SetRotation(rotation * DEGTORAD);
-					}
-					ImGui::PopID();
-
-					ImGui::SameLine();
-
-					ImGui::PushID(buttonObjectID + 8);
-					if (ImGui::Button("Reset"))
-					{
-
-						InspectorObject->GetTransformComponent()->SetRotation(float3(0,0,0)*DEGTORAD);
-					}
-					ImGui::PopID();
+					ImGui::Text("\nTo be able to transform an object toggle \non <<Enable Mesh Transformations>> experimental \ncomponent.\n");
 				}
-				ImGui::PopID();
-
-				
-				ImGui::PushID(buttonObjectID + 2);
-				if (ImGui::CollapsingHeader("Scale"))
-				{
-					float3 scale = InspectorObject->GetTransformComponent()->GetScale();
-
-					ImGui::PushID(buttonObjectID + 6);
-					if (ImGui::DragFloat3("", (float*)&scale, 0.05f, 0.0f, 0.0f, "%.3f", NULL))
-					{
-						InspectorObject->GetTransformComponent()->SetScale(scale);
-					}
-					ImGui::PopID();
-
-					ImGui::SameLine();
-
-					ImGui::PushID(buttonObjectID + 9);
-					if (ImGui::Button("Reset"))
-					{
-						InspectorObject->GetTransformComponent()->SetScale(float3(1,1,1));
-					}
-					ImGui::PopID();
-				}
-				ImGui::PopID();
-
-				ImGui::Spacing();
-
-				ImGui::PushID(buttonObjectID + 10);
-				if (ImGui::Button("Reset All"))
-				{
-					InspectorObject->GetTransformComponent()->SetPosition(0, 0, 0);
-					InspectorObject->GetTransformComponent()->SetRotation(float3(0, 0, 0) * DEGTORAD);
-					InspectorObject->GetTransformComponent()->SetScale(float3(1, 1, 1));
-				}
-				ImGui::PopID();
-
-				ImGui::Spacing();
-				ImGui::Spacing();
-			}			
+			}
 		}
 		else
 		{
