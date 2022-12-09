@@ -60,6 +60,10 @@ update_status ModuleSceneIntro::Update(float dt)
 			glPolygonMode(GL_FRONT, GL_LINE);
 			App->camera->mainCamera->frustum.GetCornerPoints(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints);
 			App->camera->mainCamera->DrawBoundingBox(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints, App->camera->mainCamera->frustumColor);
+		}
+
+		if (App->renderer3D->wireframeMode == false)
+		{
 			glPolygonMode(GL_FRONT, GL_FILL);
 		}
 
