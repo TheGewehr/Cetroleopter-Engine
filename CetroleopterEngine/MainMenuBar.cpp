@@ -62,11 +62,11 @@ bool MainMenuBar::FileMenuBar()
 	if (ImGui::BeginMenu("File"))
 	{
 
-		if (ImGui::MenuItem(" Save Configuration"))
+		if (ImGui::MenuItem(ICON_FA_SAVE " Save Configuration"))
 		{
 			App->save_load->saveConfigurationTrigger = true;
 		}
-		if (ImGui::MenuItem(" Load Configuration"))
+		if (ImGui::MenuItem(ICON_FA_FILE_UPLOAD " Load Configuration"))
 		{
 			App->save_load->loadConfigurationTrigger = true;
 		}
