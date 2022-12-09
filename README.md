@@ -32,18 +32,25 @@ Models and textures can be dropped directly into the engine, a new game object p
 ## Scene Serialization
 
 Everything is setted up to work, nothing crashes  while saving it or loading it, but it only saves the scene name :-/
+
 ## Transformation & Hierarchy features:
 
 We added this recently, it was a pain but it is functional! 
 Hierarchy is another story. All the features of a transform component are implemented to support local to world position, supporting the children of an object. But we had problems with ImGui and we cannot modify the hierarchy ;_-(
+(Transform is currently an experimental feature)
 
 ## Play & Stop features:
 
 Everything implemented but does not work, we found out that once an ImGui window has several ImGui components inside the last ones added cease to work, this is the case.
 
-## Camera features:
+## Camera Features:
 
-Camera component exists and works, but the mouse picking is implemented but does not work.
+### Camera Component
+Camera is a component used by the main engine camera and also attached as a local component to game objects.
+
+### Mouse picking
+It allows to click an object and select it for edditing it by making a raycast between the mouse pointer direction proyection and the object's bounding box.
+(Mouse picking is currently an experimental feature)
 
 ## Resource Management features:
 
@@ -59,6 +66,12 @@ Models, meshes and textures are saved to your own format under Library folder, t
 
 ![2](https://user-images.githubusercontent.com/73582929/206307981-5213742c-b7de-422f-bf6d-10eef25e3c8b.png)
 
+## Experimental Features list:
+
+Those are features wich have been fully implemented but wich for unknown reasons work in a very buggy way (some more than others).
+
+- Mesh transformations
+- Mouse picking
 
 ## Engine Controls:
 
