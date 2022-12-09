@@ -78,6 +78,8 @@ bool ModuleUi::Start()
     //FONT_ICON_FILE_NAME_FAS <-- option 2
     
     // use FONT_ICON_FILE_NAME_FAR if you want regular instead of solid
+
+
 	return true;
 }
 
@@ -131,11 +133,6 @@ update_status ModuleUi::PostUpdate(float dt)
     }
     
     RenderImGuiWindows();
-   
-
-    //ImGui::Render();  <-- Not needed - está dentro de RenderImGuiWindows();
-    //ImGui::EndFrame();  <-- Not needed - está dentro de RenderImGuiWindows();
-    //ImGui::UpdatePlatformWindows();  <-- Not needed - está dentro de RenderImGuiWindows();
 
     return ret;
 }

@@ -65,6 +65,7 @@ void CameraComponent::UpdateGameObjectCamera(ModuleGameObject gameObject)
 	pos.y = gameObject.GetTransformComponent()->position.y;
 	pos.z = gameObject.GetTransformComponent()->position.z;
 
+	//Don't know how to convert qauternion to mat4x4 because I'm bad at maths so I leave it like this until someoeno who knows maths solves it
 	//mat4x4 rot = gameObject.GetTransformComponent()->rotation;
 	//
 	//X = vec3(rot[0], rot[1], rot[2]);

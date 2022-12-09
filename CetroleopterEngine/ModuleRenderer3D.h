@@ -25,8 +25,6 @@ public:
 
 	void OnResize(int width, int height);
 
-	//void RenderModels(); //Renders models (textures and meshes) - NOT NEEDED ANY MORE (replace by RenderGameObjects())
-
 	void SetVsync(bool value);
 
 	void RenderGameObjects(ModuleGameObject gameObject, float3 position);

@@ -235,8 +235,8 @@ bool ModuleModelImport::Load_Texture(TextureComponent* texture, char** pointer, 
 {
 	bool success = true;
 
-	ILuint il_image = 0;																				// Will be used to generate, bind and delete the buffers created by DevIL.
-	ilGenImages(1, &il_image);																			// DevIL's buffers work pretty much the same way as OpenGL's do.
+	ILuint il_image = 0;
+	ilGenImages(1, &il_image);
 	ilBindImage(il_image);
 
 	success = ilLoadL(IL_TYPE_UNKNOWN, (const void*)pointer, size);
@@ -246,12 +246,12 @@ bool ModuleModelImport::Load_Texture(TextureComponent* texture, char** pointer, 
 		uint color_channels = ilGetInteger(IL_IMAGE_CHANNELS);
 		if (color_channels == 3)
 		{
-			success = ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE);											// ilConvertImage() will convert the image to the given format and type.
+			success = ilConvertImage(IL_RGB, IL_UNSIGNED_BYTE);
 		}
 		else if (color_channels == 4)
 		{
-			success = ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);										// ilConvertImage() will return false if the system cannot store the image with
-		}																								// its new format or the operation is invalid (no bound img. or invalid identifier).
+			success = ilConvertImage(IL_RGBA, IL_UNSIGNED_BYTE);
+		}
 		else
 		{
 			LOG("Texture has less than 3 color channels!");
@@ -284,11 +284,6 @@ bool ModuleModelImport::Load_Texture(TextureComponent* texture, char** pointer, 
 		glTexImage2D(GL_TEXTURE_2D, 0, ilGetInteger(IL_IMAGE_FORMAT), ilGetInteger(IL_IMAGE_WIDTH), ilGetInteger(IL_IMAGE_HEIGHT), 0, ilGetInteger(IL_IMAGE_FORMAT), GL_UNSIGNED_BYTE, ilGetData());
 		glGenerateMipmap(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
-
-		//texture->objectTexture->width = il_info.Width;
-		//texture->objectTexture->height = il_info.Height;
-		//texture->objectTexture->image_ID = il_info.Id;
-		//texture->objectTexture->format = il_info.Format;
 	}
 
 	ilDeleteImages(1, &il_image);
@@ -384,10 +379,6 @@ void ModuleModelImport::LoadModel_Textured(ModuleGameObject* objMain, const char
 				bbVertices[l].x = meshComponent->mesh.vertices[l * 3];
 				bbVertices[l].y = meshComponent->mesh.vertices[l * 3 + 1];
 				bbVertices[l].z = meshComponent->mesh.vertices[l * 3 + 2];
-
-				//LOG("X: %f \n",bbVertices[l].x);
-				//LOG("Y: %f \n", bbVertices[l].y);
-				//LOG("Z: %f \n", bbVertices[l].z);
 			}
 
 			meshComponent->bbox.Enclose(bbVertices, meshComponent->mesh.num_vertices / 3);

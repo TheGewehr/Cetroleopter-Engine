@@ -186,7 +186,7 @@ bool MainMenuBar::ViewMenuBar()
 		
 		if (ImGui::Checkbox("Wireframe Mode", &App->renderer3D->wireframeMode))
 		{
-			//App->renderer3D->wireframeMode = !App->renderer3D->wireframeMode; Not needed (the change of state is done up on the if statement if (ImGui::Checkbox("Wireframe Mode", &App->renderer3D->wireframeMode))
+			
 		}
 		if (ImGui::Checkbox("Disable Textures", &App->renderer3D->texturesOFF))
 		{
@@ -204,10 +204,6 @@ bool MainMenuBar::ViewMenuBar()
 		{
 
 		}
-		//if (ImGui::Checkbox("Show Windows Console", &App->renderer3D->showConsole))
-		//{
-		//
-		//}
 
 		ImGui::EndMenu();
 	}

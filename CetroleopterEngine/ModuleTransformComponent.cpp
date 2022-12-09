@@ -182,25 +182,10 @@ void TransformComponent::UpdateWorldTransform()
 	
 	worldTransform = (ComponentOwner->parent != nullptr ) ? ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform : localTransform;
 
-	//if (ComponentOwner->parent != nullptr && ComponentOwner->parent->GetTransformComponent() != nullptr)
-	//{
-	//	worldTransform = ComponentOwner->parent->GetTransformComponent()->worldTransform * localTransform;
-	//}
-	//else
-	//{
-	//	worldTransform = localTransform;
-	//}
-
 	SetChildsAsDirty();
 	
 
 	updateWorld = false;
-
-	/*C_Camera* c_camera = owner->GetComponent<C_Camera>();
-	if (c_camera != nullptr)
-	{
-		c_camera->UpdateFrustumTransform();
-	}*/
 }
 
 void TransformComponent::SyncLocalToWorld()

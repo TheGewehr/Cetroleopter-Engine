@@ -67,9 +67,7 @@ update_status ModuleSceneIntro::Update(float dt)
 			glPolygonMode(GL_FRONT, GL_FILL);
 		}
 
-		gameObjects.at(i)->Render();
-		//gameObjects[i]->Render();
-		
+		gameObjects.at(i)->Render();		
 	}
 
 	return UPDATE_CONTINUE;
@@ -77,9 +75,6 @@ update_status ModuleSceneIntro::Update(float dt)
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
-
-	//App->renderer3D->RenderModels();
-
 
 
 	return UPDATE_CONTINUE;

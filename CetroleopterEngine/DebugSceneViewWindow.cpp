@@ -47,7 +47,7 @@ bool DebugSceneViewWindow::DrawScene()
 	bool ret = true;
 	
 	cursor_pos = ImVec2((ImGui::GetWindowSize().x - tex_size.x) * 0.5f, (ImGui::GetWindowSize().y - tex_size.y) * 0.5f);
-	//cursor_pos = (ImGui::GetWindowSize() - tex_size) * 0.5f;
+	
 	ImGui::SetCursorPos(cursor_pos);
 
 	ImVec2 screen_cursor_pos = ImGui::GetCursorScreenPos();
@@ -62,7 +62,7 @@ bool DebugSceneViewWindow::DrawScene()
 	
 	tex_origin.y = (float)App->window->GetHeight() - tex_origin.y;		
 
-	//ImGui::Image((ImTextureID)App->renderer3D->GetSceneRenderTexture(), tex_size, ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f));
+	
 
 
 	return ret;
