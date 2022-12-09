@@ -2,6 +2,8 @@
 #include "Globals.h"
 #include "ModuleWindow.h"
 #include "imgui.h"
+#include "IconsFontAwesome5.h"
+
 #include "ModuleSceneIntro.h"
 #include "MainMenuBar.h"
 #include "AboutWindow.h"
@@ -57,23 +59,23 @@ bool MainMenuBar::FileMenuBar()
 	if (ImGui::BeginMenu("File"))
 	{
 
-		if (ImGui::MenuItem("Save Configuration"))
+		if (ImGui::MenuItem(" Save Configuration"))
 		{
 			App->save_load->saveConfigurationTrigger = true;
 		}
-		if (ImGui::MenuItem("Load Configuration"))
+		if (ImGui::MenuItem(" Load Configuration"))
 		{
 			App->save_load->loadConfigurationTrigger = true;
 		}
-		if (ImGui::MenuItem("Save Scene"))
+		if (ImGui::MenuItem(ICON_FA_SAVE " Save Scene"))
 		{
 			App->save_load->saveSceneTrigger = true;
 		}
-		if (ImGui::MenuItem("Load Scene"))
+		if (ImGui::MenuItem(ICON_FA_FILE_UPLOAD " Load Scene"))
 		{
 			App->save_load->loadSceneTrigger = true;
 		}
-		if (ImGui::MenuItem("Exit"))
+		if (ImGui::MenuItem(ICON_FA_DOOR_OPEN " Exit"))
 		{
 			App->appExit = true;
 		}
@@ -90,24 +92,24 @@ bool MainMenuBar::EditMenuBar()
 
 	if (ImGui::BeginMenu("Edit"))
 	{
-		if (ImGui::MenuItem("Cut"))
+		if (ImGui::MenuItem(ICON_FA_CUT " Cut"))
 		{
 
 		}
-		if (ImGui::MenuItem("Copy"))
+		if (ImGui::MenuItem(ICON_FA_COPY " Copy"))
 		{
 
 		}
-		if (ImGui::MenuItem("Paste"))
+		if (ImGui::MenuItem(ICON_FA_PASTE " Paste"))
 		{
 
 		}
 		ImGui::Separator();
-		if (ImGui::MenuItem("Settings", "", App->moduleUi->configurationWindow->isActive))
+		if (ImGui::MenuItem(ICON_FA_CIRCLE_NOTCH " Settings", "", App->moduleUi->configurationWindow->isActive))
 		{
 			App->moduleUi->configurationWindow->ChangeActive();
 		}
-		if (ImGui::MenuItem("Console", "", App->moduleUi->consoleWindow->isActive))
+		if (ImGui::MenuItem(ICON_FA_WINDOW_RESTORE " Console", "", App->moduleUi->consoleWindow->isActive))
 		{
 			App->moduleUi->consoleWindow->ChangeActive();
 		}
@@ -216,12 +218,12 @@ bool MainMenuBar::HelpMenuBar()
 	
 	if (ImGui::BeginMenu("Help"))
 	{
-		if (ImGui::MenuItem("Go to: https://github.com/TheGewehr/Cetroleopter-Engine"))
+		if (ImGui::MenuItem(ICON_FA_INFO_CIRCLE " Go to: https://github.com/TheGewehr/Cetroleopter-Engine"))
 		{
 			App->OpenBrowserWebPage("https://github.com/TheGewehr/Cetroleopter-Engine");
 		}
 
-		if (ImGui::MenuItem("About", "", App->moduleUi->aboutWindow->isActive))
+		if (ImGui::MenuItem(ICON_FA_INFO_CIRCLE " About", "", App->moduleUi->aboutWindow->isActive))
 		{
 			App->moduleUi->aboutWindow->ChangeActive();
 
@@ -239,17 +241,17 @@ bool MainMenuBar::PlayPauseMenuBar()
 
 	if (ImGui::BeginMenu("Play/Stop", true))
 	{
-		if (ImGui::MenuItem("Play"))
+		if (ImGui::MenuItem(ICON_FA_PLAY " Play"))
 		{
 			counterON = true;
 		}
 
-		if (ImGui::MenuItem("Stop"))
+		if (ImGui::MenuItem(ICON_FA_STOP " Stop"))
 		{
 			counterON = false;
 		}
 
-		if (ImGui::MenuItem("Reset"))
+		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
 		{
 			sceneTimer = 0;
 		}
