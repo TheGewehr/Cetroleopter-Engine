@@ -471,6 +471,9 @@
     <ClInclude Include="imgui\IconsFontAwesome5.h">
       <Filter>ExternalTools\imgui</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleAudio.h">
+      <Filter>Sources\Modules</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -721,6 +724,9 @@
     </ClCompile>
     <ClCompile Include="RessourcesWindow.cpp">
       <Filter>Sources\Modules\ImGuiWindows</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudio.cpp">
+      <Filter>Sources\Modules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
