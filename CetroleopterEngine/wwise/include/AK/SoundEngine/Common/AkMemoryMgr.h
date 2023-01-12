@@ -36,8 +36,9 @@ the specific language governing permissions and limitations under the License.
 	#endif
 #endif
 
-#include <AK/SoundEngine/Common/AkTypes.h>
-#include <AK/SoundEngine/Common/AkSoundEngineExport.h>
+#include <AkTypes.h>
+#include <AkNumeralTypes.h>
+#include <AkSoundEngineExport.h>
 
 struct AkMemSettings;
 

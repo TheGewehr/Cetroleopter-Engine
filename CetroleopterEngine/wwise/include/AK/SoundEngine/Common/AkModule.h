@@ -29,8 +29,8 @@ the specific language governing permissions and limitations under the License.
 
 #pragma once
 
-#include <AK/SoundEngine/Common/AkTypes.h>
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>
+#include <AkTypes.h>
+#include <AkMemoryMgr.h>
 
 /// \name Audiokinetic Memory Manager's implementation-specific definitions.
 //@{
