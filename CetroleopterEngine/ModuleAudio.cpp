@@ -5,11 +5,6 @@
 #include "ModuleCameraComponent.h"
 #include "ModuleTransformComponent.h"
 
-#include "AkTypes.h"
-#include "AkRoomVerbFXFactory.h"
-#include <SoundEngine/Common/AkModule.h>
-#include <SoundEngine/Common/AkMemoryMgr.h>
-
 ModuleAudio::ModuleAudio(bool start_enabled) : Module(start_enabled)
 {
 	
