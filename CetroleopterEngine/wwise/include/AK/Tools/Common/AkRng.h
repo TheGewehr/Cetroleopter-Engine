@@ -26,7 +26,7 @@ the specific language governing permissions and limitations under the License.
 
 #pragma once
 
-#include <AK/SoundEngine/Common/AkTypes.h>
+#include <AkTypes.h>
 
 /// A pseudorandom number generator appropriate for introducing randomness in DSP processing
 /// LCG with Newlib/Musl characteristics: 64-bit seed, 31-bit output (see http://en.wikipedia.org/wiki/Linear_congruential_generator)

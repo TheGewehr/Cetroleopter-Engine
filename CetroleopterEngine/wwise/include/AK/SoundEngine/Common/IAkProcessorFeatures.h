@@ -29,7 +29,7 @@ the specific language governing permissions and limitations under the License.
 
 #pragma once
 
-#include <AK/SoundEngine/Common/AkTypes.h>
+#include <AkTypes.h>
 
 namespace AK
 {   

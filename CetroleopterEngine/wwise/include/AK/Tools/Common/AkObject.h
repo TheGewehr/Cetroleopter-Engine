@@ -27,7 +27,7 @@ the specific language governing permissions and limitations under the License.
 #ifndef _AK_OBJECT_H_
 #define _AK_OBJECT_H_
 
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>
+#include <AkMemoryMgr.h>
 
 //-----------------------------------------------------------------------------
 // Placement New definition. Use like this:

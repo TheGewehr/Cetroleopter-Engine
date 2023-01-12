@@ -32,8 +32,8 @@ the specific language governing permissions and limitations under the License.
 #ifndef _AK_TOOLS_COMMON_AKPLATFORMFUNCS_H
 #define _AK_TOOLS_COMMON_AKPLATFORMFUNCS_H
 
-#include <AK/SoundEngine/Common/AkTypes.h>
-#include <AK/SoundEngine/Common/AkAtomic.h>
+#include <AkTypes.h>
+#include <AkAtomic.h>
 
 // Uncomment the following to enable built-in platform profiler markers in the sound engine
 //#define AK_ENABLE_INSTRUMENT

@@ -29,8 +29,8 @@ Copyright (c) 2022 Audiokinetic Inc.
 
 #pragma once
 
-#include <AK/Tools/Common/AkString.h>
-#include <AK/Tools/Common/AkLock.h>
+#include <AkString.h>
+#include <AkLock.h>
 
 class AkAcousticRoom;
 class AkAcousticPortal;

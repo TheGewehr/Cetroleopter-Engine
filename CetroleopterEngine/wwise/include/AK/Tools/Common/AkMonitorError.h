@@ -27,8 +27,8 @@ the specific language governing permissions and limitations under the License.
 #ifndef _AKMONITORERROR_H
 #define _AKMONITORERROR_H
 
-#include <AK/SoundEngine/Common/AkSoundEngineExport.h>
-#include <AK/SoundEngine/Common/AkTypes.h>
+#include <AkSoundEngineExport.h>
+#include <AkTypes.h>
 #define ERROR_CODE_DEF( in_name, in_msg ){ MonitorErrorInfo(in_name, in_msg)  }
 
 struct AkStreamMgrSettings;

@@ -36,9 +36,9 @@ the specific language governing permissions and limitations under the License.
 #ifndef _AK_SPEAKER_VOLUMES_H_
 #define _AK_SPEAKER_VOLUMES_H_
 
-#include <AK/SoundEngine/Common/AkTypes.h>
-#include <AK/SoundEngine/Platforms/Generic/AkSpeakerVolumes.h>
-#include <AK/Tools/Common/AkPlatformFuncs.h>
+#include <AkTypes.h>
+#include <AkSpeakerVolumes.h>
+#include <AkPlatformFuncs.h>
 
 namespace AK
 {

@@ -30,8 +30,8 @@ the specific language governing permissions and limitations under the License.
 #ifndef _IAKPLUGINMEMALLOC_H_
 #define _IAKPLUGINMEMALLOC_H_
 
-#include <AK/SoundEngine/Common/AkTypes.h>
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>
+#include <AkTypes.h>
+#include <AkMemoryMgr.h>
 
 namespace AK
 {

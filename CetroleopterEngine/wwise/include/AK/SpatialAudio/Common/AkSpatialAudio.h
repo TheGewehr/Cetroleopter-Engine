@@ -29,9 +29,9 @@ Copyright (c) 2022 Audiokinetic Inc.
 
 #pragma once
 
-#include <AK/SpatialAudio/Common/AkSpatialAudioTypes.h>
-#include <AK/Plugin/AkReflectGameData.h>
-#include <AK/SoundEngine/Common/AkSoundEngine.h>
+#include <AkSpatialAudioTypes.h>
+#include <AkReflectGameData.h>
+#include <AkSoundEngine.h>
 
 
 /// Initialization settings of the spatial audio module.

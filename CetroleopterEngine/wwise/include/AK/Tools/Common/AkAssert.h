@@ -34,7 +34,7 @@ the specific language governing permissions and limitations under the License.
 #endif
 
 #ifdef AK_ENABLE_ASSERTS
-	#include <AK/SoundEngine/Common/AkSoundEngineExport.h>
+	#include <AkSoundEngineExport.h>
 	#ifndef AK_ASSERT_HOOK
 		AK_CALLBACK( void, AkAssertHook)( 
 								const char * in_pszExpression,	///< Expression
@@ -46,7 +46,7 @@ the specific language governing permissions and limitations under the License.
 #endif
 
 #if !defined( AKASSERT )
-	#include <AK/SoundEngine/Common/AkTypes.h> //For AK_Fail/Success
+	#include <AkTypes.h> //For AK_Fail/Success
 
 	#if defined( AK_ENABLE_ASSERTS )
 		extern AKSOUNDENGINE_API AkAssertHook g_pAssertHook;
