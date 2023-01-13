@@ -20,6 +20,8 @@
 
 #include <AK/SpatialAudio/Common/AkSpatialAudio.h>              // Spatial Audio
 
+CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
+
 ModuleAudio::ModuleAudio(bool start_enabled) : Module(start_enabled)
 {
 	
@@ -34,7 +36,7 @@ bool ModuleAudio::Init()
 	LOG("Initializing ModuleAudio");
 
 	AkMemSettings memSettings;
-	AK::MemoryMgr::GetDefaultSettings(memSettings);
+    memSettings.uMaxNumPools = 20;
 
 	if (AK::MemoryMgr::Init(&memSettings) != AK_Success)
 	{
@@ -106,7 +108,7 @@ bool ModuleAudio::Init()
     //
 
     AkSpatialAudioInitSettings settings; // The constructor fills AkSpatialAudioInitSettings with the recommended default settings. 
-    if (AK::SpatialAudio::Init(&settings) != AK_Success)
+    if (AK::SpatialAudio::Init(settings) != AK_Success) // original way: if (AK::SpatialAudio::Init(&settings) != AK_Success)
     {
         assert(!"Could not initialize the Spatial Audio.");
         return false;
