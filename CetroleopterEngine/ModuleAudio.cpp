@@ -5,15 +5,19 @@
 #include "ModuleCameraComponent.h"
 #include "ModuleTransformComponent.h"
 
-#include <AkMemoryMgr.h>                  // Memory Manager interface
-#include <AkModule.h>                     // Default memory manager
+#include <AK/SoundEngine/Common/AkMemoryMgr.h>                   // Memory Manager interface
+#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory manager
 
-#include <IAkStreamMgr.h>                 // Streaming Manager
-#include <AkPlatformFuncs.h>                    // Thread defines
-#include <AkFilePackageLowLevelIOBlocking.h>                    // Sample low-level I/O implementation
-#include <AkSoundEngine.h>                // Sound engine
-#include <AkMusicEngine.h>                // Music Engine
-#include <AkSpatialAudio.h>              // Spatial Audio
+#include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
+#include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
+#include <Wwise/IO/Win32/AkFilePackageLowLevelIOBlocking.h>     // Sample low-level I/O implementation
+//#include <AkFilePackageLowLevelIOBlocking.h>
+
+#include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
+
+#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
+
+#include <AK/SpatialAudio/Common/AkSpatialAudio.h>              // Spatial Audio
 
 ModuleAudio::ModuleAudio(bool start_enabled) : Module(start_enabled)
 {

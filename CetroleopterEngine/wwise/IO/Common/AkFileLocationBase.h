@@ -29,7 +29,7 @@ written agreement between you and Audiokinetic Inc.
 
 struct AkFileSystemFlags;
 
-#include <IAkStreamMgr.h>
+#include <AK/SoundEngine/Common/IAkStreamMgr.h>
 
 class CAkFileLocationBase
 {
