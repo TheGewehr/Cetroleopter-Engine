@@ -67,6 +67,9 @@
     <Filter Include="ExternalTools\Wwise">
       <UniqueIdentifier>{895ab437-89bb-4c3d-90c8-6af1c0b58a1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ExternalTools\mmgr">
+      <UniqueIdentifier>{6f5c5373-270c-4e4a-974d-b4c697964bed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Module.h">
@@ -477,23 +480,14 @@
     <ClInclude Include="ModuleAudio.h">
       <Filter>Sources\Modules</Filter>
     </ClInclude>
-    <ClInclude Include="Wwise\SDK\include\AkDefaultIOHookDeferred.h">
-      <Filter>ExternalTools\Wwise</Filter>
+    <ClInclude Include="Include_Wwise.h">
+      <Filter>Sources\Containers</Filter>
     </ClInclude>
-    <ClInclude Include="Wwise\SDK\include\akfilehelpers.h">
-      <Filter>ExternalTools\Wwise</Filter>
+    <ClInclude Include="mmgr\mmgr.h">
+      <Filter>ExternalTools\mmgr</Filter>
     </ClInclude>
-    <ClInclude Include="Wwise\SDK\include\AkFilePackageLowLevelIOBlocking.h">
-      <Filter>ExternalTools\Wwise</Filter>
-    </ClInclude>
-    <ClInclude Include="Wwise\SDK\include\AkFilePackageLowLevelIODeferred.h">
-      <Filter>ExternalTools\Wwise</Filter>
-    </ClInclude>
-    <ClInclude Include="Wwise\SDK\include\stdafx.h">
-      <Filter>ExternalTools\Wwise</Filter>
-    </ClInclude>
-    <ClInclude Include="Wwise\SDK\include\AkDefaultIOHookBlocking.h">
-      <Filter>ExternalTools\Wwise</Filter>
+    <ClInclude Include="mmgr\nommgr.h">
+      <Filter>ExternalTools\mmgr</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -749,14 +743,29 @@
     <ClCompile Include="ModuleAudio.cpp">
       <Filter>Sources\Modules</Filter>
     </ClCompile>
-    <ClCompile Include="Wwise\SDK\include\stdafx.cpp">
+    <ClCompile Include="Wwise\IO\Common\AkFilePackageLUT.cpp">
       <Filter>ExternalTools\Wwise</Filter>
     </ClCompile>
-    <ClCompile Include="Wwise\SDK\include\AkDefaultIOHookBlocking.cpp">
+    <ClCompile Include="Wwise\IO\Common\AkFilePackage.cpp">
       <Filter>ExternalTools\Wwise</Filter>
     </ClCompile>
-    <ClCompile Include="Wwise\SDK\include\AkDefaultIOHookDeferred.cpp">
+    <ClCompile Include="Wwise\IO\Common\AkFileLocationBase.cpp">
       <Filter>ExternalTools\Wwise</Filter>
+    </ClCompile>
+    <ClCompile Include="Wwise\IO\Win32\stdafx.cpp">
+      <Filter>ExternalTools\Wwise</Filter>
+    </ClCompile>
+    <ClCompile Include="Wwise\IO\Win32\AkDefaultIOHookBlocking.cpp">
+      <Filter>ExternalTools\Wwise</Filter>
+    </ClCompile>
+    <ClCompile Include="Wwise\IO\Win32\AkDefaultIOHookDeferred.cpp">
+      <Filter>ExternalTools\Wwise</Filter>
+    </ClCompile>
+    <ClCompile Include="Include_Wwise.cpp">
+      <Filter>Sources\Containers</Filter>
+    </ClCompile>
+    <ClCompile Include="mmgr\mmgr.cpp">
+      <Filter>ExternalTools\mmgr</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
