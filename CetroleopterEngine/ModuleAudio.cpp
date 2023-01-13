@@ -36,7 +36,7 @@ bool ModuleAudio::Init()
 	LOG("Initializing ModuleAudio");
 
 	AkMemSettings memSettings;
-    //memSettings.uMaxNumPools = 20;
+    memSettings.uMaxNumPools = 20; // the original: AK::StreamMgr::GetDefaultSettings(memSettings);
 
 	if (AK::MemoryMgr::Init(&memSettings) != AK_Success)
 	{
