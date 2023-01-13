@@ -124,9 +124,24 @@ update_status ModuleAudio::Update(float dt)
 	return UPDATE_CONTINUE;
 }
 
-bool ModuleAudio::CleanUp()
+bool ModuleAudio::CleanUp() // The order below g_lowLevelIO.Term() (this one included) is important
 {
 	LOG("Cleaning ModuleAudio");
+    // Documentation: https://www.audiokinetic.com/en/library/edge/?source=SDK&id=workingwithsdks_termination.html
+
+    
+    AK::MusicEngine::Term();
+
+    AK::SoundEngine::Term();
+
+    //AK::SpatialAudio::Term();  This one does not work despite being inn the documentation
+
+    g_lowLevelIO.Term();
+
+    if (AK::IAkStreamMgr::Get())
+        AK::IAkStreamMgr::Get()->Destroy();
+
+    AK::MemoryMgr::Term(); // Must be the last
 
 	return true;
 }
