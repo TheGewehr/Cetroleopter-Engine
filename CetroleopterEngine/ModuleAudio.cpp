@@ -11,6 +11,7 @@
 #include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
 #include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
 #include <Wwise/IO/Win32/AkFilePackageLowLevelIOBlocking.h>     // Sample low-level I/O implementation
+//#include <AK/SoundEngine/Common/AkSoundEngineExport.h>
 //#include <AkFilePackageLowLevelIOBlocking.h>
 
 #include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
