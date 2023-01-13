@@ -5,20 +5,27 @@
 #include "ModuleCameraComponent.h"
 #include "ModuleTransformComponent.h"
 
-#include <AK/SoundEngine/Common/AkMemoryMgr.h>                   // Memory Manager interface
-#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory manager
-
-#include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
-#include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
-#include <Wwise/IO/Win32/AkFilePackageLowLevelIOBlocking.h>     // Sample low-level I/O implementation
-//#include <AK/SoundEngine/Common/AkSoundEngineExport.h>
-//#include <AkFilePackageLowLevelIOBlocking.h>
-
-#include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
-
-#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
-
-#include <AK/SpatialAudio/Common/AkSpatialAudio.h>              // Spatial Audio
+#include "Include_Wwise.h"
+#include "Wwise/IO/Win32/AkFilePackageLowLevelIOBlocking.h"
+#include "Wwise/IO/Win32/AkDefaultIOHookBlocking.h"
+#include "Wwise/SDK/include/AkDefaultIOHookBlocking.h"
+#include "Wwise/SDK/include/AkFileHelpers.h"
+#include <AK/Plugin/AkRoomVerbFXFactory.h>
+#include "AK/SpatialAudio/Common/AkSpatialAudio.h"
+//#include <AK/SoundEngine/Common/AkMemoryMgr.h>                   // Memory Manager interface
+//#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory manager
+//
+//#include <AK/SoundEngine/Common/IAkStreamMgr.h>                 // Streaming Manager
+//#include <AK/Tools/Common/AkPlatformFuncs.h>                    // Thread defines
+//#include <Wwise/IO/Win32/AkFilePackageLowLevelIOBlocking.h>     // Sample low-level I/O implementation
+////#include <AK/SoundEngine/Common/AkSoundEngineExport.h>
+////#include <AkFilePackageLowLevelIOBlocking.h>
+//
+//#include <AK/SoundEngine/Common/AkSoundEngine.h>                // Sound engine
+//
+//#include <AK/MusicEngine/Common/AkMusicEngine.h>                // Music Engine
+//
+//#include <AK/SpatialAudio/Common/AkSpatialAudio.h>              // Spatial Audio
 
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 
@@ -103,16 +110,16 @@ bool ModuleAudio::Init()
     }
 
     //
-    // Initialize Spatial Audio
+    // Initialize Spatial Audio                     Gives errors don't know why since all the initialitation is copied from the library wiki
     // Using default initialization parameters
     //
 
-    AkSpatialAudioInitSettings settings; // The constructor fills AkSpatialAudioInitSettings with the recommended default settings. 
-    if (AK::SpatialAudio::Init(settings) != AK_Success) // original way: if (AK::SpatialAudio::Init(&settings) != AK_Success)
-    {
-        assert(!"Could not initialize the Spatial Audio.");
-        return false;
-    }
+    //AkSpatialAudioInitSettings settings; // The constructor fills AkSpatialAudioInitSettings with the recommended default settings.
+    //if (AK::SpatialAudio::Init(&settings) != AK_Success) // original way: if (AK::SpatialAudio::Init(&settings) != AK_Success)
+    //{
+    //    assert(!"Could not initialize the Spatial Audio.");
+    //    return false;
+    //}
 
 	return true;
 }
