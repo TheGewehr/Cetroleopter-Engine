@@ -489,6 +489,9 @@
     <ClInclude Include="mmgr\nommgr.h">
       <Filter>ExternalTools\mmgr</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleAudioSourceComponent.h">
+      <Filter>Sources\Modules\GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleCamera3D.cpp">
@@ -766,6 +769,9 @@
     </ClCompile>
     <ClCompile Include="mmgr\mmgr.cpp">
       <Filter>ExternalTools\mmgr</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleAudioSourceComponent.cpp">
+      <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
