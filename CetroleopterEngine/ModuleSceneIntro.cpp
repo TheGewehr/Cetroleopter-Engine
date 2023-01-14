@@ -21,7 +21,15 @@ bool ModuleSceneIntro::Start()
 	LOG("Loading Intro assets");
 	bool ret = true;
 
-	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+	//App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "BakerHouse"), "Assets/BakerHouse_BIG.fbx", "Assets/bakeHouse.png");
+
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Ground"), "Assets/railway_scene/ground.fbx", "Assets/railway_scene/TexturesCom_PolishedConcreteFloor_1024_alb.png");
+	//App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Lights"), "Assets/railway_scene/lights.fbx", "Assets/railway_scene/black.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Pipes"), "Assets/railway_scene/pipes.fbx", "Assets/railway_scene/iron_rusted4_basecolor.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Rail"), "Assets/railway_scene/rail.fbx", "Assets/railway_scene/railway.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Tube"), "Assets/railway_scene/tube.fbx", "Assets/railway_scene/TexturesCom_ConcreteWall_1024_albedo.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cables"), "Assets/railway_scene/cables.fbx", "Assets/railway_scene/black.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Train"), "Assets/railway_scene/train.fbx", "Assets/railway_scene/train.png");
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
