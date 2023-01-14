@@ -7,7 +7,7 @@
 
 #include "mmgr/mmgr.h"
 
-AudioListenerComponent::AudioListenerComponent(ModuleGameObject* base) : Component(base, ComponentTypes::AUDIOSOURCE, "AudioSource")
+AudioListenerComponent::AudioListenerComponent(ModuleGameObject* base) : Component(base, ComponentTypes::AUDIOLISTENER, "AudioListener")
 {
 	float3 pos = base->GetTransformComponent()->GetPosition();
 	listener = CreateSoundObj(base->id_, base->GetName().c_str(), pos.x, pos.y, pos.z);
@@ -19,6 +19,7 @@ AudioListenerComponent::~AudioListenerComponent()
 
 bool AudioListenerComponent::Init()
 {
+	//listener->PlayMusic("Assets/VISTIMA.mp3");
 	return true;
 }
 

@@ -58,9 +58,9 @@ update_status ModuleCamera3D::Update(float dt)
 	// Now we can make this movememnt frame rate independant!
 
 	vec3 newPos(0,0,0);
-	float speed = 3.0f * dt;
+	float speed = 32.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
-		speed = 25.0f * dt;
+		speed = 100.0f * dt;
 
 	if (App->input->GetKey(SDL_SCANCODE_R) == KEY_REPEAT) newPos.y += speed; isMainCameraMooving = true;
 	if (App->input->GetKey(SDL_SCANCODE_F) == KEY_REPEAT) newPos.y -= speed; isMainCameraMooving = true;
@@ -75,14 +75,14 @@ update_status ModuleCamera3D::Update(float dt)
 	if (App->input->GetMouseZ() > 0)
 	{
 		// dezoom
-		newPos -= mainCamera->Z * speed;
+		newPos -= mainCamera->Z * 100;
 		isMainCameraMooving = true;
 
 	}
 	if (App->input->GetMouseZ() < 0)
 	{
 		//zoom
-		newPos += mainCamera->Z * speed;
+		newPos += mainCamera->Z * 100;
 		isMainCameraMooving = true;
 
 	}

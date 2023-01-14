@@ -14,7 +14,8 @@ enum class ComponentTypes
 	TEXTURE,
 	TRANSFORM,
 	CAMERA,
-	AUDIOSOURCE
+	AUDIOSOURCE,
+	AUDIOLISTENER
 };
 
 class Component : public Module

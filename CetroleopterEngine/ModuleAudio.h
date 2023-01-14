@@ -47,7 +47,6 @@ private:
 	AkVector position = { 0, 0, 0 };
 	AkVector top = { 0, 0, 0 };
 	AkVector front = { 0, 0, 0 };
-
 };
 
 WwiseObject* CreateSoundObj(unsigned long id, const char* name, float x, float y, float z, bool is_default_listener = false);
