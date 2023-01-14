@@ -207,6 +207,7 @@
     <ClInclude Include="mmgr\mmgr.h" />
     <ClInclude Include="mmgr\nommgr.h" />
     <ClInclude Include="ModuleAudio.h" />
+    <ClInclude Include="ModuleAudioListenerComponent.h" />
     <ClInclude Include="ModuleAudioSourceComponent.h" />
     <ClInclude Include="ModuleCamera3D.h" />
     <ClInclude Include="Component.h" />
@@ -299,6 +300,7 @@
     <ClCompile Include="mathGeoLib\Time\Clock.cpp" />
     <ClCompile Include="mmgr\mmgr.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
+    <ClCompile Include="ModuleAudioListenerComponent.cpp" />
     <ClCompile Include="ModuleAudioSourceComponent.cpp" />
     <ClCompile Include="ModuleCamera3D.cpp" />
     <ClCompile Include="Component.cpp" />

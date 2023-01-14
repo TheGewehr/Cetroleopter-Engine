@@ -30,5 +30,5 @@ public:
 };
 
 
-#endif // !_MODULE_CAMERA_COMPONENT_H_
+#endif // !_MODULE_AUDIO_SOURCE_COMPONENT_H_
 

@@ -2,6 +2,7 @@
 #include "ModuleAudio.h"
 #include "ModuleGameObject.h"
 #include "ModuleTransformComponent.h"
+#include "ModuleSceneIntro.h"
 
 #include "mmgr/mmgr.h"
 

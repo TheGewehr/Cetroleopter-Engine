@@ -19,7 +19,6 @@ public:
 	update_status Update();
 	bool CleanUp();
 
-	// ???(varType) GetCameraTransform();
 	void UpdateGameObjectCamera(ModuleGameObject gameObject);
 	void DrawBoundingBox(float3* corners, Color color);
 
@@ -28,8 +27,6 @@ public:
 
 public:
 	
-	// ???(varType) cameraTransform;
-
 	vec3 X, Y, Z, Position, Reference;
 
 	mat4x4 ViewMatrix, ViewMatrixInverse;
