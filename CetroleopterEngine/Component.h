@@ -13,7 +13,8 @@ enum class ComponentTypes
 	MESH,
 	TEXTURE,
 	TRANSFORM,
-	CAMERA
+	CAMERA,
+	AUDIOSOURCE
 };
 
 class Component : public Module
