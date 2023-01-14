@@ -31,6 +31,11 @@ bool AudioSourceComponent::CleanUp()
 	return true;
 }
 
+void AudioSourceComponent::PlayAudio()
+{
+	//sound->PlayEvent(AK::EVENTS::DEATH);
+}
+
 bool AudioSourceComponent::SaveRequest(int positionInList)
 {
 	return true;

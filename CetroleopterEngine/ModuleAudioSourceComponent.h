@@ -20,6 +20,8 @@ public:
 	update_status Update();
 	bool CleanUp();	
 
+	void PlayAudio();
+
 	bool SaveRequest(int positionInList);
 	bool LoadRequest(int positionInList);
 
