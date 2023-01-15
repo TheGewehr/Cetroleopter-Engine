@@ -271,11 +271,11 @@ bool MainMenuBar::PlayPauseMenuBar()
 
 		ImGui::Text("\n Game time: %i \n", App->scene_intro->sceneTimer);
 
-		if (counterON == true)
-		{
-			App->scene_intro->sceneTimer++;
-			App->scene_intro->trainTimer++;
-		}
+		//if (counterON == true)
+		//{
+		//	App->scene_intro->sceneTimer++;
+		//	App->scene_intro->trainTimer++;
+		//}
 
 		ImGui::EndMenu();
 	}
