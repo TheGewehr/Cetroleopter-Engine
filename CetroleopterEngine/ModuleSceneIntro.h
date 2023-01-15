@@ -6,6 +6,7 @@
 class Primitive;
 class ModuleGameObject;
 //class  PhysBody3D;
+class WwiseObject;
 
 class ModuleSceneIntro : public Module
 {
@@ -26,6 +27,8 @@ public:
 public:
 	std::vector<ModuleGameObject*> gameObjects = {};
 	std::string name = "DefaultScene";
+
+	WwiseObject* listener = nullptr;
 
 	uint sceneTimer = 0;
 };

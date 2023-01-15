@@ -109,7 +109,7 @@ bool ModuleAudio::Init()
         return false;
     }
 
-    LoadWwiseBank("SoundBankName");
+    LoadWwiseBank("Music");
     
 
     //
@@ -165,7 +165,7 @@ void ModuleAudio::LoadWwiseBank(const char* path)
 
     LoadBank(bank_path.c_str());
 
-    std::string json_file = bank_path.substr(0, bank_path.find_last_of('.')) + ".json"; // Changing .bnk with .json
+    //std::string json_file = bank_path.substr(0, bank_path.find_last_of('.')) + ".json"; // Changing .bnk with .json
 }
 
 WwiseObject::WwiseObject(unsigned long idGO, const char* nameGO)

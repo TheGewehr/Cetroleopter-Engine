@@ -6,6 +6,7 @@
 #include "ModuleCamera3D.h"
 #include "ModuleCameraComponent.h"
 #include "ModuleMeshComponent.h"
+#include "ModuleTransformComponent.h"
 #include "ModuleAudioSourceComponent.h"
 #include "ModuleAudioListenerComponent.h"
 
@@ -39,6 +40,8 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
+
+	listener = CreateSoundObj(9999999, "Listener", App->camera->mainCamera->Position.x, App->camera->mainCamera->Position.y, App->camera->mainCamera->Position.z);
 
 	sceneTimer = 0;
 	return ret;
@@ -80,7 +83,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 		if (sceneTimer == 1)
 		{
-			App->scene_intro->gameObjects[0]->GetAudioSourceComponent()->sound->PlayEvent("Train_Sound");
+			App->scene_intro->gameObjects[0]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN_SOUND);
 		}
 
 		if (App->renderer3D->wireframeMode == false)
@@ -96,7 +99,14 @@ update_status ModuleSceneIntro::Update(float dt)
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
-
+	//vec3 cameraPosition = App->camera->mainCamera->Position;
+	//audioListener.GetTransformComponent()->position.x = cameraPosition.x;
+	//audioListener.GetTransformComponent()->position.y = cameraPosition.y;
+	//audioListener.GetTransformComponent()->position.z = cameraPosition.z;
+	listener->SetPosition(App->camera->mainCamera->frustum.pos.x, App->camera->mainCamera->frustum.pos.y, App->camera->mainCamera->frustum.pos.z,
+		App->camera->mainCamera->frustum.front.x, App->camera->mainCamera->frustum.front.y, App->camera->mainCamera->frustum.front.z,
+		App->camera->mainCamera->frustum.up.x, App->camera->mainCamera->frustum.up.y, App->camera->mainCamera->frustum.up.z);
+	
 
 	return UPDATE_CONTINUE;
 }
