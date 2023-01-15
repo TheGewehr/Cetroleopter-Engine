@@ -14,9 +14,9 @@ namespace AK
     namespace EVENTS
     {
         static const AkUniqueID HEARTACHE = 763626682U;
-        static const AkUniqueID TRAIN_SOUND = 2381380989U;
-        static const AkUniqueID WINDOWS_SOUND = 1506155592U;
-        static const AkUniqueID WIZARD_MUSIC = 3311646164U;
+        static const AkUniqueID TRAIN = 3412057565U;
+        static const AkUniqueID WINDOWS = 270908044U;
+        static const AkUniqueID WIZARD = 3202541808U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS
@@ -42,13 +42,8 @@ namespace AK
     namespace BUSSES
     {
         static const AkUniqueID MASTER_AUDIO_BUS = 3803692087U;
+        static const AkUniqueID MASTER_SECONDARY_BUS = 805203703U;
     } // namespace BUSSES
-
-    namespace AUDIO_DEVICES
-    {
-        static const AkUniqueID NO_OUTPUT = 2317455096U;
-        static const AkUniqueID SYSTEM = 3859886410U;
-    } // namespace AUDIO_DEVICES
 
 }// namespace AK
 

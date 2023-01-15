@@ -2,536 +2,81 @@
  "SoundBanksInfo": {
   "Platform": "Windows",
   "BasePlatform": "Windows",
-  "SchemaVersion": "16",
-  "SoundBankVersion": "145",
+  "SchemaVersion": "11",
+  "SoundbankVersion": "125",
   "RootPaths": {
-   "ProjectRoot": "../../../../../AudioAssignement",
-   "SourceFilesRoot": "../../../../../AudioAssignement/.cache/Windows",
-   "SoundBanksRoot": ".",
+   "ProjectRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\",
+   "SourceFilesRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\.cache\\Windows\\",
+   "SoundBanksRoot": "C:\\Users\\Usuario\\Desktop\\Cetroleopter-Engine\\CetroleopterEngine\\Game\\Library\\Sounds\\",
    "ExternalSourcesInputFile": "",
-   "ExternalSourcesOutputRoot": "../../../../../AudioAssignement/GeneratedSoundBanks/Windows"
+   "ExternalSourcesOutputRoot": "C:\\Users\\Usuario\\Desktop\\Oldest version wwise project\\GeneratedSoundBanks\\Windows\\"
   },
   "DialogueEvents": [],
+  "StreamedFiles": [],
+  "MediaFilesNotInAnyBank": [],
   "SoundBanks": [
    {
     "Id": "1355168291",
-    "Type": "User",
     "Language": "SFX",
-    "Hash": "{66834572-B8EA-99A4-7528-A01A4873C5C2}",
+    "ObjectPath": "Init",
     "ShortName": "Init",
-    "Path": "Init.bnk",
-    "Plugins": {
-     "AudioDevices": [
-      {
-       "Id": "2317455096",
-       "Name": "No_Output",
-       "LibName": "No Output",
-       "LibId": "11862023"
-      },
-      {
-       "Id": "3859886410",
-       "Name": "System",
-       "LibName": "System",
-       "LibId": "11403271"
-      }
-     ]
-    },
-    "Busses": [
-     {
-      "Id": "3803692087",
-      "Name": "Master Audio Bus"
-     }
-    ],
-    "GameParameters": [
-     {
-      "Id": "822163944",
-      "Name": "SS_Air_RPM"
-     },
-     {
-      "Id": "1029930033",
-      "Name": "SS_Air_Fury"
-     },
-     {
-      "Id": "1351367891",
-      "Name": "SS_Air_Fear"
-     },
-     {
-      "Id": "2648548617",
-      "Name": "SS_Air_Month"
-     },
-     {
-      "Id": "3002758120",
-      "Name": "SS_Air_Freefall"
-     },
-     {
-      "Id": "3074696722",
-      "Name": "SS_Air_Size"
-     },
-     {
-      "Id": "3203397129",
-      "Name": "SS_Air_TimeOfDay"
-     },
-     {
-      "Id": "3715662592",
-      "Name": "SS_Air_Storm"
-     },
-     {
-      "Id": "3847924954",
-      "Name": "SS_Air_Presence"
-     },
-     {
-      "Id": "4160247818",
-      "Name": "SS_Air_Turbulence"
-     }
-    ],
-    "AcousticTextures": [
-     {
-      "Id": "504532776",
-      "Name": "Brick",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "12"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "18"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "23"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "35"
-       }
-      ]
-     },
-     {
-      "Id": "513139656",
-      "Name": "Mountain",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "0"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "0"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "0"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "0"
-       }
-      ]
-     },
-     {
-      "Id": "841620460",
-      "Name": "Concrete",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "6"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "6"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "6"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "14"
-       }
-      ]
-     },
-     {
-      "Id": "1755085759",
-      "Name": "Wood_Deep",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "1"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "8"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "20"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "35"
-       }
-      ]
-     },
-     {
-      "Id": "1873957695",
-      "Name": "Anechoic",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "100"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "100"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "100"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "100"
-       }
-      ]
-     },
-     {
-      "Id": "1970351858",
-      "Name": "Fabric",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "3"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "13"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "48"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "72"
-       }
-      ]
-     },
-     {
-      "Id": "2058049674",
-      "Name": "Wood",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "32"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "25"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "20"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "35"
-       }
-      ]
-     },
-     {
-      "Id": "2412606308",
-      "Name": "Carpet",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "46"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "45"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "76"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "100"
-       }
-      ]
-     },
-     {
-      "Id": "2637588553",
-      "Name": "Tile",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "67"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "41"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "12"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "0"
-       }
-      ]
-     },
-     {
-      "Id": "2928161104",
-      "Name": "Curtains",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "7"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "60"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "0"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "84"
-       }
-      ]
-     },
-     {
-      "Id": "3195498748",
-      "Name": "Cork_Tiles",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "14"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "30"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "73"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "100"
-       }
-      ]
-     },
-     {
-      "Id": "3670307564",
-      "Name": "Drywall",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "2"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "2"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "2"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "2"
-       }
-      ]
-     },
-     {
-      "Id": "4168643977",
-      "Name": "Acoustic_Banner",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "37"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "100"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "100"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "100"
-       }
-      ]
-     },
-     {
-      "Id": "4262522749",
-      "Name": "Wood_Bright",
-      "Properties": [
-       {
-        "Name": "AbsorptionLow",
-        "Type": "Real32",
-        "Value": "32"
-       },
-       {
-        "Name": "AbsorptionMidLow",
-        "Type": "Real32",
-        "Value": "25"
-       },
-       {
-        "Name": "AbsorptionMidHigh",
-        "Type": "Real32",
-        "Value": "10"
-       },
-       {
-        "Name": "AbsorptionHigh",
-        "Type": "Real32",
-        "Value": "9"
-       }
-      ]
-     }
-    ]
+    "Path": "Init.bnk"
    },
    {
     "Id": "3991942870",
-    "Type": "User",
     "Language": "SFX",
-    "Hash": "{CC75024C-F16F-0668-5CB5-B54033AE26B9}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",
     "ShortName": "Music",
     "Path": "Music.bnk",
-    "Media": [
-     {
-      "Id": "31188980",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "Wizard.wav",
-      "CachePath": "SFX/Wizard_10C4C929.wem"
-     },
-     {
-      "Id": "530781037",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "Heartache.wav",
-      "CachePath": "SFX/Heartache_10C4C929.wem"
-     },
-     {
-      "Id": "599901724",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "train_sound.wav",
-      "CachePath": "SFX/train_sound_10C4C929.wem"
-     },
-     {
-      "Id": "677676017",
-      "Language": "SFX",
-      "Streaming": "false",
-      "Location": "Memory",
-      "ShortName": "windows_on.wav",
-      "CachePath": "SFX/windows_on_10C4C929.wem"
-     }
-    ],
-    "Events": [
+    "IncludedEvents": [
      {
       "Id": "763626682",
       "Name": "Heartache",
-      "MediaRefs": [
-       {
-        "Id": "530781037"
-       }
-      ]
+      "ObjectPath": "\\Events\\Default Work Unit\\Heartache"
      },
      {
-      "Id": "2381380989",
-      "Name": "Train_Sound",
-      "MediaRefs": [
-       {
-        "Id": "599901724"
-       }
-      ]
+      "Id": "3412057565",
+      "Name": "Train",
+      "ObjectPath": "\\Events\\Default Work Unit\\Train"
      },
      {
-      "Id": "1506155592",
-      "Name": "Windows_Sound",
-      "MediaRefs": [
-       {
-        "Id": "677676017"
-       }
-      ]
+      "Id": "270908044",
+      "Name": "Windows",
+      "ObjectPath": "\\Events\\Default Work Unit\\Windows"
      },
      {
-      "Id": "3311646164",
-      "Name": "Wizard_Music",
-      "MediaRefs": [
-       {
-        "Id": "31188980"
-       }
-      ]
+      "Id": "3202541808",
+      "Name": "Wizard",
+      "ObjectPath": "\\Events\\Default Work Unit\\Wizard"
+     }
+    ],
+    "IncludedMemoryFiles": [
+     {
+      "Id": "275830813",
+      "Language": "SFX",
+      "ShortName": "Heartache.wav",
+      "Path": "SFX\\Heartache_1C9C67B2.wem"
+     },
+     {
+      "Id": "470945920",
+      "Language": "SFX",
+      "ShortName": "Wizard.wav",
+      "Path": "SFX\\Wizard_1C9C67B2.wem"
+     },
+     {
+      "Id": "523756601",
+      "Language": "SFX",
+      "ShortName": "windows_on.wav",
+      "Path": "SFX\\windows_on_1C9C67B2.wem"
+     },
+     {
+      "Id": "720752218",
+      "Language": "SFX",
+      "ShortName": "train_sound.wav",
+      "Path": "SFX\\train_sound_1C9C67B2.wem"
      }
     ]
    }
-  ],
-  "FileHash": "{45CACEB6-BD87-793B-4506-AA03A5C69607}"
+  ]
  }
 }
