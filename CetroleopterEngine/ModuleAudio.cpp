@@ -27,6 +27,8 @@
 //
 //#include <AK/SpatialAudio/Common/AkSpatialAudio.h>              // Spatial Audio
 
+#include "Game/Library/Sounds/Wwise_IDs.h"
+
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 
 ModuleAudio::ModuleAudio(bool start_enabled) : Module(start_enabled)
@@ -311,7 +313,9 @@ AkBankID LoadBank(const char* name)
 
     AkBankID bankID;
     //AKRESULT eResult = AK::SoundEngine::LoadBank(bankID, AK_DEFAULT_POOL_ID);
+
     AKRESULT eResult = AK::SoundEngine::LoadBank(name, AK_DEFAULT_POOL_ID, bankID);
+
     if (eResult == AK_WrongBankVersion)
     {
         assert(!"WrongBankVersion!");
@@ -347,7 +351,7 @@ AkBankID LoadBank(const char* name)
         assert(!"Fail soundbank error!");
         return false;
     }
-    else if (eResult != AK_Success)
+    else if (eResult != AK_Success) // This one
     {
         assert(!"Could not load soundbank!");
         return false;
