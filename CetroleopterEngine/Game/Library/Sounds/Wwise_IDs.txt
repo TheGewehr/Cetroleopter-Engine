@@ -1,0 +1,12 @@
+Event	ID	Name			Wwise Object Path	Notes
+	1506155592	Windows_Sound			\Default Work Unit\Windows_Sound	
+	2381380989	Train_Sound			\Default Work Unit\Train_Sound	
+	2720205266	Doom_Music			\Default Work Unit\Doom_Music	
+	3311646164	Wizard_Music			\Default Work Unit\Wizard_Music	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	31188980	Wizard	C:\Users\Usuario\Desktop\AudioAssignement\.cache\Windows\SFX\Wizard_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Wizard		33231764
+	599901724	train_sound	C:\Users\Usuario\Desktop\AudioAssignement\.cache\Windows\SFX\train_sound_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\train_sound		7823868
+	677676017	windows_on	C:\Users\Usuario\Desktop\AudioAssignement\.cache\Windows\SFX\windows_on_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\windows_on		716896
+	788530469	Doom	C:\Users\Usuario\Desktop\AudioAssignement\.cache\Windows\SFX\Doom_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Doom		79248668
+

@@ -3,6 +3,7 @@
 #include "ModuleGameObject.h"
 #include "ModuleTransformComponent.h"
 #include "ModuleSceneIntro.h"
+#include "Game/Library/Sounds/Wwise_IDs.h"
 
 #include "mmgr/mmgr.h"
 
@@ -33,7 +34,7 @@ bool AudioSourceComponent::CleanUp()
 
 void AudioSourceComponent::PlayAudio()
 {
-	//sound->PlayEvent(AK::EVENTS::DEATH);
+	sound->PlayEvent(AK::EVENTS::TRAIN_SOUND);
 }
 
 bool AudioSourceComponent::SaveRequest(int positionInList)

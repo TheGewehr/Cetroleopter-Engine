@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProjectInfo>
+	<Project Name="AudioAssignement" GUID="{66ABF154-0BDA-4690-997B-39ABC850E053}" Generator="2022.1.1.8100"/>
+	<CacheRoot>../../../../../AudioAssignement/.cache</CacheRoot>
+	<Platforms>
+		<Platform Name="Windows" GUID="{58157B6D-0B5B-4716-9A61-4D4243B44A40}" BasePlatform="Windows" BasePlatformGUID="{6E0CB257-C6C8-4C5C-8366-2740DFC441EB}" Path="."/>
+	</Platforms>
+	<Languages>
+		<Language Name="English(US)" Id="684519430" GUID="{A10548D5-5325-47FD-9F5B-2300803C9022}" Default="true" UseAsStandIn="true"/>
+	</Languages>
+	<FileHash>{C756260F-1A0F-8305-2946-411226AEE471}</FileHash>
+</ProjectInfo>
