@@ -163,6 +163,8 @@ update_status ModuleCamera3D::Update(float dt)
 	
 	}
 
+
+
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
 

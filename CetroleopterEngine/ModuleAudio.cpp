@@ -109,6 +109,9 @@ bool ModuleAudio::Init()
         return false;
     }
 
+    LoadWwiseBank("SoundBankName");
+    
+
     //
     // Initialize Spatial Audio                     Gives errors don't know why since all the initialitation is copied from the library wiki
     // Using default initialization parameters
@@ -151,6 +154,18 @@ bool ModuleAudio::CleanUp() // The order below g_lowLevelIO.Term() (this one inc
     AK::MemoryMgr::Term(); // Must be the last
 
 	return true;
+}
+
+void ModuleAudio::LoadWwiseBank(const char* path)
+{
+    //SoundBank* new_bank = new SoundBank();
+    std::string bank_path = "Library/Sounds";
+    bank_path += path;
+    bank_path += ".bnk";
+
+    LoadBank(bank_path.c_str());
+
+    std::string json_file = bank_path.substr(0, bank_path.find_last_of('.')) + ".json"; // Changing .bnk with .json
 }
 
 WwiseObject::WwiseObject(unsigned long idGO, const char* nameGO)

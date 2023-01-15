@@ -80,7 +80,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 		if (sceneTimer == 1)
 		{
-			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent("Train_Sound");
+			App->scene_intro->gameObjects[0]->GetAudioSourceComponent()->sound->PlayEvent("Train_Sound");
 		}
 
 		if (App->renderer3D->wireframeMode == false)

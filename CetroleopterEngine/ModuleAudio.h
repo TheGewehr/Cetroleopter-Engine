@@ -21,6 +21,8 @@ public:
 	update_status Update(float dt);
 	bool CleanUp();
 
+	void LoadWwiseBank(const char* path);
+
 };
 
 class WwiseObject
