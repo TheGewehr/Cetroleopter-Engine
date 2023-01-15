@@ -304,11 +304,47 @@ WwiseObject* CreateSoundObj(unsigned long id, const char* name, float x, float y
 
 AkBankID LoadBank(const char* name)
 {
+
+   /* AkGameObjectID gameObj = 3;
+
+    AK::SoundEngine::RegisterGameObj(gameObj);*/
+
     AkBankID bankID;
+    //AKRESULT eResult = AK::SoundEngine::LoadBank(bankID, AK_DEFAULT_POOL_ID);
     AKRESULT eResult = AK::SoundEngine::LoadBank(name, AK_DEFAULT_POOL_ID, bankID);
     if (eResult == AK_WrongBankVersion)
     {
         assert(!"WrongBankVersion!");
+        return false;
+    }
+    else if (eResult == AK_BankAlreadyLoaded)
+    {
+        assert(!"Already loaded soundbank!");
+        return false;
+    }
+    else if (eResult == AK_InsufficientMemory)
+    {
+        assert(!"Insuficient Memory for soundbank!");
+        return false;
+    }
+    else if (eResult == AK_BankReadError)
+    {
+        assert(!"Read soundbank error!");
+        return false;
+    }
+    else if (eResult == AK_InvalidFile)
+    {
+        assert(!"Invalid file error!");
+        return false;
+    }
+    else if (eResult == AK_InvalidParameter)
+    {
+        assert(!"Invalid Parameter error!");
+        return false;
+    }
+    else if (eResult == AK_Fail)
+    {
+        assert(!"Fail soundbank error!");
         return false;
     }
     else if (eResult != AK_Success)
