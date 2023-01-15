@@ -264,6 +264,7 @@ bool MainMenuBar::PlayPauseMenuBar()
 		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
 		{
 			App->scene_intro->sceneTimer = 0;
+			App->scene_intro->trainTimer = 0;
 		}
 
 		ImGui::Separator();
@@ -273,6 +274,7 @@ bool MainMenuBar::PlayPauseMenuBar()
 		if (counterON == true)
 		{
 			App->scene_intro->sceneTimer++;
+			App->scene_intro->trainTimer++;
 		}
 
 		ImGui::EndMenu();

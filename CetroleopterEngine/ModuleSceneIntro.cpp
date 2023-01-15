@@ -9,6 +9,7 @@
 #include "ModuleTransformComponent.h"
 #include "ModuleAudioSourceComponent.h"
 #include "ModuleAudioListenerComponent.h"
+#include "MainMenuBar.h"
 
 #include "Game/Library/Sounds/Wwise_IDs.h"
 
@@ -35,8 +36,8 @@ bool ModuleSceneIntro::Start()
 	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Rail"), "Assets/railway_scene/rail.fbx", "Assets/railway_scene/railway.png");
 	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Tube"), "Assets/railway_scene/tube.fbx", "Assets/railway_scene/TexturesCom_ConcreteWall_1024_albedo.png");
 	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cables"), "Assets/railway_scene/cables.fbx", "Assets/railway_scene/black.png");
-	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Train"), "Assets/railway_scene/train.fbx", "Assets/railway_scene/train_inverted.png");
 	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "RandomComputer"), "Assets/railway_scene/random_computer.fbx", "Assets/railway_scene/computer.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Train"), "Assets/railway_scene/train.fbx", "Assets/railway_scene/train_inverted.png");
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -44,6 +45,8 @@ bool ModuleSceneIntro::Start()
 	listener = CreateSoundObj(9999999, "Listener", App->camera->mainCamera->Position.x, App->camera->mainCamera->Position.y, App->camera->mainCamera->Position.z);
 
 	sceneTimer = 0;
+	trainTimer = 0;
+
 	return ret;
 }
 
@@ -83,7 +86,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 		if (sceneTimer == 1)
 		{
-			App->scene_intro->gameObjects[0]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
+			//App->scene_intro->gameObjects[0]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
 		}
 
 		if (App->renderer3D->wireframeMode == false)
@@ -91,7 +94,27 @@ update_status ModuleSceneIntro::Update(float dt)
 			glPolygonMode(GL_FRONT, GL_FILL);
 		}
 
+		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+		{
+			float trainPosition = (trainTimer * 3666.6f) / 600.f;
+			App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f,0.f, trainPosition);
+
+			if (trainPosition >= 3666.6f)
+			{
+				trainTimer = 0;
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, 0.f);
+			}
+		}
+
 		gameObjects.at(i)->Render();
+	}
+
+	
+
+	if (App->moduleUi->mainMenuBar->counterON == true)
+	{
+		sceneTimer++;
+		trainTimer++;
 	}
 
 	return UPDATE_CONTINUE;

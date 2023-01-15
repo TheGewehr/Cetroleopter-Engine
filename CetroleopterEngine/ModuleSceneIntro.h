@@ -31,4 +31,5 @@ public:
 	WwiseObject* listener = nullptr;
 
 	uint sceneTimer = 0;
+	uint trainTimer = 0;
 };

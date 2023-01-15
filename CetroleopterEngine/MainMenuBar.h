@@ -26,7 +26,7 @@ private:
 	bool PlayPauseMenuBar();
 	bool ExperimentalFeatures();
 
-private:
+public:
 	
 	//uint sceneTimer = 0;
 	bool counterON = false;
