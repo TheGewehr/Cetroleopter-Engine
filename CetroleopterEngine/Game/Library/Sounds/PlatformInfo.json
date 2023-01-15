@@ -1,0 +1,37 @@
+{
+ "PlatformInfo": {
+  "Platform": {
+   "Name": "Windows",
+   "BasePlatform": "Windows",
+   "Generator": "2022.1.1.8100"
+  },
+  "RootPaths": {
+   "ProjectRoot": "../../../../../AudioAssignement",
+   "SourceFilesRoot": "../../../../../AudioAssignement/.cache/Windows",
+   "SoundBanksRoot": ".",
+   "ExternalSourcesInputFile": "",
+   "ExternalSourcesOutputRoot": "../../../../../AudioAssignement/GeneratedSoundBanks/Windows"
+  },
+  "DefaultAlign": "16",
+  "Settings": {
+   "AutoSoundBankDefinition": "false",
+   "CopyLooseStreamedMediaFiles": "true",
+   "SubFoldersForGeneratedFiles": "false",
+   "RemoveUnusedGeneratedFiles": "true",
+   "SourceControlGeneratedFiles": "false",
+   "GenerateHeaderFile": "true",
+   "GenerateContentTxtFile": "true",
+   "GenerateMetadataXML": "true",
+   "GenerateMetadataJSON": "true",
+   "GenerateAllBanksMetadata": "true",
+   "GeneratePerBankMetadata": "false",
+   "UseSoundBankNames": "true",
+   "AllowExceedingMaxSize": "false",
+   "MaxAttenuationInfo": "false",
+   "EstimatedDurationInfo": "false",
+   "PrintObjectGuid": "false",
+   "PrintObjectPath": "false"
+  },
+  "FileHash": "{F1CB014E-382C-3EFD-36C8-C676C9D32BC7}"
+ }
+}
