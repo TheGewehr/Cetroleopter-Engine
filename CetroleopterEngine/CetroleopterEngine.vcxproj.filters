@@ -779,6 +779,9 @@
     <ClCompile Include="ModuleAudioListenerComponent.cpp">
       <Filter>Sources\Modules\GameObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Wwise\IO\Common\AkDefaultLowLevelIODispatcher.cpp">
+      <Filter>ExternalTools\Wwise</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleUi.cpp">
