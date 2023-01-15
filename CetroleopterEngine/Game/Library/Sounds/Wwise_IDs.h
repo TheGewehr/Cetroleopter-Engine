@@ -13,7 +13,7 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID DOOM_MUSIC = 2720205266U;
+        static const AkUniqueID HEARTACHE = 763626682U;
         static const AkUniqueID TRAIN_SOUND = 2381380989U;
         static const AkUniqueID WINDOWS_SOUND = 1506155592U;
         static const AkUniqueID WIZARD_MUSIC = 3311646164U;
@@ -36,7 +36,7 @@ namespace AK
     namespace BANKS
     {
         static const AkUniqueID INIT = 1355168291U;
-        static const AkUniqueID WWISE_IDS = 1122755427U;
+        static const AkUniqueID MUSIC = 3991942870U;
     } // namespace BANKS
 
     namespace BUSSES

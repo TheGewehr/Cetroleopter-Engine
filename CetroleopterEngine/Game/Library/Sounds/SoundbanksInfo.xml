@@ -9,50 +9,6 @@
 	</RootPaths>
 	<DialogueEvents/>
 	<SoundBanks>
-		<SoundBank Id="1122755427" Type="User" Language="SFX" Hash="{7CDE04D1-ECF7-C73D-6807-35B9EA3BF774}">
-			<ShortName>Wwise_IDs</ShortName>
-			<Path>Wwise_IDs.bnk</Path>
-			<Media>
-				<File Id="31188980" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Wizard.wav</ShortName>
-					<CachePath>SFX/Wizard_10C4C929.wem</CachePath>
-				</File>
-				<File Id="599901724" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>train_sound.wav</ShortName>
-					<CachePath>SFX/train_sound_10C4C929.wem</CachePath>
-				</File>
-				<File Id="677676017" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>windows_on.wav</ShortName>
-					<CachePath>SFX/windows_on_10C4C929.wem</CachePath>
-				</File>
-				<File Id="788530469" Language="SFX" Streaming="false" Location="Memory">
-					<ShortName>Doom.wav</ShortName>
-					<CachePath>SFX/Doom_10C4C929.wem</CachePath>
-				</File>
-			</Media>
-			<Events>
-				<Event Id="2720205266" Name="Doom_Music">
-					<MediaRefs>
-						<MediaRef Id="788530469"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="2381380989" Name="Train_Sound">
-					<MediaRefs>
-						<MediaRef Id="599901724"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="1506155592" Name="Windows_Sound">
-					<MediaRefs>
-						<MediaRef Id="677676017"/>
-					</MediaRefs>
-				</Event>
-				<Event Id="3311646164" Name="Wizard_Music">
-					<MediaRefs>
-						<MediaRef Id="31188980"/>
-					</MediaRefs>
-				</Event>
-			</Events>
-		</SoundBank>
 		<SoundBank Id="1355168291" Type="User" Language="SFX" Hash="{66834572-B8EA-99A4-7528-A01A4873C5C2}">
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
@@ -192,6 +148,50 @@
 				</AcousticTexture>
 			</AcousticTextures>
 		</SoundBank>
+		<SoundBank Id="3991942870" Type="User" Language="SFX" Hash="{CC75024C-F16F-0668-5CB5-B54033AE26B9}">
+			<ShortName>Music</ShortName>
+			<Path>Music.bnk</Path>
+			<Media>
+				<File Id="31188980" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Wizard.wav</ShortName>
+					<CachePath>SFX/Wizard_10C4C929.wem</CachePath>
+				</File>
+				<File Id="530781037" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>Heartache.wav</ShortName>
+					<CachePath>SFX/Heartache_10C4C929.wem</CachePath>
+				</File>
+				<File Id="599901724" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>train_sound.wav</ShortName>
+					<CachePath>SFX/train_sound_10C4C929.wem</CachePath>
+				</File>
+				<File Id="677676017" Language="SFX" Streaming="false" Location="Memory">
+					<ShortName>windows_on.wav</ShortName>
+					<CachePath>SFX/windows_on_10C4C929.wem</CachePath>
+				</File>
+			</Media>
+			<Events>
+				<Event Id="763626682" Name="Heartache">
+					<MediaRefs>
+						<MediaRef Id="530781037"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="2381380989" Name="Train_Sound">
+					<MediaRefs>
+						<MediaRef Id="599901724"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="1506155592" Name="Windows_Sound">
+					<MediaRefs>
+						<MediaRef Id="677676017"/>
+					</MediaRefs>
+				</Event>
+				<Event Id="3311646164" Name="Wizard_Music">
+					<MediaRefs>
+						<MediaRef Id="31188980"/>
+					</MediaRefs>
+				</Event>
+			</Events>
+		</SoundBank>
 	</SoundBanks>
-	<FileHash>{5FA3369E-D0C4-E66E-4D00-DC8BFD4E0642}</FileHash>
+	<FileHash>{11AFFBA5-2D08-CF77-0F99-E1F2DF40EE45}</FileHash>
 </SoundBanksInfo>
