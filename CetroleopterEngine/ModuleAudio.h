@@ -35,9 +35,9 @@ public:
 	void SetListener(unsigned long* id);
 
 	void PlayEvent(const char* name);
-	void PlayEvent(unsigned long id);
+	void PlayEvent_ID(unsigned long id);
 
-	void PlayMusic(unsigned long music_id);
+	void PlayMusic_ID(unsigned long music_id);
 	void PlayMusic(const char* music_name);
 	void SetAuxiliarySends(AkReal32 value, const char* target_bus, AkGameObjectID listener_id);
 

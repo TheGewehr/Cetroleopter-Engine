@@ -228,11 +228,15 @@ void WwiseObject::SetListener(unsigned long* id)
 
 void WwiseObject::PlayEvent(const char* name)
 {
+    //if (AK::SoundEngine::PostEvent(name, AkGOId) == ERROR_INVALID_NAME)
+    //{
+    //    assert(!"invalid playing name");
+    //}
     AK::SoundEngine::PostEvent(name, AkGOId);
     LOG("Playing event: %s", name);
 }
 
-void WwiseObject::PlayEvent(unsigned long id)
+void WwiseObject::PlayEvent_ID(unsigned long id)
 {
     if (AK::SoundEngine::PostEvent(id, AkGOId) == AK_INVALID_PLAYING_ID)
     {
@@ -240,7 +244,7 @@ void WwiseObject::PlayEvent(unsigned long id)
     }
 }
 
-void WwiseObject::PlayMusic(unsigned long music_id)
+void WwiseObject::PlayMusic_ID(unsigned long music_id)
 {
     AK::SoundEngine::PostEvent(music_id, AkGOId, AK_EnableGetMusicPlayPosition);
 }

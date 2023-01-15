@@ -34,7 +34,7 @@ bool AudioSourceComponent::CleanUp()
 
 void AudioSourceComponent::PlayAudio()
 {
-	sound->PlayEvent(AK::EVENTS::TRAIN_SOUND);
+	//sound->PlayEvent(AK::EVENTS::TRAIN_SOUND);
 }
 
 bool AudioSourceComponent::SaveRequest(int positionInList)

@@ -78,9 +78,9 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->camera->mainCamera->DrawBoundingBox(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints, App->camera->mainCamera->frustumColor);
 		}
 
-		if (sceneTimer >= 1 && sceneTimer <= 2)
+		if (sceneTimer == 1)
 		{
-			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent(AK::EVENTS::TRAIN_SOUND);
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent("Train_Sound");
 		}
 
 		if (App->renderer3D->wireframeMode == false)
