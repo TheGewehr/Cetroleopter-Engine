@@ -28,7 +28,7 @@ private:
 
 private:
 	
-	uint sceneTimer = 0;
+	//uint sceneTimer = 0;
 	bool counterON = false;
 };
 

@@ -9,6 +9,8 @@
 #include "ModuleTextureComponent.h"
 #include "ModuleTransformComponent.h"
 #include "ModuleCameraComponent.h"
+#include "ModuleAudioSourceComponent.h"
+#include "ModuleAudioListenerComponent.h"
 
 ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive) : id_(obj_ID), name_(name), isAtive_(isActive)
 {
@@ -20,12 +22,16 @@ ModuleGameObject::ModuleGameObject(uint obj_ID, std::string name, bool isActive)
 	componentTexture = new TextureComponent(this);
 	componentTransform = new TransformComponent(this);
 	componentCamera = new CameraComponent(this);
+	componentAudioSource = new AudioSourceComponent(this);
+	componentAudioListener = new AudioListenerComponent(this);
 
 	objectComponents.push_back(componentMesh);
 	objectComponents.push_back(componentTexture);
 	objectComponents.push_back(componentTransform);
 	objectComponents.push_back(componentCamera);
-	
+	objectComponents.push_back(componentAudioSource);
+	objectComponents.push_back(componentAudioListener);
+
 }
 
 ModuleGameObject::~ModuleGameObject()
@@ -226,6 +232,30 @@ CameraComponent* ModuleGameObject::GetCameraComponent()
 		if (objectComponents[i]->GetType() == ComponentTypes::CAMERA)
 		{
 			return (CameraComponent*)objectComponents[i];
+		}
+	}
+	return nullptr;
+}
+
+AudioSourceComponent* ModuleGameObject::GetAudioSourceComponent()
+{
+	for (uint i = 0; i < objectComponents.size(); ++i)
+	{
+		if (objectComponents[i]->GetType() == ComponentTypes::AUDIOSOURCE)
+		{
+			return (AudioSourceComponent*)objectComponents[i];
+		}
+	}
+	return nullptr;
+}
+
+AudioListenerComponent* ModuleGameObject::GetAudioListenereComponent()
+{
+	for (uint i = 0; i < objectComponents.size(); ++i)
+	{
+		if (objectComponents[i]->GetType() == ComponentTypes::AUDIOLISTENER)
+		{
+			return (AudioListenerComponent*)objectComponents[i];
 		}
 	}
 	return nullptr;

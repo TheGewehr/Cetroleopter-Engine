@@ -26,4 +26,6 @@ public:
 public:
 	std::vector<ModuleGameObject*> gameObjects = {};
 	std::string name = "DefaultScene";
+
+	uint sceneTimer = 0;
 };

@@ -21,6 +21,8 @@ class TransformComponent;
 class MeshComponent;
 class TextureComponent;
 class CameraComponent;
+class AudioSourceComponent;
+class AudioListenerComponent;
 
 class ModuleGameObject
 {
@@ -52,6 +54,8 @@ public:
 	TextureComponent* GetTextureComponent();
 	MeshComponent* GetMeshComponent();
 	CameraComponent* GetCameraComponent();
+	AudioSourceComponent* GetAudioSourceComponent();
+	AudioListenerComponent* GetAudioListenereComponent();
 
 	bool SaveObject(int positionInList);
 	bool LoadObject(int positionInList);
@@ -72,6 +76,8 @@ public:
 	Component* componentTexture;
 	Component* componentTransform;
 	Component* componentCamera;
+	Component* componentAudioSource;
+	Component* componentAudioListener;
 
 	uint id_;
 	std::string name_;

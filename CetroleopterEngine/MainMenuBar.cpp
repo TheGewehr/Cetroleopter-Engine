@@ -263,16 +263,16 @@ bool MainMenuBar::PlayPauseMenuBar()
 
 		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
 		{
-			sceneTimer = 0;
+			App->scene_intro->sceneTimer = 0;
 		}
 
 		ImGui::Separator();
 
-		ImGui::Text("\n Game time: %i \n", sceneTimer);
+		ImGui::Text("\n Game time: %i \n", App->scene_intro->sceneTimer);
 
 		if (counterON == true)
 		{
-			sceneTimer++;
+			App->scene_intro->sceneTimer++;
 		}
 
 		ImGui::EndMenu();

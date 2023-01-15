@@ -6,6 +6,11 @@
 #include "ModuleCamera3D.h"
 #include "ModuleCameraComponent.h"
 #include "ModuleMeshComponent.h"
+#include "ModuleAudioSourceComponent.h"
+#include "ModuleAudioListenerComponent.h"
+
+#include "Game/Library/Sounds/Wwise_IDs.h"
+
 //#include "PhysBody3D.h"
 
 ModuleSceneIntro::ModuleSceneIntro(bool start_enabled) : Module(start_enabled)
@@ -34,6 +39,8 @@ bool ModuleSceneIntro::Start()
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
+
+	sceneTimer = 0;
 	return ret;
 }
 
@@ -71,12 +78,17 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->camera->mainCamera->DrawBoundingBox(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints, App->camera->mainCamera->frustumColor);
 		}
 
+		if (sceneTimer >= 1 && sceneTimer <= 2)
+		{
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent(AK::EVENTS::TRAIN_SOUND);
+		}
+
 		if (App->renderer3D->wireframeMode == false)
 		{
 			glPolygonMode(GL_FRONT, GL_FILL);
 		}
 
-		gameObjects.at(i)->Render();		
+		gameObjects.at(i)->Render();
 	}
 
 	return UPDATE_CONTINUE;
