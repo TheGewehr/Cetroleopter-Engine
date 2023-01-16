@@ -49,7 +49,7 @@ bool ModuleSceneIntro::Start()
 		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 		{
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAINPLAY);
-			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
+			//App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
 		}
 		if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
 		{
