@@ -30,6 +30,7 @@ public:
 	
 	//uint sceneTimer = 0;
 	bool counterON = false;
+	bool wasMusicPaused = false;
 };
 
 #endif 

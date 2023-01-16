@@ -55,6 +55,9 @@ bool ModuleSceneIntro::Start()
 		{
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::WINDOWS);
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::WINDOWS);
+
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::MUSICLOOPPLAY);
+			//App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPPLAY);
 		}
 	}
 

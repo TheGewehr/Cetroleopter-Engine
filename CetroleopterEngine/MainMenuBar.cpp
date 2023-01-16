@@ -312,6 +312,49 @@ bool MainMenuBar::PlayPauseMenuBar()
 		//	App->scene_intro->trainTimer++;
 		//}
 
+		ImGui::Separator();
+
+		if (ImGui::MenuItem(ICON_FA_PLAY " Play BG music"))
+		{
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+				{
+					if(wasMusicPaused == false) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPPLAY);
+					else if (wasMusicPaused == true) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPRESUME);
+				}
+			}
+			wasMusicPaused = false;
+		}
+
+		if (ImGui::MenuItem(ICON_FA_STOP " Stop BG music"))
+		{
+			wasMusicPaused = true;
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+				{
+					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPPAUSE);
+				}
+			}
+		}
+
+		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset BG music"))
+		{
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+				{
+					if (wasMusicPaused == false)
+					{
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPSTOP);
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPPLAY);
+					}
+					else if(wasMusicPaused == true) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::MUSICLOOPSTOP);
+				}
+			}
+		}
+
 		ImGui::EndMenu();
 	}
 
