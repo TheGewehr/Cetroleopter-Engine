@@ -42,11 +42,10 @@ bool ModuleSceneIntro::Start()
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
 
-	listener = CreateSoundObj(9999999, "Listener", App->camera->mainCamera->Position.x, App->camera->mainCamera->Position.y, App->camera->mainCamera->Position.z);
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
-		if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 		{
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
@@ -87,7 +86,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		{
-			if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+			if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 			{
 				//gameObjects.at(i)->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
 				gameObjects.at(i)->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
@@ -144,13 +143,6 @@ update_status ModuleSceneIntro::Update(float dt)
 
 update_status ModuleSceneIntro::PostUpdate(float dt)
 {
-	//vec3 cameraPosition = App->camera->mainCamera->Position;
-	//audioListener.GetTransformComponent()->position.x = cameraPosition.x;
-	//audioListener.GetTransformComponent()->position.y = cameraPosition.y;
-	//audioListener.GetTransformComponent()->position.z = cameraPosition.z;
-	listener->SetPosition(App->camera->mainCamera->frustum.pos.x, App->camera->mainCamera->frustum.pos.y, App->camera->mainCamera->frustum.pos.z,
-		App->camera->mainCamera->frustum.front.x, App->camera->mainCamera->frustum.front.y, App->camera->mainCamera->frustum.front.z,
-		App->camera->mainCamera->frustum.up.x, App->camera->mainCamera->frustum.up.y, App->camera->mainCamera->frustum.up.z);
 	
 
 	return UPDATE_CONTINUE;

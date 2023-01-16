@@ -10,8 +10,8 @@
 
 AudioListenerComponent::AudioListenerComponent(ModuleGameObject* base) : Component(base, ComponentTypes::AUDIOLISTENER, "AudioListener")
 {
-	float3 pos = base->GetTransformComponent()->GetPosition();
-	listener = CreateSoundObj(base->id_, base->GetName().c_str(), pos.x, pos.y, pos.z);
+	//float3 pos = base->GetTransformComponent()->GetPosition();
+	//listener = CreateSoundObj(base->id_, base->GetName().c_str(), pos.x, pos.y, pos.z);
 }
 
 AudioListenerComponent::~AudioListenerComponent()
@@ -26,7 +26,7 @@ bool AudioListenerComponent::Init()
 
 update_status AudioListenerComponent::Update()
 {
-	listener->SetPosition();
+	//listener->SetPosition();
 
 
 	/*listener->SetPosition(App->camera->mainCamera->frustum.pos.x, App->camera->mainCamera->frustum.pos.y, App->camera->mainCamera->frustum.pos.z,
