@@ -290,7 +290,7 @@ bool MainMenuBar::PlayPauseMenuBar()
 		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
 		{
 			App->scene_intro->sceneTimer = 0;
-			App->scene_intro->trainTimer = 0;
+			App->scene_intro->trainTimer.Reset();
 
 			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
 			{

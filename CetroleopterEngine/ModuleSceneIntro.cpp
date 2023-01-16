@@ -155,9 +155,6 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
 		}
 
-
-
-
 		gameObjects.at(i)->Render();
 	}
 
