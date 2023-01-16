@@ -14,6 +14,12 @@
 #include "ModuleModelImport.h"
 #include "ModuleSaveLoad.h"
 #include "ConsoleWindow.h"
+#include "ModuleSceneIntro.h"
+
+#include "ModuleAudio.h"
+#include "ModuleAudioSourceComponent.h"
+#include "Game/Library/Sounds/Wwise_IDs.h"
+
 
 MainMenuBar::MainMenuBar(const char* name, bool isActive) : ImGuiWindowBase("MainMenuBar", isActive = true)
 {
@@ -253,18 +259,47 @@ bool MainMenuBar::PlayPauseMenuBar()
 	{
 		if (ImGui::MenuItem(ICON_FA_PLAY " Play"))
 		{
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+				{
+					if(App->scene_intro->sceneTimer > 0) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINRESUME);
+					else if (App->scene_intro->sceneTimer == 0)
+					{
+						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
+					}
+				}
+			}
+
 			counterON = true;
 		}
 
 		if (ImGui::MenuItem(ICON_FA_STOP " Stop"))
 		{
 			counterON = false;
+
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+				{
+					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPAUSE);
+				}
+			}
 		}
 
 		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
 		{
 			App->scene_intro->sceneTimer = 0;
 			App->scene_intro->trainTimer = 0;
+
+			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+			{
+				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+				{
+					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINSTOP);
+					if(counterON == true) App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
+				}
+			}
 		}
 
 		ImGui::Separator();

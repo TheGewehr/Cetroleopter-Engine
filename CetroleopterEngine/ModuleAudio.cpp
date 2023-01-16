@@ -123,6 +123,11 @@ bool ModuleAudio::Start()
     LoadWwiseBank("Init");
     LoadWwiseBank("Music");
 
+    // Register the main listener.
+    AK::SoundEngine::RegisterGameObj(MY_DEFAULT_LISTENER, "My Default Listener");
+
+    // Set one listener as the default.
+    AK::SoundEngine::SetDefaultListeners(&MY_DEFAULT_LISTENER, 1);
 
     return true;
 }
@@ -130,12 +135,6 @@ bool ModuleAudio::Start()
 update_status ModuleAudio::Update(float dt)
 {
     SetVolume("Volume", 50);
-
-    // Register the main listener.
-    AK::SoundEngine::RegisterGameObj(MY_DEFAULT_LISTENER, "My Default Listener");
-
-    // Set one listener as the default.
-    AK::SoundEngine::SetDefaultListeners(&MY_DEFAULT_LISTENER, 1);
 
     AkVector listenerPosition;
     listenerPosition.X = App->camera->mainCamera->Position.x;
