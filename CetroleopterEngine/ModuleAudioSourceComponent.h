@@ -25,10 +25,12 @@ public:
 	bool SaveRequest(int positionInList);
 	bool LoadRequest(int positionInList);
 
+	void SetSoundID(AkUniqueID ID);
+
 public:
 
 	WwiseObject* sound = nullptr;
-
+	AkUniqueID sound_ID = 0;
 };
 
 

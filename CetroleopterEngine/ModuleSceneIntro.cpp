@@ -44,6 +44,15 @@ bool ModuleSceneIntro::Start()
 
 	listener = CreateSoundObj(9999999, "Listener", App->camera->mainCamera->Position.x, App->camera->mainCamera->Position.y, App->camera->mainCamera->Position.z);
 
+	for (int i = 0; i < gameObjects.size(); i++)
+	{
+		if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+		{
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
+		}
+	}
+
 	sceneTimer = 0;
 	trainTimer = 0;
 
@@ -89,13 +98,14 @@ update_status ModuleSceneIntro::Update(float dt)
 			glPolygonMode(GL_FRONT, GL_FILL);
 		}
 
-		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
-		{
-			if (sceneTimer == 1)
-			{
-				App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
-			}
-		}
+		//if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+		//{
+		//	if (sceneTimer == 1)
+		//	{
+		//		App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
+		//		App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
+		//	}
+		//}
 
 		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 		{

@@ -46,3 +46,8 @@ bool AudioSourceComponent::LoadRequest(int positionInList)
 {
 	return true;
 }
+
+void AudioSourceComponent::SetSoundID(AkUniqueID ID)
+{
+	sound_ID = ID;
+}
