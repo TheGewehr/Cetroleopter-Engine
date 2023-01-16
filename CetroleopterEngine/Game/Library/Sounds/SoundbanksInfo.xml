@@ -16,6 +16,11 @@
 			<ShortName>Init</ShortName>
 			<Path>Init.bnk</Path>
 		</SoundBank>
+		<SoundBank Id="3161415855" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Event</ObjectPath>
+			<ShortName>Event</ShortName>
+			<Path>Event.bnk</Path>
+		</SoundBank>
 		<SoundBank Id="3991942870" Language="SFX">
 			<ObjectPath>\SoundBanks\Default Work Unit\Music</ObjectPath>
 			<ShortName>Music</ShortName>

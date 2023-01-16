@@ -23,6 +23,13 @@
     "Path": "Init.bnk"
    },
    {
+    "Id": "3161415855",
+    "Language": "SFX",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Event",
+    "ShortName": "Event",
+    "Path": "Event.bnk"
+   },
+   {
     "Id": "3991942870",
     "Language": "SFX",
     "ObjectPath": "\\SoundBanks\\Default Work Unit\\Music",

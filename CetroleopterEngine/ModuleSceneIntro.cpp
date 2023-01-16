@@ -85,6 +85,15 @@ update_status ModuleSceneIntro::Update(float dt)
 
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
+		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
+		{
+			if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+			{
+				//gameObjects.at(i)->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
+				gameObjects.at(i)->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
+			}
+		}
+		
 
 		if (App->scene_intro->gameObjects[i]->isObjectSelected_ == true)
 		{

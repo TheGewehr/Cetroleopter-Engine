@@ -4,6 +4,7 @@
 #include "ModuleTransformComponent.h"
 #include "ModuleSceneIntro.h"
 #include "ModuleCameraComponent.h"
+#include <AK/SoundEngine/Common/AkSoundEngine.h>
 
 #include "mmgr/mmgr.h"
 
@@ -25,14 +26,26 @@ bool AudioListenerComponent::Init()
 
 update_status AudioListenerComponent::Update()
 {
-	listener->SetPosition(App->camera->mainCamera->frustum.pos.x, App->camera->mainCamera->frustum.pos.y, App->camera->mainCamera->frustum.pos.z,
+	listener->SetPosition();
+
+
+	/*listener->SetPosition(App->camera->mainCamera->frustum.pos.x, App->camera->mainCamera->frustum.pos.y, App->camera->mainCamera->frustum.pos.z,
 						  App->camera->mainCamera->frustum.front.x, App->camera->mainCamera->frustum.front.y, App->camera->mainCamera->frustum.front.z,
-						  App->camera->mainCamera->frustum.up.x, App->camera->mainCamera->frustum.up.y, App->camera->mainCamera->frustum.up.z);
+						  App->camera->mainCamera->frustum.up.x, App->camera->mainCamera->frustum.up.y, App->camera->mainCamera->frustum.up.z);*/
 
 	//Si no funciona con el frustum usar esta
 	//listener->SetPosition(App->camera->mainCamera->Position.x, App->camera->mainCamera->Position.y, App->camera->mainCamera->Position.z,
 	//						App->camera->mainCamera->frustum.front.x, App->camera->mainCamera->frustum.front.y, App->camera->mainCamera->frustum.front.z,
 	//						App->camera->mainCamera->frustum.up.x, App->camera->mainCamera->frustum.up.y, App->camera->mainCamera->frustum.up.z);
+
+	/*AKRESULT eResult = AK::SoundEngine::SetRTPCValue("Volume", 100, listener->GetID());
+	if (eResult != AK_Success)
+	{
+		assert(!"Error changing audio volume!");
+	}*/
+
+	/*App->audio->SetVolume("Volume", App->audio->volume);
+	App->audio->muted = false;*/
 
 	return UPDATE_CONTINUE;
 }
