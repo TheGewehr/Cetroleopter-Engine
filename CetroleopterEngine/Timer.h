@@ -14,6 +14,12 @@ public:
 	void Start();
 	void Reset();
 
+	void Pause();
+	void Resume();
+
+	float PauseRetSeconds();
+	float ResumeRetSeconds();
+
 	Uint32 Read();
 	float ReadSec() const;
 
@@ -22,6 +28,8 @@ public:
 	bool	running;
 	bool	reset = false;
 	Uint32	started_at;
+	Uint32  paused_at;
+	Uint32  resumed_at;
 	Uint32	stopped_at;
 };
 
