@@ -25,6 +25,8 @@ public:
 
 	void LoadWwiseBank(const char* path);
 
+	void SetVolume(const char* rtpc, float volumeValue);
+
 };
 
 class WwiseObject

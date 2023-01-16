@@ -4,6 +4,7 @@
 
 #include "ModuleCameraComponent.h"
 #include "ModuleTransformComponent.h"
+#include "ModuleAudioListenerComponent.h"
 
 #include "Include_Wwise.h"
 
@@ -126,6 +127,7 @@ bool ModuleAudio::Start()
 
 update_status ModuleAudio::Update(float dt)
 {
+    SetVolume("Volume", 50);
 
 	return UPDATE_CONTINUE;
 }
@@ -168,6 +170,15 @@ void ModuleAudio::LoadWwiseBank(const char* path)
     LoadBank(bank_path.c_str());
 
     std::string json_file = bank_path.substr(0, bank_path.find_last_of('.')) + ".json"; // Changing .bnk with .json
+}
+
+void ModuleAudio::SetVolume(const char* rtpcID, float volumeValue)
+{
+    //AKRESULT eResult = AK::SoundEngine::SetRTPCValue(rtpcID, volumeValue, App->camera->mainCamera->objMain_->GetAudioListenereComponent()->listener->GetID()); // Put a correct listener
+    //if (eResult != AK_Success)
+    //{
+    //    assert(!"Error changing audio volume!");
+    //}
 }
 
 WwiseObject::WwiseObject(unsigned long idGO, const char* nameGO)
