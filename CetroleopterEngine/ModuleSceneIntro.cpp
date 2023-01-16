@@ -50,6 +50,11 @@ bool ModuleSceneIntro::Start()
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
 		}
+		if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
+		{
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::WINDOWS);
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::WINDOWS);
+		}
 	}
 
 	sceneTimer = 0;
@@ -86,10 +91,13 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		if (App->input->GetKey(SDL_SCANCODE_1) == KEY_DOWN)
 		{
-			if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+			if (App->scene_intro->gameObjects[i]->GetName() == "RandomComputer5")
 			{
 				//gameObjects.at(i)->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
-				gameObjects.at(i)->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
+				App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetPosition(App->scene_intro->gameObjects[i]->GetTransformComponent()->position.x,
+					App->scene_intro->gameObjects[i]->GetTransformComponent()->position.y,
+					App->scene_intro->gameObjects[i]->GetTransformComponent()->position.z);
+				gameObjects.at(i)->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::WINDOWS);
 			}
 		}
 		
@@ -105,15 +113,6 @@ update_status ModuleSceneIntro::Update(float dt)
 		{
 			glPolygonMode(GL_FRONT, GL_FILL);
 		}
-
-		//if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
-		//{
-		//	if (sceneTimer == 1)
-		//	{
-		//		App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->SetSoundID(AK::EVENTS::TRAIN);
-		//		App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
-		//	}
-		//}
 
 		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 		{
