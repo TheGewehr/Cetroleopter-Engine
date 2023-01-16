@@ -123,6 +123,9 @@ update_status ModuleSceneIntro::Update(float dt)
 		{
 			if (trainTimer.running == true)
 			{
+				float trainPosition = 220.f * trainTimer.ReadSec();
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition);
+
 				if (trainTimer.ReadSec() > 10.f)
 				{
 					trainTimer.Reset();
@@ -134,9 +137,14 @@ update_status ModuleSceneIntro::Update(float dt)
 			{
 				trainTimer.Start();
 			}
+			else if (trainTimer.paused == true)
+			{
+				
+				float trainPosition = 220.f * (float(SDL_GetTicks() - trainTimer.paused_at) / 1000.0f);
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition);
+			}
 
-			float trainPosition = 220.f*trainTimer.ReadSec();
-			App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f,0.f, trainPosition);
+			
 
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetPosition(App->scene_intro->gameObjects[i]->GetTransformComponent()->position.x,
 				App->scene_intro->gameObjects[i]->GetTransformComponent()->position.y,

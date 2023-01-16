@@ -27,6 +27,8 @@ public:
 
 	bool	running;
 	bool	reset = false;
+	bool	paused = false;
+	
 	Uint32	started_at;
 	Uint32  paused_at;
 	Uint32  resumed_at;

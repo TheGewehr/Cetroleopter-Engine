@@ -15,6 +15,7 @@ Timer::Timer()
 void Timer::Start()
 {
 	reset = false;
+	paused = false;
 	running = true;
 	started_at = SDL_GetTicks();
 }
@@ -23,6 +24,7 @@ void Timer::Start()
 void Timer::Reset()
 {
 	reset = true;
+	paused = false;
 	running = false;
 	stopped_at = SDL_GetTicks();
 }
@@ -30,6 +32,7 @@ void Timer::Reset()
 void Timer::Pause()
 {
 	reset = false;
+	paused = true;
 	running = false;
 	paused_at = SDL_GetTicks();
 }
@@ -37,6 +40,7 @@ void Timer::Pause()
 void Timer::Resume()
 {
 	reset = false;
+	paused = false;
 	running = true;
 	resumed_at = paused_at;
 }
@@ -44,6 +48,7 @@ void Timer::Resume()
 float Timer::PauseRetSeconds()
 {
 	reset = false;
+	paused = true;
 	running = false;
 	paused_at = SDL_GetTicks();
 
@@ -53,6 +58,7 @@ float Timer::PauseRetSeconds()
 float Timer::ResumeRetSeconds()
 {
 	reset = false;
+	paused = false;
 	running = true;
 	resumed_at = paused_at;
 
