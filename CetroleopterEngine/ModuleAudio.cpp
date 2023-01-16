@@ -6,12 +6,9 @@
 #include "ModuleTransformComponent.h"
 
 #include "Include_Wwise.h"
-#include "Wwise/IO/Win32/AkFilePackageLowLevelIOBlocking.h"
-#include "Wwise/IO/Win32/AkDefaultIOHookBlocking.h"
-#include "Wwise/SDK/include/AkDefaultIOHookBlocking.h"
-#include "Wwise/SDK/include/AkFileHelpers.h"
-#include <AK/Plugin/AkRoomVerbFXFactory.h>
-#include "AK/SpatialAudio/Common/AkSpatialAudio.h"
+
+//#include "AK/SpatialAudio/Common/AkSpatialAudio.h"
+
 //#include <AK/SoundEngine/Common/AkMemoryMgr.h>                   // Memory Manager interface
 //#include <AK/SoundEngine/Common/AkModule.h>                     // Default memory manager
 //
@@ -27,7 +24,7 @@
 //
 //#include <AK/SpatialAudio/Common/AkSpatialAudio.h>              // Spatial Audio
 
-#include "Game/Library/Sounds/Wwise_IDs.h"
+#include "Wwise/IO/Win32/AkFilePackageLowLevelIOBlocking.h"
 
 CAkFilePackageLowLevelIOBlocking g_lowLevelIO;
 
@@ -44,48 +41,45 @@ bool ModuleAudio::Init()
 {
 	LOG("Initializing ModuleAudio");
 
-	AkMemSettings memSettings;
-    memSettings.uMaxNumPools = 20; // the original: AK::StreamMgr::GetDefaultSettings(memSettings);
+    // Initializing default memory manager
+    AkMemSettings memSettings;
+    memSettings.uMaxNumPools = 20;
 
-	if (AK::MemoryMgr::Init(&memSettings) != AK_Success)
-	{
-		assert(!"Could not create the memory manager.");
-		return false;
-	}
+    if (AK::MemoryMgr::Init(&memSettings) != AK_Success)
+    {
+        assert(!"Could not create the memory manager.");
+        return false;
+    }
 
+    // Initializing the Streaming Manager
     AkStreamMgrSettings stmSettings;
     AK::StreamMgr::GetDefaultSettings(stmSettings);
 
-    // Customize the Stream Manager settings here.
-
+    // Customize the Stream Manager settings here
     if (!AK::StreamMgr::Create(stmSettings))
     {
         assert(!"Could not create the Streaming Manager");
         return false;
     }
-
-    //
-    // Create a streaming device with blocking low-level I/O handshaking.
-    // Note that you can override the default low-level I/O module with your own. 
-    //
+    // -------------------
     AkDeviceSettings deviceSettings;
     AK::StreamMgr::GetDefaultDeviceSettings(deviceSettings);
-
-    // Customize the streaming device settings here.
-
-    // CAkFilePackageLowLevelIOBlocking::Init() creates a streaming device
-    // in the Stream Manager, and registers itself as the File Location Resolver.
     if (g_lowLevelIO.Init(deviceSettings) != AK_Success)
     {
         assert(!"Could not create the streaming device and Low-Level I/O system");
         return false;
     }
 
-    //
-    // Create the Sound Engine
-    // Using default initialization parameters
-    //
+    // Initializing the default IO device
+    AkDeviceSettings deviceSettings2;
+    AK::StreamMgr::GetDefaultDeviceSettings(deviceSettings2);
+    if (g_lowLevelIO.Init(deviceSettings2) != AK_Success)
+    {
+        assert(!"Could not create the streaming device and Low-Level I/O system");
+        return false;
+    }
 
+    // Initializing the Sound Engine
     AkInitSettings initSettings;
     AkPlatformInitSettings platformInitSettings;
     AK::SoundEngine::GetDefaultInitSettings(initSettings);
@@ -97,11 +91,7 @@ bool ModuleAudio::Init()
         return false;
     }
 
-    //
-    // Initialize the music engine
-    // Using default initialization parameters
-    //
-
+    // Initializing the Music Engine
     AkMusicSettings musicInit;
     AK::MusicEngine::GetDefaultInitSettings(musicInit);
 
@@ -110,8 +100,6 @@ bool ModuleAudio::Init()
         assert(!"Could not initialize the Music Engine.");
         return false;
     }
-
-    
 
     //
     // Initialize Spatial Audio                     Gives errors don't know why since all the initialitation is copied from the library wiki
@@ -130,6 +118,7 @@ bool ModuleAudio::Init()
 
 bool ModuleAudio::Start()
 {
+    LoadWwiseBank("Init");
     LoadWwiseBank("Music");
 
     return true;

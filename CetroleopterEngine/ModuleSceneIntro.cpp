@@ -84,14 +84,17 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->camera->mainCamera->DrawBoundingBox(App->scene_intro->gameObjects[i]->GetMeshComponent()->bboxPoints, App->camera->mainCamera->frustumColor);
 		}
 
-		if (sceneTimer == 1)
-		{
-			//App->scene_intro->gameObjects[0]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
-		}
-
 		if (App->renderer3D->wireframeMode == false)
 		{
 			glPolygonMode(GL_FRONT, GL_FILL);
+		}
+
+		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
+		{
+			if (sceneTimer == 1)
+			{
+				App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAIN);
+			}
 		}
 
 		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
