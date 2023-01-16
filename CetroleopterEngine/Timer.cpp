@@ -34,7 +34,7 @@ void Timer::Pause()
 	reset = false;
 	paused = true;
 	running = false;
-	paused_at = SDL_GetTicks();
+	paused_at = SDL_GetTicks() - started_at;
 }
 
 void Timer::Resume()
@@ -50,7 +50,7 @@ float Timer::PauseRetSeconds()
 	reset = false;
 	paused = true;
 	running = false;
-	paused_at = SDL_GetTicks();
+	paused_at = SDL_GetTicks() - started_at;
 
 	return float(SDL_GetTicks() - paused_at) / 1000.0f;
 }

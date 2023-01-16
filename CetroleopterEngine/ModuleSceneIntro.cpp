@@ -38,7 +38,7 @@ bool ModuleSceneIntro::Start()
 	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Tube"), "Assets/railway_scene/tube.fbx", "Assets/railway_scene/TexturesCom_ConcreteWall_1024_albedo.png");
 	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Cables"), "Assets/railway_scene/cables.fbx", "Assets/railway_scene/black.png");
 	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "RandomComputer"), "Assets/railway_scene/random_computer.fbx", "Assets/railway_scene/computer.png");
-	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Train"), "Assets/railway_scene/train.fbx", "Assets/railway_scene/train_inverted.png");
+	App->modelImport->LoadModel_Textured(App->scene_intro->CreateEmptyGameObject(nullptr, "Train"), "Assets/railway_scene/train_posV2.fbx", "Assets/railway_scene/train_inverted.png");
 
 	App->camera->Move(vec3(1.0f, 1.0f, 0.0f));
 	App->camera->LookAt(vec3(0, 0, 0));
@@ -123,25 +123,26 @@ update_status ModuleSceneIntro::Update(float dt)
 		{
 			if (trainTimer.running == true)
 			{
-				float trainPosition = 220.f * trainTimer.ReadSec();
+				float trainPosition = (220.f * trainTimer.ReadSec())-1000.f;
 				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition);
 
 				if (trainTimer.ReadSec() > 10.f)
 				{
 					trainTimer.Reset();
 					//App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
-					App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, 0.f);
+					
 				}
 			}
 			else if (trainTimer.reset == true)
 			{
-				trainTimer.Start();
+				
+				//trainTimer.Start();
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x);
 			}
 			else if (trainTimer.paused == true)
 			{
 				
-				float trainPosition = 220.f * (float(SDL_GetTicks() - trainTimer.paused_at) / 1000.0f);
-				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition);
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x);
 			}
 
 			
@@ -159,7 +160,7 @@ update_status ModuleSceneIntro::Update(float dt)
 				//App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
 			}
 		}
-		else if (trainTimer.reset == true)
+		else if (trainSoundTimer.reset == true)
 		{
 			trainSoundTimer.Start();
 			//play event
