@@ -27,6 +27,38 @@ void Timer::Reset()
 	stopped_at = SDL_GetTicks();
 }
 
+void Timer::Pause()
+{
+	reset = false;
+	running = false;
+	paused_at = SDL_GetTicks();
+}
+
+void Timer::Resume()
+{
+	reset = false;
+	running = true;
+	resumed_at = paused_at;
+}
+
+float Timer::PauseRetSeconds()
+{
+	reset = false;
+	running = false;
+	paused_at = SDL_GetTicks();
+
+	return float(SDL_GetTicks() - paused_at) / 1000.0f;
+}
+
+float Timer::ResumeRetSeconds()
+{
+	reset = false;
+	running = true;
+	resumed_at = paused_at;
+
+	return float(SDL_GetTicks() - started_at) / 1000.0f;;
+}
+
 // ---------------------------------------------
 Uint32 Timer::Read()
 {
