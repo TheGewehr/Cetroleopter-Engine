@@ -28,7 +28,6 @@ public:
 	std::vector<ModuleGameObject*> gameObjects = {};
 	std::string name = "DefaultScene";
 
-	WwiseObject* listener = nullptr;
 	ModuleGameObject* musicGameObject = nullptr;
 
 	uint sceneTimer = 0;

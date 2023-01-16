@@ -27,6 +27,8 @@ public:
 
 	void SetVolume(const char* rtpc, float volumeValue);
 
+	AkGameObjectID MY_DEFAULT_LISTENER = 0;
+
 };
 
 class WwiseObject
