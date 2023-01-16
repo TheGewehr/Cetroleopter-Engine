@@ -9,6 +9,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	3572826029	TrainPause			\Default Work Unit\TrainPause	
 	3760876308	TrainResume			\Default Work Unit\TrainResume	
 
+Game Parameter	ID	Name			Wwise Object Path	Notes
+	3671138082	New_Game_Parameter			\Default Work Unit\New_Game_Parameter	
+
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
 	275830813	Heartache	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\Heartache_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\MusicLoopSequenceContainer\Heartache		20843544
 	470945920	Wizard	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\Wizard_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\MusicLoopSequenceContainer\Wizard		33231732
