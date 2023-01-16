@@ -125,6 +125,10 @@ update_status ModuleSceneIntro::Update(float dt)
 				trainTimer = 0;
 				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, 0.f);
 			}
+
+			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetPosition(App->scene_intro->gameObjects[i]->GetTransformComponent()->position.x,
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->position.y,
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->position.z);
 		}
 
 		gameObjects.at(i)->Render();
