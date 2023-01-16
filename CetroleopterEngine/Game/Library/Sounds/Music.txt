@@ -1,12 +1,17 @@
 Event	ID	Name			Wwise Object Path	Notes
+	201857829	TrainStop			\Default Work Unit\TrainStop	
 	270908044	Windows			\Default Work Unit\Windows	
-	763626682	Heartache			\Default Work Unit\Heartache	
-	3202541808	Wizard			\Default Work Unit\Wizard	
-	3412057565	Train			\Default Work Unit\Train	
+	1319684385	MusicLoopResume			\Default Work Unit\MusicLoopResume	
+	1513415671	TrainPlay			\Default Work Unit\TrainPlay	
+	2010092982	MusicLoopPlay			\Default Work Unit\MusicLoopPlay	
+	2429473254	MusicLoopPause			\Default Work Unit\MusicLoopPause	
+	2740630344	MusicLoopStop			\Default Work Unit\MusicLoopStop	
+	3572826029	TrainPause			\Default Work Unit\TrainPause	
+	3760876308	TrainResume			\Default Work Unit\TrainResume	
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	275830813	Heartache	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\Heartache_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Heartache		20843544
-	470945920	Wizard	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\Wizard_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\Wizard		33231732
+	275830813	Heartache	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\Heartache_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\MusicLoopSequenceContainer\Heartache		20843544
+	470945920	Wizard	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\Wizard_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\MusicLoopSequenceContainer\Wizard		33231732
 	523756601	windows_on	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\windows_on_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\windows_on		716864
-	720752218	train_sound	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\train_sound_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\train_sound		7823836
+	720752218	train_sound	C:\Users\Usuario\Desktop\Oldest version wwise project\.cache\Windows\SFX\train_sound_1C9C67B2.wem		\Actor-Mixer Hierarchy\Default Work Unit\TrainLoop\train_sound		7823836
 

@@ -13,10 +13,15 @@ namespace AK
 {
     namespace EVENTS
     {
-        static const AkUniqueID HEARTACHE = 763626682U;
-        static const AkUniqueID TRAIN = 3412057565U;
+        static const AkUniqueID MUSICLOOPPAUSE = 2429473254U;
+        static const AkUniqueID MUSICLOOPPLAY = 2010092982U;
+        static const AkUniqueID MUSICLOOPRESUME = 1319684385U;
+        static const AkUniqueID MUSICLOOPSTOP = 2740630344U;
+        static const AkUniqueID TRAINPAUSE = 3572826029U;
+        static const AkUniqueID TRAINPLAY = 1513415671U;
+        static const AkUniqueID TRAINRESUME = 3760876308U;
+        static const AkUniqueID TRAINSTOP = 201857829U;
         static const AkUniqueID WINDOWS = 270908044U;
-        static const AkUniqueID WIZARD = 3202541808U;
     } // namespace EVENTS
 
     namespace GAME_PARAMETERS

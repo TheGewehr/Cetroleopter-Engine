@@ -37,24 +37,49 @@
     "Path": "Music.bnk",
     "IncludedEvents": [
      {
-      "Id": "763626682",
-      "Name": "Heartache",
-      "ObjectPath": "\\Events\\Default Work Unit\\Heartache"
+      "Id": "2429473254",
+      "Name": "MusicLoopPause",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopPause"
      },
      {
-      "Id": "3412057565",
-      "Name": "Train",
-      "ObjectPath": "\\Events\\Default Work Unit\\Train"
+      "Id": "2010092982",
+      "Name": "MusicLoopPlay",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopPlay"
+     },
+     {
+      "Id": "1319684385",
+      "Name": "MusicLoopResume",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopResume"
+     },
+     {
+      "Id": "2740630344",
+      "Name": "MusicLoopStop",
+      "ObjectPath": "\\Events\\Default Work Unit\\MusicLoopStop"
+     },
+     {
+      "Id": "3572826029",
+      "Name": "TrainPause",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainPause"
+     },
+     {
+      "Id": "1513415671",
+      "Name": "TrainPlay",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainPlay"
+     },
+     {
+      "Id": "3760876308",
+      "Name": "TrainResume",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainResume"
+     },
+     {
+      "Id": "201857829",
+      "Name": "TrainStop",
+      "ObjectPath": "\\Events\\Default Work Unit\\TrainStop"
      },
      {
       "Id": "270908044",
       "Name": "Windows",
       "ObjectPath": "\\Events\\Default Work Unit\\Windows"
-     },
-     {
-      "Id": "3202541808",
-      "Name": "Wizard",
-      "ObjectPath": "\\Events\\Default Work Unit\\Wizard"
      }
     ],
     "IncludedMemoryFiles": [
