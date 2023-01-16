@@ -142,7 +142,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 		if (trainSoundTimer.running == true)
 		{
-			if (trainSoundTimer.ReadSec() > 41.f)
+			if (trainSoundTimer.ReadSec() > 40.0f)
 			{
 				trainSoundTimer.Reset();
 				//App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
