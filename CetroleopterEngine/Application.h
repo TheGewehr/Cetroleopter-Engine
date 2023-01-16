@@ -71,6 +71,8 @@ public:
 	// For log Windows
 	void AddLogFromApp(const char* str);
 
+	int GetLastFPS();
+
 	int GetMaxFPS()const;
 	void SetMaxFPS(int value);
 

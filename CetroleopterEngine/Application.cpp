@@ -195,6 +195,11 @@ void Application::SetMaxFPS(int value)
 	maxFps = value;
 }
 
+int Application::GetLastFPS()
+{
+	return lastFps;
+}
+
 void Application::UpdateFrameData(float frames, float ms)
 {
 	if (moduleUi != nullptr)

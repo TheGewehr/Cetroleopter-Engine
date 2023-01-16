@@ -2,6 +2,7 @@
 #include "Module.h"
 //#include "p2DynArray.h"
 #include "Globals.h"
+#include "Timer.h"
 
 class Primitive;
 class ModuleGameObject;
@@ -31,5 +32,8 @@ public:
 	ModuleGameObject* musicGameObject = nullptr;
 
 	uint sceneTimer = 0;
-	uint trainTimer = 0;
+	//uint trainTimer = 0;
+
+	Timer trainTimer;
+	Timer trainSoundTimer;
 };
