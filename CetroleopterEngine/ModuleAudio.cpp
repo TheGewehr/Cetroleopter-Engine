@@ -153,15 +153,17 @@ update_status ModuleAudio::Update(float dt)
     {
         for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
         {
-            App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetAuxiliarySends(12.0f, "Normal_Bus", MY_DEFAULT_LISTENER);
+            App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetAuxiliarySends(0.0f, "Normal_Bus", MY_DEFAULT_LISTENER);
         }
+        LOG("-NORMAL- SOUND MODULATION\n");
     }
     if (soundEffectType_ID == SoundEffectType_ID::REVERB)
     {
         for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
         {
-            App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetAuxiliarySends(12.0f, "Auxiliary_Bus", MY_DEFAULT_LISTENER);
+            App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetAuxiliarySends(1.0f, "Auxiliary_Bus", MY_DEFAULT_LISTENER);
         }
+        LOG("-REVERB- SOUND MODULATION\n");
     }
 
 	return UPDATE_CONTINUE;

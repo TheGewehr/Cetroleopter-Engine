@@ -10,6 +10,7 @@
 #include "ModuleAudioSourceComponent.h"
 #include "ModuleAudioListenerComponent.h"
 #include "MainMenuBar.h"
+#include "ModuleAudio.h"
 
 
 #include "Game/Library/Sounds/Wwise_IDs.h"
@@ -149,6 +150,15 @@ update_status ModuleSceneIntro::Update(float dt)
 	{
 		sceneTimer++;
 		trainTimer++;
+	}
+
+	if (App->camera->mainCamera->Position.z > -400 && App->camera->mainCamera->Position.z < 400)
+	{
+		App->moduleAudio->soundEffectType_ID = SoundEffectType_ID::REVERB;
+	}
+	else
+	{
+		App->moduleAudio->soundEffectType_ID = SoundEffectType_ID::NONE;
 	}
 
 	return UPDATE_CONTINUE;
