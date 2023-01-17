@@ -106,13 +106,13 @@ If the main camera is in the tunnel, a reverb effect appears to simulate the sou
 - Álvaro Milla:
   - Github Account: [mrmille](https://github.com/mrmile)
   
-  ![Alvaro](https://user-images.githubusercontent.com/73583005/212938531-508c1cae-7144-477f-9c5a-1f13955f031c.jpg)
+  ![Alvaro](https://user-images.githubusercontent.com/73583005/212941162-5ed5912e-51c5-4ccc-8010-73054dbe525d.png)
 
 - Alexandre Carreras:
   - Github Account: [TheGewehr](https://github.com/TheGewehr)
   
-  ![Alexandre](https://user-images.githubusercontent.com/73583005/212938651-8a8768b2-7d71-4a26-9f7f-55b6be113602.jpg)
-  
+  ![Alexandre](https://user-images.githubusercontent.com/73583005/212941221-87c9b093-e6ef-4c6c-942a-7eb193f78e19.png)
+
 ## Official Github Page:
 
 https://thegewehr.github.io/Cetroleopter-Engine/
