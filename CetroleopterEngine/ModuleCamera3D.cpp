@@ -16,8 +16,8 @@ ModuleCamera3D::ModuleCamera3D(bool start_enabled) : Module(start_enabled = true
 	mainCamera->Y = vec3(0.0f, 1.0f, 0.0f);
 	mainCamera->Z = vec3(0.0f, 0.0f, 1.0f);
 
-	mainCamera->Position = vec3(0.0f, 50.0f, 50.0f);
-	mainCamera->Reference = vec3(0.0f, 0.0f, 0.0f);
+	mainCamera->Position = vec3(-35.0f, 20.0f, 75.0f);
+	mainCamera->Reference = vec3(-10.0f, 50.0f, 0.0f);
 	isMainCameraMooving = false;
 
 	updateCameraView = false;
