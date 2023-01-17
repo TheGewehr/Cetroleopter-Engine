@@ -19,6 +19,7 @@ Audio Bus	ID	Name			Wwise Object Path	Notes
 	3803692087	Master Audio Bus			\Default Work Unit\Master Audio Bus	
 
 Auxiliary Bus	ID	Name			Wwise Object Path	Notes
+	944811763	Normal_Bus			\Default Work Unit\Master Audio Bus\Normal_Bus	
 	1622449088	Auxiliary_Bus			\Default Work Unit\Master Audio Bus\Auxiliary_Bus	
 
 Effect plug-ins	ID	Name	Type				Notes

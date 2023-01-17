@@ -55,6 +55,7 @@ namespace AK
     namespace AUX_BUSSES
     {
         static const AkUniqueID AUXILIARY_BUS = 1622449088U;
+        static const AkUniqueID NORMAL_BUS = 944811763U;
     } // namespace AUX_BUSSES
 
 }// namespace AK
