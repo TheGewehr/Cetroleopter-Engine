@@ -23,6 +23,11 @@ void Timer::Start()
 // ---------------------------------------------
 void Timer::Reset()
 {
+	started_at = 0;
+	paused_at = 0;
+	resumed_at = 0;
+	stopped_at = 0;
+
 	reset = true;
 	paused = false;
 	running = false;

@@ -266,12 +266,10 @@ bool MainMenuBar::PlayPauseMenuBar()
 					if (App->scene_intro->sceneTimer > 0)
 					{
 						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINRESUME);
-						App->scene_intro->trainTimer.Resume();
 					}
 					else if (App->scene_intro->sceneTimer == 0)
 					{
 						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
-						App->scene_intro->trainTimer.Start();
 					}
 				}
 			}
@@ -288,7 +286,6 @@ bool MainMenuBar::PlayPauseMenuBar()
 				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 				{
 					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPAUSE);
-					App->scene_intro->trainTimer.Pause();
 				}
 			}
 		}
@@ -296,18 +293,16 @@ bool MainMenuBar::PlayPauseMenuBar()
 		if (ImGui::MenuItem(ICON_FA_BACKWARD " Reset"))
 		{
 			App->scene_intro->sceneTimer = 0;
-			App->scene_intro->trainTimer.Reset();
+			App->scene_intro->trainTimer = 0;
 
 			for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
 			{
 				if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 				{
 					App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINSTOP);
-					App->scene_intro->trainTimer.Reset();
 					if (counterON == true)
 					{
 						App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
-						App->scene_intro->trainTimer.Start();
 					}
 				}
 			}
