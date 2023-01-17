@@ -62,8 +62,7 @@ bool ModuleSceneIntro::Start()
 	}
 
 	sceneTimer = 0;
-	trainTimer.Reset();
-	trainSoundTimer.Reset();
+	trainTimer = 0;
 
 	return ret;
 }
@@ -121,28 +120,12 @@ update_status ModuleSceneIntro::Update(float dt)
 
 		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 		{
-			if (trainTimer.running == true)
-			{
-				float trainPosition = (220.f * trainTimer.ReadSec());
-				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition - 1500.f);
+			float trainPosition = (15.f * trainTimer);
+			App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition - 1500.f);
 
-				if (trainTimer.ReadSec() > 10.f)
-				{
-					trainTimer.Reset();
-					//App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
-					
-				}
-			}
-			else if (trainTimer.reset == true)
+			if (trainTimer >= 300)
 			{
-				
-				//trainTimer.Start();
-				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x - 1500.f);
-			}
-			else if (trainTimer.paused == true)
-			{
-				
-				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x - 1500.f);
+				trainTimer = 0;
 			}
 
 			
@@ -150,21 +133,6 @@ update_status ModuleSceneIntro::Update(float dt)
 			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetPosition(App->scene_intro->gameObjects[i]->GetTransformComponent()->position.x,
 				App->scene_intro->gameObjects[i]->GetTransformComponent()->position.y,
 				App->scene_intro->gameObjects[i]->GetTransformComponent()->position.z);
-		}
-
-		if (trainSoundTimer.running == true)
-		{
-			if (trainSoundTimer.ReadSec() > 40.0f)
-			{
-				trainSoundTimer.Reset();
-				//App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
-			}
-		}
-		else if (trainSoundTimer.reset == true)
-		{
-			trainSoundTimer.Start();
-			//play event
-			App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->PlayEvent_ID(AK::EVENTS::TRAINPLAY);
 		}
 
 		gameObjects.at(i)->Render();
@@ -175,7 +143,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	if (App->moduleUi->mainMenuBar->counterON == true)
 	{
 		sceneTimer++;
-		//trainTimer++;
+		trainTimer++;
 	}
 
 	return UPDATE_CONTINUE;

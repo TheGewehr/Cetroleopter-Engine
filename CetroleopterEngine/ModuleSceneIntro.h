@@ -34,6 +34,5 @@ public:
 	uint sceneTimer = 0;
 	//uint trainTimer = 0;
 
-	Timer trainTimer;
-	Timer trainSoundTimer;
+	uint trainTimer;
 };
