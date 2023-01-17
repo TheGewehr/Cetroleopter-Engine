@@ -73,7 +73,14 @@ Those are features wich have been fully implemented but wich for unknown reasons
 - Mesh transformations
 - Mouse picking
 
+## New Engine dedicated Audio Module!
+
+A module to play sounds and music have been added! Go to the Play/Stop tab and select "Play" to make the game run and listen to its sounds or "Play BG music" to listen to its soundtracks (they switch every ~2 minutes).
+You can also press "1" on your keyboard to make the computer asset play the windows XP login sound.
+
 ## Engine Controls:
+
+- **1**: Play the computer's windows XP sound
 
 - **W**: Move Forward
 
