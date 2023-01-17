@@ -135,6 +135,11 @@ update_status ModuleSceneIntro::Update(float dt)
 				App->scene_intro->gameObjects[i]->GetTransformComponent()->position.z);
 		}
 
+		if (App->scene_intro->gameObjects[i]->GetName() == "Ground")
+		{
+			App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.5f, 0);
+		}
+
 		gameObjects.at(i)->Render();
 	}
 
