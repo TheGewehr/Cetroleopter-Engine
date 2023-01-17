@@ -123,8 +123,8 @@ update_status ModuleSceneIntro::Update(float dt)
 		{
 			if (trainTimer.running == true)
 			{
-				float trainPosition = (220.f * trainTimer.ReadSec())-1000.f;
-				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition);
+				float trainPosition = (220.f * trainTimer.ReadSec());
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition - 1500.f);
 
 				if (trainTimer.ReadSec() > 10.f)
 				{
@@ -137,12 +137,12 @@ update_status ModuleSceneIntro::Update(float dt)
 			{
 				
 				//trainTimer.Start();
-				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x);
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x - 1500.f);
 			}
 			else if (trainTimer.paused == true)
 			{
 				
-				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x);
+				App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, App->scene_intro->gameObjects[i]->GetTransformComponent()->GetPosition().x - 1500.f);
 			}
 
 			
