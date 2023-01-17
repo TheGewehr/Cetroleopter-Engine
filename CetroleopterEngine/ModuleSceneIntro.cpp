@@ -120,7 +120,7 @@ update_status ModuleSceneIntro::Update(float dt)
 
 		if (App->scene_intro->gameObjects[i]->GetName() == "Train6")
 		{
-			float trainPosition = (20.f * trainTimer);
+			float trainPosition = (15.f * trainTimer);
 			App->scene_intro->gameObjects[i]->GetTransformComponent()->SetPosition(0.f, 0.f, trainPosition - 1500.f);
 
 			if (trainTimer >= 300)
