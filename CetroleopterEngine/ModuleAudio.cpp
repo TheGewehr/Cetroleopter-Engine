@@ -2,9 +2,12 @@
 #include "Application.h"
 #include "Globals.h"
 
+#include "ModuleSceneIntro.h"
+
 #include "ModuleCameraComponent.h"
 #include "ModuleTransformComponent.h"
 #include "ModuleAudioListenerComponent.h"
+#include "ModuleAudioSourceComponent.h"
 
 #include "Include_Wwise.h"
 
@@ -145,6 +148,21 @@ update_status ModuleAudio::Update(float dt)
     listenerTransform.SetPosition(listenerPosition);
 
     AK::SoundEngine::SetPosition(MY_DEFAULT_LISTENER, listenerTransform);
+
+    if (soundEffectType_ID == SoundEffectType_ID::NONE)
+    {
+        for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+        {
+            App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetAuxiliarySends(12.0f, "Normal_Bus", MY_DEFAULT_LISTENER);
+        }
+    }
+    if (soundEffectType_ID == SoundEffectType_ID::REVERB)
+    {
+        for (int i = 0; i < App->scene_intro->gameObjects.size(); i++)
+        {
+            App->scene_intro->gameObjects[i]->GetAudioSourceComponent()->sound->SetAuxiliarySends(12.0f, "Auxiliary_Bus", MY_DEFAULT_LISTENER);
+        }
+    }
 
 	return UPDATE_CONTINUE;
 }
@@ -307,6 +325,8 @@ void WwiseObject::SetAuxiliarySends(AkReal32 value, const char* target_bus, AkGa
     reverb.fControlValue = value;
 
     AKRESULT res = AK::SoundEngine::SetGameObjectAuxSendValues(AkGOId, &reverb, 1);
+    if (res != AK_Success)
+        assert(!"Failed to SetAuxiliarySends!");
 }
 
 WwiseObject* CreateSoundObj(unsigned long id, const char* name, float x, float y, float z, bool is_default_listener)

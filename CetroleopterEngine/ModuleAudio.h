@@ -5,6 +5,11 @@
 #include "SDL/include/SDL.h"
 #include <AK/SoundEngine/Common/AkTypes.h>
 
+enum SoundEffectType_ID
+{
+	NONE,
+	REVERB
+};
 
 class Application;
 
@@ -28,6 +33,8 @@ public:
 	void SetVolume(const char* rtpc, float volumeValue);
 
 	AkGameObjectID MY_DEFAULT_LISTENER = 0;
+
+	int soundEffectType_ID = 0;
 
 };
 
