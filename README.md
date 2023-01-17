@@ -6,6 +6,8 @@
 
 Cetroleopter Engine its a 3D graphics Engine for Game Development developped with C++ developped by Álvaro Milla & Alexandre Carreras.
 
+Note that the engine takes some decent ammount of time to load all the assets when oppening it.
+
 ### Engine Features:
 
 ## UI:
