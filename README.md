@@ -77,7 +77,8 @@ Those are features wich have been fully implemented but wich for unknown reasons
 
 A module to play sounds and music have been added! Go to the Play/Stop tab and select "Play" to make the game run and listen to its sounds or "Play BG music" to listen to its soundtracks (they switch every ~2 minutes).
 You can also press "1" on your keyboard to make the computer asset play the windows XP login sound.
-If the main camera is in the tunnel, a reverb effect appears to simulate the sound of a train advancing through the tunnel. To hear the original train sound without the effect you must get out of the tunnel Z-lenght (following the train).
+
+If the main camera is in the tunnel of the demo scene, a reverb effect appears to simulate the sound of a train advancing through the tunnel. To hear the original  sound without the effect you must get out of the tunnel Z-lenght (following the train tracks).
 
 ![engine_demo_scene](https://user-images.githubusercontent.com/73583005/212938473-65eb6ac6-96f7-445c-91e4-6f118facf883.png)
 
